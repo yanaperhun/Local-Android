@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorMainDark"
+        android:padding="@dimen/control_margin">
+
+    <ImageView
+            android:id="@+id/iv_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_filter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+            android:id="@+id/iv_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_user"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <FrameLayout
+            android:id="@+id/fl_photo_container"
+            android:layout_width="0dp"
+            android:layout_height="416dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/control_margin"
+            app:layout_constraintTop_toBottomOf="@id/iv_filter">
+
+        <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_test" />
+
+
+
+    </FrameLayout>
+
+    <TextView
+            android:id="@+id/textView"
+            style="@style/App.Text.Accent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/control_margin"
+            android:text="Red Hot Chili Peppers\nTribute"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fl_photo_container" />
+
+    <ImageView
+            android:id="@+id/iv_dislike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/text_size_big"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iv_like"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_dislike" />
+
+    <ImageView
+            android:id="@+id/iv_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/control_big_margin"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_dislike"
+            app:srcCompat="@drawable/ic_like" />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_tags"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/ic_size_tag"
+            android:layout_marginBottom="@dimen/control_margin"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/iv_dislike"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:itemCount="4"
+            tools:listitem="@layout/item_text_event_tag" />
+
+    <TextView
+            style="@style/App.Text.Accent.Small"
+            android:id="@+id/tv_distance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="300м от вас"
+            android:layout_marginBottom="@dimen/control_margin"
+            app:layout_constraintBottom_toTopOf="@+id/rv_tags"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+            style="@style/App.Text.Default"
+            android:id="@+id/tv_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="г. Краснодар, Володарского 75"
+            app:layout_constraintBottom_toTopOf="@+id/tv_distance"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

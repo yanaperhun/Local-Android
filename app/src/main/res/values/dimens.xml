@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="control_margin">8dp</dimen>
+    <dimen name="control_big_margin">24dp</dimen>
+    <dimen name="text_size_default">14sp</dimen>
+    <dimen name="text_size_big">24sp</dimen>
+    <dimen name="ic_size_tag">40dp</dimen>
+</resources>

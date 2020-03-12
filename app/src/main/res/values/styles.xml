@@ -8,4 +8,33 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="App">
+
+    </style>
+
+    <style name="App.Text" parent="TextAppearance.AppCompat"/>
+
+    <style name="App.Text.Accent">
+        <item name="android:textSize">@dimen/text_size_big</item>
+        <item name="android:textColor">@color/colorTextAccent</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="App.Text.Accent.Small">
+        <item name="android:textSize">@dimen/text_size_default</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="App.Text.Default">
+        <item name="android:textSize">@dimen/text_size_default</item>
+        <item name="android:textColor">@color/colorTextDefault</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    <style name="App.Text.Tag">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorTextDefault</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 </resources>
