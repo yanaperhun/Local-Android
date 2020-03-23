@@ -26,3 +26,33 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    buildToolsVersion = "26.0.2"
+    supportLibVersion = "26.1.0"
+    arch_version = "1.0.0-beta2"
+    archRoomVersion = "2.2.0"
+    archLifecycleVersion = "1.0.0-beta2"
+    constraintLayoutVersion = "1.0.2"
+    daggerVersion = "2.14.1"
+
+    junit_version = "4.12"
+    espresso_version = "3.0.1"
+    mockito_version = "2.7.19"
+    dexmaker_version = "2.2.0"
+    mockwebserver_version = "3.2.0"
+
+    rxAndroidVersion = "2.0.2"
+    rxJavaVersion = "2.1.8"
+
+    gson = '2.8.5'
+    retrofitVersion = '2.4.0'
+
+    rxAndroidVersion = '2.0.2'
+    rxJavaVersion = '2.1.8'
+
+    daggerVersion = '2.27'
+    butterknifeVersion = '8.8.1'
+    okhttpVersion = '3.10.0'
+    logginInterceptor = '3.8.0'
+}

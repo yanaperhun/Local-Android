@@ -39,8 +39,33 @@ dependencies {
     //UI
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+
+    //ARCH
+    implementation 'android.arch.lifecycle:extensions:' + rootProject.archLifecycleVersion
+
+    //ROOM DB
+    implementation 'androidx.room:room-runtime:' + rootProject.archRoomVersion
+    annotationProcessor 'androidx.room:room-compiler:' + rootProject.archRoomVersion
+
     //AUTH
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
+
+    //NETWORK
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+
+    //dagger
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$logginInterceptor"
+    implementation "com.google.code.gson:gson:$gson"
+
 
     //TEST
     testImplementation 'junit:junit:4.12'
