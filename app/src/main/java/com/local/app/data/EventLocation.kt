@@ -4,6 +4,4 @@ data class EventLocation(var id: Long,
                          var name: String,
                          var lat: Long,
                          var long: Long,
-                         var city: String) {
-
-}
+                         var city: String)

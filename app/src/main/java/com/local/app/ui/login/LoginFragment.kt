@@ -1,4 +1,4 @@
-package com.local.app.login
+package com.local.app.ui.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,7 +12,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import com.local.app.api.RetrofitClient
 import com.local.app.databinding.FragmentLoginBinding
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class LoginFragment : Fragment() {
 
@@ -29,7 +32,12 @@ class LoginFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         binding.btnGoogle.setOnClickListener {
-            signIn()
+            var d = RetrofitClient().api
+                .load()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ Log.d("EVENTS", it.toString()) }, { it.printStackTrace() })
+//            d.dispose()
         }
     }
 

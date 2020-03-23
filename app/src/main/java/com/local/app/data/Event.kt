@@ -1,5 +1,7 @@
 package com.local.app.data
 
+import com.local.app.api.response.EventType
+
 data class Event(var id: Long,
                  var eventName: String,
                  var eventDate: String,
@@ -14,6 +16,4 @@ data class Event(var id: Long,
                  var ageLimit: Int,
                  var pictures: List<Photo>,
                  var status: EventStatus,
-                 var type: String) {
-
-}
+                 var type: EventType)

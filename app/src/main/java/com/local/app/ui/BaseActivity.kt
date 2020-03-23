@@ -1,4 +1,4 @@
-package com.local.app
+package com.local.app.ui
 
 import androidx.appcompat.app.AppCompatActivity
 
