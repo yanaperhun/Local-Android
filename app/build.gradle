@@ -20,6 +20,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled = true
+    }
     viewBinding {
         enabled = true
     }
@@ -28,6 +31,7 @@ android {
 }
 
 dependencies {
+
     //BASE
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -46,7 +50,7 @@ dependencies {
 
     //ROOM DB
     implementation 'androidx.room:room-runtime:' + rootProject.archRoomVersion
-    annotationProcessor 'androidx.room:room-compiler:' + rootProject.archRoomVersion
+    kapt 'androidx.room:room-compiler:' + rootProject.archRoomVersion
 
     //AUTH
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
