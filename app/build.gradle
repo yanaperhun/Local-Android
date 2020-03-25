@@ -38,6 +38,7 @@ dependencies {
     //UI
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
+    //RX
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
 
     //ARCH
@@ -67,6 +68,9 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$logginInterceptor"
     implementation "com.google.code.gson:gson:$gson"
 
+    //GLIDE
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
 
     //TEST
     testImplementation 'junit:junit:4.12'
