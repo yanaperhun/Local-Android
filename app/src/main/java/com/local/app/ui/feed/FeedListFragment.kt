@@ -4,15 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
+import com.local.app.data.Event
 import com.local.app.databinding.FragmentFeedBinding
 import com.local.app.presentation.viewmodel.FeedViewModel
 import com.local.app.ui.BaseFragment
 
-class FeedFragment : BaseFragment() {
+class FeedListFragment : BaseFragment() {
 
     private lateinit var viewModel: FeedViewModel
     private lateinit var binding: FragmentFeedBinding
+    private lateinit var adapter: FeedRVAdapter
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -28,7 +35,20 @@ class FeedFragment : BaseFragment() {
 
     override fun onStart() {
         super.onStart()
+        viewModel.loadFeed()
+    }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.eventsLD.observe(this, Observer { showFeed(it) })
+    }
 
+    private fun showFeed(it: List<Event>) {
+        binding.rvEvents.layoutManager =
+            LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+
+        val snapHelper: SnapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView( binding.rvEvents)
+        binding.rvEvents.adapter = FeedRVAdapter(it)
     }
 }

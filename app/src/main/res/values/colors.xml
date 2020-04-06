@@ -4,9 +4,11 @@
     <color name="colorPrimaryDark">@color/colorMainDark</color>
     <color name="colorAccent">#D81B60</color>
 
+    <color name="colorWhite">#fff</color>
     <color name="colorMainDark">#1E1E1E</color>
     <color name="colorTextDefault">#A6A6A6</color>
     <color name="colorTextAccent">#FFFFFF</color>
     
     <color name="colorLabelBg">#2E2E2E</color>
+    <color name="colorBlueButton">#56E3EC</color>
 </resources>

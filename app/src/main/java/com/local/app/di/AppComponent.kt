@@ -5,7 +5,7 @@ import com.local.app.di.feed.FeedModule
 import dagger.Component
 import javax.inject.Singleton
 
-@Component
+@Component(modules = [AppModule::class])
 @Singleton
 interface AppComponent {
 

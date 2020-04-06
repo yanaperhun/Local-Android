@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -20,6 +20,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="App.Text.Accent.Medium">
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="App.Text.Accent.Small">
         <item name="android:textSize">@dimen/text_size_default</item>
         <item name="android:textStyle">normal</item>
@@ -29,6 +34,17 @@
         <item name="android:textSize">@dimen/text_size_default</item>
         <item name="android:textColor">@color/colorTextDefault</item>
         <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="App.Button"/>
+
+    <style name="App.Button.Blue">
+        <item name="android:textSize">@dimen/text_size_default</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="background">@drawable/rect_blue_18dp_corner</item>
     </style>
     <style name="App.Text.Tag">
         <item name="android:textSize">16sp</item>

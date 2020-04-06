@@ -2,7 +2,6 @@ package com.local.app.presentation.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import com.local.app.LocalApp
 import com.local.app.data.Photo
 import com.local.app.domain.feed.GetPhotoByEventsInteractor
@@ -14,7 +13,7 @@ class PhotoViewerViewModel(application: Application) : AndroidViewModel(applicat
     lateinit var interactor: GetPhotoByEventsInteractor;
 
     init {
-        getApplication<LocalApp>().daggerComponentManager.feedComponent?.inject(this)
+        getApplication<LocalApp>().daggerManager.feedComponent?.inject(this)
     }
 
     fun getPhotos(postId: Int): List<Photo> {

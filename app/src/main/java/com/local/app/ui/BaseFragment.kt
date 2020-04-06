@@ -6,7 +6,7 @@ import com.local.app.di.ComponentManager
 
 open class BaseFragment : Fragment() {
     fun getDagger(): ComponentManager {
-        return (context as LocalApp).daggerComponentManager;
+        return (activity?.application as LocalApp).daggerManager
     }
 
 }

@@ -6,21 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.local.app.databinding.FragmentEventBinding
-import com.local.app.databinding.FragmentLoginBinding
+import com.local.app.databinding.ItemRvEventBinding
 import com.local.app.presentation.viewmodel.EventViewModel
 import com.local.app.ui.BaseFragment
 
 class EventFragment : BaseFragment() {
 
-    lateinit var binding: FragmentEventBinding
+    lateinit var binding: ItemRvEventBinding
     lateinit var viewModel: EventViewModel
     var eventId: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        binding = FragmentEventBinding.inflate(inflater)
+        binding = ItemRvEventBinding.inflate(inflater)
 
         viewModel = ViewModelProviders
             .of(this)

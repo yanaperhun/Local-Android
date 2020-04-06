@@ -3,7 +3,7 @@
         style="@style/App.Text.Tag"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/ic_size_tag"
-        android:background="@drawable/rect_grey_with_4dp_corner"
+        android:background="@drawable/rect_grey_10dp_corner"
         android:minWidth="@dimen/ic_size_tag"
         android:paddingLeft="@dimen/control_margin"
         android:paddingRight="@dimen/control_margin"
