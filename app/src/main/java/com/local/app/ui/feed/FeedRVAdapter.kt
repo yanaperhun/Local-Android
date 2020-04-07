@@ -27,20 +27,23 @@ class FeedRVAdapter(private var events: List<Event>) : RecyclerView.Adapter<Feed
         var i: Int
         holder.bind(events[position])
         val rvImages = holder.binding.rvImages
-        //        val snapHelper: SnapHelper = PagerSnapHelper()
-        //        snapHelper.attachToRecyclerView(rvImages)
+        val snapHelper: SnapHelper = PagerSnapHelper()
+        snapHelper.attachToRecyclerView(rvImages)
         rvImages.setRecycledViewPool(viewPool);
         rvImages.isNestedScrollingEnabled = false
 
         rvImages.apply {
-            postDelayed(Runnable {
-                //                addItemDecoration(LinePagerIndicatorDecoration())
+            //            postDelayed(Runnable {
+            //                run {
 
-                layoutManager = LinearLayoutManager(holder.itemView.context)
-                adapter = PhotoViewerAdapter(events[position].pictures)
-            }, 500)
-
+            layoutManager = LinearLayoutManager(holder.itemView.context)
+            adapter = PhotoViewerAdapter(events[position].pictures)
+            rvImages.addItemDecoration(LinePagerIndicatorDecoration())
+            //                }
+            //
+            //            }, 50)
         }
+
 
         rvImages.invalidate()
     }

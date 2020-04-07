@@ -20,7 +20,7 @@ class PhotoViewerAdapter(private val photoList: List<Photo>) :
             .inflate(R.layout.item_photo_viewer, parent, false)
         //            ItemPhotoViewerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         //        view.root.layoutParams = ConstraintLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
-        return VH(view)
+        return VH(parent.width, view)
 
     }
 
@@ -31,8 +31,7 @@ class PhotoViewerAdapter(private val photoList: List<Photo>) :
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         //        holder.itemView.layoutParams = ConstraintLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
-        //        holder.itemView.layoutParams.width = 400
-
+                holder.itemView.layoutParams.width = holder.w
         //        Glide
         //            .with(holder.itemView.context)
         //            //            .load(photoList[position].url.lg)
@@ -40,7 +39,7 @@ class PhotoViewerAdapter(private val photoList: List<Photo>) :
         //            .into(holder.binding.iv_photo)
     }
 
-    inner class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class VH(var w  : Int, itemView: View) : RecyclerView.ViewHolder(itemView) {
         var binding = itemView
     }
     //
