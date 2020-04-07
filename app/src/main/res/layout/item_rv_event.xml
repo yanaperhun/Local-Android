@@ -18,22 +18,13 @@
             android:padding="@dimen/control_margin">
 
 
-
-        <FrameLayout
-                android:id="@+id/fl_photo_container"
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_images"
                 android:layout_width="0dp"
                 android:layout_height="416dp"
-                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:background="#22555555"
-                app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_images"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-        </FrameLayout>
+                app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
                 android:id="@+id/tv_name"
@@ -43,7 +34,7 @@
                 android:layout_marginTop="@dimen/control_margin"
                 android:text="@{event.eventName}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fl_photo_container" />
+                app:layout_constraintTop_toBottomOf="@+id/rv_images" />
 
         <ImageView
                 android:id="@+id/iv_dislike"

@@ -47,8 +47,9 @@ class FeedListFragment : BaseFragment() {
         binding.rvEvents.layoutManager =
             LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
 
-        val snapHelper: SnapHelper = PagerSnapHelper()
-        snapHelper.attachToRecyclerView( binding.rvEvents)
+//        val snapHelper: SnapHelper = PagerSnapHelper()
+//        snapHelper.attachToRecyclerView( binding.rvEvents)
         binding.rvEvents.adapter = FeedRVAdapter(it)
+//        binding.rvEvents.isNestedScrollingEnabled = true
     }
 }

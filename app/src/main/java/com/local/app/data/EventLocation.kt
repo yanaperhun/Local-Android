@@ -2,6 +2,6 @@ package com.local.app.data
 
 data class EventLocation(var id: Long,
                          var name: String,
-                         var lat: Long,
-                         var long: Long,
+                         var lat: Double,
+                         var long: Double,
                          var city: String)

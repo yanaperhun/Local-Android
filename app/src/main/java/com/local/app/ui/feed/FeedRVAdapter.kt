@@ -3,8 +3,7 @@ package com.local.app.ui.feed
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.*
 import com.local.app.data.Event
 import com.local.app.databinding.ItemRvEventBinding
 import com.local.app.ui.adapters.PhotoViewerAdapter
@@ -12,7 +11,10 @@ import com.local.app.ui.custom.LinePagerIndicatorDecoration
 
 class FeedRVAdapter(private var events: List<Event>) : RecyclerView.Adapter<FeedRVAdapter.VH>() {
 
+    var viewPool: RecyclerView.RecycledViewPool = RecyclerView.RecycledViewPool()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
+
         return VH(ItemRvEventBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
@@ -24,11 +26,23 @@ class FeedRVAdapter(private var events: List<Event>) : RecyclerView.Adapter<Feed
 
         var i: Int
         holder.bind(events[position])
-        holder.binding.rvImages.apply {
-            addItemDecoration(LinePagerIndicatorDecoration())
-            layoutManager = LinearLayoutManager(holder.itemView.context)
-            adapter = PhotoViewerAdapter(events[position].pictures)
+        val rvImages = holder.binding.rvImages
+        //        val snapHelper: SnapHelper = PagerSnapHelper()
+        //        snapHelper.attachToRecyclerView(rvImages)
+        rvImages.setRecycledViewPool(viewPool);
+        rvImages.isNestedScrollingEnabled = false
+
+        rvImages.apply {
+            postDelayed(Runnable {
+                //                addItemDecoration(LinePagerIndicatorDecoration())
+
+                layoutManager = LinearLayoutManager(holder.itemView.context)
+                adapter = PhotoViewerAdapter(events[position].pictures)
+            }, 500)
+
         }
+
+        rvImages.invalidate()
     }
 
     inner class VH(var binding: ItemRvEventBinding) : RecyclerView.ViewHolder(binding.root) {
