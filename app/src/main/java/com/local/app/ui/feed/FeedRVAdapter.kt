@@ -33,15 +33,15 @@ class FeedRVAdapter(private var events: List<Event>) : RecyclerView.Adapter<Feed
         rvImages.isNestedScrollingEnabled = false
 
         rvImages.apply {
-            //            postDelayed(Runnable {
-            //                run {
+                        postDelayed(Runnable {
+                            run {
 
             layoutManager = LinearLayoutManager(holder.itemView.context)
             adapter = PhotoViewerAdapter(events[position].pictures)
             rvImages.addItemDecoration(LinePagerIndicatorDecoration())
-            //                }
-            //
-            //            }, 50)
+                            }
+
+                        }, 50)
         }
 
 

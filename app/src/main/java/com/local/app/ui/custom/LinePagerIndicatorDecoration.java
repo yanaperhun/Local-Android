@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class LinePagerIndicatorDecoration extends RecyclerView.ItemDecoration {
 
-  private int colorActive = 0xFFFFFFFF;
-  private int colorInactive = 0x66555555;
+  private int colorActive = 0xFFFF4688;
+  private int colorInactive = 0xFFFFFFFF;
 
   private static final float DP = Resources.getSystem().getDisplayMetrics().density;
 
@@ -31,11 +31,11 @@ public class LinePagerIndicatorDecoration extends RecyclerView.ItemDecoration {
   /**
    * Indicator width.
    */
-  private final float mIndicatorItemLength = DP * 16;
+  private  float mIndicatorItemLength = DP * 16;
   /**
    * Padding between indicators.
    */
-  private final float mIndicatorItemPadding = DP * 4;
+  private final float mIndicatorItemPadding = DP * 6;
 
   /**
    * Some more natural animation interpolation
@@ -58,14 +58,18 @@ public class LinePagerIndicatorDecoration extends RecyclerView.ItemDecoration {
     int itemCount = parent.getAdapter().getItemCount();
 
     // center horizontally, calculate width and subtract half from center
-    float totalLength = mIndicatorItemLength * itemCount;
-//    float totalLength = parent.getWidth() / itemCount/2;
+//    float totalLength = mIndicatorItemLength * itemCount;
+    float totalLength = parent.getWidth();
+
+
     float paddingBetweenItems = Math.max(0, itemCount - 1) * mIndicatorItemPadding;
+    mIndicatorItemLength  = (totalLength  - (paddingBetweenItems) - 16 * DP)/(itemCount );
     float indicatorTotalWidth = totalLength + paddingBetweenItems;
-    float indicatorStartX = (parent.getWidth() - indicatorTotalWidth) / 2F;
+//    float indicatorStartX = (parent.getWidth() - indicatorTotalWidth) / 2F;
+    float indicatorStartX = (parent.getX() );
 
     // center vertically in the allotted space
-    float indicatorPosY = parent.getHeight() - mIndicatorHeight / 2F;
+    float indicatorPosY = parent.getY();
 
     drawInactiveIndicators(c, indicatorStartX, indicatorPosY, itemCount);
 

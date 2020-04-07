@@ -25,7 +25,7 @@ class PhotoViewerAdapter(private val photoList: List<Photo>) :
     }
 
     override fun getItemCount(): Int {
-        return 5
+        return 4
         //        return photoList.size
     }
 
