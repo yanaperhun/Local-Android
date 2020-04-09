@@ -1,5 +1,6 @@
 package com.local.app.ui.feed
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,50 +25,46 @@ class FeedRVAdapter(private var events: List<Event>) : RecyclerView.Adapter<Feed
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-
         holder.bind(events[position])
+
         val rvImages = holder.binding.rvImages
-        val snapHelper: SnapHelper = PagerSnapHelper()
-        rvImages.onFlingListener = null;
-        snapHelper.attachToRecyclerView(rvImages)
-        rvImages.setRecycledViewPool(viewPool);
+        PagerSnapHelper().attachToRecyclerView(rvImages)
+
+        rvImages.setRecycledViewPool(viewPool)
         rvImages.isNestedScrollingEnabled = false
 
         rvImages.apply {
             postDelayed(Runnable {
                 run {
-
                     layoutManager = LinearLayoutManager(holder.itemView.context)
                     adapter = PhotoViewerAdapter(events[position].pictures)
                     rvImages.addItemDecoration(LinePagerIndicatorDecoration())
-                    val clickListener = RecyclerItemClickListener(context, rvImages, object :
-                        RecyclerItemClickListener.OnItemClickListener {
-
-                        override fun onItemClick(view: View, position: Int) {
-                            val pos = if (position == 1) 0 else position + 1
-                            rvImages.scrollToPosition(pos)
-                        }
-
-                        override fun onLongItemClick(view: View, position: Int) {
-                        }
-                    })
-                    rvImages.addOnItemTouchListener(clickListener)
-
+                    addedImageClickListener(rvImages, context)
                 }
-
             }, 50)
         }
-
-
-        rvImages.invalidate()
     }
 
     inner class VH(var binding: ItemRvEventBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(event: Event) {
             binding.event = event
-            binding.executePendingBindings();
+            binding.executePendingBindings()
         }
+    }
 
+    private fun addedImageClickListener(rv: RecyclerView, context: Context) {
+        val clickListener = RecyclerItemClickListener(context, rv, object :
+            RecyclerItemClickListener.OnItemClickListener {
+
+            override fun onItemClick(view: View, position: Int) {
+                val pos = if (position == 1) 0 else position + 1
+                rv.scrollToPosition(pos)
+            }
+
+            override fun onLongItemClick(view: View, position: Int) {
+            }
+        })
+        rv.addOnItemTouchListener(clickListener)
     }
 }
