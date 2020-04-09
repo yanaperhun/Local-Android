@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.local.app.LocalApp
 import com.local.app.data.Event
+import com.local.app.data.User
 import com.local.app.domain.feed.GetEventsInteractor
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -20,6 +21,8 @@ class FeedViewModel(application: Application) : AndroidViewModel(application) {
 
     var eventsLD: MutableLiveData<List<Event>> = MutableLiveData()
 
+    var callbacks: Callbacks? = null
+
     @Inject
     lateinit var getEventsInteractor: GetEventsInteractor
 
@@ -29,11 +32,20 @@ class FeedViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun loadFeed() {
-        val add = disposable.add(getEventsInteractor
-                                     .execute()
-                                     .subscribeOn(Schedulers.io())
-                                     .observeOn(AndroidSchedulers.mainThread())
-                                     .subscribe({ eventsLD.value = it }, { it.printStackTrace() }))
+
+        disposable.add(getEventsInteractor
+                           .execute()
+                           .subscribeOn(Schedulers.io())
+                           .observeOn(AndroidSchedulers.mainThread())
+                           .subscribe(run { callbacks?.onUserLoaded }, run { callbacks?.onError }))
+    }
+
+    interface Callbacks {
+
+        var onUserLoaded: (events: List<Event>) -> Unit
+
+        var onError: (error: Throwable) -> Unit
+
     }
 
     override fun onCleared() {

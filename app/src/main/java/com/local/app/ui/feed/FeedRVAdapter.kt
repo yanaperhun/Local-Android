@@ -8,10 +8,11 @@ import com.local.app.data.Event
 import com.local.app.databinding.ItemRvEventBinding
 import com.local.app.ui.adapters.PhotoViewerAdapter
 import com.local.app.ui.custom.LinePagerIndicatorDecoration
+import com.local.app.ui.custom.RecyclerItemClickListener
 
 class FeedRVAdapter(private var events: List<Event>) : RecyclerView.Adapter<FeedRVAdapter.VH>() {
 
-    var viewPool: RecyclerView.RecycledViewPool = RecyclerView.RecycledViewPool()
+    private var viewPool: RecyclerView.RecycledViewPool = RecyclerView.RecycledViewPool()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
 
@@ -24,24 +25,37 @@ class FeedRVAdapter(private var events: List<Event>) : RecyclerView.Adapter<Feed
 
     override fun onBindViewHolder(holder: VH, position: Int) {
 
-        var i: Int
         holder.bind(events[position])
         val rvImages = holder.binding.rvImages
         val snapHelper: SnapHelper = PagerSnapHelper()
+        rvImages.onFlingListener = null;
         snapHelper.attachToRecyclerView(rvImages)
         rvImages.setRecycledViewPool(viewPool);
         rvImages.isNestedScrollingEnabled = false
 
         rvImages.apply {
-                        postDelayed(Runnable {
-                            run {
+            postDelayed(Runnable {
+                run {
 
-            layoutManager = LinearLayoutManager(holder.itemView.context)
-            adapter = PhotoViewerAdapter(events[position].pictures)
-            rvImages.addItemDecoration(LinePagerIndicatorDecoration())
-                            }
+                    layoutManager = LinearLayoutManager(holder.itemView.context)
+                    adapter = PhotoViewerAdapter(events[position].pictures)
+                    rvImages.addItemDecoration(LinePagerIndicatorDecoration())
+                    val clickListener = RecyclerItemClickListener(context, rvImages, object :
+                        RecyclerItemClickListener.OnItemClickListener {
 
-                        }, 50)
+                        override fun onItemClick(view: View, position: Int) {
+                            val pos = if (position == 1) 0 else position + 1
+                            rvImages.scrollToPosition(pos)
+                        }
+
+                        override fun onLongItemClick(view: View, position: Int) {
+                        }
+                    })
+                    rvImages.addOnItemTouchListener(clickListener)
+
+                }
+
+            }, 50)
         }
 
 
