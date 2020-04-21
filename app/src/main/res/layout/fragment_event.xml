@@ -11,190 +11,196 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorMainDark"
-            android:padding="@dimen/control_margin">
+            android:layout_height="match_parent">
 
-        <FrameLayout
-                android:id="@+id/fl_photo_container"
-                android:layout_width="0dp"
-                android:layout_height="416dp"
-                android:background="#22555555"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorMainDark"
+                android:padding="@dimen/control_margin">
+
+            <FrameLayout
+                    android:id="@+id/fl_photo_container"
+                    android:layout_width="0dp"
+                    android:layout_height="416dp"
+                    android:background="#22555555"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_images"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <TextView
+                    android:id="@+id/tv_name"
+                    style="@style/App.Text.Accent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@{event.eventName}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fl_photo_container" />
+
 
             <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_images"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-        </FrameLayout>
+                    android:id="@+id/rv_tags"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/ic_size_tag"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                    tools:itemCount="4"
+                    tools:listitem="@layout/item_text_event_tag">
 
-        <TextView
-                android:id="@+id/tv_name"
-                style="@style/App.Text.Accent"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@{event.eventName}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fl_photo_container" />
+            </androidx.recyclerview.widget.RecyclerView>
 
+            <TextView
+                    android:id="@+id/textView"
+                    style="@style/App.Text.Default"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/control_margin"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="@dimen/control_margin"
+                    android:lineSpacingExtra="3dp"
+                    android:text="@string/comma"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rv_tags" />
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_tags"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/ic_size_tag"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_name"
-                tools:itemCount="4"
-                tools:listitem="@layout/item_text_event_tag">
+            <View
+                    android:id="@+id/btn_soundcloud"
+                    android:layout_width="0dp"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="@dimen/control_medium_margin"
+                    android:background="@drawable/rect_grey_20dp_corner"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <TextView
+                    android:id="@+id/tv_sound_name"
+                    style="@style/App.Text.Accent.Medium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/control_medium_margin"
+                    android:clickable="false"
+                    android:text="Sound Preview"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_singer_name"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView"
+                    app:layout_constraintStart_toStartOf="@id/btn_soundcloud"
+                    app:layout_constraintTop_toTopOf="@+id/btn_soundcloud" />
 
-        <TextView
-                android:id="@+id/textView"
-                style="@style/App.Text.Default"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/control_margin"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="@dimen/control_margin"
-                android:lineSpacingExtra="3dp"
-                android:text="@string/comma"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rv_tags" />
+            <TextView
+                    android:id="@+id/tv_singer_name"
+                    style="@style/App.Text.Accent.Small"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/control_medium_margin"
+                    android:clickable="false"
+                    android:text="DJ Preview"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_soundcloud"
+                    app:layout_constraintEnd_toStartOf="@+id/imageView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_sound_name" />
 
-        <View
-                android:id="@+id/btn_soundcloud"
-                android:layout_width="0dp"
-                android:layout_height="64dp"
-                android:layout_marginTop="@dimen/control_medium_margin"
-                android:background="@drawable/rect_grey_20dp_corner"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+            <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/control_margin"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_soundcloud"
+                    app:layout_constraintEnd_toEndOf="@+id/btn_soundcloud"
+                    app:layout_constraintTop_toTopOf="@+id/btn_soundcloud"
+                    app:srcCompat="@drawable/ic_soundcloud" />
 
-        <TextView
-                android:id="@+id/tv_sound_name"
-                style="@style/App.Text.Accent.Medium"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/control_medium_margin"
-                android:clickable="false"
-                android:text="Sound Preview"
-                app:layout_constraintBottom_toTopOf="@+id/tv_singer_name"
-                app:layout_constraintEnd_toStartOf="@+id/imageView"
-                app:layout_constraintStart_toStartOf="@id/btn_soundcloud"
-                app:layout_constraintTop_toTopOf="@+id/btn_soundcloud" />
+            <View
+                    android:id="@+id/view_creator"
+                    android:layout_width="0dp"
+                    android:layout_height="164dp"
+                    android:layout_marginTop="@dimen/control_big_margin"
+                    android:background="@drawable/rect_grey_20dp_corner"
+                    android:padding="@dimen/control_margin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_soundcloud" />
 
-        <TextView
-                android:id="@+id/tv_singer_name"
-                style="@style/App.Text.Accent.Small"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/control_medium_margin"
-                android:clickable="false"
-                android:text="DJ Preview"
-                app:layout_constraintBottom_toBottomOf="@+id/btn_soundcloud"
-                app:layout_constraintEnd_toStartOf="@+id/imageView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_sound_name" />
+            <ImageView
+                    android:id="@+id/iv_creator"
+                    android:layout_width="88dp"
+                    android:layout_height="88dp"
+                    android:layout_marginStart="@dimen/control_margin"
+                    android:layout_marginTop="@dimen/control_margin"
+                    android:src="@drawable/ic_user"
+                    app:layout_constraintStart_toStartOf="@+id/view_creator"
+                    app:layout_constraintTop_toTopOf="@+id/view_creator" />
 
-        <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/control_margin"
-                app:layout_constraintBottom_toBottomOf="@+id/btn_soundcloud"
-                app:layout_constraintEnd_toEndOf="@+id/btn_soundcloud"
-                app:layout_constraintTop_toTopOf="@+id/btn_soundcloud"
-                app:srcCompat="@drawable/ic_soundcloud" />
+            <TextView
+                    android:id="@+id/btn_contact"
+                    style="@style/App.Button.Blue"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="@dimen/control_margin"
+                    android:layout_marginEnd="@dimen/control_margin"
+                    android:layout_marginBottom="@dimen/control_margin"
+                    android:background="@drawable/rect_blue_18dp_corner"
+                    android:text="@string/contact"
+                    app:layout_constraintBottom_toBottomOf="@+id/view_creator"
+                    app:layout_constraintEnd_toEndOf="@+id/view_creator"
+                    app:layout_constraintStart_toStartOf="@+id/view_creator" />
 
-        <View
-                android:id="@+id/view_creator"
-                android:layout_width="0dp"
-                android:layout_height="164dp"
-                android:layout_marginTop="@dimen/control_big_margin"
-                android:background="@drawable/rect_grey_20dp_corner"
-                android:padding="@dimen/control_margin"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_soundcloud" />
+            <TextView
+                    android:id="@+id/tv_creator_name"
+                    style="@style/App.Text.Accent.Medium"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/control_margin"
+                    android:layout_marginEnd="@dimen/control_margin"
+                    android:maxLines="2"
+                    android:text="Имя ФамилияИмя ФамилияИмя ФамилияИмя ФамилияИмя Фамилия"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_address"
+                    app:layout_constraintEnd_toEndOf="@id/view_creator"
+                    app:layout_constraintStart_toEndOf="@+id/iv_creator"
+                    app:layout_constraintTop_toTopOf="@+id/iv_creator" />
 
-        <ImageView
-                android:id="@+id/iv_creator"
-                android:layout_width="88dp"
-                android:layout_height="88dp"
-                android:layout_marginStart="@dimen/control_margin"
-                android:layout_marginTop="@dimen/control_margin"
-                android:src="@drawable/ic_user"
-                app:layout_constraintStart_toStartOf="@+id/view_creator"
-                app:layout_constraintTop_toTopOf="@+id/view_creator" />
+            <TextView
+                    android:id="@+id/tv_address"
+                    style="@style/App.Text.Default"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/control_margin"
+                    android:layout_marginTop="8dp"
+                    android:maxLines="2"
+                    android:text="АдрессАдрессАдрессАдрессАдрессАдресс"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_distance"
+                    app:layout_constraintEnd_toEndOf="@id/view_creator"
+                    app:layout_constraintStart_toEndOf="@+id/iv_creator"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_creator_name"
+                    app:layout_constraintVertical_chainStyle="spread_inside" />
 
-        <TextView
-                android:id="@+id/btn_contact"
-                style="@style/App.Button.Blue"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="@dimen/control_margin"
-                android:layout_marginEnd="@dimen/control_margin"
-                android:layout_marginBottom="@dimen/control_margin"
-                android:background="@drawable/rect_blue_18dp_corner"
-                android:text="@string/contact"
-                app:layout_constraintBottom_toBottomOf="@+id/view_creator"
-                app:layout_constraintEnd_toEndOf="@+id/view_creator"
-                app:layout_constraintStart_toStartOf="@+id/view_creator" />
-
-        <TextView
-                android:id="@+id/tv_creator_name"
-                style="@style/App.Text.Accent.Medium"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/control_margin"
-                android:layout_marginEnd="@dimen/control_margin"
-                android:maxLines="2"
-                android:text="Имя ФамилияИмя ФамилияИмя ФамилияИмя ФамилияИмя Фамилия"
-                app:layout_constraintBottom_toTopOf="@+id/tv_address"
-                app:layout_constraintEnd_toEndOf="@id/view_creator"
-                app:layout_constraintStart_toEndOf="@+id/iv_creator"
-                app:layout_constraintTop_toTopOf="@+id/iv_creator" />
-
-        <TextView
-                android:id="@+id/tv_address"
-                style="@style/App.Text.Default"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/control_margin"
-                android:layout_marginTop="8dp"
-                android:maxLines="2"
-                android:text="АдрессАдрессАдрессАдрессАдрессАдресс"
-                app:layout_constraintBottom_toTopOf="@+id/tv_distance"
-                app:layout_constraintEnd_toEndOf="@id/view_creator"
-                app:layout_constraintStart_toEndOf="@+id/iv_creator"
-                app:layout_constraintTop_toBottomOf="@+id/tv_creator_name"
-                app:layout_constraintVertical_chainStyle="spread_inside" />
-
-        <TextView
-                android:id="@+id/tv_distance"
-                style="@style/App.Text.Accent.Small"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/control_margin"
-                android:layout_marginEnd="@dimen/control_margin"
-                android:text="Расстояние 300 м"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_creator"
-                app:layout_constraintEnd_toEndOf="@+id/view_creator"
-                app:layout_constraintStart_toEndOf="@+id/iv_creator"
-                app:layout_constraintTop_toBottomOf="@+id/tv_address" />
+            <TextView
+                    android:id="@+id/tv_distance"
+                    style="@style/App.Text.Accent.Small"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/control_margin"
+                    android:layout_marginEnd="@dimen/control_margin"
+                    android:text="Расстояние 300 м"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_creator"
+                    app:layout_constraintEnd_toEndOf="@+id/view_creator"
+                    app:layout_constraintStart_toEndOf="@+id/iv_creator"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_address" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </layout>

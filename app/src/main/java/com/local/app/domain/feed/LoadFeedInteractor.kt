@@ -5,7 +5,7 @@ import com.local.app.repository.EventFeedRepository
 import io.reactivex.Single
 import javax.inject.Inject
 
-class GetEventsInteractor @Inject constructor(var repository: EventFeedRepository) {
+class LoadFeedInteractor @Inject constructor(var repository: EventFeedRepository) {
 
     fun execute(): Single<List<Event>> {
         return repository.loadFeed()

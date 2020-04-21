@@ -15,5 +15,10 @@ data class Event(var id: Long,
                  var appleMusic: String?,
                  var ageLimit: Int,
                  var pictures: List<Photo>,
+                 var tags: List<String>,
                  var status: EventStatus,
-                 var type: EventType)
+                 var type: EventType) {
+
+    val tagsDefault: List<String>
+        get() = if (tags.isNullOrEmpty()) listOf("18+", "Tag1", "Long Tag", "Tag3") else tags
+}

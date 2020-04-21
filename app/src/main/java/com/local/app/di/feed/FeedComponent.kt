@@ -1,5 +1,6 @@
 package com.local.app.di.feed
 
+import com.local.app.presentation.viewmodel.EventViewModel
 import com.local.app.presentation.viewmodel.FeedViewModel
 import com.local.app.presentation.viewmodel.PhotoViewerViewModel
 import com.local.app.ui.event.EventFragment
@@ -13,5 +14,6 @@ interface FeedComponent {
     fun inject(photoViewerFragment: PhotoViewerViewModel)
     fun inject(eventFragment: EventFragment)
     fun inject(feedViewModel: FeedViewModel)
+    fun inject(eventViewModel: EventViewModel)
 
 }

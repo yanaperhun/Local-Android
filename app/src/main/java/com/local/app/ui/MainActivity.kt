@@ -8,8 +8,10 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        showFragment(FeedListFragment(), true, R.id.container)
+        if (savedInstanceState == null) {
+            setContentView(R.layout.activity_main)
+            showFragment(FeedListFragment(), true, R.id.container)
+        }
     }
 
 }

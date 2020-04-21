@@ -21,27 +21,32 @@
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_images"
                 android:layout_width="0dp"
-                android:layout_height="416dp"
+                android:layout_height="0dp"
+                android:maxHeight="416dp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
                 android:id="@+id/tv_name"
                 style="@style/App.Text.Accent"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/control_margin"
+                android:layout_marginBottom="16dp"
+                android:gravity="start"
                 android:text="@{event.eventName}"
+                app:layout_constraintBottom_toTopOf="@+id/tv_address"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rv_images" />
+                />
 
         <ImageView
                 android:id="@+id/iv_dislike"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/text_size_big"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="@dimen/control_medium_margin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/iv_like"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -53,18 +58,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/control_big_margin"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="@dimen/control_medium_margin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/iv_dislike"
                 app:srcCompat="@drawable/ic_like" />
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_tags"
+        <LinearLayout
+                android:id="@+id/ll_tags"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/ic_size_tag"
-                android:layout_marginBottom="@dimen/control_margin"
+                android:layout_marginBottom="@dimen/control_medium_margin"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@+id/iv_dislike"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -78,8 +83,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/control_margin"
-
-                app:layout_constraintBottom_toTopOf="@+id/rv_tags"
+                android:text="@{event.eventLocation.defaultDistance}"
+                app:layout_constraintBottom_toTopOf="@+id/ll_tags"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
