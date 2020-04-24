@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/rect_grey_bg_bottom_dialog">
+        android:background="@color/colorTransparent">
 
     <ImageView
             android:layout_width="wrap_content"
@@ -17,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/control_big_margin"
-            >
+            android:paddingBottom="@dimen/control_big_margin"
+            android:background="@drawable/rect_grey_bg_bottom_dialog">
 
         <EditText
                 android:id="@+id/et_location"
