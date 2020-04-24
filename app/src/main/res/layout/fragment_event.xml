@@ -17,25 +17,30 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@color/colorMainDark"
                 android:padding="@dimen/control_margin">
 
-            <FrameLayout
-                    android:id="@+id/fl_photo_container"
-                    android:layout_width="0dp"
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_images"
+                    android:layout_width="match_parent"
                     android:layout_height="416dp"
-                    android:background="#22555555"
-                    android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                   />
 
-                <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_images"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-            </FrameLayout>
+
+            <ImageButton
+                    android:id="@+id/btn_accept"
+                    android:layout_width="@dimen/accept_btn_size"
+                    android:layout_height="@dimen/accept_btn_size"
+                    android:layout_marginEnd="@dimen/control_big_margin"
+                    android:background="@drawable/rect_grey_label_color_18dp_corner"
+                    android:src="@drawable/ic_arrow_down"
+                    app:layout_constraintBottom_toBottomOf="@id/rv_images"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rv_images" />
 
             <TextView
                     android:id="@+id/tv_name"
@@ -46,25 +51,23 @@
                     android:text="@{event.eventName}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/fl_photo_container" />
+                    app:layout_constraintTop_toBottomOf="@+id/rv_images" />
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_tags"
+            <LinearLayout
+                    android:id="@+id/ll_tags"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ic_size_tag"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_name"
-                    tools:itemCount="4"
-                    tools:listitem="@layout/item_text_event_tag">
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name">
 
-            </androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
 
             <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/tv_description"
                     style="@style/App.Text.Default"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,10 +75,10 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="@dimen/control_margin"
                     android:lineSpacingExtra="3dp"
-                    android:text="@string/comma"
+                    android:text="@{event.description}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rv_tags" />
+                    app:layout_constraintTop_toBottomOf="@+id/ll_tags" />
 
             <View
                     android:id="@+id/btn_soundcloud"
@@ -85,7 +88,7 @@
                     android:background="@drawable/rect_grey_20dp_corner"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_description" />
 
             <TextView
                     android:id="@+id/tv_sound_name"
@@ -139,6 +142,7 @@
                     android:layout_height="88dp"
                     android:layout_marginStart="@dimen/control_margin"
                     android:layout_marginTop="@dimen/control_margin"
+                    android:background="@drawable/rect_blue_18dp_corner"
                     android:src="@drawable/ic_user"
                     app:layout_constraintStart_toStartOf="@+id/view_creator"
                     app:layout_constraintTop_toTopOf="@+id/view_creator" />
@@ -165,7 +169,7 @@
                     android:layout_marginStart="@dimen/control_margin"
                     android:layout_marginEnd="@dimen/control_margin"
                     android:maxLines="2"
-                    android:text="Имя ФамилияИмя ФамилияИмя ФамилияИмя ФамилияИмя Фамилия"
+                    android:text="@{event.creator.fullName}"
                     app:layout_constraintBottom_toTopOf="@+id/tv_address"
                     app:layout_constraintEnd_toEndOf="@id/view_creator"
                     app:layout_constraintStart_toEndOf="@+id/iv_creator"
@@ -177,9 +181,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/control_margin"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:maxLines="2"
-                    android:text="АдрессАдрессАдрессАдрессАдрессАдресс"
+                    android:text="@{event.eventLocation.name}"
                     app:layout_constraintBottom_toTopOf="@+id/tv_distance"
                     app:layout_constraintEnd_toEndOf="@id/view_creator"
                     app:layout_constraintStart_toEndOf="@+id/iv_creator"
@@ -190,14 +194,25 @@
                     android:id="@+id/tv_distance"
                     style="@style/App.Text.Accent.Small"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_marginStart="@dimen/control_margin"
                     android:layout_marginEnd="@dimen/control_margin"
-                    android:text="Расстояние 300 м"
-                    app:layout_constraintBottom_toBottomOf="@+id/iv_creator"
+                    android:gravity="top"
+                    android:text="@{event.eventLocation.defaultDistance}"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_creator"
                     app:layout_constraintEnd_toEndOf="@+id/view_creator"
                     app:layout_constraintStart_toEndOf="@+id/iv_creator"
                     app:layout_constraintTop_toBottomOf="@+id/tv_address" />
+
+            <ImageButton
+                    android:id="@+id/btn_menu"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="@dimen/control_margin"
+                    android:background="@color/colorTransparent"
+                    app:layout_constraintEnd_toEndOf="@+id/rv_images"
+                    app:layout_constraintTop_toTopOf="@+id/rv_images"
+                    app:srcCompat="@drawable/ic_menu" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

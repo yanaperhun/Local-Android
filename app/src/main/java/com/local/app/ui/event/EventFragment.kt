@@ -6,13 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.local.app.data.Event
 import com.local.app.databinding.FragmentEventBinding
-import com.local.app.databinding.ItemRvEventBinding
 import com.local.app.presentation.viewmodel.EventViewModel
 import com.local.app.ui.BaseFragment
 import com.local.app.ui.event.state.EventState
+import com.local.app.ui.photo.CommonRVEventElements
 
 class EventFragment : BaseFragment() {
 
@@ -46,13 +46,18 @@ class EventFragment : BaseFragment() {
         super.onStart()
         viewModel.eventState.observe(this, Observer {
             when (it) {
-                is EventState.Success -> {
-                    binding.event = it.event
-                    binding.executePendingBindings()
-                }
+                is EventState.Success -> showEvent(it.event)
+                is EventState.Error -> it.throwable.printStackTrace()
             }
         })
         refreshData()
+    }
+
+    private fun showEvent(event: Event) {
+        binding.event = event
+        binding.executePendingBindings()
+        CommonRVEventElements.buildTagsView(binding.llTags, event.tagsDefault)
+        CommonRVEventElements.showImages(binding.rvImages, event.pictures)
     }
 
     private fun refreshData() {

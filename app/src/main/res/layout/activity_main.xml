@@ -13,6 +13,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_margin="@dimen/control_margin"
+            android:onClick="onFilterClick"
             app:srcCompat="@drawable/ic_filter" />
 
     <ImageView

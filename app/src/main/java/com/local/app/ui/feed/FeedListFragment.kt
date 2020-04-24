@@ -23,7 +23,6 @@ class FeedListFragment : BaseFragment() {
 
     private lateinit var viewModel: FeedViewModel
     private lateinit var binding: FragmentFeedBinding
-    private lateinit var adapter: FeedRVAdapter
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,

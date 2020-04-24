@@ -17,8 +17,11 @@ class EventFeedRepository @Inject constructor(private var client: RetrofitClient
             .doOnSuccess { events = it }
     }
 
-    fun getImagesByEventId(eventId: Int): List<Photo> {
-        return emptyList()
+    fun getImagesByEventId(eventId: Long): Single<List<Photo>> {
+        for (event in events) {
+            if (event.id == eventId) return Single.just(event.pictures)
+        }
+        return Single.error(Throwable("Images for event id $eventId are not found"))
     }
 
     fun getEventById(id: Long): Single<Event> {

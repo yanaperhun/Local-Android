@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rect_grey_bg_bottom_dialog">
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/control_margin"
+            android:src="@drawable/ic_dialog_pin" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/control_big_margin"
+            >
+
+        <EditText
+                android:id="@+id/et_location"
+                style="@style/App.EditText.Filter.Active"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/et_height_filter"
+                android:layout_marginStart="@dimen/control_margin"
+                android:layout_marginTop="@dimen/control_big_margin"
+                android:layout_marginEnd="@dimen/control_margin"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Краснодар"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+                android:id="@+id/et_day_period"
+                style="@style/App.EditText.Filter.Active"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/et_height_filter"
+                android:layout_marginStart="@dimen/control_margin"
+                android:layout_marginTop="@dimen/control_medium_margin"
+                android:layout_marginEnd="@dimen/control_margin"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Ночью"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_location" />
+
+        <EditText
+                android:id="@+id/et_date"
+                style="@style/App.EditText.Filter.Active"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/et_height_filter"
+                android:layout_marginStart="@dimen/control_margin"
+                android:layout_marginTop="@dimen/control_medium_margin"
+                android:layout_marginEnd="@dimen/control_margin"
+                android:ems="10"
+                android:inputType="date"
+                android:text="Сегодня"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_day_period" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
