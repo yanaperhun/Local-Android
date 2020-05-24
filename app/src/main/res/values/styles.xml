@@ -40,13 +40,20 @@
 
     <style name="App.EditText" />
 
-    <style name="App.Button.Blue">
+    <style name="App.Button.Colored">
         <item name="android:textSize">@dimen/text_size_default</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/colorWhite</item>
-        <item name="background">@drawable/rect_blue_18dp_corner</item>
+    </style>
+
+    <style name="App.Button.Colored.Blue">
+        <item name="android:background">@drawable/rect_blue_18dp_corner</item>
+    </style>
+
+    <style name="App.Button.Colored.Green">
+        <item name="android:background">@drawable/rect_green_18dp_corner</item>
     </style>
 
     <style name="App.Text.Tag">
@@ -65,8 +72,8 @@
 
     <style name="App.EditText.Filter.Active">
         <item name="android:paddingStart">@dimen/control_big_margin</item>
-        <item name="android:background">@drawable/rect_blue_stroke_20dp_corner</item>
-        <item name="android:textColor">@color/colorBlue</item>
+        <item name="android:background">@drawable/rect_green_stroke_20dp_corner</item>
+        <item name="android:textColor">@color/colorGreen</item>
     </style>
 
     <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
@@ -75,6 +82,17 @@
 
     <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="App.ToggleButton"/>
+
+    <style name="App.ToggleButton.Filter">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_size_default</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingStart">@dimen/control_big_margin</item>
+        <item name="android:paddingEnd">@dimen/control_big_margin</item>
+        <item name="android:textColor">@color/selector_btn_green_text_color</item>
     </style>
 
 </resources>

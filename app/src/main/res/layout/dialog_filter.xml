@@ -17,10 +17,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/control_big_margin"
-            android:paddingBottom="@dimen/control_big_margin"
-            android:background="@drawable/rect_grey_bg_bottom_dialog">
+            android:background="@drawable/rect_grey_bg_bottom_dialog"
+            android:paddingBottom="@dimen/control_big_margin">
 
         <EditText
+                android:paddingEnd="@dimen/control_big_margin"
+                android:drawableEnd="@drawable/ic_location"
                 android:id="@+id/et_location"
                 style="@style/App.EditText.Filter.Active"
                 android:layout_width="0dp"
@@ -35,20 +37,47 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+        <LinearLayout
                 android:id="@+id/et_day_period"
-                style="@style/App.EditText.Filter.Active"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/et_height_filter"
                 android:layout_marginStart="@dimen/control_margin"
                 android:layout_marginTop="@dimen/control_medium_margin"
                 android:layout_marginEnd="@dimen/control_margin"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Ночью"
+                android:background="@drawable/rect_green_stroke_20dp_corner"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_location" />
+                app:layout_constraintTop_toBottomOf="@id/et_location">
+
+            <ToggleButton
+                    style="@style/App.ToggleButton.Filter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_btn_day_bg"
+                    android:checked="true"
+                    android:drawableEnd="@drawable/selector_btn_day_icon"
+                    android:gravity="start|center_vertical"
+                    android:paddingStart="35dp"
+                    android:textOff="@string/at_day"
+                    android:textOn="@string/at_day" />
+
+
+            <ToggleButton
+                    style="@style/App.ToggleButton.Filter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_btn_night_bg"
+                    android:checked="false"
+                    android:drawableStart="@drawable/selector_btn_night_icon"
+                    android:gravity="end|center_vertical"
+                    android:paddingEnd="35dp"
+                    android:textOff="@string/at_night"
+                    android:textOn="@string/at_night" />
+        </LinearLayout>
+
 
         <EditText
                 android:id="@+id/et_date"
@@ -58,13 +87,27 @@
                 android:layout_marginStart="@dimen/control_margin"
                 android:layout_marginTop="@dimen/control_medium_margin"
                 android:layout_marginEnd="@dimen/control_margin"
+                android:drawableEnd="@drawable/ic_calendar"
                 android:ems="10"
                 android:inputType="date"
+                android:paddingEnd="@dimen/control_big_margin"
                 android:text="Сегодня"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_day_period" />
 
+        <Button
+                style="@style/App.Button.Colored.Green"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/apply_btn_size"
+                android:layout_marginStart="@dimen/control_medium_margin"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="@dimen/control_medium_margin"
+                android:layout_marginBottom="@dimen/control_big_margin"
+                android:text="@string/apply"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_date" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

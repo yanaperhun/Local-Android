@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.local.app.BuildConfig
 import com.local.app.data.Event
 import com.local.app.databinding.FragmentEventBinding
 import com.local.app.presentation.viewmodel.EventViewModel
@@ -51,6 +52,8 @@ class EventFragment : BaseFragment() {
             }
         })
         refreshData()
+
+        BuildConfig.DEBUG
     }
 
     private fun showEvent(event: Event) {

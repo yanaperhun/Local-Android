@@ -2,4 +2,7 @@
     <string name="app_name">Local</string>
     <string name="comma">Специально для вас небезызвестные ребята из группы Comma исполнят легендарные хиты парней из Калифорнии! Не знаешь английского? Не беда, ты и так точно знаешь как подпевать под эти трек!</string>
     <string name="contact">Связаться</string>
+    <string name="apply">Применить</string>
+    <string name="at_day">Днем</string>
+    <string name="at_night">Ночью</string>
 </resources>

@@ -149,7 +149,7 @@
 
             <TextView
                     android:id="@+id/btn_contact"
-                    style="@style/App.Button.Blue"
+                    style="@style/App.Button.Colored.Blue"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="@dimen/control_margin"
