@@ -13,4 +13,6 @@
     <color name="colorLabelBg">#2E2E2E</color>
     <color name="colorBlue">#56E3EC</color>
     <color name="colorGreen">#6AD3A7</color>
+    <color name="colorGreyLight">#686868</color>
+    <color name="colorHint">@color/colorGreyLight</color>
 </resources>

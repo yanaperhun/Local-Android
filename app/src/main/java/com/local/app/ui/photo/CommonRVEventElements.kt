@@ -1,6 +1,5 @@
 package com.local.app.ui.photo
 
-import android.content.Context
 import android.os.Build
 import android.view.Gravity.CENTER_VERTICAL
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.local.app.R
 import com.local.app.data.Photo
-import com.local.app.ui.Utils
 import com.local.app.ui.Utils.Companion.DP_INT
 import com.local.app.ui.adapters.PhotoViewerAdapter
 import com.local.app.ui.custom.LinePagerIndicatorDecoration
@@ -61,7 +59,7 @@ class CommonRVEventElements {
 
                 tvTag.gravity = CENTER_VERTICAL
 
-                tvTag.setBackgroundResource(R.drawable.rect_grey_10dp_corner)
+                tvTag.setBackgroundResource(R.drawable.rect_grey_solid_10dp_corner)
                 llTags.addView(tvTag, layoutParams)
             }
         }

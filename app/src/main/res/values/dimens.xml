@@ -11,4 +11,6 @@
     <dimen name="accept_btn_size">56dp</dimen>
     <dimen name="apply_btn_size">48dp</dimen>
     <dimen name="et_height_filter">64dp</dimen>
+    <dimen name="back_btn_size">40dp</dimen>
+    <dimen name="stroke_width">2dp</dimen>
 </resources>

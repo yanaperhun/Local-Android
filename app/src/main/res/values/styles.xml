@@ -8,10 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="App">
+    <style name="App" />
 
-    </style>
-
+    <!-- ========TEXT_VIEW START========-->
     <style name="App.Text" parent="TextAppearance.AppCompat" />
 
     <style name="App.Text.Accent">
@@ -36,9 +35,44 @@
         <item name="android:textStyle">normal</item>
     </style>
 
-    <style name="App.Button" />
+    <style name="App.Text.Tag">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorTextDefault</item>
+        <item name="background">@color/colorLabelBg</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <!-- ========TEXT_VIEW END========-->
 
-    <style name="App.EditText" />
+
+    <!-- ========EDIT_TEXT START========-->
+
+
+    <style name="App.EditText">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColorHint">@color/colorHint</item>
+    </style>
+
+    <style name="App.EditText.Filter">
+        <item name="android:paddingStart">@dimen/control_big_margin</item>
+        <item name="android:background">@drawable/rect_green_stroke_20dp_corner</item>
+        <item name="android:textColor">@color/colorGreen</item>
+    </style>
+
+    <style name="App.EditText.Login">
+        <item name="android:paddingStart">@dimen/control_big_margin</item>
+        <item name="android:paddingEnd">@dimen/control_big_margin</item>
+        <item name="android:drawablePadding">@dimen/control_big_margin</item>
+        <item name="android:background">@drawable/selector_et_bg</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textCursorDrawable">@color/colorGreen</item>
+    </style>
+    <!-- ========EDIT_TEXT END========-->
+
+
+    <!-- ========BUTTONS START========-->
+    <style name="App.Button" />
 
     <style name="App.Button.Colored">
         <item name="android:textSize">@dimen/text_size_default</item>
@@ -56,35 +90,11 @@
         <item name="android:background">@drawable/rect_green_18dp_corner</item>
     </style>
 
-    <style name="App.Text.Tag">
-        <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/colorTextDefault</item>
-        <item name="background">@color/colorLabelBg</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:gravity">center</item>
+    <style name="App.Button.Colored.Transparent">
+        <item name="android:background">@color/selector_btn_green_text_color</item>
     </style>
 
-
-    <style name="App.EditText.Filter">
-        <item name="android:textSize">16sp</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="App.EditText.Filter.Active">
-        <item name="android:paddingStart">@dimen/control_big_margin</item>
-        <item name="android:background">@drawable/rect_green_stroke_20dp_corner</item>
-        <item name="android:textColor">@color/colorGreen</item>
-    </style>
-
-    <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
-    </style>
-
-    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@android:color/transparent</item>
-    </style>
-
-    <style name="App.ToggleButton"/>
+    <style name="App.ToggleButton" />
 
     <style name="App.ToggleButton.Filter">
         <item name="android:textStyle">bold</item>
@@ -93,6 +103,16 @@
         <item name="android:paddingStart">@dimen/control_big_margin</item>
         <item name="android:paddingEnd">@dimen/control_big_margin</item>
         <item name="android:textColor">@color/selector_btn_green_text_color</item>
+    </style>
+    <!-- ========BUTTONS END========-->
+
+
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
     </style>
 
 </resources>

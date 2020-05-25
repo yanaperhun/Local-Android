@@ -5,4 +5,11 @@
     <string name="apply">Применить</string>
     <string name="at_day">Днем</string>
     <string name="at_night">Ночью</string>
+    <string name="login_via_email">Войти через почту</string>
+    <string name="sing_in">Зарегистрироваться</string>
+    <string name="create_account">Создать аккаунт</string>
+    <string name="name">Имя</string>
+    <string name="email">E-mail</string>
+    <string name="password">Пароль</string>
+    <string name="login">Войти</string>
 </resources>

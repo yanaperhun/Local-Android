@@ -23,7 +23,7 @@
             android:layout_margin="@dimen/control_margin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_user" />
+            app:srcCompat="@drawable/ic_profile" />
 
     <TextView
             style="@style/App.Text.Accent"

@@ -24,7 +24,7 @@
                 android:paddingEnd="@dimen/control_big_margin"
                 android:drawableEnd="@drawable/ic_location"
                 android:id="@+id/et_location"
-                style="@style/App.EditText.Filter.Active"
+                style="@style/App.EditText.Filter"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/et_height_filter"
                 android:layout_marginStart="@dimen/control_margin"
@@ -81,7 +81,7 @@
 
         <EditText
                 android:id="@+id/et_date"
-                style="@style/App.EditText.Filter.Active"
+                style="@style/App.EditText.Filter"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/et_height_filter"
                 android:layout_marginStart="@dimen/control_margin"
