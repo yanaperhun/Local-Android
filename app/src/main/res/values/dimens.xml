@@ -7,7 +7,8 @@
     <dimen name="text_size_default">14sp</dimen>
     <dimen name="text_size_medium">16sp</dimen>
     <dimen name="text_size_big">24sp</dimen>
-    <dimen name="ic_size_tag">40dp</dimen>
+    <dimen name="ic_tag_size">40dp</dimen>
+    <dimen name="image_preview_size">88dp</dimen>
     <dimen name="accept_btn_size">56dp</dimen>
     <dimen name="apply_btn_size">48dp</dimen>
     <dimen name="et_height_filter">64dp</dimen>

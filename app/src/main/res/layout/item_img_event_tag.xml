@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ImageButton xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/ic_size_tag"
+        android:layout_height="@dimen/ic_tag_size"
         android:background="@drawable/rect_grey_solid_10dp_corner"
-        android:minWidth="@dimen/ic_size_tag"
+        android:minWidth="@dimen/ic_tag_size"
         android:src="@drawable/ic_mike">
 
 </ImageButton>

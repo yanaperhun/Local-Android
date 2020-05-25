@@ -30,7 +30,7 @@
 
         <TextView
                 android:id="@+id/tv_name"
-                style="@style/App.Text.Accent"
+                style="@style/App.Text.Title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -68,7 +68,7 @@
         <LinearLayout
                 android:id="@+id/ll_tags"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/ic_size_tag"
+                android:layout_height="@dimen/ic_tag_size"
                 android:layout_marginBottom="@dimen/control_medium_margin"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@+id/iv_dislike"
@@ -79,7 +79,7 @@
 
         <TextView
                 android:id="@+id/tv_distance"
-                style="@style/App.Text.Accent.Small"
+                style="@style/App.Text.Title.Small"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/control_margin"

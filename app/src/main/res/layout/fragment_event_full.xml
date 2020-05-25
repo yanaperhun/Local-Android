@@ -44,7 +44,7 @@
 
             <TextView
                     android:id="@+id/tv_name"
-                    style="@style/App.Text.Accent"
+                    style="@style/App.Text.Title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -57,7 +57,7 @@
             <LinearLayout
                     android:id="@+id/ll_tags"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/ic_size_tag"
+                    android:layout_height="@dimen/ic_tag_size"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +92,7 @@
 
             <TextView
                     android:id="@+id/tv_sound_name"
-                    style="@style/App.Text.Accent.Medium"
+                    style="@style/App.Text.Title.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/control_medium_margin"
@@ -105,7 +105,7 @@
 
             <TextView
                     android:id="@+id/tv_singer_name"
-                    style="@style/App.Text.Accent.Small"
+                    style="@style/App.Text.Title.Small"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/control_medium_margin"
@@ -138,8 +138,8 @@
 
             <ImageView
                     android:id="@+id/iv_creator"
-                    android:layout_width="88dp"
-                    android:layout_height="88dp"
+                    android:layout_width="@dimen/image_preview_size"
+                    android:layout_height="@dimen/image_preview_size"
                     android:layout_marginStart="@dimen/control_margin"
                     android:layout_marginTop="@dimen/control_margin"
                     android:background="@drawable/rect_blue_18dp_corner"
@@ -163,7 +163,7 @@
 
             <TextView
                     android:id="@+id/tv_creator_name"
-                    style="@style/App.Text.Accent.Medium"
+                    style="@style/App.Text.Title.Medium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/control_margin"
@@ -192,7 +192,7 @@
 
             <TextView
                     android:id="@+id/tv_distance"
-                    style="@style/App.Text.Accent.Small"
+                    style="@style/App.Text.Title.Small"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="@dimen/control_margin"

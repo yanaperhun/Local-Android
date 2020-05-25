@@ -13,20 +13,21 @@
     <!-- ========TEXT_VIEW START========-->
     <style name="App.Text" parent="TextAppearance.AppCompat" />
 
-    <style name="App.Text.Accent">
+    <style name="App.Text.Title">
         <item name="android:textSize">@dimen/text_size_big</item>
-        <item name="android:textColor">@color/colorTextAccent</item>
+        <item name="android:textColor">@color/colorTextTitle</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="App.Text.Accent.Medium">
+    <style name="App.Text.Title.Medium">
         <item name="android:textSize">@dimen/text_size_medium</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="App.Text.Accent.Small">
+    <style name="App.Text.Title.Small">
         <item name="android:textSize">@dimen/text_size_default</item>
         <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/colorTextDefault</item>
     </style>
 
     <style name="App.Text.Default">
@@ -41,6 +42,12 @@
         <item name="background">@color/colorLabelBg</item>
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="App.Text.Date">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorTextDefault</item>
+        <item name="android:textStyle">bold</item>
     </style>
     <!-- ========TEXT_VIEW END========-->
 

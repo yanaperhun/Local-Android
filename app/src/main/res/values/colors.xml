@@ -8,7 +8,7 @@
     <color name="colorTransparent">#00000000</color>
     <color name="colorMainDark">#1E1E1E</color>
     <color name="colorTextDefault">#A6A6A6</color>
-    <color name="colorTextAccent">#FFFFFF</color>
+    <color name="colorTextTitle">@color/colorWhite</color>
     
     <color name="colorLabelBg">#2E2E2E</color>
     <color name="colorBlue">#56E3EC</color>
