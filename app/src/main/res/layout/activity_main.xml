@@ -17,6 +17,7 @@
             app:srcCompat="@drawable/ic_filter" />
 
     <ImageView
+            android:onClick="onUserClick"
             android:id="@+id/iv_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

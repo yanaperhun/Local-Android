@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.local.app.R
 import com.local.app.data.Event
-import com.local.app.databinding.ItemRvEventBinding
+import com.local.app.databinding.LayoutEventBinding
 import com.local.app.ui.Utils
 import com.local.app.ui.photo.CommonRVEventElements
 
@@ -22,7 +22,7 @@ abstract class FeedRVAdapter(private var events: List<Event>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        return VH(ItemRvEventBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return VH(LayoutEventBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun getItemCount(): Int {
@@ -45,7 +45,7 @@ abstract class FeedRVAdapter(private var events: List<Event>) :
 
     abstract fun onClicks(click: Clicks)
 
-    inner class VH(var binding: ItemRvEventBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class VH(var binding: LayoutEventBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(event: Event) {
             binding.event = event

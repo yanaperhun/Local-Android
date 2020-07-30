@@ -30,6 +30,10 @@
         <item name="android:textColor">@color/colorTextDefault</item>
     </style>
 
+    <style name="App.Text.Title.Small.White">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
     <style name="App.Text.Default">
         <item name="android:textSize">@dimen/text_size_default</item>
         <item name="android:textColor">@color/colorTextDefault</item>
@@ -98,7 +102,7 @@
     </style>
 
     <style name="App.Button.Colored.Transparent">
-        <item name="android:background">@color/selector_btn_green_text_color</item>
+        <item name="android:background">@drawable/rect_green_stroke_20dp_corner</item>
     </style>
 
     <style name="App.ToggleButton" />

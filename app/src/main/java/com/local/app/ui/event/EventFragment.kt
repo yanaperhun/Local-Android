@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.local.app.BuildConfig
 import com.local.app.data.Event
-import com.local.app.databinding.FragmentEventBinding
+import com.local.app.databinding.FragmentEventFullBinding
 import com.local.app.presentation.viewmodel.EventViewModel
 import com.local.app.ui.BaseFragment
 import com.local.app.ui.event.state.EventState
@@ -17,7 +17,7 @@ import com.local.app.ui.photo.CommonRVEventElements
 
 class EventFragment : BaseFragment() {
 
-    lateinit var binding: FragmentEventBinding
+    lateinit var binding: FragmentEventFullBinding
     lateinit var viewModel: EventViewModel
 
     companion object {
@@ -33,7 +33,7 @@ class EventFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        binding = FragmentEventBinding.inflate(inflater)
+        binding = FragmentEventFullBinding.inflate(inflater)
 
         viewModel = ViewModelProviders
             .of(this)

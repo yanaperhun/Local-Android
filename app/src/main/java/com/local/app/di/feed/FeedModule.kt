@@ -9,9 +9,5 @@ import dagger.Provides
 @Module
 class FeedModule {
 
-    @PerFeed
-    @Provides
-    fun provideFeedRepository(client: RetrofitClient): EventFeedRepository {
-        return EventFeedRepository(client)
-    }
+
 }
