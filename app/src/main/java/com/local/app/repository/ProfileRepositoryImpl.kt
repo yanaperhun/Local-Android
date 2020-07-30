@@ -1,7 +1,7 @@
 package com.local.app.repository
 
 import com.local.app.api.RetrofitClient
-import com.local.app.data.User
+import com.local.app.data.Profile
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -12,8 +12,8 @@ class ProfileRepositoryImpl @Inject constructor(private var client: RetrofitClie
         return true
     }
 
-    override fun getProfile(): Single<User> {
-        return Single.just(User(1L, "Qa", "Ti"))
+    override fun getProfile(): Single<Profile> {
+        return client.api.loadProfile()
     }
 
     override fun saveToken(token: String) {
