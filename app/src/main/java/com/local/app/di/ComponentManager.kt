@@ -2,6 +2,9 @@ package com.local.app.di
 
 import com.local.app.di.feed.FeedComponent
 import com.local.app.di.feed.FeedModule
+import com.local.app.di.login.LoginComponent
+import com.local.app.di.login.LoginModule
+import com.local.app.di.main.AppComponent
 
 class ComponentManager {
 
@@ -12,8 +15,9 @@ class ComponentManager {
     }
 
     var feedComponent: FeedComponent? = null
+    var loginComponent: LoginComponent? = null
 
-    public fun plusFeedComponent(): FeedComponent? {
+    fun plusFeedComponent(): FeedComponent? {
         if (feedComponent == null) {
             feedComponent = appComponent?.plusFeedComponent(FeedModule())
         }
@@ -22,6 +26,17 @@ class ComponentManager {
 
     fun clearFeedComponent() {
         feedComponent = null
+    }
+
+    public fun plusLoginComponent(): LoginComponent? {
+        if (loginComponent == null) {
+            loginComponent = appComponent?.plusLoginComponent(LoginModule())
+        }
+        return loginComponent
+    }
+
+    fun cleaLoginComponent() {
+        loginComponent = null
     }
 
 }

@@ -46,13 +46,13 @@ ext {
     rxAndroidVersion = "2.0.2"
     rxJavaVersion = "2.1.8"
 
-    gson = '2.8.5'
+    gson = '2.8.6'
     retrofitVersion = '2.4.0'
 
     rxAndroidVersion = '2.1.1'
     rxJavaVersion = '2.1.8'
 
-    daggerVersion = '2.27'
+    daggerVersion = '2.28'
     butterknifeVersion = '8.8.1'
     okhttpVersion = '3.10.0'
     logginInterceptor = '3.8.0'

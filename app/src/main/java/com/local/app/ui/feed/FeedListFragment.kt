@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.local.app.data.Event
 import com.local.app.databinding.FragmentFeedBinding
-import com.local.app.presentation.viewmodel.FeedViewModel
+import com.local.app.presentation.viewmodel.feed.FeedViewModel
 import com.local.app.ui.BaseFragment
 import com.local.app.ui.event.EXTRAS_EVENT_ID
 import com.local.app.ui.event.EventActivity

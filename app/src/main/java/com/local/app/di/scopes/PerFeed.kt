@@ -1,4 +1,4 @@
-package com.local.app.di.feed
+package com.local.app.di.scopes
 
 import javax.inject.Scope
 

@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.local.app.BuildConfig
 import com.local.app.data.Event
 import com.local.app.databinding.FragmentEventFullBinding
-import com.local.app.presentation.viewmodel.EventViewModel
+import com.local.app.presentation.viewmodel.event.EventViewModel
 import com.local.app.ui.BaseFragment
 import com.local.app.ui.event.state.EventState
 import com.local.app.ui.photo.CommonRVEventElements

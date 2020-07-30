@@ -1,7 +1,10 @@
-package com.local.app.di
+package com.local.app.di.main
 
 import com.local.app.di.feed.FeedComponent
 import com.local.app.di.feed.FeedModule
+import com.local.app.di.login.LoginComponent
+import com.local.app.di.login.LoginModule
+import com.local.app.di.main.AppModule
 import dagger.Component
 import javax.inject.Singleton
 
@@ -10,4 +13,5 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun plusFeedComponent(module: FeedModule): FeedComponent
+    fun plusLoginComponent(module: LoginModule): LoginComponent
 }

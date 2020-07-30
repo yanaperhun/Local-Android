@@ -1,25 +1,38 @@
 package com.local.app.ui
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.local.app.R
-import com.local.app.presentation.viewmodel.FeedViewModel
 import com.local.app.presentation.viewmodel.main.MainActivityViewModel
 import com.local.app.ui.feed.FeedListFragment
+import com.local.app.ui.filter.FilterDialogFragment
 import com.local.app.ui.login.LoginDialog
 import com.local.app.ui.login.LoginDialogCallback
+import com.vk.api.sdk.VK
+import com.vk.api.sdk.auth.VKAccessToken
+import com.vk.api.sdk.auth.VKAuthCallback
+import com.vk.api.sdk.auth.VKScope
 
 class MainActivity : BaseActivity() {
 
-    private lateinit var viewModel : MainActivityViewModel
+    private val REQUEST_CODE_GOOGLE_AUTH = 1000
+    private val REQUEST_CODE_VK_AUTH = 1001
+    private val REQUEST_CODE_INSTAGRAM_AUTH = 1002
+    private lateinit var viewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel::class.java)
+        viewModel = ViewModelProviders
+            .of(this)
+            .get(MainActivityViewModel::class.java)
 
 
         if (savedInstanceState == null) {
@@ -31,46 +44,103 @@ class MainActivity : BaseActivity() {
     fun onUserClick(view: View) {
         val loginDialog = LoginDialog()
 
-        loginDialog.loginDialogCallback = object : LoginDialogCallback {
+        loginDialog.loginDialogCallback = loginDialogCallback
 
-            override fun onVkSelected() {
-            }
+        loginDialog.show(supportFragmentManager, "login_dialog")
+    }
 
-            override fun onInstagramSelected() {
-            }
+    private val loginDialogCallback = object : LoginDialogCallback {
 
-            override fun onGoogleSelected() {
-            }
+        override fun onVkSelected() {
+            startVKLogin()
+        }
 
-            override fun onEmailSelected() {
-            }
-
-            override fun onAuthSelected() {
-            }
+        override fun onInstagramSelected() {
 
         }
-        loginDialog.show(supportFragmentManager, "login_dialog")
+
+        override fun onGoogleSelected() {
+            startGoogleLogin()
+        }
+
+        override fun onEmailSelected() {
+        }
+
+        override fun onAuthSelected() {
+        }
+
+    }
+
+    private fun startVKLogin() {
+        VK.login(this, arrayListOf(VKScope.EMAIL, VKScope.FRIENDS))
+    }
+
+    private fun startGoogleLogin() {
+        val gso = GoogleSignInOptions
+            .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(
+                "63008644469-6ltsjkd5cs2q2mnf5gih15dobbe0bmto.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
+        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+        val signInIntent: Intent = mGoogleSignInClient?.signInIntent as Intent
+
+        startActivityForResult(signInIntent, REQUEST_CODE_GOOGLE_AUTH)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        val callback = object : VKAuthCallback {
+            override fun onLogin(token: VKAccessToken) {
+                viewModel.loadVKUser()
+
+            }
+
+            override fun onLoginFailed(errorCode: Int) {
+                // User didn't pass authorization
+                showToast("Vk login failed error $errorCode")
+            }
+        }
+        //if google
+        if (requestCode == REQUEST_CODE_GOOGLE_AUTH) {
+
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+            print("Local app" + data?.data.toString())
+        }
+
+        //if VK
+        if (data == null || !VK.onActivityResult(requestCode, resultCode, data, callback)) {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
+
+        //if instagram
+
+    }
+
+
+
+
+
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+            val s = account.toString()
+            Log.d("Local App",
+                  "Account name:${account?.displayName} token:${account?.idToken} Google id:${account?.id}")
+            // Signed in successfully, show authenticated UI.
+
+        } catch (e: ApiException) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            e.printStackTrace()
+        }
     }
 
     fun onFilterClick(view: View) {
         FilterDialogFragment().show(supportFragmentManager, "filters_dialog")
     }
 
-    class FilterDialogFragment : BottomSheetDialogFragment() {
-
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            setStyle(STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme);
-        }
-
-        override fun onCreateView(inflater: LayoutInflater,
-                                  container: ViewGroup?,
-                                  savedInstanceState: Bundle?): View {
-
-            // get the views and attach the listener
-            return inflater.inflate(R.layout.dialog_filter, container, false)
-        }
-
-    }
 
 }

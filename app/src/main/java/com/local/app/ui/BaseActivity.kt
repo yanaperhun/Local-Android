@@ -1,10 +1,10 @@
 package com.local.app.ui
 
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.local.app.R
-import kotlinx.android.synthetic.main.activity_main.view.*
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -21,5 +21,10 @@ open class BaseActivity : AppCompatActivity() {
             transaction.addToBackStack(null)
         }
         transaction.commitAllowingStateLoss()
+    }
+
+
+    fun showToast(message:  String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
