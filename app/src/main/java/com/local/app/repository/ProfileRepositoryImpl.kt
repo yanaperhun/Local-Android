@@ -16,4 +16,8 @@ class ProfileRepositoryImpl @Inject constructor(private var client: RetrofitClie
         return Single.just(User(1L, "Qa", "Ti"))
     }
 
+    override fun saveToken(token: String) {
+
+    }
+
 }

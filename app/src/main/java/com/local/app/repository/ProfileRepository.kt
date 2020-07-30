@@ -8,4 +8,6 @@ interface ProfileRepository {
     fun isProfileLoaded() : Boolean
     fun getProfile() : Single<User>
 
+    fun saveToken(token : String)
+
 }

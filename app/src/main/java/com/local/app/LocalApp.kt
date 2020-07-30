@@ -5,10 +5,10 @@ import com.local.app.di.ComponentManager
 
 class LocalApp : Application() {
 
-   public var daggerManager: ComponentManager = ComponentManager()
+   public lateinit var daggerManager: ComponentManager
     override fun onCreate() {
         super.onCreate()
-        daggerManager = ComponentManager()
+        daggerManager = ComponentManager(this)
     }
 
 

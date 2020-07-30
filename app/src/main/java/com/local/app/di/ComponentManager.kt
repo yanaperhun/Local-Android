@@ -1,17 +1,23 @@
 package com.local.app.di
 
+import android.content.Context
 import com.local.app.di.feed.FeedComponent
 import com.local.app.di.feed.FeedModule
 import com.local.app.di.login.LoginComponent
 import com.local.app.di.login.LoginModule
 import com.local.app.di.main.AppComponent
+import com.local.app.di.main.AppModule
+import com.local.app.di.main.DaggerAppComponent
 
-class ComponentManager {
+class ComponentManager(context: Context) {
 
-    var appComponent: AppComponent? = null
+    private var appComponent: AppComponent? = null
 
     init {
-        appComponent = DaggerAppComponent.create()
+        appComponent = DaggerAppComponent
+            .builder()
+            .appModule(AppModule(context))
+            .build()
     }
 
     var feedComponent: FeedComponent? = null
@@ -28,7 +34,7 @@ class ComponentManager {
         feedComponent = null
     }
 
-    public fun plusLoginComponent(): LoginComponent? {
+    fun plusLoginComponent(): LoginComponent? {
         if (loginComponent == null) {
             loginComponent = appComponent?.plusLoginComponent(LoginModule())
         }

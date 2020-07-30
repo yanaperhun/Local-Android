@@ -2,7 +2,6 @@ package com.local.app.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -11,6 +10,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.local.app.R
+import com.local.app.data.login.AuthProvider
 import com.local.app.presentation.viewmodel.main.MainActivityViewModel
 import com.local.app.ui.feed.FeedListFragment
 import com.local.app.ui.filter.FilterDialogFragment
@@ -20,6 +20,7 @@ import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
 import com.vk.api.sdk.auth.VKScope
+import timber.log.Timber
 
 class MainActivity : BaseActivity() {
 
@@ -91,10 +92,16 @@ class MainActivity : BaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        //if google
+        if (requestCode == REQUEST_CODE_GOOGLE_AUTH) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+        }
+
+        //if VK
         val callback = object : VKAuthCallback {
             override fun onLogin(token: VKAccessToken) {
-                viewModel.loadVKUser()
-
+                viewModel.loadBySocialNetwork(token.accessToken, AuthProvider.VK)
             }
 
             override fun onLoginFailed(errorCode: Int) {
@@ -102,15 +109,6 @@ class MainActivity : BaseActivity() {
                 showToast("Vk login failed error $errorCode")
             }
         }
-        //if google
-        if (requestCode == REQUEST_CODE_GOOGLE_AUTH) {
-
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleSignInResult(task)
-            print("Local app" + data?.data.toString())
-        }
-
-        //if VK
         if (data == null || !VK.onActivityResult(requestCode, resultCode, data, callback)) {
             super.onActivityResult(requestCode, resultCode, data)
         }
@@ -119,16 +117,20 @@ class MainActivity : BaseActivity() {
 
     }
 
-
-
-
-
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-            val s = account.toString()
-            Log.d("Local App",
-                  "Account name:${account?.displayName} token:${account?.idToken} Google id:${account?.id}")
+
+            if (account == null || account.idToken.isNullOrEmpty()) {
+                Timber.e("Google login error : account ir token is empty")
+                showToast("Google login error : account ir token is empty")
+                return
+            }
+            Timber.i(
+                "Account name:${account.displayName} token:${account.idToken} Google id:${account.id}")
+            viewModel.loadBySocialNetwork(account.idToken!!, AuthProvider.GOOGLE)
+
+
             // Signed in successfully, show authenticated UI.
 
         } catch (e: ApiException) {
@@ -141,6 +143,5 @@ class MainActivity : BaseActivity() {
     fun onFilterClick(view: View) {
         FilterDialogFragment().show(supportFragmentManager, "filters_dialog")
     }
-
 
 }

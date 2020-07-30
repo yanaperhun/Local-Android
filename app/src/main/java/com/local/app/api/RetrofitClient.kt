@@ -2,24 +2,27 @@ package com.local.app.api
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import okhttp3.Credentials
+import com.local.app.api.interceptors.HeaderInterceptor
+import com.retail.core.prefs.PrefUtils
 import okhttp3.OkHttpClient
-import okhttp3.Response
-import okhttp3.Route
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class RetrofitClient {
+class RetrofitClient(val prefUtils: PrefUtils) {
 
     private val TIMEOUT = 60L
     private val URL = "http://95.214.9.249/"
 
-    var api: API
+    lateinit var api: API
 
     init {
+        initClient()
+    }
+
+    private fun initClient() {
         val gson: Gson?
         gson = try {
             GsonBuilder().create()
@@ -28,12 +31,14 @@ class RetrofitClient {
             Gson()
         }
 
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
         val client = OkHttpClient
             .Builder()
-            .addInterceptor(interceptor)
+            .addInterceptor(loggingInterceptor)
+            .addInterceptor(HeaderInterceptor(prefUtils.getToken()))
+//            .addInterceptor(ErrorInterceptor())
             .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT, TimeUnit.SECONDS)
             .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
@@ -48,6 +53,10 @@ class RetrofitClient {
             .build()
 
         api = retrofit.create(API::class.java)
+    }
+
+    fun reInitClient() {
+        initClient()
     }
 
 }

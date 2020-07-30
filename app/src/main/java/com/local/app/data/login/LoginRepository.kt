@@ -6,5 +6,5 @@ import io.reactivex.Single
 
 interface LoginRepository {
 
-    fun socNetworksLogin(snAuthRequest: SNAuthRequest): Single<TokenResponse>
+    fun loginBySocNetworks(snAuthRequest: SNAuthRequest): Single<TokenResponse>
 }
