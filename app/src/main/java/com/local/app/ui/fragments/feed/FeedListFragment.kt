@@ -1,4 +1,4 @@
-package com.local.app.ui.feed
+package com.local.app.ui.fragments.feed
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,13 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
-import com.local.app.data.Event
+import com.local.app.data.event.Event
 import com.local.app.databinding.FragmentFeedBinding
 import com.local.app.presentation.viewmodel.feed.FeedViewModel
 import com.local.app.ui.BaseFragment
-import com.local.app.ui.event.EXTRAS_EVENT_ID
-import com.local.app.ui.event.EventActivity
-import com.local.app.ui.feed.state.FeedState
+import com.local.app.ui.fragments.event.EXTRAS_EVENT_ID
+import com.local.app.ui.fragments.event.EventActivity
+import com.local.app.ui.fragments.feed.state.FeedState
 
 class FeedListFragment : BaseFragment() {
 

@@ -1,4 +1,4 @@
-package com.local.app.data
+package com.local.app.data.event
 
 import android.text.TextUtils
 

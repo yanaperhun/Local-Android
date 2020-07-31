@@ -1,6 +1,5 @@
 package com.local.app.api.response
 
-import android.provider.CalendarContract
-import com.local.app.data.Event
+import com.local.app.data.event.Event
 
 data class EventsFeedResponse(var data: List<Event>)

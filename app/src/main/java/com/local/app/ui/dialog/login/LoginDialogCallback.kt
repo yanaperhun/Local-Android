@@ -1,4 +1,4 @@
-package com.local.app.ui.login
+package com.local.app.ui.dialog.login
 
 interface LoginDialogCallback {
 

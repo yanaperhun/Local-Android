@@ -7,7 +7,7 @@
 
         <variable
                 name="event"
-                type="com.local.app.data.Event" />
+                type="com.local.app.data.event.Event" />
 
     </data>
 

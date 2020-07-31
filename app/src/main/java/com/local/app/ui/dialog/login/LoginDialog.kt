@@ -1,4 +1,4 @@
-package com.local.app.ui.login
+package com.local.app.ui.dialog.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.local.app.R
 import com.local.app.databinding.DialogLoginBinding
-import com.local.app.ui.MainActivity
 
 class LoginDialog : BottomSheetDialogFragment() {
     lateinit var loginDialogCallback: LoginDialogCallback

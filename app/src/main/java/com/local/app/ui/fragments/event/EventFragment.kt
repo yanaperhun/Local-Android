@@ -1,4 +1,4 @@
-package com.local.app.ui.event
+package com.local.app.ui.fragments.event
 
 import android.os.Bundle
 import android.util.Log
@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.local.app.BuildConfig
-import com.local.app.data.Event
+import com.local.app.data.event.Event
 import com.local.app.databinding.FragmentEventFullBinding
 import com.local.app.presentation.viewmodel.event.EventViewModel
 import com.local.app.ui.BaseFragment
-import com.local.app.ui.event.state.EventState
+import com.local.app.ui.fragments.event.state.EventState
 import com.local.app.ui.photo.CommonRVEventElements
 
 class EventFragment : BaseFragment() {

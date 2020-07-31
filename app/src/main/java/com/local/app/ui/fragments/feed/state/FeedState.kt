@@ -1,7 +1,6 @@
-package com.local.app.ui.feed.state
+package com.local.app.ui.fragments.feed.state
 
-import android.util.EventLog
-import com.local.app.data.Event
+import com.local.app.data.event.Event
 
 sealed class FeedState {
     object Loading : FeedState()

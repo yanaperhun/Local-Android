@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.local.app.LocalApp
 import com.local.app.domain.feed.LoadFeedInteractor
-import com.local.app.ui.feed.state.FeedState
+import com.local.app.ui.fragments.feed.state.FeedState
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

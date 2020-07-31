@@ -1,4 +1,4 @@
-package com.local.app.ui.event
+package com.local.app.ui.fragments.event
 
 import android.os.Bundle
 import com.local.app.R

@@ -1,16 +1,10 @@
-package com.local.app.ui.feed
+package com.local.app.ui.fragments.feed
 
-import android.os.Build
-import android.view.Gravity.CENTER_VERTICAL
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.local.app.R
-import com.local.app.data.Event
+import com.local.app.data.event.Event
 import com.local.app.databinding.LayoutEventBinding
-import com.local.app.ui.Utils
 import com.local.app.ui.photo.CommonRVEventElements
 
 abstract class FeedRVAdapter(private var events: List<Event>) :

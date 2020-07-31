@@ -12,10 +12,11 @@ import com.google.android.gms.tasks.Task
 import com.local.app.R
 import com.local.app.data.login.AuthProvider
 import com.local.app.presentation.viewmodel.main.MainActivityViewModel
-import com.local.app.ui.feed.FeedListFragment
-import com.local.app.ui.filter.FilterDialogFragment
-import com.local.app.ui.login.LoginDialog
-import com.local.app.ui.login.LoginDialogCallback
+import com.local.app.ui.dialog.filter.FilterDialogFragment
+import com.local.app.ui.dialog.login.LoginDialog
+import com.local.app.ui.dialog.login.LoginDialogCallback
+import com.local.app.ui.fragments.feed.FeedListFragment
+import com.local.app.ui.fragments.login.LoginFragment
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
@@ -65,11 +66,23 @@ class MainActivity : BaseActivity() {
         }
 
         override fun onEmailSelected() {
+            openLoginScreen()
         }
 
         override fun onAuthSelected() {
+            openAuthScreen()
         }
 
+    }
+
+    private fun openAuthScreen() {
+        val args = Bundle()
+        args.putBoolean(LoginFragment.IS_LOGIN, false)
+        showFragment(LoginFragment(), args, true)
+    }
+
+    private fun openLoginScreen() {
+        showFragment(LoginFragment(), true)
     }
 
     private fun startVKLogin() {
@@ -129,7 +142,6 @@ class MainActivity : BaseActivity() {
             Timber.i(
                 "Account name:${account.displayName} token:${account.idToken} Google id:${account.id}")
             viewModel.loadBySocialNetwork(account.idToken!!, AuthProvider.GOOGLE)
-
 
             // Signed in successfully, show authenticated UI.
 

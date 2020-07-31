@@ -1,7 +1,6 @@
-package com.local.app.ui.event.state
+package com.local.app.ui.fragments.event.state
 
-import android.util.EventLog
-import com.local.app.data.Event
+import com.local.app.data.event.Event
 
 sealed class EventState {
     object Loading : EventState()

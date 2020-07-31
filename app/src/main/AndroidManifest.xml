@@ -22,8 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.local.app.ui.feed.FeedActivity" />
-        <activity android:name="com.local.app.ui.event.EventActivity" />
+        <activity android:name="com.local.app.ui.fragments.feed.FeedActivity" />
+        <activity android:name="com.local.app.ui.fragments.event.EventActivity" />
     </application>
 
 </manifest>

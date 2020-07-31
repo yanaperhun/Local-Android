@@ -1,7 +1,6 @@
-package com.local.app.ui
+package com.local.app.utils
 
 import android.content.res.Resources
-import android.util.TypedValue
 
 class Utils {
     companion object {

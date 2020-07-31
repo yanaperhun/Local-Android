@@ -1,6 +1,8 @@
-package com.local.app.data
+package com.local.app.data.event
 
 import com.local.app.api.response.EventType
+import com.local.app.data.Photo
+import com.local.app.data.User
 
 data class Event(var id: Long,
                  var eventName: String,

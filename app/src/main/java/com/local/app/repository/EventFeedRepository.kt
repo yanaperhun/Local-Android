@@ -1,10 +1,9 @@
 package com.local.app.repository
 
 import com.local.app.api.RetrofitClient
-import com.local.app.data.Event
+import com.local.app.data.event.Event
 import com.local.app.data.Photo
 import io.reactivex.Single
-import io.reactivex.functions.Consumer
 import javax.inject.Inject
 
 class EventFeedRepository @Inject constructor(private var client: RetrofitClient) {

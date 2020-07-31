@@ -1,5 +1,7 @@
 package com.local.app.api
 
+import com.local.app.api.requests.AuthRequest
+import com.local.app.api.requests.LoginRequest
 import com.local.app.api.requests.SocNetAuthRequest
 import com.local.app.api.response.EventsFeedResponse
 import com.local.app.api.response.TokenResponse
@@ -15,8 +17,14 @@ interface API {
     fun load(): Single<EventsFeedResponse>
 
     @POST("api/auth/tokensignin")
-    fun auth(@Body socNetAuthRequest: SocNetAuthRequest): Single<TokenResponse>
+    fun authViaSocNetwork(@Body socNetAuthRequest: SocNetAuthRequest): Single<TokenResponse>
 
-    @GET("api/user")
+    @POST("api/auth/signin")
+    fun authViaEmail(@Body authRequest: AuthRequest): Single<TokenResponse>
+
+    @POST("api/auth/login")
+    fun login(@Body loginRequest: LoginRequest): Single<TokenResponse>
+
+    @GET("api/auth")
     fun loadProfile(): Single<Profile>
 }

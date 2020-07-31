@@ -15,4 +15,10 @@
     <string name="email">E-mail</string>
     <string name="password">Пароль</string>
     <string name="login">Войти</string>
+    <string name="error_validate_name">Введите имя пользователя</string>
+    <string name="error_validate_pass">Введен не корректный пароль</string>
+    <string name="error_validate_email">Введен не корректный email</string>
+    <string name="alert_title_info">Информация</string>
+    <string name="alert_title_error">Ошибка</string>
+    <string name="error_validation_common">Ошибка при валидации данных</string>
 </resources>

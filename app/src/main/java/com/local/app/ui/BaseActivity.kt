@@ -1,5 +1,6 @@
 package com.local.app.ui
 
+import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -11,6 +12,12 @@ open class BaseActivity : AppCompatActivity() {
     fun showFragment(fragment: Fragment, addToBack: Boolean) {
         showFragment(fragment, addToBack, R.id.container)
     }
+
+    fun showFragment(fragment: Fragment, args : Bundle, addToBack: Boolean) {
+        fragment.arguments = args
+        showFragment(fragment, addToBack, R.id.container)
+    }
+
     fun showFragment(fragment: Fragment,
                      addToBack: Boolean,
                      containerId: Int) {

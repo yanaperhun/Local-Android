@@ -1,6 +1,6 @@
 package com.local.app.domain.event
 
-import com.local.app.data.Event
+import com.local.app.data.event.Event
 import com.local.app.repository.EventFeedRepository
 import io.reactivex.Single
 import javax.inject.Inject

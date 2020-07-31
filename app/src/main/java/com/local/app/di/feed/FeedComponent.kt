@@ -4,7 +4,7 @@ import com.local.app.di.scopes.PerFeed
 import com.local.app.presentation.viewmodel.PhotoViewerViewModel
 import com.local.app.presentation.viewmodel.event.EventViewModel
 import com.local.app.presentation.viewmodel.feed.FeedViewModel
-import com.local.app.ui.event.EventFragment
+import com.local.app.ui.fragments.event.EventFragment
 import com.local.app.ui.photo.PhotoViewerFragment
 import dagger.Subcomponent
 

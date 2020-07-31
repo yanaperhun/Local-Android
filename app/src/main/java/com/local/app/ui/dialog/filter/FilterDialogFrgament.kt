@@ -1,4 +1,4 @@
-package com.local.app.ui.filter
+package com.local.app.ui.dialog.filter
 
 import android.os.Bundle
 import android.view.LayoutInflater
