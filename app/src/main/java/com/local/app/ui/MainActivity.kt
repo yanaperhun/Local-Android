@@ -86,6 +86,8 @@ class MainActivity : BaseActivity() {
     }
 
     private fun startVKLogin() {
+        Timber.d("start vk login")
+
         VK.login(this, arrayListOf(VKScope.EMAIL, VKScope.FRIENDS))
     }
 
@@ -114,6 +116,9 @@ class MainActivity : BaseActivity() {
         //if VK
         val callback = object : VKAuthCallback {
             override fun onLogin(token: VKAccessToken) {
+                Timber.d(token.toString())
+                Timber.d("LOG TOKEN")
+                System.out.println("PRINTLN!!!!!!! ${token.email} ${token.accessToken}")
                 viewModel.loadBySocialNetwork(token.accessToken, AuthProvider.VK)
             }
 

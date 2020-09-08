@@ -25,6 +25,6 @@ interface API {
     @POST("api/auth/login")
     fun login(@Body loginRequest: LoginRequest): Single<TokenResponse>
 
-    @GET("api/auth")
+    @GET("api/user")
     fun loadProfile(): Single<Profile>
 }
