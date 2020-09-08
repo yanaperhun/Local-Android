@@ -1,4 +1,4 @@
-package com.local.app.repository
+package com.local.app.repository.event
 
 import com.local.app.api.RetrofitClient
 import com.local.app.data.event.Event
