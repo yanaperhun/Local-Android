@@ -1,12 +1,11 @@
 package com.local.app.repository.event.create
 
+import com.local.app.api.RetrofitClient
 import com.local.app.data.event.create.EventRaw
 
-class CreateEventRepositoryImpl : CreateEventRepository {
+class CreateEventRepositoryImpl(val retrofitClient: RetrofitClient) : CreateEventRepository {
 
-    private lateinit var eventRaw: EventRaw
+    private var eventRaw: EventRaw = EventRaw()
+    var eventBuilder = EventRaw.Builder()
 
-    init {
-        eventRaw = EventRaw()
-    }
 }
