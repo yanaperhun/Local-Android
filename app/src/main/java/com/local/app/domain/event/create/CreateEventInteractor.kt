@@ -1,5 +1,8 @@
 package com.local.app.domain.event.create
 
-class CreateEventInteractor {
+import com.local.app.repository.event.create.CreateEventRepository
+import javax.inject.Inject
+
+class CreateEventInteractor @Inject constructor(val createEventRepository: CreateEventRepository) {
 
 }

@@ -1,6 +1,8 @@
 package com.local.app.di
 
 import android.content.Context
+import com.local.app.di.event.create.CreateEventComponent
+import com.local.app.di.event.create.CreateEventModule
 import com.local.app.di.feed.FeedComponent
 import com.local.app.di.feed.FeedModule
 import com.local.app.di.login.LoginComponent
@@ -22,6 +24,18 @@ class ComponentManager(context: Context) {
 
     var feedComponent: FeedComponent? = null
     var loginComponent: LoginComponent? = null
+    var createEventComponent: CreateEventComponent? = null
+
+    fun plusCreateEventComponent(): CreateEventComponent? {
+        if (createEventComponent == null) {
+            createEventComponent = appComponent?.plusCreateEventFragment(CreateEventModule())
+        }
+        return createEventComponent
+    }
+
+    fun clearCreateEventComponent() {
+        createEventComponent = null
+    }
 
     fun plusFeedComponent(): FeedComponent? {
         if (feedComponent == null) {

@@ -1,5 +1,7 @@
 package com.local.app.di.main
 
+import com.local.app.di.event.create.CreateEventComponent
+import com.local.app.di.event.create.CreateEventModule
 import com.local.app.di.feed.FeedComponent
 import com.local.app.di.feed.FeedModule
 import com.local.app.di.login.LoginComponent
@@ -14,4 +16,5 @@ interface AppComponent {
 
     fun plusFeedComponent(module: FeedModule): FeedComponent
     fun plusLoginComponent(module: LoginModule): LoginComponent
+    fun plusCreateEventFragment(module : CreateEventModule) : CreateEventComponent
 }
