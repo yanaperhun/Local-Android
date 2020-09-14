@@ -6,6 +6,13 @@ import com.local.app.data.event.create.EventRaw
 class CreateEventRepositoryImpl(val retrofitClient: RetrofitClient) : CreateEventRepository {
 
     private var eventRaw: EventRaw = EventRaw()
-    var eventBuilder = EventRaw.Builder()
+    private var eventBuilder = EventRaw.Builder()
+
+    override fun getEventBuilder(): EventRaw.Builder {
+        return eventBuilder
+    }
+
+    override fun uploadEvent() {
+    }
 
 }

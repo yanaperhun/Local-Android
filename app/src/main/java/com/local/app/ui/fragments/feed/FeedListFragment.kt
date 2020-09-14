@@ -15,8 +15,8 @@ import com.local.app.data.event.Event
 import com.local.app.databinding.FragmentFeedBinding
 import com.local.app.presentation.viewmodel.feed.FeedViewModel
 import com.local.app.ui.BaseFragment
-import com.local.app.ui.fragments.event.EXTRAS_EVENT_ID
-import com.local.app.ui.fragments.event.EventActivity
+import com.local.app.ui.activities.event.EXTRAS_EVENT_ID
+import com.local.app.ui.activities.event.EventActivity
 import com.local.app.ui.fragments.feed.state.FeedState
 
 class FeedListFragment : BaseFragment() {

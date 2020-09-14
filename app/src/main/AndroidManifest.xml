@@ -15,7 +15,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.local.app.ui.fragments.feed.FeedActivity" />
-        <activity android:name="com.local.app.ui.fragments.event.EventActivity" />
+        <activity android:name="com.local.app.ui.activities.event.EventActivity" />
     </application>
 
 </manifest>

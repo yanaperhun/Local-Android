@@ -11,6 +11,7 @@ import com.local.app.data.AppException
 import com.local.app.databinding.FragmentLoginBinding
 import com.local.app.ui.BaseFragment
 import com.local.app.utils.FieldValidation
+import kotlin.jvm.Throws
 
 class LoginFragment : BaseFragment() {
 

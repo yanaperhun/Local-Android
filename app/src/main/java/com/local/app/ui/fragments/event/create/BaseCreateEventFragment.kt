@@ -1,24 +1,11 @@
 package com.local.app.ui.fragments.event.create
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.viewbinding.ViewBinding
-import com.local.app.ui.BaseFragment
+import com.local.app.BindableFragment
+import com.local.app.presentation.viewmodel.event.create.CreateEventViewModel
 
-open abstract class BaseCreateEventFragment<T : ViewBinding> : BaseFragment() {
+abstract class BaseCreateEventFragment<T : ViewBinding> : BindableFragment<T> (){
 
-    lateinit var binding: T
-
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        setBinding(inflater)
-        initUI()
-        return binding.root
-    }
-
-    abstract fun setBinding(inflater: LayoutInflater)
-
+    val model : CreateEventViewModel by activityViewModels()
 }

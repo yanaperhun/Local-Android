@@ -1,3 +1,8 @@
 package com.local.app.repository.event.create
 
-interface CreateEventRepository {}
+import com.local.app.data.event.create.EventRaw
+
+interface CreateEventRepository {
+    fun getEventBuilder(): EventRaw.Builder
+    fun uploadEvent()
+}

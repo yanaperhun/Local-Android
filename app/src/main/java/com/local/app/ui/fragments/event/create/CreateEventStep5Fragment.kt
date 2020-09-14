@@ -1,3 +1,17 @@
 package com.local.app.ui.fragments.event.create
 
-class CreateEventStep5Fragment : BaseCreateEventFragment() {}
+import android.view.LayoutInflater
+import com.local.app.databinding.FragmentCreateEventStep5Binding
+
+class CreateEventStep5Fragment : BaseCreateEventFragment<FragmentCreateEventStep5Binding>() {
+
+    override fun setBinding(inflater: LayoutInflater) {
+        binding = FragmentCreateEventStep5Binding.inflate(inflater)
+    }
+
+    override fun initUI() {
+        super.initUI()
+
+    }
+
+}
