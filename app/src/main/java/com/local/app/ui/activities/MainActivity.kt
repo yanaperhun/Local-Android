@@ -13,12 +13,12 @@ import com.local.app.R
 import com.local.app.data.login.AuthProvider
 import com.local.app.presentation.viewmodel.main.MainActivityViewModel
 import com.local.app.ui.BaseActivity
+import com.local.app.ui.activities.event.CreateEventActivity
 import com.local.app.ui.dialog.filter.FilterDialogFragment
 import com.local.app.ui.dialog.login.LoginDialog
 import com.local.app.ui.dialog.login.LoginDialogCallback
 import com.local.app.ui.fragments.feed.FeedListFragment
 import com.local.app.ui.fragments.login.LoginFragment
-import com.local.app.ui.fragments.profile.ProfileFragment
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
@@ -48,7 +48,7 @@ class MainActivity : BaseActivity() {
     fun onUserClick(view: View) {
         if (viewModel.isProfileLoaded()) {
             showProfileFragment()
-        } else{
+        } else {
             showLoginDialog()
 
         }
@@ -61,7 +61,9 @@ class MainActivity : BaseActivity() {
     }
 
     private fun showProfileFragment() {
-        showFragment(ProfileFragment(), true)
+
+        startActivity(Intent(this, CreateEventActivity::class.java))
+//        showFragment(ProfileFragment(), true)
     }
 
     private val loginDialogCallback = object : LoginDialogCallback {

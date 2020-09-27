@@ -21,4 +21,16 @@
     <string name="alert_title_info">Информация</string>
     <string name="alert_title_error">Ошибка</string>
     <string name="error_validation_common">Ошибка при валидации данных</string>
+    <string name="give_name_your_event">Дайте имя вашему\nсобытию</string>
+    <string name="add_desc_and_tags">Добавьте описание и теги</string>
+    <string name="choose_date_and_duration">Выберите дату и\nпродолжительность</string>
+    <string name="choose_price">Укажите цену и адрес</string>
+    <string name="add_playlist">Добавьте плейлист</string>
+    <string name="add_picture">Добавьте постер</string>
+    <string name="hint_create_title">Придумайте какую-нибудь броскую фразу</string>
+    <string name="start_date">Дата начала</string>
+    <string name="duration">Сколько идет</string>
+    <string name="free">Бесплатно</string>
+    <string name="choose_on_map">Указать на карте</string>
+    <string name="next">Далее</string>
 </resources>

@@ -1,13 +1,13 @@
 package com.local.app.ui.fragments.event.create
 
 import android.view.LayoutInflater
-import com.local.app.databinding.FragmentCreateEventStep3Binding
+import com.local.app.databinding.FragmentCreateEventStep6Binding
 import com.local.app.ui.BaseFragment
 
-class CreateEventStep3Fragment : BaseCreateEventFragment<FragmentCreateEventStep3Binding>() {
+class CreateEventStep6Fragment : BaseCreateEventFragment<FragmentCreateEventStep6Binding>() {
 
     override fun setBinding(inflater: LayoutInflater) {
-        binding = FragmentCreateEventStep3Binding.inflate(inflater)
+        binding = FragmentCreateEventStep6Binding.inflate(inflater)
     }
 
     override fun initUI() {
@@ -16,7 +16,7 @@ class CreateEventStep3Fragment : BaseCreateEventFragment<FragmentCreateEventStep
     }
 
     override fun getNextFragment(): BaseFragment {
-        return CreateEventStep4Fragment()
+        return BaseFragment()
     }
 
 }

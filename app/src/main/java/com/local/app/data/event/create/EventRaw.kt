@@ -24,8 +24,8 @@ class EventRaw internal constructor(@SerializedName("eventName") val title: Stri
 
     class Builder() {
 
-        private var title: String = ""
-        private var description = ""
+        var title: String = ""
+        var description = ""
         private var tags: List<String> = emptyList()
         private var date: Long = 0
         private var duration: Long = 0

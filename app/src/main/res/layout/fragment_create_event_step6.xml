@@ -26,43 +26,28 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-
-            android:id="@+id/tv_label_date"
+            android:id="@+id/tv_label_photo"
             style="@style/App.Text.Title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/control_margin"
             android:layout_marginTop="@dimen/control_big_margin"
-            android:text="@string/choose_date_and_duration"
+            android:text="@string/add_picture"
             app:layout_constraintStart_toStartOf="@id/btn_back"
             app:layout_constraintTop_toBottomOf="@id/btn_back" />
 
-    <EditText
-            android:id="@+id/et_input_date"
-            style="@style/App.EditText.CreateEvent"
+    <ImageView
+            android:id="@+id/btn_add_photo"
             android:layout_width="0dp"
-            android:layout_height="64dp"
-            android:layout_marginStart="@dimen/control_margin"
-            android:layout_marginTop="@dimen/control_medium_margin"
-            android:layout_marginEnd="@dimen/control_margin"
-            android:drawableEnd="@drawable/ic_calendar"
-            android:text="@string/start_date"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_label_date" />
+            android:layout_height="400dp"
+            android:layout_marginTop="@dimen/control_big_margin"
+            android:background="@drawable/draw_rect_add_picture"
+            android:scaleType="centerInside"
 
-    <EditText
-            style="@style/App.EditText.CreateEvent"
-            android:layout_width="0dp"
-            android:layout_height="64dp"
-            android:layout_marginStart="@dimen/control_margin"
-            android:layout_marginTop="@dimen/control_medium_margin"
-            android:layout_marginEnd="@dimen/control_margin"
-            android:drawableEnd="@drawable/ic_time"
-            android:text="@string/duration"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_input_date" />
+            android:src="@drawable/ic_add_photo"
+            app:layout_constraintEnd_toEndOf="@id/btn_close"
+            app:layout_constraintStart_toStartOf="@id/tv_label_photo"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_photo" />
 
     <TextView
             style="@style/App.Button.Colored.Green"
@@ -75,5 +60,5 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
+    
 </androidx.constraintlayout.widget.ConstraintLayout>

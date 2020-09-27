@@ -65,6 +65,14 @@
         <item name="android:textColorHint">@color/colorHint</item>
     </style>
 
+    <style name="App.EditText.CreateEvent">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:paddingStart">@dimen/control_medium_margin</item>
+        <item name="android:paddingEnd">@dimen/control_medium_margin</item>
+        <item name="android:background">@drawable/rect_grey_solid_light_stroke__grey_20dp_corner</item>
+        <item name="android:drawableTint">@color/colorWhite</item>
+    </style>
+
     <style name="App.EditText.Filter">
         <item name="android:paddingStart">@dimen/control_big_margin</item>
         <item name="android:background">@drawable/rect_green_stroke_20dp_corner</item>
