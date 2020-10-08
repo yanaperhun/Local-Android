@@ -34,9 +34,9 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-            android:id="@android:id/home"
+            android:id="@+id/btn_back"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:contentDescription="@string/app_name"
             android:paddingStart="16dp"
             android:paddingTop="16dp"
@@ -73,25 +73,35 @@
             app:srcCompat="@drawable/ic_camera" />
 
     <TextView
-            style="@style/App.Text.Default.White"
             android:id="@+id/tv_info1"
+            style="@style/App.Text.Default.White"
             android:layout_width="0dp"
-            android:layout_margin="@dimen/control_medium_margin"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/control_medium_margin"
             android:text="Account"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar_image" />
 
     <TextView
-            style="@style/App.Text.Default.White"
             android:id="@+id/tv_info2"
+            style="@style/App.Text.Default.White"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/control_medium_margin"
             android:layout_marginTop="4dp"
-            android:layout_height="wrap_content"
             android:text="+7 999 632 21 48"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_info1"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_info1" />
+
+    <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/circle_green_solid"
+            android:src="@drawable/ic_add_photo"
+            app:layout_constraintBottom_toBottomOf="@id/btn_back"
+            app:layout_constraintStart_toEndOf="@id/btn_back"
+            app:layout_constraintTop_toTopOf="@id/btn_back" />
 
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

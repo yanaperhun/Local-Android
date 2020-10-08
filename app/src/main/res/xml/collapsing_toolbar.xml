@@ -16,7 +16,7 @@
     <ConstraintSet android:id="@+id/expanded">
         <Constraint
                 android:id="@id/toolbar_image"
-                android:layout_height="200dp"
+                android:layout_height="290dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -33,8 +33,16 @@
                 android:scaleX="1.0"
                 android:scaleY="1.0"
                 app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
-                app:layout_constraintStart_toStartOf="parent">
-        </Constraint>
+                app:layout_constraintStart_toStartOf="parent" />
+
+        <Constraint
+                android:id="@+id/iv_avatar"
+
+                android:scaleX="0.0"
+                android:scaleY="0.0"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_back"
+                app:layout_constraintStart_toEndOf="@id/btn_back"
+                app:layout_constraintTop_toTopOf="@+id/btn_back" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/collapsed">
@@ -52,25 +60,33 @@
         <Constraint
                 android:id="@id/btn_photo"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
-                app:layout_constraintTop_toBottomOf="@id/toolbar_image"
                 android:scaleX="0.0"
-                android:scaleY="0.0">
+                android:scaleY="0.0"
+                app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar_image">
 
         </Constraint>
+        <Constraint
+                android:id="@+id/iv_avatar"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:scaleX="1.0"
+                android:scaleY="1.0"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_back"
+                app:layout_constraintStart_toEndOf="@id/btn_back"
+                app:layout_constraintTop_toTopOf="@+id/btn_back" />
         <Constraint
                 android:id="@id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="@dimen/control_medium_margin"
                 android:layout_marginBottom="0dp"
                 android:scaleX="0.625"
                 android:scaleY="0.625"
                 app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/toolbar_image">
-        </Constraint>
+                app:layout_constraintStart_toEndOf="@id/iv_avatar"
+                app:layout_constraintTop_toTopOf="@id/toolbar_image" />
 
     </ConstraintSet>
 
