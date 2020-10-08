@@ -33,4 +33,7 @@
     <string name="free">Бесплатно</string>
     <string name="choose_on_map">Указать на карте</string>
     <string name="next">Далее</string>
+    <string name="create_event">Создать событие</string>
+    <string name="liked">Понравившиеся</string>
+    <string name="created">Созданные</string>
 </resources>
