@@ -11,7 +11,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class FeedViewModel(application: Application) : AndroidViewModel(application) {
+class EventsFeedViewModel(application: Application) : AndroidViewModel(application) {
 
     private val disposable: CompositeDisposable = CompositeDisposable()
 

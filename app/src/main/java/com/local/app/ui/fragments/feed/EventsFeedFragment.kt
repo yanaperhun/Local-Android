@@ -13,24 +13,24 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.local.app.data.event.Event
 import com.local.app.databinding.FragmentFeedBinding
-import com.local.app.presentation.viewmodel.feed.FeedViewModel
+import com.local.app.presentation.viewmodel.feed.EventsFeedViewModel
 import com.local.app.ui.BaseFragment
 import com.local.app.ui.activities.event.EXTRAS_EVENT_ID
 import com.local.app.ui.activities.event.EventActivity
 import com.local.app.ui.fragments.feed.state.FeedState
 
-class FeedListFragment : BaseFragment() {
+class EventsFeedFragment : BaseFragment() {
 
-    private lateinit var viewModel: FeedViewModel
+    private lateinit var viewModelEvents: EventsFeedViewModel
     private lateinit var binding: FragmentFeedBinding
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        viewModel = ViewModelProviders
+        viewModelEvents = ViewModelProviders
             .of(this)
-            .get(FeedViewModel::class.java)
+            .get(EventsFeedViewModel::class.java)
 
         binding = FragmentFeedBinding.inflate(inflater)
         return binding.root
@@ -39,7 +39,7 @@ class FeedListFragment : BaseFragment() {
     override fun onStart() {
         super.onStart()
 
-        viewModel.feedState.observe(this, Observer {
+        viewModelEvents.feedState.observe(this, Observer {
             when (it) {
                 is FeedState.Error -> it.throwable.printStackTrace()
 
@@ -49,7 +49,7 @@ class FeedListFragment : BaseFragment() {
             }
         })
 
-        viewModel.loadFeed()
+        viewModelEvents.loadFeed()
     }
 
     private fun showProgress() {
@@ -64,7 +64,7 @@ class FeedListFragment : BaseFragment() {
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.rvEvents)
 
-        binding.rvEvents.adapter = object : FeedRVAdapter(it) {
+        binding.rvEvents.adapter = object : EventsFeedRVAdapter(it) {
             override fun onClicks(click: Clicks) {
                 when (click) {
                     is Clicks.Dislike -> skipEvent(click.eventId)

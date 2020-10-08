@@ -17,7 +17,7 @@ import com.local.app.ui.activities.user.UserActivity
 import com.local.app.ui.dialog.filter.FilterDialogFragment
 import com.local.app.ui.dialog.login.LoginDialog
 import com.local.app.ui.dialog.login.LoginDialogCallback
-import com.local.app.ui.fragments.feed.FeedListFragment
+import com.local.app.ui.fragments.feed.EventsFeedFragment
 import com.local.app.ui.fragments.login.LoginFragment
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
@@ -41,7 +41,7 @@ class MainActivity : BaseActivity() {
 
         if (savedInstanceState == null) {
             setContentView(R.layout.activity_main)
-            showFragment(FeedListFragment(), true, R.id.container)
+            showFragment(EventsFeedFragment(), true, R.id.container)
         }
     }
 

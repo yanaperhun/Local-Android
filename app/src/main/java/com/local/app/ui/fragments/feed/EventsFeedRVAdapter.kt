@@ -7,8 +7,8 @@ import com.local.app.data.event.Event
 import com.local.app.databinding.LayoutEventBinding
 import com.local.app.ui.photo.CommonRVEventElements
 
-abstract class FeedRVAdapter(private var events: List<Event>) :
-    RecyclerView.Adapter<FeedRVAdapter.VH>() {
+abstract class EventsFeedRVAdapter(private var events: List<Event>) :
+    RecyclerView.Adapter<EventsFeedRVAdapter.VH>() {
 
     sealed class Clicks {
         class Like(var eventId: Long) : Clicks()
