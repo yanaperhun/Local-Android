@@ -2,13 +2,14 @@
 <MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <Transition
             app:constraintSetEnd="@id/collapsed"
             app:constraintSetStart="@id/expanded">
 
         <OnSwipe
                 app:dragDirection="dragUp"
-                app:touchAnchorId="@id/recyclerview"
+                app:touchAnchorId="@id/view_pager"
                 app:touchAnchorSide="top" />
 
     </Transition>
@@ -24,6 +25,12 @@
                     app:attributeName="imageAlpha"
                     app:customIntegerValue="255" />
         </Constraint>
+
+        <Constraint
+                android:id="@+id/btn_create_event"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
         <Constraint
                 android:id="@id/title"
                 android:layout_width="wrap_content"
@@ -44,11 +51,14 @@
                 app:layout_constraintStart_toEndOf="@id/btn_back"
                 app:layout_constraintTop_toTopOf="@+id/btn_back" />
         <Constraint
-                android:layout_height="45dp"
-                app:layout_constraintBottom_toBottomOf="@+id/recyclerview"
-                android:layout_width="0dp"
                 android:id="@+id/btn_create_event"
-                app:layout_editor_absoluteY="778dp"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_margin="@dimen/control_medium_margin"
+                android:layout_marginStart="@dimen/control_big_margin"
+                android:layout_marginEnd="@dimen/control_big_margin"
+                android:layout_marginBottom="@dimen/control_medium_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
     </ConstraintSet>
@@ -95,6 +105,19 @@
                 app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
                 app:layout_constraintStart_toEndOf="@id/iv_avatar"
                 app:layout_constraintTop_toTopOf="@id/toolbar_image" />
+
+        <Constraint
+                android:id="@+id/btn_create_event"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_margin="@dimen/control_medium_margin"
+                android:layout_marginStart="@dimen/control_big_margin"
+                android:layout_marginEnd="@dimen/control_big_margin"
+                android:layout_marginBottom="@dimen/control_medium_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
 
     </ConstraintSet>
 
