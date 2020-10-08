@@ -24,6 +24,7 @@
         </activity>
         <activity android:name=".ui.activities.event.CreateEventActivity" />
         <activity android:name="com.local.app.ui.activities.event.EventActivity" />
+        <activity android:name="com.local.app.ui.activities.user.UserActivity" />
     </application>
 
 </manifest>

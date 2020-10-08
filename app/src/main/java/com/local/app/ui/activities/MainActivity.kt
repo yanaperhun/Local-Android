@@ -13,7 +13,7 @@ import com.local.app.R
 import com.local.app.data.login.AuthProvider
 import com.local.app.presentation.viewmodel.main.MainActivityViewModel
 import com.local.app.ui.BaseActivity
-import com.local.app.ui.activities.event.CreateEventActivity
+import com.local.app.ui.activities.user.UserActivity
 import com.local.app.ui.dialog.filter.FilterDialogFragment
 import com.local.app.ui.dialog.login.LoginDialog
 import com.local.app.ui.dialog.login.LoginDialogCallback
@@ -62,7 +62,7 @@ class MainActivity : BaseActivity() {
 
     private fun showProfileFragment() {
 
-        startActivity(Intent(this, CreateEventActivity::class.java))
+        startActivity(Intent(this, UserActivity::class.java))
 //        showFragment(ProfileFragment(), true)
     }
 

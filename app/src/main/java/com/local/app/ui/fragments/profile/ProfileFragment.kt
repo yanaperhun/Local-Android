@@ -13,7 +13,7 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
     }
 
     init {
-        binding.btnCreateEvent.setOnClickListener { showCreateEventStartFragment() }
+//        binding.btnCreateEvent.setOnClickListener { showCreateEventStartFragment() }
     }
 
     private fun showCreateEventStartFragment() {
