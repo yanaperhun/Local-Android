@@ -10,6 +10,8 @@ import com.local.app.di.login.LoginModule
 import com.local.app.di.main.AppComponent
 import com.local.app.di.main.AppModule
 import com.local.app.di.main.DaggerAppComponent
+import com.local.app.di.user.list.EventListComponent
+import com.local.app.di.user.list.EventListModule
 
 class ComponentManager(context: Context) {
 
@@ -25,6 +27,7 @@ class ComponentManager(context: Context) {
     var feedComponent: FeedComponent? = null
     var loginComponent: LoginComponent? = null
     var createEventComponent: CreateEventComponent? = null
+    var eventListComponent: EventListComponent? = null
 
     fun plusCreateEventComponent(): CreateEventComponent? {
         if (createEventComponent == null) {
@@ -35,6 +38,17 @@ class ComponentManager(context: Context) {
 
     fun clearCreateEventComponent() {
         createEventComponent = null
+    }
+
+    fun plusEventListComponent(): EventListComponent? {
+        if (eventListComponent == null) {
+            eventListComponent = appComponent?.plusEventListComponent(EventListModule())
+        }
+        return eventListComponent
+    }
+
+    fun clearEventListComponent() {
+        eventListComponent = null
     }
 
     fun plusFeedComponent(): FeedComponent? {
