@@ -1,3 +1,3 @@
 package com.local.app.data
 
-class AppException(message: String) : Exception(message)
+class AppException(message: String?) : Exception(message)

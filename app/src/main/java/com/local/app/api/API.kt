@@ -3,7 +3,7 @@ package com.local.app.api
 import com.local.app.api.requests.AuthRequest
 import com.local.app.api.requests.LoginRequest
 import com.local.app.api.requests.SocNetAuthRequest
-import com.local.app.api.response.EventsFeedResponse
+import com.local.app.api.response.EventListResponse
 import com.local.app.api.response.TokenResponse
 import com.local.app.data.Profile
 import io.reactivex.Single
@@ -14,7 +14,7 @@ import retrofit2.http.POST
 interface API {
 
     @GET("api/feed")
-    fun load(): Single<EventsFeedResponse>
+    fun load(): Single<EventListResponse>
 
     @POST("api/auth/tokensignin")
     fun authViaSocNetwork(@Body socNetAuthRequest: SocNetAuthRequest): Single<TokenResponse>
@@ -27,4 +27,10 @@ interface API {
 
     @GET("api/user")
     fun loadProfile(): Single<Profile>
+
+    @GET("api/events/touched")
+    fun loadLikedEvents(): Single<EventListResponse>
+
+    @GET("api/events/my")
+    fun loadMyEvents(): Single<EventListResponse>
 }
