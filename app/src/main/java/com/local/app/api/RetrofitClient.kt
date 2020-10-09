@@ -32,7 +32,7 @@ class RetrofitClient(val prefUtils: PrefUtils) {
         }
 
         val loggingInterceptor = HttpLoggingInterceptor()
-        loggingInterceptor.level = HttpLoggingInterceptor.Level.HEADERS
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
         val client = OkHttpClient
             .Builder()

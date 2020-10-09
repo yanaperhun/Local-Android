@@ -26,8 +26,8 @@ class AppModule(val context: Context) {
 
     @Provides
     @Singleton
-    fun provideProfile(retrofitClient: RetrofitClient): ProfileRepository {
-        return ProfileRepositoryImpl(retrofitClient)
+    fun provideProfile(retrofitClient: RetrofitClient, prefUtils: PrefUtils): ProfileRepository {
+        return ProfileRepositoryImpl(retrofitClient, prefUtils)
     }
 
     @Provides

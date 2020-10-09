@@ -1,6 +1,5 @@
 package com.local.app.ui.fragments.feed.profile
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.activityViewModels
@@ -19,20 +18,17 @@ abstract class BaseEventListFragment : BindableFragment<FragmentEventListBinding
         binding = FragmentEventListBinding.inflate(inflater)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel.uiState.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                is EventListState.Loading -> binding.progressBar.visibility =
-                    if (it.isLoading) View.VISIBLE else View.GONE
 
-                is EventListState.Error -> showErrorAlert(it.error.message ?: "Ошибка")
+    val observer = Observer<EventListState> {
+        when (it) {
+            is EventListState.Loading -> binding.progressBar.visibility =
+                if (it.isLoading) View.VISIBLE else View.GONE
 
-                is EventListState.Success -> adapter.addEvents(it.events)
+            is EventListState.Error -> showErrorAlert(it.error.message ?: "Ошибка")
 
-            }
-        })
+            is EventListState.Success -> adapter.addEvents(it.events)
 
+        }
     }
 
 }

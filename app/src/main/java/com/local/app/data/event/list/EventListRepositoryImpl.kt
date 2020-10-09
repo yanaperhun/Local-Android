@@ -23,7 +23,7 @@ class EventListRepositoryImpl(val retrofitClient: RetrofitClient) : EventListRep
     override fun getLikedEvents(): Single<List<Event>> {
         return if (likedEvents.isNullOrEmpty()) {
             retrofitClient.api
-                .loadLikedEvents()
+                .loadLikedEvents("like")
                 .doOnSuccess { likedEvents.addAll(it.data) }
                 .map { likedEvents }
         } else {

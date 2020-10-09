@@ -24,8 +24,8 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
 
             override fun createFragment(position: Int): BaseEventListFragment =
                 when (position) {
-                    1 -> LikedEventsFragment()
-                    2 -> MyEventsFragment()
+                    0 -> LikedEventsFragment()
+                    1 -> MyEventsFragment()
                     else -> LikedEventsFragment()
                 }
         }
