@@ -1,6 +1,7 @@
 package com.local.app.ui
 
 import android.app.Activity
+import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -10,7 +11,6 @@ import com.local.app.LocalApp
 import com.local.app.R
 import com.local.app.data.AppException
 import com.local.app.di.ComponentManager
-import timber.log.Timber
 
 open class BaseFragment : Fragment() {
     fun getDagger(): ComponentManager {
@@ -27,7 +27,7 @@ open class BaseFragment : Fragment() {
     }
 
     fun log(mess: String) {
-        Timber.i(mess)
+        Log.d("Local", mess)
     }
 
     fun showFragment(fragment: BaseFragment, addToBackStack: Boolean) {

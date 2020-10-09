@@ -11,9 +11,17 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <ProgressBar
-            android:layout_gravity="center"
             android:id="@+id/progress_bar"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+    <TextView
+            android:id="@+id/tv_empty"
+            style="@style/App.Text.Default.White"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/empty_list" />
 </FrameLayout>

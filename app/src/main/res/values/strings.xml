@@ -36,4 +36,5 @@
     <string name="create_event">Создать событие</string>
     <string name="liked">Понравившиеся</string>
     <string name="created">Созданные</string>
+    <string name="empty_list">Пустой список</string>
 </resources>
