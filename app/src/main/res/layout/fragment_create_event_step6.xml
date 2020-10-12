@@ -56,7 +56,7 @@
             android:layout_marginStart="@dimen/control_margin"
             android:layout_marginEnd="@dimen/control_margin"
             android:layout_marginBottom="@dimen/control_big_margin"
-            android:text="@string/next"
+            android:text="@string/create"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

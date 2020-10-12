@@ -25,7 +25,7 @@ class EventListRVAdapter : RecyclerView.Adapter<EventListRVAdapter.VH>() {
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-//        holder.binding.tvTitle.text = events[position].eventName
+        holder.binding.tvTitle.text = events[position].eventName
     }
 
     fun addEvents(events: List<Event>) {

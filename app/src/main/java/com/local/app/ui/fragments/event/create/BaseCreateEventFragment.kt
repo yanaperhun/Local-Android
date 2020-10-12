@@ -1,5 +1,6 @@
 package com.local.app.ui.fragments.event.create
 
+import android.view.View
 import android.widget.Button
 import androidx.fragment.app.activityViewModels
 import androidx.viewbinding.ViewBinding
@@ -18,8 +19,14 @@ abstract class BaseCreateEventFragment<T : ViewBinding> : BindableFragment<T>() 
         return null
     }
 
+    abstract fun onNext()
+
     override fun initUI() {
         super.initUI()
+
+        binding.root
+            .findViewById<View>(R.id.btn_next)
+            .setOnClickListener { goNext() }
         binding.root
             .findViewById<Button>(R.id.btn_close)
             .setOnClickListener { requireActivity().finish() }
@@ -30,6 +37,7 @@ abstract class BaseCreateEventFragment<T : ViewBinding> : BindableFragment<T>() 
     }
 
     fun goNext() {
+        onNext()
         getNextFragment()?.let {
             showFragment(it, true)
         }

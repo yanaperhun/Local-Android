@@ -67,6 +67,7 @@
 
 
     <TextView
+            android:id="@+id/btn_next"
             style="@style/App.Button.Colored.Green"
             android:layout_width="0dp"
             android:layout_height="64dp"
