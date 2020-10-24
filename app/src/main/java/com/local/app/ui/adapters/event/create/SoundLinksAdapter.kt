@@ -60,12 +60,9 @@ class SoundLinksAdapter : RecyclerView.Adapter<SoundLinksAdapter.VHBase>() {
                 }
             }
         }
-
     }
 
-    open class VHBase(view: View) : RecyclerView.ViewHolder(view) {
-
-    }
+    open class VHBase(view: View) : RecyclerView.ViewHolder(view)
 
     class VHSoundLink(val binding: ItemSoundLinkBinding) : VHBase(binding.root)
 
