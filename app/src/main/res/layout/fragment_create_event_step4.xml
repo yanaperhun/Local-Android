@@ -44,6 +44,7 @@
             android:layout_marginStart="@dimen/control_margin"
             android:layout_marginTop="@dimen/control_medium_margin"
             android:layout_marginEnd="@dimen/control_margin"
+            android:maxLength="50"
             android:drawableEnd="@drawable/ic_dollar"
             android:text="@string/free"
             app:layout_constraintEnd_toEndOf="parent"
@@ -52,6 +53,7 @@
 
 
     <Button
+            android:id="@+id/btn_address"
             style="@style/App.Text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -70,7 +72,7 @@
             android:id="@+id/btn_next"
             style="@style/App.Button.Colored.Green"
             android:layout_width="0dp"
-            android:layout_height="64dp"
+            android:layout_height="@dimen/btn_next_height"
             android:layout_marginStart="@dimen/control_margin"
             android:layout_marginEnd="@dimen/control_margin"
             android:layout_marginBottom="@dimen/control_big_margin"

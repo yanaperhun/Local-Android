@@ -1,80 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorMainDark">
+<layout>
 
-    <ImageButton
-            android:id="@+id/btn_back"
-            android:layout_width="@dimen/back_btn_size"
-            android:layout_height="@dimen/back_btn_size"
-            android:layout_margin="@dimen/control_margin"
-            android:background="@drawable/rect_grey_solid_10dp_corner"
-            android:src="@drawable/ic_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <ImageButton
-            android:id="@+id/btn_close"
-            android:layout_width="@dimen/back_btn_size"
-            android:layout_height="@dimen/back_btn_size"
-            android:layout_margin="@dimen/control_margin"
-            android:background="@drawable/rect_grey_solid_10dp_corner"
-            android:src="@drawable/ic_cross_white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <variable
+                name="eventBuilder"
+                type="com.local.app.data.event.create.EventRaw.Builder" />
+    </data>
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorMainDark">
 
-            android:id="@+id/tv_label_date"
-            style="@style/App.Text.Title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/control_margin"
-            android:layout_marginTop="@dimen/control_big_margin"
-            android:text="@string/choose_date_and_duration"
-            app:layout_constraintStart_toStartOf="@id/btn_back"
-            app:layout_constraintTop_toBottomOf="@id/btn_back" />
 
-    <EditText
-            android:id="@+id/et_input_date"
-            style="@style/App.EditText.CreateEvent"
-            android:layout_width="0dp"
-            android:layout_height="64dp"
-            android:layout_marginStart="@dimen/control_margin"
-            android:layout_marginTop="@dimen/control_medium_margin"
-            android:layout_marginEnd="@dimen/control_margin"
-            android:drawableEnd="@drawable/ic_calendar"
-            android:text="@string/start_date"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_label_date" />
+        <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="@dimen/back_btn_size"
+                android:layout_height="@dimen/back_btn_size"
+                android:layout_margin="@dimen/control_margin"
+                android:background="@drawable/rect_grey_solid_10dp_corner"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-            style="@style/App.EditText.CreateEvent"
-            android:layout_width="0dp"
-            android:layout_height="64dp"
-            android:layout_marginStart="@dimen/control_margin"
-            android:layout_marginTop="@dimen/control_medium_margin"
-            android:layout_marginEnd="@dimen/control_margin"
-            android:drawableEnd="@drawable/ic_time"
-            android:text="@string/duration"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_input_date" />
+        <ImageButton
+                android:id="@+id/btn_close"
+                android:layout_width="@dimen/back_btn_size"
+                android:layout_height="@dimen/back_btn_size"
+                android:layout_margin="@dimen/control_margin"
+                android:background="@drawable/rect_grey_solid_10dp_corner"
+                android:src="@drawable/ic_cross_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-            android:id="@+id/btn_next"
-            style="@style/App.Button.Colored.Green"
-            android:layout_width="0dp"
-            android:layout_height="64dp"
-            android:layout_marginStart="@dimen/control_margin"
-            android:layout_marginEnd="@dimen/control_margin"
-            android:layout_marginBottom="@dimen/control_big_margin"
-            android:text="@string/next"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+        <TextView
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                android:id="@+id/tv_label_date"
+                style="@style/App.Text.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/control_margin"
+                android:layout_marginTop="@dimen/control_big_margin"
+                android:text="@string/choose_date_and_duration"
+                app:layout_constraintStart_toStartOf="@id/btn_back"
+                app:layout_constraintTop_toBottomOf="@id/btn_back" />
+
+        <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/et_input_date"
+                style="@style/App.EditText.CreateEvent"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="@dimen/control_margin"
+                android:layout_marginTop="@dimen/control_medium_margin"
+                android:layout_marginEnd="@dimen/control_margin"
+                android:drawableEnd="@drawable/ic_calendar"
+                android:editable="false"
+                android:hint="@string/start_date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_date" />
+
+        <EditText
+                style="@style/App.EditText.CreateEvent"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="@dimen/control_margin"
+                android:layout_marginTop="@dimen/control_medium_margin"
+                android:layout_marginEnd="@dimen/control_margin"
+                android:drawableEnd="@drawable/ic_time"
+                android:hint="@string/duration"
+                android:maxLength="50"
+                android:text="@{eventBuilder.duration}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_input_date" />
+
+        <TextView
+                android:id="@+id/btn_next"
+                style="@style/App.Button.Colored.Green"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_next_height"
+                android:layout_marginStart="@dimen/control_margin"
+                android:layout_marginEnd="@dimen/control_margin"
+                android:layout_marginBottom="@dimen/control_big_margin"
+                android:text="@string/next"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

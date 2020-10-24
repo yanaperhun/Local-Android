@@ -1,17 +1,14 @@
 package com.local.app.data.event.create
 
 import com.google.gson.annotations.SerializedName
-import java.math.BigDecimal
 
 class EventRaw internal constructor(@SerializedName("eventName") val title: String = "",
                                     val description: String = "",
                                     val tags: List<String> = emptyList(),
 
                                     @SerializedName("eventDate") val date: Long = 0,
-                                    val duration: Long = 0,
-
-                                    @SerializedName("cost") val price: BigDecimal = BigDecimal.ZERO,
-
+                                    val duration: String = "",
+                                    @SerializedName("cost") val price: String = "Бесплатно",
                                     @SerializedName(
                                         "eventLocation") val address: EventAddress? = null,
                                     val contactPhone: String = "",
@@ -27,9 +24,9 @@ class EventRaw internal constructor(@SerializedName("eventName") val title: Stri
         var title: String = ""
         var description = ""
         private var tags: List<String> = emptyList()
-        private var date: Long = 0
-        private var duration: Long = 0
-        private var price: BigDecimal = BigDecimal.ZERO
+        var date: Long = 0
+        var duration: String = ""
+        private var price: String = "Бесплатно"
         private var address: EventAddress? = null
         private var contactPhone: String = ""
         private var instagram: String = ""
@@ -51,17 +48,15 @@ class EventRaw internal constructor(@SerializedName("eventName") val title: Stri
             this.tags = tags
         }
 
-        fun date(date: Long) {
-            this.date = date
-        }
+//        fun date(date: Long) {
+//            this.date = date
+//        }
 
-        fun duration(duration: Long) {
-            this.duration = duration
-        }
 
-        fun price(price: BigDecimal) {
-            this.price = price
-        }
+
+//        fun price(price: BigDecimal) {
+//            this.price = price
+//        }
 
         fun address(eventAddress: EventAddress) {
             this.address = eventAddress

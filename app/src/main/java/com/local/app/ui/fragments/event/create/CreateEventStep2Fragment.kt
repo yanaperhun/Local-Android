@@ -18,5 +18,7 @@ class CreateEventStep2Fragment : BaseCreateEventFragment<FragmentCreateEventStep
         return CreateEventStep3Fragment()
     }
 
+    override fun onNext() {
+    }
 
 }

@@ -1,7 +1,7 @@
 package com.local.app.ui.fragments.event.create
 
 import android.view.View
-import android.widget.Button
+import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
 import androidx.viewbinding.ViewBinding
 import com.local.app.BindableFragment
@@ -11,7 +11,7 @@ import com.local.app.ui.BaseFragment
 
 abstract class BaseCreateEventFragment<T : ViewBinding> : BindableFragment<T>() {
 
-    val model: CreateEventViewModel by activityViewModels()
+    val viewModel: CreateEventViewModel by activityViewModels()
 
     open fun getPrevFragment() {}
 
@@ -21,6 +21,7 @@ abstract class BaseCreateEventFragment<T : ViewBinding> : BindableFragment<T>() 
 
     abstract fun onNext()
 
+
     override fun initUI() {
         super.initUI()
 
@@ -28,11 +29,11 @@ abstract class BaseCreateEventFragment<T : ViewBinding> : BindableFragment<T>() 
             .findViewById<View>(R.id.btn_next)
             .setOnClickListener { goNext() }
         binding.root
-            .findViewById<Button>(R.id.btn_close)
+            .findViewById<ImageButton>(R.id.btn_close)
             .setOnClickListener { requireActivity().finish() }
 
         binding.root
-            .findViewById<Button>(R.id.btn_back)
+            .findViewById<ImageButton>(R.id.btn_back)
             ?.setOnClickListener { requireActivity().onBackPressed() }
     }
 

@@ -52,7 +52,7 @@
     <TextView
             style="@style/App.Button.Colored.Green"
             android:layout_width="0dp"
-            android:layout_height="64dp"
+            android:layout_height="@dimen/btn_next_height"
             android:layout_marginStart="@dimen/control_margin"
             android:layout_marginEnd="@dimen/control_margin"
             android:layout_marginBottom="@dimen/control_big_margin"
