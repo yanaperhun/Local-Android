@@ -7,23 +7,23 @@ import androidx.annotation.DimenRes;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
-  private int dimen;
+    private int dimen;
 
-  public SpacesItemDecoration(@DimenRes int dimen) {
-    this.dimen = dimen;
-  }
+    public SpacesItemDecoration(@DimenRes int dimen) {
+        this.dimen = dimen;
+    }
 
-  @Override
-  public void getItemOffsets(Rect outRect, View view,
-                             RecyclerView parent, RecyclerView.State state) {
+    @Override
+    public void getItemOffsets(Rect outRect, View view,
+                               RecyclerView parent, RecyclerView.State state) {
 
-    outRect.right = parent.getResources().getDimensionPixelSize(dimen);
+        outRect.bottom = parent.getResources().getDimensionPixelSize(dimen);
 
-    // Add top margin only for the first item to avoid double space between items
+        // Add top margin only for the first item to avoid double space between items
 //    if (parent.getChildLayoutPosition(view) == 0) {
 //        outRect.top = dimen;
 //    } else {
 //        outRect.top = 0;
 //    }
-  }
+    }
 }
