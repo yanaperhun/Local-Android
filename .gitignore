@@ -86,3 +86,4 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 app/src/main/res/values/keys.xml
+app/src/main/res/values/keys.xml
