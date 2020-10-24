@@ -7,10 +7,8 @@ import com.local.app.api.response.EventListResponse
 import com.local.app.api.response.TokenResponse
 import com.local.app.data.Profile
 import io.reactivex.Single
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import okhttp3.MultipartBody
+import retrofit2.http.*
 
 interface API {
 
@@ -30,8 +28,12 @@ interface API {
     fun loadProfile(): Single<Profile>
 
     @GET("api/events/touched")
-    fun loadLikedEvents(@Query("type") type : String): Single<EventListResponse>
+    fun loadLikedEvents(@Query("type") type: String): Single<EventListResponse>
 
     @GET("api/events/my")
     fun loadMyEvents(): Single<EventListResponse>
+
+    @POST("/image-upload")
+    @Multipart
+    fun loadImage(@Part file: MultipartBody.Part): Single<String>
 }

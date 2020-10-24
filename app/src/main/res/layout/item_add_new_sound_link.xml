@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatEditText xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/et_input_link"
+        style="@style/App.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/control_medium_margin"
+        android:layout_marginBottom="@dimen/control_medium_margin"
+        android:hint="Например, https://soundcloud.com/uiceheidd"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:minHeight="@dimen/et_min_height"
+        app:layout_constraintHeight_min="@dimen/et_min_height">
+
+</androidx.appcompat.widget.AppCompatEditText>
