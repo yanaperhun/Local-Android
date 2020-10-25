@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.local.app.R
 import com.local.app.data.Photo
-import com.local.app.utils.Utils.Companion.DP_INT
 import com.local.app.ui.adapters.PhotoViewerAdapter
 import com.local.app.ui.custom.LinePagerIndicatorDecoration
 import com.local.app.ui.custom.RecyclerItemClickListener
+import com.local.app.utils.Utils
 
 class CommonRVEventElements {
 
@@ -46,10 +46,10 @@ class CommonRVEventElements {
                 val tvTag = TextView(context)
                 tvTag.text = tagValue
                 val layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                                                             40 * DP_INT)
-                layoutParams.setMargins(0, 0, 6 * DP_INT, 0)
+                                                             Utils.dpToPx(40).toInt())
+                layoutParams.setMargins(0, 0, Utils.dpToPx(6).toInt(), 0)
                 layoutParams.gravity = CENTER_VERTICAL
-                tvTag.setPadding(8 * DP_INT, 0, 8 * DP_INT, 0)
+                tvTag.setPadding(Utils.dpToPx(8).toInt(), 0, Utils.dpToPx(8).toInt(), 0)
 
                 if (Build.VERSION.SDK_INT < 23) {
                     tvTag.setTextAppearance(context, R.style.App_Text_Tag)

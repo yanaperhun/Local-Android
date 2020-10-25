@@ -2,6 +2,7 @@ package com.local.app.ui.fragments.event.create
 
 import android.app.DatePickerDialog
 import android.view.LayoutInflater
+import com.local.app.R
 import com.local.app.databinding.FragmentCreateEventStep3Binding
 import com.local.app.ui.BaseFragment
 import com.local.app.ui.dialog.DatePickerFragment
@@ -21,6 +22,8 @@ class CreateEventStep3Fragment : BaseCreateEventFragment<FragmentCreateEventStep
         if (viewModel.eventBuilder().date != 0L) {
             setFormattedDate()
         }
+
+        binding.tvDuration.setText(viewModel.eventBuilder().duration)
     }
 
     private fun setFormattedDate() {
@@ -42,6 +45,14 @@ class CreateEventStep3Fragment : BaseCreateEventFragment<FragmentCreateEventStep
     }
 
     override fun onNext() {
+    }
+
+    override fun onValidate(): Boolean {
+        return !binding.etInputDate.text.isNullOrEmpty() && !binding.tvDuration.text.isNullOrEmpty()
+    }
+
+    override fun getValidateMessage(): String {
+        return getString(R.string.error_validate_step_3)
     }
 
 }

@@ -7,7 +7,11 @@ import javax.inject.Inject
 
 class GetProfileInteractor @Inject constructor(private val profileRepository: ProfileRepository) {
 
-    fun getProfile(): Single<Profile> {
+    fun getProfileAsync(): Single<Profile> {
+        return profileRepository.getProfileAsync()
+    }
+
+    fun getProfile() : Profile? {
         return profileRepository.getProfile()
     }
 

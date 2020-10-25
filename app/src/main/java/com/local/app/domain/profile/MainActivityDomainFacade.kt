@@ -9,17 +9,19 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class MainActivityDomainFacade @Inject constructor(private val getProfileInteractor: GetProfileInteractor,
-private val socNetAuthInteractor: SocNetAuthInteractor) {
+                                                   private val socNetAuthInteractor: SocNetAuthInteractor) {
 
-    fun getProfile(): Single<Profile> {
+    fun getProfileAsync(): Single<Profile> {
+        return getProfileInteractor.getProfileAsync()
+    }
+
+    fun getProfile(): Profile? {
         return getProfileInteractor.getProfile()
     }
 
     fun loginBySocNetworks(token: String, authProvider: AuthProvider): Completable {
         return socNetAuthInteractor.login(token, authProvider)
     }
-
-
 
     fun isProfileLoaded(): Boolean {
         return getProfileInteractor.isProfileLoaded()

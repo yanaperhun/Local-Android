@@ -13,7 +13,7 @@ class SocNetAuthInteractor @Inject constructor(private val profileRepository: Pr
     fun login(token: String, authProvider: AuthProvider): Completable {
         return loginRepository
             .loginBySocNetworks(SocNetAuthRequest(token, authProvider.title))
-            .flatMap { profileRepository.getProfile() }
+            .flatMap { profileRepository.getProfileAsync() }
             .ignoreElement()
     }
 

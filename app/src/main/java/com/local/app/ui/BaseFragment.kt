@@ -3,9 +3,12 @@ package com.local.app.ui
 import android.app.Activity
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.local.app.BuildConfig
 import com.local.app.LocalApp
 import com.local.app.R
@@ -53,8 +56,33 @@ open class BaseFragment : Fragment() {
         showAlert(getString(R.string.alert_title_info), message)
     }
 
-    fun showErrorAlert(message: String) {
-        showAlert(getString(R.string.alert_title_error), message)
+    fun showImage(imageView: ImageView, imageUrl: String) {
+        Glide
+            .with(imageView.context)
+            .load(imageUrl)
+            .into(imageView)
+    }
+
+    fun showRoundImage(imageView: ImageView, imageUrl: String) {
+        Glide
+            .with(imageView.context)
+            .load(imageUrl)
+            .circleCrop()
+            .into(imageView)
+    }
+
+    fun showRounderCornersImage(imageView: ImageView, imageUrl: String, radius: Int) {
+        Glide
+            .with(imageView.context)
+            .load(imageUrl)
+            .transform(RoundedCorners(radius))
+            .into(imageView)
+
+    }
+
+    fun showErrorAlert(message: String?) {
+        showAlert(getString(R.string.alert_title_error),
+                  message ?: "Что то пошло не так. Попробуйте еще раз")
     }
 
     fun showAlert(title: String, message: String) {

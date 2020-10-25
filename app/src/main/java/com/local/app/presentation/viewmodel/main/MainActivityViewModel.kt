@@ -27,7 +27,11 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
         getApplication<LocalApp>().daggerManager.loginComponent?.inject(this)
     }
 
-    fun getProfile(): Single<Profile> {
+    fun getProfileAsync(): Single<Profile> {
+        return profileDomainFacade.getProfileAsync()
+    }
+
+    fun getProfile(): Profile?{
         return profileDomainFacade.getProfile()
     }
 

@@ -4,7 +4,14 @@ import android.content.res.Resources
 
 class Utils {
     companion object {
-        val DP: Float = Resources.getSystem().displayMetrics.density
-        val DP_INT: Int = DP.toInt()
+        fun pxToDp(px: Float): Float {
+            return px / Resources.getSystem().displayMetrics.density
+        }
+
+        fun dpToPx(dp: Int): Float {
+            return dp * Resources.getSystem().displayMetrics.density
+        }
     }
+
+
 }

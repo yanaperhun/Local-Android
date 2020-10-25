@@ -31,4 +31,12 @@ class CreateEventStep5Fragment : BaseCreateEventFragment<FragmentCreateEventStep
         //viewModel.eventBuilder().
     }
 
+    override fun onValidate(): Boolean {
+        return true
+    }
+
+    override fun getValidateMessage(): String {
+        return getString(R.string.error_validate_step_5)
+    }
+
 }

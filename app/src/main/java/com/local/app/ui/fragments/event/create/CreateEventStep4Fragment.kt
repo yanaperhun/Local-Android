@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
+import com.local.app.R
 import com.local.app.databinding.FragmentCreateEventStep4Binding
 import com.local.app.ui.BaseFragment
 import java.util.*
@@ -43,6 +44,14 @@ class CreateEventStep4Fragment : BaseCreateEventFragment<FragmentCreateEventStep
 
     override fun onNext() {
 
+    }
+
+    override fun onValidate(): Boolean {
+        return !binding.etInputPrice.text.isNullOrEmpty() && viewModel.eventBuilder().address != null
+    }
+
+    override fun getValidateMessage(): String {
+        return getString(R.string.error_validate_step_4)
     }
 
 }

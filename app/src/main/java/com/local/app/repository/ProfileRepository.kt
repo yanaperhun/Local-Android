@@ -6,7 +6,8 @@ import io.reactivex.Single
 interface ProfileRepository {
 
     fun isProfileLoaded() : Boolean
-    fun getProfile(): Single<Profile>
+    fun getProfileAsync(): Single<Profile>
+    fun getProfile() : Profile?
 
     fun saveToken(token : String)
 

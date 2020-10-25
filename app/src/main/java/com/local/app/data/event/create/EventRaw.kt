@@ -1,5 +1,6 @@
 package com.local.app.data.event.create
 
+import androidx.databinding.BaseObservable
 import com.google.gson.annotations.SerializedName
 
 class EventRaw internal constructor(@SerializedName("eventName") val title: String = "",
@@ -19,7 +20,7 @@ class EventRaw internal constructor(@SerializedName("eventName") val title: Stri
                                     val pictures: List<String> = emptyList(),
                                     val playlist: List<String> = emptyList()) {
 
-    class Builder() {
+    class Builder() : BaseObservable() {
 
         var title: String = ""
         var description = ""
@@ -27,7 +28,7 @@ class EventRaw internal constructor(@SerializedName("eventName") val title: Stri
         var date: Long = 0
         var duration: String = ""
         private var price: String = "Бесплатно"
-        private var address: EventAddress? = null
+        var address: EventAddress? = null
         private var contactPhone: String = ""
         private var instagram: String = ""
         private var soundCloud: String = ""
@@ -48,19 +49,17 @@ class EventRaw internal constructor(@SerializedName("eventName") val title: Stri
             this.tags = tags
         }
 
-//        fun date(date: Long) {
-//            this.date = date
+        //        fun date(date: Long) {
+        //            this.date = date
+        //        }
+
+        //        fun price(price: BigDecimal) {
+        //            this.price = price
+        //        }
+
+//        fun address(eventAddress: EventAddress) {
+//            this.address = eventAddress
 //        }
-
-
-
-//        fun price(price: BigDecimal) {
-//            this.price = price
-//        }
-
-        fun address(eventAddress: EventAddress) {
-            this.address = eventAddress
-        }
 
         fun contactPhone(phone: String) {
             this.contactPhone = phone

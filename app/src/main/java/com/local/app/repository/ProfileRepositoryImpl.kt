@@ -14,13 +14,21 @@ class ProfileRepositoryImpl @Inject constructor(private var client: RetrofitClie
         return prefUtils.getProfile() != null
     }
 
-    override fun getProfile(): Single<Profile> {
+    override fun getProfileAsync(): Single<Profile> {
+        val profileLocalMem = getProfile()
+        profileLocalMem?.let {
+            return@getProfileAsync Single.just(it)
+        }
         return client.api
             .loadProfile()
             .map {
                 saveProfile(it)
                 return@map it
             }
+    }
+
+    override fun getProfile(): Profile? {
+        return prefUtils.getProfile()
     }
 
     private fun saveProfile(profile: Profile) {

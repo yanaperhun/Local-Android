@@ -11,6 +11,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.local.app.R
 import com.local.app.data.login.AuthProvider
+import com.local.app.databinding.ActivityMainBinding
 import com.local.app.presentation.viewmodel.main.MainActivityViewModel
 import com.local.app.ui.BaseActivity
 import com.local.app.ui.activities.user.UserActivity
@@ -19,6 +20,7 @@ import com.local.app.ui.dialog.login.LoginDialog
 import com.local.app.ui.dialog.login.LoginDialogCallback
 import com.local.app.ui.fragments.feed.EventsFeedFragment
 import com.local.app.ui.fragments.login.LoginFragment
+import com.local.app.utils.Utils
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
@@ -31,6 +33,7 @@ class MainActivity : BaseActivity() {
     private val REQUEST_CODE_VK_AUTH = 1001
     private val REQUEST_CODE_INSTAGRAM_AUTH = 1002
     private lateinit var viewModel: MainActivityViewModel
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +43,29 @@ class MainActivity : BaseActivity() {
 
 
         if (savedInstanceState == null) {
-            setContentView(R.layout.activity_main)
+            binding = ActivityMainBinding.inflate(layoutInflater)
+            setContentView(binding.root)
             showFragment(EventsFeedFragment(), true, R.id.container)
+        }
+        showUserAvatar()
+
+    }
+
+    private fun showUserAvatar() {
+        viewModel
+            .getProfile()
+            ?.let { profile ->
+                profile
+                    .getProfileImage()
+                    ?.let {
+                        showRounderCornersImage(binding.ivUser, it.url.lg, Utils
+                            .dpToPx(10)
+                            .toInt())
+                    }
+
+            }
+        if (viewModel.isProfileLoaded()) {
+
         }
     }
 
@@ -63,7 +87,7 @@ class MainActivity : BaseActivity() {
     private fun showProfileFragment() {
 
         startActivity(Intent(this, UserActivity::class.java))
-//        showFragment(ProfileFragment(), true)
+        //        showFragment(ProfileFragment(), true)
     }
 
     private val loginDialogCallback = object : LoginDialogCallback {
