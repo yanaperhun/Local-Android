@@ -52,7 +52,6 @@
                 android:layout_height="@dimen/et_min_height"
                 android:layout_marginTop="@dimen/control_medium_margin"
                 android:hint="@string/hint_create_title"
-                android:text="@{eventBuilder.title}"
                 app:layout_constraintStart_toStartOf="@+id/textView2"
                 app:layout_constraintTop_toBottomOf="@id/textView2" />
 

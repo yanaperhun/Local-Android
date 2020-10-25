@@ -95,4 +95,12 @@ open class BaseFragment : Fragment() {
         dialog.show()
     }
 
+    fun showProgressDialog() {
+        (requireActivity() as BaseActivity).showProgressDialog()
+    }
+
+    fun hideProgressDialog() {
+        (requireActivity() as BaseActivity).hideProgressDialog()
+    }
+
 }

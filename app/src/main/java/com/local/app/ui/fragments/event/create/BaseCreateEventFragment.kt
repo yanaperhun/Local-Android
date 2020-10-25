@@ -20,16 +20,15 @@ abstract class BaseCreateEventFragment<T : ViewBinding> : BindableFragment<T>() 
     }
 
     abstract fun onNext()
-    abstract fun onValidate() : Boolean
-    abstract fun getValidateMessage() : String
-
+    abstract fun onValidate(): Boolean
+    abstract fun getValidateMessage(): String
 
     override fun initUI() {
         super.initUI()
 
         binding.root
             .findViewById<View>(R.id.btn_next)
-            .setOnClickListener { goNext() }
+            ?.setOnClickListener { goNext() }
         binding.root
             .findViewById<ImageButton>(R.id.btn_close)
             .setOnClickListener { requireActivity().finish() }
@@ -40,7 +39,7 @@ abstract class BaseCreateEventFragment<T : ViewBinding> : BindableFragment<T>() 
     }
 
     fun goNext() {
-        if (!onValidate())  {
+        if (!onValidate()) {
             showValidateMessage()
             return
         }

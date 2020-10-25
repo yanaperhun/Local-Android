@@ -1,5 +1,6 @@
 package com.local.app.ui
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
@@ -12,18 +13,18 @@ import com.local.app.R
 
 open class BaseActivity : AppCompatActivity() {
 
+    private var pbDialog: ProgressDialog? = null
+
     fun showFragment(fragment: Fragment, addToBack: Boolean) {
         showFragment(fragment, addToBack, R.id.container)
     }
 
-    fun showFragment(fragment: Fragment, args : Bundle, addToBack: Boolean) {
+    fun showFragment(fragment: Fragment, args: Bundle, addToBack: Boolean) {
         fragment.arguments = args
         showFragment(fragment, addToBack, R.id.container)
     }
 
-    fun showFragment(fragment: Fragment,
-                     addToBack: Boolean,
-                     containerId: Int) {
+    fun showFragment(fragment: Fragment, addToBack: Boolean, containerId: Int) {
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.setTransition(FragmentTransaction.TRANSIT_NONE)
         transaction.replace(containerId, fragment, fragment.javaClass.name)
@@ -42,7 +43,43 @@ open class BaseActivity : AppCompatActivity() {
 
     }
 
-    fun showToast(message:  String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    fun showImage(imageView: ImageView, imageUrl: String) {
+        Glide
+            .with(imageView.context)
+            .load(imageUrl)
+            .into(imageView)
+    }
+
+    open fun showProgressDialog() {
+        showProgressDialog(getString(R.string.please_wait))
+    }
+
+    open fun showProgressDialog(mess: String?) {
+        runOnUiThread {
+            if (pbDialog == null) {
+                pbDialog = ProgressDialog(this@BaseActivity)
+                pbDialog!!.setMessage(mess)
+                pbDialog!!.setCancelable(false)
+            }
+            pbDialog?.let {
+                if (!it.isShowing) it.show()
+            }
+
+        }
+    }
+
+    open fun hideProgressDialog() {
+        runOnUiThread(Runnable {
+            if (pbDialog == null) return@Runnable
+            pbDialog?.let {
+                if (it.isShowing) it.cancel()
+            }
+        })
+    }
+
+    fun showToast(message: String) {
+        Toast
+            .makeText(this, message, Toast.LENGTH_SHORT)
+            .show()
     }
 }

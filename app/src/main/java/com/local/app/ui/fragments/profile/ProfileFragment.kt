@@ -29,6 +29,7 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
     override fun initUI() {
         super.initUI()
         binding.btnCreateEvent.setOnClickListener { showCreateEventStartFragment() }
+        binding.btnBack.setOnClickListener { requireActivity().finish() }
         initTabs()
         subscribeToViewModel()
     }

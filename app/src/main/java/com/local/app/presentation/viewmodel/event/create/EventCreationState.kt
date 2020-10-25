@@ -5,6 +5,6 @@ import com.local.app.data.AppException
 sealed class EventCreationState {
 
     object LOADING : EventCreationState()
-    class ERROR(error : AppException) : EventCreationState()
+    class ERROR(val error : AppException) : EventCreationState()
     object SUCCESS : EventCreationState()
 }

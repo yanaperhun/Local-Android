@@ -44,5 +44,6 @@
     <string name="error_validate_step_4">Введите цену и адрес</string>
     <string name="error_validate_step_5">Нет саундтрека</string>
     <string name="error_validate_step_6">Добавьте хотя бы одну фотографию</string>
+    <string name="please_wait">Пожалуйста, подождите...</string>
 
 </resources>

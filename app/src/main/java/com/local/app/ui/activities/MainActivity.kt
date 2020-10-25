@@ -2,6 +2,7 @@ package com.local.app.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -58,15 +59,13 @@ class MainActivity : BaseActivity() {
                 profile
                     .getProfileImage()
                     ?.let {
+                        Log.d("MainActivity", "profile image : $it")
                         showRounderCornersImage(binding.ivUser, it.url.lg, Utils
                             .dpToPx(10)
                             .toInt())
                     }
 
             }
-        if (viewModel.isProfileLoaded()) {
-
-        }
     }
 
     fun onUserClick(view: View) {

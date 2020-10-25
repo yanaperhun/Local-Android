@@ -43,6 +43,20 @@ class CreateEventViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
+    fun createEvent() {
+        with(compositeDisposable) {
+            add(createEventInteractor
+                    .createEvent()
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.single())
+                    .doOnEvent { _, _ -> eventCreationState.postValue(EventCreationState.LOADING) }
+                    .subscribe({ eventCreationState.postValue(EventCreationState.SUCCESS) }, {
+                        eventCreationState.postValue(
+                            EventCreationState.ERROR(AppException(it.message)))
+                    }))
+        }
+    }
+
     fun eventBuilder(): EventRaw.Builder {
         return createEventInteractor.eventBuilder()
     }

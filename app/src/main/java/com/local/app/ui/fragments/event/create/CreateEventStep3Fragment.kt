@@ -7,6 +7,7 @@ import com.local.app.databinding.FragmentCreateEventStep3Binding
 import com.local.app.ui.BaseFragment
 import com.local.app.ui.dialog.DatePickerFragment
 import com.local.app.utils.DateUtils
+import com.local.app.utils.SimpleTextWatcher
 
 class CreateEventStep3Fragment : BaseCreateEventFragment<FragmentCreateEventStep3Binding>() {
 
@@ -22,8 +23,18 @@ class CreateEventStep3Fragment : BaseCreateEventFragment<FragmentCreateEventStep
         if (viewModel.eventBuilder().date != 0L) {
             setFormattedDate()
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
         binding.tvDuration.setText(viewModel.eventBuilder().duration)
+        binding.tvDuration.addTextChangedListener(durationTextListener)
+        setFormattedDate()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.tvDuration.removeTextChangedListener(durationTextListener)
     }
 
     private fun setFormattedDate() {
@@ -53,6 +64,13 @@ class CreateEventStep3Fragment : BaseCreateEventFragment<FragmentCreateEventStep
 
     override fun getValidateMessage(): String {
         return getString(R.string.error_validate_step_3)
+    }
+
+    private val durationTextListener = object : SimpleTextWatcher() {
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            if (s.isNullOrEmpty()) return
+            viewModel.eventBuilder().duration = binding.tvDuration.text.toString()
+        }
     }
 
 }

@@ -50,6 +50,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_label_photo" />
 
     <TextView
+            android:id="@+id/btn_create"
             style="@style/App.Button.Colored.Green"
             android:layout_width="0dp"
             android:layout_height="@dimen/btn_next_height"

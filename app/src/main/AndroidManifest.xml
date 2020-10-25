@@ -22,7 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.event.CreateEventActivity" />
+        <activity
+                android:name=".ui.activities.event.CreateEventActivity"
+                android:windowSoftInputMode="adjustPan" />
         <activity android:name="com.local.app.ui.activities.event.EventActivity" />
         <activity android:name="com.local.app.ui.activities.user.UserActivity" />
     </application>

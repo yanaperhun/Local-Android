@@ -126,6 +126,7 @@ public class DateUtils {
     }
 
     public static String formatLongToString(long dateTime, String format) throws ParseException {
+        if (dateTime == 0) return "";
         Date date = new Date(dateTime);
         SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.getDefault());
         return dateFormat.format(date);
