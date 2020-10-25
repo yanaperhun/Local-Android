@@ -35,10 +35,10 @@ interface API {
     @GET("api/events/my")
     fun loadMyEvents(): Single<EventListResponse>
 
-    @POST("/image-upload")
+    @POST("api/image-upload")
     @Multipart
     fun loadImage(@Part file: MultipartBody.Part): Single<String>
 
-    @POST("events")
+    @POST("api/events")
     fun createEvent(@Body build: EventRaw) : Single<EventCreateResponse>
 }
