@@ -31,7 +31,7 @@ class LoginFragment : BaseFragment() {
         viewModel = ViewModelProviders
             .of(this)
             .get(LoginViewModel::class.java)
-        initUI()
+        initUI(savedInstanceState)
         subscribeToViewModel()
         return binding.root
     }
@@ -57,7 +57,7 @@ class LoginFragment : BaseFragment() {
 
     }
 
-    override fun initUI() {
+    override fun initUI(state: Bundle?) {
         val isLoginFlow = arguments?.getBoolean(IS_LOGIN, true) ?: true
 
         if (isLoginFlow) {

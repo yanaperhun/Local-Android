@@ -24,6 +24,7 @@ class EventListRVAdapter : RecyclerView.Adapter<EventListRVAdapter.VH>() {
         return events.size
     }
 
+
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.binding.tvTitle.text = events[position].eventName
     }

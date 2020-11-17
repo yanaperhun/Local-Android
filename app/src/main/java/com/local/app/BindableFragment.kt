@@ -15,7 +15,7 @@ open abstract class BindableFragment<T : ViewBinding> : BaseFragment() {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         setBinding(inflater)
-        initUI()
+        initUI(savedInstanceState)
         return binding.root
     }
 

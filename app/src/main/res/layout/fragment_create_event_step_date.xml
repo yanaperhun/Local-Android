@@ -58,8 +58,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_label_date" />
 
-        <EditText
-                android:id="@+id/tv_duration"
+        <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/tv_time"
                 style="@style/App.EditText.CreateEvent"
                 android:layout_width="0dp"
                 android:layout_height="64dp"
@@ -67,9 +68,10 @@
                 android:layout_marginTop="@dimen/control_medium_margin"
                 android:layout_marginEnd="@dimen/control_margin"
                 android:drawableEnd="@drawable/ic_time"
-                android:hint="@string/duration"
+                android:hint="@string/start_time"
                 android:maxLength="50"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_input_date" />
 
@@ -92,7 +94,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_input_date"
-                app:constraint_referenced_ids="tv_duration" />
+                app:constraint_referenced_ids="tv_time" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

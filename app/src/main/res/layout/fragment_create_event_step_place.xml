@@ -31,41 +31,49 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/control_margin"
-            android:layout_marginTop="@dimen/control_big_margin"
-            android:text="@string/choose_price"
+            android:layout_marginTop="@dimen/control_medium_margin"
+            android:text="@string/choose_place"
             app:layout_constraintStart_toStartOf="@id/btn_back"
             app:layout_constraintTop_toBottomOf="@id/btn_back" />
 
-    <EditText
+    <AutoCompleteTextView
             android:id="@+id/et_input_price"
             style="@style/App.EditText.CreateEvent"
             android:layout_width="0dp"
-            android:layout_height="64dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/control_margin"
             android:layout_marginTop="@dimen/control_medium_margin"
             android:layout_marginEnd="@dimen/control_margin"
+            android:hint="@string/hint_address"
             android:maxLength="50"
-            android:drawableEnd="@drawable/ic_dollar"
-            android:text="@string/free"
+            android:minHeight="64dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_label_price" />
 
 
-    <Button
-            android:id="@+id/btn_address"
-            style="@style/App.Text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/control_margin"
-            android:layout_marginTop="@dimen/control_medium_margin"
-            android:background="@color/colorTransparent"
-            android:drawableStart="@drawable/ic_marker"
-            android:drawablePadding="@dimen/control_margin"
-            android:text="@string/choose_on_map"
-            android:textColor="@color/colorGreen"
-            app:layout_constraintStart_toStartOf="@id/et_input_price"
-            app:layout_constraintTop_toBottomOf="@id/et_input_price" />
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/control_margin"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_next"
+            app:layout_constraintTop_toBottomOf="@id/et_input_price">
+
+        <com.google.android.gms.maps.MapView
+                android:id="@+id/map_view"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        <ImageView
+                android:id="@+id/map_target"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_marker" />
+    </androidx.cardview.widget.CardView>
 
 
     <TextView

@@ -1,19 +1,20 @@
 package com.local.app.ui.fragments.event.create
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import com.local.app.R
-import com.local.app.databinding.FragmentCreateEventStep2Binding
+import com.local.app.databinding.FragmentCreateEventStepDecsBinding
 import com.local.app.ui.BaseFragment
 import com.local.app.utils.SimpleTextWatcher
 
-class CreateEventStep2Fragment : BaseCreateEventFragment<FragmentCreateEventStep2Binding>() {
+class CreateEventStepDescFragment : BaseCreateEventFragment<FragmentCreateEventStepDecsBinding>() {
 
     override fun setBinding(inflater: LayoutInflater) {
-        binding = FragmentCreateEventStep2Binding.inflate(inflater)
+        binding = FragmentCreateEventStepDecsBinding.inflate(inflater)
     }
 
-    override fun initUI() {
-        super.initUI()
+    override fun initUI(state: Bundle?) {
+        super.initUI(state)
 
     }
 
@@ -29,7 +30,7 @@ class CreateEventStep2Fragment : BaseCreateEventFragment<FragmentCreateEventStep
     }
 
     override fun getNextFragment(): BaseFragment {
-        return CreateEventStep3Fragment()
+        return CreateEventStepTagsFragment()
     }
 
     override fun onValidate(): Boolean {
@@ -49,6 +50,5 @@ class CreateEventStep2Fragment : BaseCreateEventFragment<FragmentCreateEventStep
             viewModel.eventBuilder().description = binding.etInputDescription.text.toString()
         }
     }
-
 
 }

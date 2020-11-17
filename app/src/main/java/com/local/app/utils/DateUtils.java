@@ -17,10 +17,13 @@ public class DateUtils {
     public static final String FORMAT_DD_MM_YYYY_HH_mm_ss = "dd.MM.yyyy HH:mm:ss";
     public static final String FORMAT_UTC_TZ = "dd-MM-yyyy'T'HH:mm:ss.SSS";
     public static final long ONE_DAY_MILLIS = 1000 * 60 * 60 * 24;
+    public static final long ONE_HOUR_MILLIS = 1000 * 60 * 60;
+    public static final long ONE_MIN_MILLIS = 1000 * 60;
     public static final long ONE_WEEK_MILLIS = 1000 * 60 * 60 * 24 * 7;
     public static final String FORMAT_YYYY_MM_DD = "yyyy-MM-dd";
     public static final String FORMAT_dd_MMMM_yyyy = "dd MMMM yyyy";
     public static final String FORMAT_dd_MMMM = "dd MMMM";
+    public static final String FORMAT_HH_mm = "HH:mm";
 
     public static Date getDateFromUTC(String utcTime) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -176,7 +179,12 @@ public class DateUtils {
 
     public static Long getMillis(int year, int month, int day) {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, day);
+        calendar.set(year, month, day, 0, 0);
         return calendar.getTimeInMillis();
+    }
+
+    public static Long getMillis(int hours, int minutes) {
+
+        return hours * ONE_HOUR_MILLIS + minutes * ONE_MIN_MILLIS;
     }
 }

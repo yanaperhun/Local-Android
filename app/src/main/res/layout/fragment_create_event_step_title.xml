@@ -47,11 +47,14 @@
 
         <EditText
                 android:id="@+id/et_input_title"
-                style="@style/App.EditText"
+                style="@style/App.EditText.CreateEvent.Big"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/et_min_height"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/control_margin"
                 android:layout_marginTop="@dimen/control_medium_margin"
+                android:layout_marginEnd="@dimen/control_margin"
                 android:hint="@string/hint_create_title"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textView2"
                 app:layout_constraintTop_toBottomOf="@id/textView2" />
 

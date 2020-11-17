@@ -26,15 +26,33 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-            android:id="@+id/title_label"
+            android:id="@+id/tv_label_price"
             style="@style/App.Text.Title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/control_margin"
             android:layout_marginTop="@dimen/control_big_margin"
-            android:text="@string/add_playlist"
+            android:text="@string/choose_price"
             app:layout_constraintStart_toStartOf="@id/btn_back"
             app:layout_constraintTop_toBottomOf="@id/btn_back" />
+
+    <EditText
+            android:inputType="number"
+            android:id="@+id/et_input_price"
+            style="@style/App.EditText.CreateEvent"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="@dimen/control_margin"
+            android:layout_marginTop="@dimen/control_medium_margin"
+            android:layout_marginEnd="@dimen/control_margin"
+            android:drawableEnd="@drawable/ic_rubl"
+            android:maxLength="50"
+            android:text="@string/free"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_price" />
+
+
 
     <TextView
             android:id="@+id/btn_next"
@@ -48,14 +66,5 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_links"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/control_medium_margin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_label" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

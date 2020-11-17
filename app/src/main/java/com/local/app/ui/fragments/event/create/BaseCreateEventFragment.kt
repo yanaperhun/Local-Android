@@ -1,5 +1,6 @@
 package com.local.app.ui.fragments.event.create
 
+import android.os.Bundle
 import android.view.View
 import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
@@ -23,8 +24,8 @@ abstract class BaseCreateEventFragment<T : ViewBinding> : BindableFragment<T>() 
     abstract fun onValidate(): Boolean
     abstract fun getValidateMessage(): String
 
-    override fun initUI() {
-        super.initUI()
+    override fun initUI(state: Bundle?) {
+        super.initUI(state)
 
         binding.root
             .findViewById<View>(R.id.btn_next)
@@ -39,10 +40,10 @@ abstract class BaseCreateEventFragment<T : ViewBinding> : BindableFragment<T>() 
     }
 
     fun goNext() {
-        if (!onValidate()) {
-            showValidateMessage()
-            return
-        }
+//        if (!onValidate()) {
+        //            showValidateMessage()
+        //            return
+        //        }
         onNext()
         getNextFragment()?.let {
             showFragment(it, true)

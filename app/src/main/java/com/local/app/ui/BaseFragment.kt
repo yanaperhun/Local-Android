@@ -1,6 +1,7 @@
 package com.local.app.ui
 
 import android.app.Activity
+import android.os.Bundle
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
@@ -20,7 +21,7 @@ open class BaseFragment : Fragment() {
         return (activity?.application as LocalApp).daggerManager
     }
 
-    open fun initUI() {}
+    open fun initUI(state: Bundle?) {}
 
     open fun subscribeToViewModel() {}
 
@@ -31,6 +32,10 @@ open class BaseFragment : Fragment() {
 
     fun log(mess: String) {
         Log.d("Local", mess)
+    }
+
+    fun logError(mess: String) {
+        Log.e("Local Error", mess)
     }
 
     fun showFragment(fragment: BaseFragment, addToBackStack: Boolean) {

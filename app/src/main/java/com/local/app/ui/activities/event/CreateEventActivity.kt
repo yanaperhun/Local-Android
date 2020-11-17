@@ -5,7 +5,7 @@ import androidx.activity.viewModels
 import com.local.app.R
 import com.local.app.presentation.viewmodel.event.create.CreateEventViewModel
 import com.local.app.ui.BaseActivity
-import com.local.app.ui.fragments.event.create.CreateEventStep1Fragment
+import com.local.app.ui.fragments.event.create.CreateEventStepTitleFragment
 
 class CreateEventActivity : BaseActivity() {
 
@@ -14,7 +14,7 @@ class CreateEventActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event_create)
-        showFragment(CreateEventStep1Fragment(), true)
+        showFragment(CreateEventStepTitleFragment(), true)
     }
 
     override fun onBackPressed() {

@@ -2,6 +2,7 @@ package com.local.app.ui.fragments.profile
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
@@ -26,8 +27,8 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
         binding = FragmentProfileBinding.inflate(inflater)
     }
 
-    override fun initUI() {
-        super.initUI()
+    override fun initUI(state: Bundle?) {
+        super.initUI(state)
         binding.btnCreateEvent.setOnClickListener { showCreateEventStartFragment() }
         binding.btnBack.setOnClickListener { requireActivity().finish() }
         initTabs()

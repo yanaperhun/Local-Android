@@ -26,40 +26,59 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-            android:id="@+id/tv_label_photo"
+            android:id="@+id/title_label"
             style="@style/App.Text.Title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/control_margin"
             android:layout_marginTop="@dimen/control_big_margin"
-            android:text="@string/add_picture"
+            android:text="@string/add_playlist"
             app:layout_constraintStart_toStartOf="@id/btn_back"
             app:layout_constraintTop_toBottomOf="@id/btn_back" />
 
-    <ImageView
-            android:id="@+id/btn_add_photo"
-            android:layout_width="0dp"
-            android:layout_height="400dp"
-            android:layout_marginTop="@dimen/control_big_margin"
-            android:background="@drawable/draw_rect_add_picture"
-            android:scaleType="centerInside"
-
-            android:src="@drawable/ic_add_photo"
-            app:layout_constraintEnd_toEndOf="@id/btn_close"
-            app:layout_constraintStart_toStartOf="@id/tv_label_photo"
-            app:layout_constraintTop_toBottomOf="@id/tv_label_photo" />
-
     <TextView
-            android:id="@+id/btn_create"
+            android:id="@+id/btn_next"
             style="@style/App.Button.Colored.Green"
             android:layout_width="0dp"
             android:layout_height="@dimen/btn_next_height"
             android:layout_marginStart="@dimen/control_margin"
             android:layout_marginEnd="@dimen/control_margin"
             android:layout_marginBottom="@dimen/control_big_margin"
-            android:text="@string/create"
+            android:text="@string/next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-    
+
+    <EditText
+            android:id="@+id/et_playlist"
+            style="@style/App.EditText.CreateEvent"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_margin="@dimen/control_medium_margin"
+            android:hint="@string/hint_play_list"
+            app:layout_constraintTop_toBottomOf="@id/title_label" />
+
+    <TextView
+            style="@style/App.Text.Title.Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/control_medium_margin"
+            android:layout_marginEnd="@dimen/control_medium_margin"
+            android:layout_marginTop="25dp"
+            android:text="Здесь будет инфа, как и откуда добавлять ссылку  на плейлист"
+            app:layout_constraintTop_toBottomOf="@id/et_playlist" />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_links"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/control_medium_margin"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_label" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
