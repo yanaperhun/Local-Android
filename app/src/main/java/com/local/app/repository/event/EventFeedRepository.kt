@@ -2,7 +2,7 @@ package com.local.app.repository.event
 
 import com.local.app.api.RetrofitClient
 import com.local.app.data.event.Event
-import com.local.app.data.Photo
+import com.local.app.data.photo.Photo
 import io.reactivex.Single
 import javax.inject.Inject
 

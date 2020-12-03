@@ -12,6 +12,7 @@ class LocationUtils {
     companion object {
 
         val TAG = "LocationUtils"
+        val EMPTY_LATLNG = LatLng(0.0, 0.0)
         fun defaultLocation(): LatLng {
             return LatLng(45.0462763, 38.9785348)
         }
@@ -28,7 +29,12 @@ class LocationUtils {
             val addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
             Log.d("LocationUtils", "${addresses.first()}")
             val address = addresses.first()
-            return "${address.subAdminArea}, ${address.thoroughfare ?: ""}, ${address.featureName}"
+            if (address.thoroughfare != null) {
+                return "${address.thoroughfare ?: ""}, ${address.featureName}"
+            } else {
+                return address.featureName
+            }
+
         }
     }
 

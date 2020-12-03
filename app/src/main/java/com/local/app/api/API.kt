@@ -3,13 +3,14 @@ package com.local.app.api
 import com.local.app.api.requests.AuthRequest
 import com.local.app.api.requests.LoginRequest
 import com.local.app.api.requests.SocNetAuthRequest
+import com.local.app.api.requests.UploadFileBody
 import com.local.app.api.response.EventCreateResponse
 import com.local.app.api.response.EventListResponse
 import com.local.app.api.response.TokenResponse
 import com.local.app.data.Profile
 import com.local.app.data.event.create.EventRaw
+import com.local.app.data.photo.Photo
 import io.reactivex.Single
-import okhttp3.MultipartBody
 import retrofit2.http.*
 
 interface API {
@@ -37,8 +38,8 @@ interface API {
 
     @POST("api/image-upload")
     @Multipart
-    fun loadImage(@Part file: MultipartBody.Part): Single<String>
+    fun loadImage(@Body file: UploadFileBody): Single<Photo>
 
     @POST("api/events")
-    fun createEvent(@Body build: EventRaw) : Single<EventCreateResponse>
+    fun createEvent(@Body build: EventRaw): Single<EventCreateResponse>
 }

@@ -1,9 +1,10 @@
 package com.local.app.repository.photo
 
+import com.local.app.data.photo.PhotoInDir
 import io.reactivex.Single
-import java.io.File
 
 interface UploadPhotoRepository {
+    val photos : ArrayList<PhotoInDir>
 
-    fun uploadImageFile(file : File): Single<String>
+    fun uploadImageFile(fileDir: String): Single<PhotoInDir>
 }

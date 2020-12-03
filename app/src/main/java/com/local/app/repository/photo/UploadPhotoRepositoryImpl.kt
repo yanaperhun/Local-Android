@@ -1,21 +1,36 @@
 package com.local.app.repository.photo
 
 import com.local.app.api.RetrofitClient
+import com.local.app.api.requests.UploadFileBody
+import com.local.app.data.photo.PhotoInDir
 import io.reactivex.Single
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
 class UploadPhotoRepositoryImpl(val retrofitClient: RetrofitClient) : UploadPhotoRepository {
-    override fun uploadImageFile(file : File): Single<String> {
-        val requestFile: RequestBody = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
 
-        // MultipartBody.Part is used to send also the actual file name
-        val body: MultipartBody.Part =
-            MultipartBody.Part.createFormData("photo", file.name, requestFile)
+    override var photos = ArrayList<PhotoInDir>()
 
-        return retrofitClient.api.loadImage(body)
+    override fun uploadImageFile(fileDir: String): Single<PhotoInDir> {
+        photos.add(PhotoInDir(fileDir))
+        val file = File(fileDir)
+        return retrofitClient.api
+            .loadImage(UploadFileBody(file))
+            .doOnError {
+                photos.forEach {
+                    if (it.dir == fileDir) {
+                        it.isError = true
+                    }
+                }
+            }
+            .map { photo ->
+                photos.forEach {
+                    if (it.dir == fileDir) {
+                        it.hash = photo.hash
+                        return@map it
+                    }
+                }
+                return@map PhotoInDir("")
+            }
+
     }
 }

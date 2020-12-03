@@ -1,4 +1,4 @@
-package com.local.app.data
+package com.local.app.data.photo
 
 data class Photo(var id: Long,
                  var hash: String,

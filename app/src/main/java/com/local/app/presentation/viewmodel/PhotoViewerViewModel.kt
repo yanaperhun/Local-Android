@@ -3,7 +3,7 @@ package com.local.app.presentation.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.local.app.LocalApp
-import com.local.app.data.Photo
+import com.local.app.data.photo.Photo
 import com.local.app.domain.feed.GetPhotoByEventsInteractor
 import io.reactivex.Single
 import javax.inject.Inject

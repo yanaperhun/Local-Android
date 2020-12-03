@@ -1,15 +1,10 @@
 package com.local.app.ui.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.RecycledViewPool
 import com.bumptech.glide.Glide
-import com.local.app.R
-import com.local.app.data.Photo
+import com.local.app.data.photo.Photo
 import com.local.app.databinding.ItemPhotoViewerBinding
 
 class PhotoViewerAdapter(private val photoList: List<Photo>) :

@@ -44,7 +44,7 @@
     <string name="error_validate_step_1">Введите название</string>
     <string name="error_validate_step_2">Введите описание</string>
     <string name="error_validate_step_3">Введите дату проведения и продолжительность события</string>
-    <string name="error_validate_step_4">Введите цену и адрес</string>
+    <string name="error_validate_step_4">Введите адрес</string>
     <string name="error_validate_step_5">Нет саундтрека</string>
     <string name="error_validate_step_6">Добавьте хотя бы одну фотографию</string>
     <string name="please_wait">Пожалуйста, подождите...</string>

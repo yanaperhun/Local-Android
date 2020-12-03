@@ -82,9 +82,10 @@ class PlaceArrayAdapter(context: Context, val resource: Int, val mPlacesClient: 
                 if (constraint != null) {
                     resultList.clear()
                     val address = getAutocomplete(mPlacesClient, constraint.toString())
-                    address?.let {
+                    address.let {
                         for (i in address.indices) {
                             val item = address[i]
+
                             resultList.add(PlaceData(item.placeId, item
                                 .getFullText(StyleSpan(Typeface.BOLD))
                                 .toString()))

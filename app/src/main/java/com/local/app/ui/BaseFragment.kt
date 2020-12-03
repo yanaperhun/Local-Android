@@ -31,11 +31,11 @@ open class BaseFragment : Fragment() {
     }
 
     fun log(mess: String) {
-        Log.d("Local", mess)
+        Log.d("Local", "=============> $mess")
     }
 
     fun logError(mess: String) {
-        Log.e("Local Error", mess)
+        Log.e("Local Error", "=============> $mess")
     }
 
     fun showFragment(fragment: BaseFragment, addToBackStack: Boolean) {

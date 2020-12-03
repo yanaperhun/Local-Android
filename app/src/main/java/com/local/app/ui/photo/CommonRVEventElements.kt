@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.local.app.R
-import com.local.app.data.Photo
+import com.local.app.data.photo.Photo
 import com.local.app.ui.adapters.PhotoViewerAdapter
 import com.local.app.ui.custom.LinePagerIndicatorDecoration
 import com.local.app.ui.custom.RecyclerItemClickListener

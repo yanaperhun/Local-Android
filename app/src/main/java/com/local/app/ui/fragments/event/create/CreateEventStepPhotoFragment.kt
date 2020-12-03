@@ -18,12 +18,10 @@ class CreateEventStepPhotoFragment :
 
     private var adapter = object : PhotoPickerAdapter() {
         override fun onAddBtnClick() {
-            TedImagePicker
-                .with(requireContext())
-                .startMultiImage {
-                    photos.addAll(it)
+            TedImagePicker.with(requireContext())
+                .start { result ->
+                    photos.add(result)
                     notifyDataSetChanged()
-                    //                            uriList -> showMultiImage(uriList)
                 }
         }
 
@@ -62,6 +60,22 @@ class CreateEventStepPhotoFragment :
                 //todo calculate size only once
                 binding.rvPhotos.adapter = adapter
                 binding.rvPhotos.viewTreeObserver.removeOnGlobalLayoutListener(this)
+            }
+        })
+
+        viewModel.photoLoadingState.observe(this, Observer {
+            adapter.notifyDataSetChanged()
+            when (it) {
+                is EventCreationState.ERROR -> {
+                    showErrorAlert(it.error.message)
+                }
+                is EventCreationState.SUCCESS -> {
+                    showToast("Событие создано")
+                }
+
+                is EventCreationState.LOADING -> {
+                    showToast("Событие создано")
+                }
             }
         })
     }

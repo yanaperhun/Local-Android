@@ -1,6 +1,7 @@
 package com.local.app.ui.fragments.event.create
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
@@ -8,9 +9,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FetchPlaceRequest
@@ -18,17 +17,20 @@ import com.google.android.libraries.places.api.net.FetchPlaceResponse
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.local.app.R
 import com.local.app.data.PlaceData
+import com.local.app.data.event.create.EventAddress
 import com.local.app.databinding.FragmentCreateEventStepPlaceBinding
 import com.local.app.ui.BaseFragment
 import com.local.app.ui.adapters.place.PlaceArrayAdapter
 import com.local.app.utils.LocationUtils
+import com.local.app.utils.LocationUtils.Companion.EMPTY_LATLNG
 
 class CreateEventStepPlaceFragment : BaseCreateEventFragment<FragmentCreateEventStepPlaceBinding>(),
     OnMapReadyCallback {
+
     private lateinit var mPlacesClient: PlacesClient
     private lateinit var mPlaceArrayAdapter: PlaceArrayAdapter
     private lateinit var googleMap: GoogleMap
-    val AUTOCOMPLETE_REQUEST_CODE = 1
+
     override fun setBinding(inflater: LayoutInflater) {
         binding = FragmentCreateEventStepPlaceBinding.inflate(inflater)
     }
@@ -38,39 +40,38 @@ class CreateEventStepPlaceFragment : BaseCreateEventFragment<FragmentCreateEvent
         binding.mapView.onCreate(state)
 
         mPlacesClient = Places.createClient(requireContext())
-        binding.etInputPrice.setThreshold(3)
+        binding.etInputPrice.threshold = 3
 
-        //autoCompleteTextView.setOnItemClickListener(mAutocompleteClickListener);
-
-        //autoCompleteTextView.setOnItemClickListener(mAutocompleteClickListener);
         mPlaceArrayAdapter = PlaceArrayAdapter(requireContext(), R.layout.item_place, mPlacesClient)
         binding.etInputPrice.setAdapter(mPlaceArrayAdapter)
-        binding.etInputPrice.onItemClickListener =
-            AdapterView.OnItemClickListener { parent, _, position, _ ->
-                val place = parent.getItemAtPosition(position) as PlaceData
-                binding.etInputPrice.apply {
-                    setText(place.fullText)
-                    setSelection(binding.etInputPrice.length())
-                    hideKeyboard()
-                    place.placeId?.let { showMarkerAtPlace(it) }
+        binding.etInputPrice.onItemClickListener = onPlacePredictClick
+        binding.etInputPrice.setText(viewModel.eventBuilder().eventAddress?.address)
 
-                }
-            }
+        binding.btnClear.setOnClickListener { binding.etInputPrice.setText("") }
+
     }
 
-    private fun showMarkerAtPlace(placeId: String) {
-        // Specify the fields to return.
+    private val onPlacePredictClick = AdapterView.OnItemClickListener { parent, _, position, _ ->
+        log("On place predict click")
+        val place = parent.getItemAtPosition(position) as PlaceData
+
+        if (place.placeId == null) {
+            setPlace(place.fullText, EMPTY_LATLNG)
+            return@OnItemClickListener
+        }
+        enableCameraPosListener(false)
         val placeFields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG)
-
-        // Construct a request object, passing the place ID and fields array.
-        val request = FetchPlaceRequest.newInstance(placeId, placeFields)
-
+        val request = FetchPlaceRequest.newInstance(place.placeId!!, placeFields)
         mPlacesClient
             .fetchPlace(request)
             .addOnSuccessListener { response: FetchPlaceResponse ->
                 val place = response.place
                 log("Place found: ${place.name}")
+                if (place.address.isNullOrEmpty()) {
+                    return@addOnSuccessListener
+                }
                 googleMap.moveCamera(CameraUpdateFactory.newLatLng(place.latLng))
+                setPlace(place.address!!, place.latLng ?: EMPTY_LATLNG)
             }
             .addOnFailureListener { exception: Exception ->
                 if (exception is ApiException) {
@@ -79,7 +80,27 @@ class CreateEventStepPlaceFragment : BaseCreateEventFragment<FragmentCreateEvent
                     TODO("Handle error with given status code")
                 }
             }
+            .addOnCompleteListener {
+                Handler().postDelayed({ enableCameraPosListener(true) }, 1000L)
+            }
+    }
 
+    private val cameraMovingListener = GoogleMap.OnCameraIdleListener {
+        log("Call OnCameraIdleListener")
+        val targetLatLng = googleMap.cameraPosition.target
+        log(LocationUtils.getPlaceFormattedByLatLng(targetLatLng, requireContext()))
+        binding.etInputPrice.isEnabled = false
+
+        val formattedPlace = LocationUtils.getPlaceFormattedByLatLng(targetLatLng, requireContext())
+        setPlace(formattedPlace, targetLatLng)
+        binding.etInputPrice.isEnabled = true
+    }
+
+    private fun setPlace(address: String, latLng: LatLng) {
+        binding.etInputPrice.setText(address)
+        binding.etInputPrice.setSelection(binding.etInputPrice.length())
+        hideKeyboard()
+        viewModel.eventBuilder().eventAddress = EventAddress.build(address, latLng)
     }
 
     override fun onStart() {
@@ -89,7 +110,7 @@ class CreateEventStepPlaceFragment : BaseCreateEventFragment<FragmentCreateEvent
 
     override fun onResume() {
         super.onResume()
-        viewModel.eventBuilder().address?.let {
+        viewModel.eventBuilder().eventAddress?.let {
             binding.etInputPrice.setText(it.name)
         }
 
@@ -110,40 +131,36 @@ class CreateEventStepPlaceFragment : BaseCreateEventFragment<FragmentCreateEvent
         googleMap.uiSettings.isZoomControlsEnabled = true
         binding.mapView.visibility = View.VISIBLE
 
-        googleMap.setOnCameraIdleListener {
-            val target = googleMap.cameraPosition.target
-            log(LocationUtils.getPlaceFormattedByLatLng(target, requireContext()))
-            binding.etInputPrice.setText(
-                LocationUtils.getPlaceFormattedByLatLng(target, requireContext()))
+        googleMap.setOnCameraIdleListener(cameraMovingListener)
+    }
+
+    private fun enableCameraPosListener(isEnable: Boolean) {
+        log("enableCameraPosListener $isEnable")
+        if (isEnable) {
+            googleMap.setOnCameraIdleListener(cameraMovingListener)
+        } else {
+            googleMap.setOnCameraIdleListener(null)
         }
-    }
-
-    private fun enableCameraPosListener (isEnable : Boolean) {
-
-    }
-
-    private fun addMarker(latLng: LatLng) {
-        val markerOpt = MarkerOptions()
-            .position(latLng)
-            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_location))
-            .draggable(true)
-        googleMap.addMarker(markerOpt)
     }
 
     override fun getNextFragment(): BaseFragment {
         return CreateEventStepPlayListFragment()
     }
 
-    override fun onNext() {
-
-    }
-
     override fun onValidate(): Boolean {
-        return !binding.etInputPrice.text.isNullOrEmpty() && viewModel.eventBuilder().address != null
+        return !binding.etInputPrice.text.isNullOrEmpty() && viewModel.eventBuilder().eventAddress != null
     }
 
     override fun getValidateMessage(): String {
         return getString(R.string.error_validate_step_4)
+    }
+
+    override fun onNext() {
+
+        val etText = binding.etInputPrice.text.toString()
+        if (etText != viewModel.eventBuilder().eventAddress?.address) {
+            viewModel.eventBuilder().eventAddress = EventAddress.build(etText, EMPTY_LATLNG)
+        }
     }
 
 }
