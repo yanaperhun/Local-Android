@@ -12,15 +12,19 @@ import com.local.app.ui.adapters.PhotoPickerAdapter
 import com.local.app.utils.BottomTopItemDecoration
 import com.local.app.utils.Utils
 import gun0912.tedimagepicker.builder.TedImagePicker
+import java.io.File
+import java.net.URI
 
 class CreateEventStepPhotoFragment :
     BaseCreateEventFragment<FragmentCreateEventStepPhotoBinding>() {
 
     private var adapter = object : PhotoPickerAdapter() {
         override fun onAddBtnClick() {
-            TedImagePicker.with(requireContext())
+            TedImagePicker
+                .with(requireContext())
                 .start { result ->
                     photos.add(result)
+                    viewModel.uploadPhoto(File(URI(result.path)).absolutePath)
                     notifyDataSetChanged()
                 }
         }

@@ -51,7 +51,7 @@ class CreateEventViewModel(application: Application) : AndroidViewModel(applicat
     }
 
     fun getPhotos(): List<PhotoInDir> {
-        return uploadPhotoInteractor.uploadPhoto()
+        return uploadPhotoInteractor.getPhotos()
     }
 
     fun uploadPhoto(fileDir: String) {
