@@ -1,5 +1,6 @@
 package com.local.app.di.main
 
+import android.content.ContentResolver
 import android.content.Context
 import com.local.app.api.RetrofitClient
 import com.local.app.repository.ProfileRepository
@@ -34,5 +35,11 @@ class AppModule(val context: Context) {
     @Singleton
     fun providePrefs(context: Context): PrefUtils {
         return PrefUtils(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideContentResolver(context: Context): ContentResolver {
+        return context.contentResolver
     }
 }

@@ -1,6 +1,5 @@
 package com.local.app.ui.adapters
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,7 @@ abstract class PhotoPickerAdapter : RecyclerView.Adapter<PhotoPickerAdapter.VH>(
 
     private val TYPE_ADD_BUTTON = 1
     private val TYPE_PHOTO = 0
-    var photos = ArrayList<Uri>()
+    var photos = ArrayList<String>()
 
     abstract fun onAddBtnClick()
 
@@ -39,6 +38,11 @@ abstract class PhotoPickerAdapter : RecyclerView.Adapter<PhotoPickerAdapter.VH>(
         }
     }
 
+
+    fun setPhoto(_photos : List<String>) {
+        photos.clear()
+        photos.addAll(_photos)
+    }
     override fun getItemViewType(position: Int): Int {
         if (position == photos.size) return TYPE_ADD_BUTTON
         return TYPE_PHOTO
@@ -61,7 +65,7 @@ abstract class PhotoPickerAdapter : RecyclerView.Adapter<PhotoPickerAdapter.VH>(
         }
     }
 
-    fun showRounderCornersImage(imageView: ImageView, imageUrl: Uri, radius: Int) {
+    fun showRounderCornersImage(imageView: ImageView, imageUrl: String, radius: Int) {
         GlideApp
             .with(imageView.context)
             .load(imageUrl)

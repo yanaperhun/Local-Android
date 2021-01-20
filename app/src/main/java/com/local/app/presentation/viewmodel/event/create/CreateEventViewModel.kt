@@ -55,6 +55,8 @@ class CreateEventViewModel(application: Application) : AndroidViewModel(applicat
     }
 
     fun uploadPhoto(fileDir: String) {
+
+
         with(compositeDisposable) {
             add(uploadPhotoInteractor
                     .uploadPhoto(fileDir)

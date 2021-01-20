@@ -1,7 +1,7 @@
 package com.local.app.data.event
 
 import com.local.app.api.response.EventType
-import com.local.app.data.photo.Photo
+import com.local.app.data.photo.PhotoEntity
 import com.local.app.data.User
 
 data class Event(var id: Long,
@@ -16,7 +16,7 @@ data class Event(var id: Long,
                  var soundCloud: String?,
                  var appleMusic: String?,
                  var ageLimit: Int,
-                 var pictures: List<Photo>,
+                 var pictures: List<PhotoEntity>,
                  var tags: List<String>,
                  var status: EventStatus,
                  var type: EventType) {

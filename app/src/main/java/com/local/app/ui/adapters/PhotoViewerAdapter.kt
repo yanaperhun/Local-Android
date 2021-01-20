@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.local.app.data.photo.Photo
+import com.local.app.data.photo.PhotoEntity
 import com.local.app.databinding.ItemPhotoViewerBinding
 
-class PhotoViewerAdapter(private val photoList: List<Photo>) :
+class PhotoViewerAdapter(private val photoEntityList: List<PhotoEntity>) :
     RecyclerView.Adapter<PhotoViewerAdapter.VH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
@@ -18,7 +18,7 @@ class PhotoViewerAdapter(private val photoList: List<Photo>) :
     }
 
     override fun getItemCount(): Int {
-        return photoList.size
+        return photoEntityList.size
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {

@@ -2,7 +2,7 @@ package com.local.app.repository.event
 
 import com.local.app.api.RetrofitClient
 import com.local.app.data.event.Event
-import com.local.app.data.photo.Photo
+import com.local.app.data.photo.PhotoEntity
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -16,7 +16,7 @@ class EventFeedRepository @Inject constructor(private var client: RetrofitClient
             .doOnSuccess { events = it }
     }
 
-    fun getImagesByEventId(eventId: Long): Single<List<Photo>> {
+    fun getImagesByEventId(eventId: Long): Single<List<PhotoEntity>> {
         for (event in events) {
             if (event.id == eventId) return Single.just(event.pictures)
         }

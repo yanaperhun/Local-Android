@@ -1,5 +1,8 @@
 package com.local.app.ui.fragments.event.create
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewTreeObserver
@@ -13,22 +16,54 @@ import com.local.app.utils.BottomTopItemDecoration
 import com.local.app.utils.Utils
 import gun0912.tedimagepicker.builder.TedImagePicker
 import java.io.File
-import java.net.URI
+import java.io.FileOutputStream
+import java.text.SimpleDateFormat
+import java.util.*
 
 class CreateEventStepPhotoFragment :
     BaseCreateEventFragment<FragmentCreateEventStepPhotoBinding>() {
 
     private var adapter = object : PhotoPickerAdapter() {
         override fun onAddBtnClick() {
-            TedImagePicker
-                .with(requireContext())
-                .start { result ->
-                    photos.add(result)
-                    viewModel.uploadPhoto(File(URI(result.path)).absolutePath)
-                    notifyDataSetChanged()
-                }
+            chooseImage()
         }
 
+    }
+
+    private fun chooseImage() {
+        TedImagePicker
+            .with(requireContext())
+            .start { result ->
+
+                val bitmap = BitmapFactory.decodeStream(
+                    requireContext().contentResolver.openInputStream(result))
+                if (bitmap != null) {
+                    val fileName = createFile(requireContext(), ".jpg").absolutePath
+                    compress(fileName, bitmap)
+                    viewModel.uploadPhoto(fileName)
+                    adapter.photos.add(fileName)
+                    adapter.notifyDataSetChanged()
+
+                }
+
+            }
+    }
+
+    private fun compress(outputFile: String, inputFile: Bitmap) {
+        try {
+            val out = FileOutputStream(outputFile)
+            //            val bmp = BitmapFactory.decodeFile(inputFile)
+            val result = inputFile.compress(Bitmap.CompressFormat.JPEG, 50, out) //100-best quality
+            log("result : $result")
+            out.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun createFile(context: Context, extension: String): File {
+        val sdf = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_SSS", Locale.US)
+        return File(context.filesDir, "IMG_${sdf.format(Date())}.$extension")
     }
 
     override fun setBinding(inflater: LayoutInflater) {
@@ -82,6 +117,8 @@ class CreateEventStepPhotoFragment :
                 }
             }
         })
+
+        adapter.setPhoto(viewModel.eventBuilder().pictures.map { it.uri })
     }
 
     override fun onNext() {

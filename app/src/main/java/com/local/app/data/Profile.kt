@@ -1,15 +1,15 @@
 package com.local.app.data
 
-import com.local.app.data.photo.Photo
+import com.local.app.data.photo.PhotoEntity
 
 data class Profile(val firstName: String,
                    val lastName: String,
                    val email: String,
                    val phone: String,
                    val age: Int,
-                   val pictures: List<Photo>?) {
+                   val pictures: List<PhotoEntity>?) {
 
-    fun getProfileImage(): Photo? {
+    fun getProfileImage(): PhotoEntity? {
         pictures?.let { if (it.isNotEmpty()) return pictures.first() }
         return null
     }
