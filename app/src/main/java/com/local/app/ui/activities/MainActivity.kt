@@ -38,14 +38,13 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         viewModel = ViewModelProviders
             .of(this)
             .get(MainActivityViewModel::class.java)
-
-
+        
         if (savedInstanceState == null) {
-            binding = ActivityMainBinding.inflate(layoutInflater)
-            setContentView(binding.root)
             showFragment(EventsFeedFragment(), true, R.id.container)
         }
         showUserAvatar()
@@ -69,13 +68,12 @@ class MainActivity : BaseActivity() {
     }
 
     fun onUserClick(view: View) {
-        showProfileFragment()
-//        if (viewModel.isProfileLoaded()) {
-//            showProfileFragment()
-//        } else {
-//            showLoginDialog()
-//
-//        }
+//        showProfileFragment()
+        if (viewModel.isProfileLoaded()) {
+            showProfileFragment()
+        } else {
+            showLoginDialog()
+        }
     }
 
     private fun showLoginDialog() {

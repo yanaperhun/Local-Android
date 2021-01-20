@@ -88,6 +88,10 @@ class CreateEventViewModel(application: Application) : AndroidViewModel(applicat
         return createEventInteractor.eventBuilder()
     }
 
+    fun isAddressSet() : Boolean {
+        return eventBuilder().eventAddress != null
+    }
+
     override fun onCleared() {
         getApplication<LocalApp>().daggerManager.clearCreateEventComponent()
         compositeDisposable.dispose()

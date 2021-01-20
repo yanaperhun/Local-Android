@@ -39,16 +39,14 @@ abstract class BaseCreateEventFragment<T : ViewBinding> : BindableFragment<T>() 
             ?.setOnClickListener { requireActivity().onBackPressed() }
     }
 
-    fun goNext() {
-//        if (!onValidate()) {
-        //            showValidateMessage()
-        //            return
-        //        }
+    private fun goNext() {
         onNext()
         getNextFragment()?.let {
             showFragment(it, true)
         }
     }
+
+
 
     private fun showValidateMessage() {
         showInfoAlert(getValidateMessage())

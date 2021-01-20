@@ -60,9 +60,9 @@ class PlaceArrayAdapter(context: Context, val resource: Int, val mPlacesClient: 
         return view!!
     }
 
-    private fun bindView(viewHolder: ViewHolder, place: ArrayList<PlaceData>, position: Int) {
-        if (!place.isNullOrEmpty()) {
-            viewHolder.description?.text = place[position].fullText
+    private fun bindView(viewHolder: ViewHolder, places: ArrayList<PlaceData>, position: Int) {
+        if (!places.isNullOrEmpty()) {
+            viewHolder.description?.text = places[position].fullText
         }
     }
 
@@ -77,11 +77,11 @@ class PlaceArrayAdapter(context: Context, val resource: Int, val mPlacesClient: 
             }
 
             override fun performFiltering(constraint: CharSequence?): FilterResults {
-                Log.d("PLACE", "performFilter")
+
                 val filterResults = FilterResults()
                 if (constraint != null) {
                     resultList.clear()
-                    val address = getAutocomplete(mPlacesClient, constraint.toString())
+                    val address = getPlacePrediction(mPlacesClient, constraint.toString())
                     address.let {
                         for (i in address.indices) {
                             val item = address[i]
@@ -99,8 +99,8 @@ class PlaceArrayAdapter(context: Context, val resource: Int, val mPlacesClient: 
         }
     }
 
-    fun getAutocomplete(mPlacesClient: PlacesClient,
-                        constraint: CharSequence): List<AutocompletePrediction> {
+    fun getPlacePrediction(mPlacesClient: PlacesClient,
+                           constraint: CharSequence): List<AutocompletePrediction> {
         var list = listOf<AutocompletePrediction>()
         val token = AutocompleteSessionToken.newInstance()
         val request = FindAutocompletePredictionsRequest
