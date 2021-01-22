@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         style="@style/App.Text.Tag"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/ic_tag_size"
-        android:background="@drawable/rect_grey_solid_10dp_corner"
+        android:background="@drawable/rect_grey_solid_12dp_corner"
         android:minWidth="@dimen/ic_tag_size"
         android:paddingLeft="@dimen/control_margin"
         android:paddingRight="@dimen/control_margin"
-        android:text="Пример">
+        tools:text="Пример">
 
 </TextView>

@@ -23,12 +23,12 @@
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_images"
+                    android:background="@color/quantum_grey"
                     android:layout_width="match_parent"
                     android:layout_height="416dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                   />
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
             <ImageButton
@@ -51,25 +51,30 @@
                     android:text="@{event.eventName}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rv_images" />
+                    app:layout_constraintTop_toBottomOf="@+id/rv_images"
+                    tools:text="Название" />
 
 
-            <LinearLayout
-                    android:id="@+id/ll_tags"
+            <androidx.recyclerview.widget.RecyclerView
+
+                    android:id="@+id/rv_tags"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/ic_tag_size"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:minHeight="@dimen/ic_tag_size"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_name">
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_text_event_tag">
 
-            </LinearLayout>
+            </androidx.recyclerview.widget.RecyclerView>
 
             <TextView
                     android:id="@+id/tv_description"
                     style="@style/App.Text.Default"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/control_margin"
                     android:layout_marginTop="16dp"
@@ -78,7 +83,8 @@
                     android:text="@{event.description}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ll_tags" />
+                    app:layout_constraintTop_toBottomOf="@+id/rv_tags"
+                    tools:text="Специально для вас небезызвестные ребята из группы Comma исполнят легендарные хиты парней из Калифорнии! Не знаешь английского? Не беда, ты и так точно знаешь как подпевать под эти трек!" />
 
             <View
                     android:id="@+id/btn_soundcloud"
@@ -96,6 +102,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/control_medium_margin"
+                    android:layout_marginTop="4dp"
                     android:clickable="false"
                     android:text="Sound Preview"
                     app:layout_constraintBottom_toTopOf="@+id/tv_singer_name"
@@ -109,6 +116,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/control_medium_margin"
+                    android:layout_marginBottom="4dp"
                     android:clickable="false"
                     android:text="DJ Preview"
                     app:layout_constraintBottom_toBottomOf="@+id/btn_soundcloud"
@@ -118,13 +126,15 @@
 
             <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="88dp"
+                    android:layout_height="48dp"
                     android:layout_marginEnd="@dimen/control_margin"
+                    android:background="@drawable/rect_black_solid_20dp_corner"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_music"
                     app:layout_constraintBottom_toBottomOf="@+id/btn_soundcloud"
                     app:layout_constraintEnd_toEndOf="@+id/btn_soundcloud"
-                    app:layout_constraintTop_toTopOf="@+id/btn_soundcloud"
-                    app:srcCompat="@drawable/ic_soundcloud" />
+                    app:layout_constraintTop_toTopOf="@+id/btn_soundcloud" />
 
             <View
                     android:id="@+id/view_creator"
@@ -143,7 +153,7 @@
                     android:layout_marginStart="@dimen/control_margin"
                     android:layout_marginTop="@dimen/control_margin"
                     android:background="@drawable/rect_blue_18dp_corner"
-                    android:src="@drawable/ic_profile"
+
                     app:layout_constraintStart_toStartOf="@+id/view_creator"
                     app:layout_constraintTop_toTopOf="@+id/view_creator" />
 
@@ -173,7 +183,8 @@
                     app:layout_constraintBottom_toTopOf="@+id/tv_address"
                     app:layout_constraintEnd_toEndOf="@id/view_creator"
                     app:layout_constraintStart_toEndOf="@+id/iv_creator"
-                    app:layout_constraintTop_toTopOf="@+id/iv_creator" />
+                    app:layout_constraintTop_toTopOf="@+id/iv_creator"
+                    tools:text="Организатор" />
 
             <TextView
                     android:id="@+id/tv_address"
@@ -188,7 +199,8 @@
                     app:layout_constraintEnd_toEndOf="@id/view_creator"
                     app:layout_constraintStart_toEndOf="@+id/iv_creator"
                     app:layout_constraintTop_toBottomOf="@+id/tv_creator_name"
-                    app:layout_constraintVertical_chainStyle="spread_inside" />
+                    app:layout_constraintVertical_chainStyle="spread_inside"
+                    tools:text="Адресс" />
 
             <TextView
                     android:id="@+id/tv_distance"
@@ -202,7 +214,8 @@
                     app:layout_constraintBottom_toBottomOf="@id/iv_creator"
                     app:layout_constraintEnd_toEndOf="@+id/view_creator"
                     app:layout_constraintStart_toEndOf="@+id/iv_creator"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_address" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_address"
+                    tools:text="Расстояние" />
 
             <ImageButton
                     android:id="@+id/btn_menu"
@@ -212,7 +225,7 @@
                     android:background="@color/colorTransparent"
                     app:layout_constraintEnd_toEndOf="@+id/rv_images"
                     app:layout_constraintTop_toTopOf="@+id/rv_images"
-                    app:srcCompat="@drawable/ic_menu" />
+                    app:srcCompat="@drawable/ic_menu_white" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
