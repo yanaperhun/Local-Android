@@ -1,19 +1,26 @@
 package com.local.app.repository.event
 
+import android.util.Log
 import com.local.app.api.RetrofitClient
 import com.local.app.data.event.Event
 import com.local.app.data.photo.PhotoEntity
 import io.reactivex.Single
-import javax.inject.Inject
 
-class EventFeedRepository @Inject constructor(private var client: RetrofitClient) {
+class EventFeedRepository (private var client: RetrofitClient) {
     private var events: List<Event> = emptyList()
+
+    init {
+        Log.d("Local", "===>>> init EventFeedRepository")
+    }
 
     fun loadFeed(): Single<List<Event>> {
         return client.api
             .load()
             .map { it.data }
-            .doOnSuccess { events = it }
+            .doOnSuccess {
+                events = it
+                Log.d("Local", "===>>>do on success  events: ${events}")
+            }
     }
 
     fun getImagesByEventId(eventId: Long): Single<List<PhotoEntity>> {
@@ -24,6 +31,7 @@ class EventFeedRepository @Inject constructor(private var client: RetrofitClient
     }
 
     fun getEventById(id: Long): Single<Event> {
+        Log.d("Local", "===>>>events: ${events}")
         for (e in events) {
             if (e.id == id) {
                 return Single.just(e)

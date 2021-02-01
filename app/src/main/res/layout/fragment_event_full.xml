@@ -129,7 +129,7 @@
                     android:layout_width="88dp"
                     android:layout_height="48dp"
                     android:layout_marginEnd="@dimen/control_margin"
-                    android:background="@drawable/rect_black_solid_20dp_corner"
+                    android:background="@drawable/rect_black_solid_13dp_corner"
                     android:padding="12dp"
                     android:src="@drawable/ic_music"
                     app:layout_constraintBottom_toBottomOf="@+id/btn_soundcloud"

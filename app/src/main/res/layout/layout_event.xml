@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorMainDark"
-            android:padding="@dimen/control_margin">
+           >
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -23,32 +23,39 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginBottom="130dp"
-                tools:listitem="@layout/item_photo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_photo" />
 
         <View
+                android:layout_marginEnd="@dimen/control_margin"
+                android:layout_marginStart="@dimen/control_margin"
                 android:id="@+id/view_blur"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
-                app:layout_constraintTop_toBottomOf="@id/rv_images"
-                app:layout_constraintBottom_toBottomOf="@id/rv_images"/>
+                android:layout_marginBottom="@dimen/control_medium_margin"
+                android:background="@drawable/rect_black_trans_solid_16dp_corner"
+                app:layout_constraintBottom_toTopOf="@id/iv_like"
+               />
 
         <TextView
                 android:id="@+id/tv_name"
                 style="@style/App.Text.Title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/control_big_margin"
+                android:layout_marginTop="@dimen/control_medium_margin"
+                android:layout_marginEnd="@dimen/control_big_margin"
                 android:layout_marginBottom="16dp"
                 android:gravity="start"
-                tools:text="Event name"
+                android:maxLines="2"
                 android:text="@{event.eventName}"
-                app:layout_constraintBottom_toTopOf="@+id/tv_address"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="@id/view_blur"
+                tools:text="Event name" />
 
         <ImageView
                 android:id="@+id/iv_dislike"
@@ -73,40 +80,31 @@
                 app:layout_constraintStart_toEndOf="@+id/iv_dislike"
                 app:srcCompat="@drawable/ic_like" />
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_tags"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/ic_tag_size"
+                android:layout_marginStart="@dimen/control_big_margin"
+                android:layout_marginEnd="@dimen/control_big_margin"
                 android:layout_marginBottom="@dimen/control_medium_margin"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/iv_dislike"
+                app:layout_constraintBottom_toBottomOf="@+id/view_blur"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:itemCount="4"
-                tools:listitem="@layout/item_text_event_tag" />
+                tools:itemCount="1"
 
-        <TextView
-                android:id="@+id/tv_distance"
-                tools:text="300m"
-                style="@style/App.Text.Title.Small"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/control_margin"
-                android:text="@{event.eventLocation.defaultDistance}"
-                app:layout_constraintBottom_toTopOf="@+id/rv_tags"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                tools:listitem="@layout/item_tag" />
 
-        <TextView
-                tools:text="Дома"
-                android:id="@+id/tv_address"
-                style="@style/App.Text.Default"
-                android:layout_width="0dp"
+        <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{event.eventLocation.name}"
-                app:layout_constraintBottom_toTopOf="@+id/tv_distance"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/colorTransparent"
+                app:layout_constraintEnd_toEndOf="@+id/view_blur"
+                app:layout_constraintTop_toTopOf="@+id/view_blur"
+                app:srcCompat="@drawable/ic_info_grey" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -53,14 +53,14 @@ class EventFragment : BaseFragment() {
         })
         refreshData()
 
-        BuildConfig.DEBUG
     }
 
     private fun showEvent(event: Event) {
         binding.event = event
         binding.executePendingBindings()
-        CommonRVEventElements.buildTagsView(binding.llTags, event.tagsDefault)
+        CommonRVEventElements.buildTagsView(binding.rvTags, event.tagsDefault, true)
         CommonRVEventElements.showImages(binding.rvImages, event.pictures)
+
     }
 
     private fun refreshData() {

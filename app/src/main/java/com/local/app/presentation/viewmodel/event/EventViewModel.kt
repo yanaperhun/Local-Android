@@ -19,7 +19,6 @@ class EventViewModel(application: Application) : AndroidViewModel(application) {
     lateinit var getEventsInteractor: GetEventInteractor
 
     init {
-        getApplication<LocalApp>().daggerManager.plusFeedComponent()
         getApplication<LocalApp>().daggerManager.feedComponent?.inject(this)
     }
 

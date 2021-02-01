@@ -13,6 +13,7 @@ abstract class EventsFeedRVAdapter(private var events: List<Event>) :
     sealed class Clicks {
         class Like(var eventId: Long) : Clicks()
         class Dislike(var eventId: Long) : Clicks()
+        class Event(var eventId: Long) : Clicks()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
@@ -27,13 +28,14 @@ abstract class EventsFeedRVAdapter(private var events: List<Event>) :
         holder.bind(events[position])
         val rvImages = holder.binding.rvImages
 
-        CommonRVEventElements.buildTagsView(holder.binding.llTags, events[position].tagsDefault)
+        CommonRVEventElements.buildTagsView(holder.binding.rvTags, events[position].tagsDefault)
         CommonRVEventElements.showImages(rvImages, events[position].pictures)
 
         holder.binding.ivDislike.setOnClickListener {
             onClicks(Clicks.Dislike(events[position].id))
         }
         holder.binding.ivLike.setOnClickListener { onClicks(Clicks.Like(events[position].id)) }
+        holder.binding.tvName.setOnClickListener { onClicks(Clicks.Like(events[position].id)) }
 
     }
 

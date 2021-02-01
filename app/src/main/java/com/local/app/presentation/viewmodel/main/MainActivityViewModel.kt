@@ -24,6 +24,7 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
 
     init {
         getApplication<LocalApp>().daggerManager.plusLoginComponent()
+        getApplication<LocalApp>().daggerManager.plusFeedComponent()
         getApplication<LocalApp>().daggerManager.loginComponent?.inject(this)
     }
 

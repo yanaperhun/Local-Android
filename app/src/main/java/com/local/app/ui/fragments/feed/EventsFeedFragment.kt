@@ -17,6 +17,7 @@ import com.local.app.presentation.viewmodel.feed.EventsFeedViewModel
 import com.local.app.ui.BaseFragment
 import com.local.app.ui.activities.event.EXTRAS_EVENT_ID
 import com.local.app.ui.activities.event.EventActivity
+import com.local.app.ui.fragments.event.EventFragment
 import com.local.app.ui.fragments.feed.state.FeedState
 
 class EventsFeedFragment : BaseFragment() {
@@ -69,9 +70,14 @@ class EventsFeedFragment : BaseFragment() {
                 when (click) {
                     is Clicks.Dislike -> skipEvent(click.eventId)
                     is Clicks.Like -> likeEvent(click.eventId)
+                    is Clicks.Event -> openEvent(click.eventId)
                 }
             }
         }
+    }
+
+    private fun openEvent(eventId: Long) {
+        showFragment(EventFragment(), true)
     }
 
     private fun likeEvent(eventId: Long) {
