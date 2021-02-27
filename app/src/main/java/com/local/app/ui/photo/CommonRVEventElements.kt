@@ -27,27 +27,28 @@ class CommonRVEventElements {
                                     layoutManager = LinearLayoutManager(rvImages.context)
                                     adapter = PhotoViewerAdapter(pictures)
                                     rvImages.addItemDecoration(LinePagerIndicatorDecoration())
-                                    addedImageClickListener(rvImages)
+                                    addedImageClickListener(rvImages, pictures.size)
                                 }
                             }, UI_RENDER_DELAY)
             }
         }
 
         fun buildTagsView(rvTags: RecyclerView,
-                          tagsValue: List<String>,
+                          tags: List<String>?,
                           isGridMode: Boolean = false) {
-            val adapter = TagsRFAdapter(tagsValue)
+            if (tags.isNullOrEmpty()) return
+            val adapter = TagsRFAdapter(tags)
             rvTags.layoutManager = if (isGridMode) GridLayoutManager(rvTags.context, 3) else
                 LinearLayoutManager(rvTags.context, RecyclerView.HORIZONTAL, false)
             rvTags.adapter = adapter
         }
 
-        private fun addedImageClickListener(rv: RecyclerView) {
+        private fun addedImageClickListener(rv: RecyclerView, imagesCount  : Int) {
             val clickListener = RecyclerItemClickListener(rv.context, rv, object :
                 RecyclerItemClickListener.OnItemClickListener {
 
                 override fun onItemClick(view: View, position: Int) {
-                    val pos = if (position == 1) 0 else position + 1
+                    val pos = if (position == imagesCount - 1) 0 else position + 1
                     rv.scrollToPosition(pos)
                 }
 

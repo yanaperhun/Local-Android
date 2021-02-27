@@ -19,8 +19,6 @@
             app:srcCompat="@drawable/ic_filter" />
 
 
-
-
     <FrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
@@ -31,7 +29,7 @@
             android:layout_width="@dimen/ic_size"
             android:layout_height="@dimen/ic_size"
             android:layout_marginStart="@dimen/control_margin"
-            android:layout_marginTop="@dimen/control_margin"
+            android:layout_marginTop="@dimen/control_medium_margin"
             android:onClick="onUserClick"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

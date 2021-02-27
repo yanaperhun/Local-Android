@@ -28,7 +28,7 @@ abstract class EventsFeedRVAdapter(private var events: List<Event>) :
         holder.bind(events[position])
         val rvImages = holder.binding.rvImages
 
-        CommonRVEventElements.buildTagsView(holder.binding.rvTags, events[position].tagsDefault)
+        CommonRVEventElements.buildTagsView(holder.binding.rvTags, events[position].tags)
         CommonRVEventElements.showImages(rvImages, events[position].pictures)
 
         holder.binding.ivDislike.setOnClickListener {
