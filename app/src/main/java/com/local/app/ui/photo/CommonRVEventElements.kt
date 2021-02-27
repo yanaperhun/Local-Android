@@ -18,6 +18,7 @@ class CommonRVEventElements {
         private val UI_RENDER_DELAY = 50L
 
         fun showImages(rvImages: RecyclerView, pictures: List<PhotoEntity>) {
+            rvImages.onFlingListener = null
             PagerSnapHelper().attachToRecyclerView(rvImages)
             rvImages.isNestedScrollingEnabled = false
             rvImages.apply {

@@ -47,12 +47,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/control_big_margin"
                 android:layout_marginTop="@dimen/control_medium_margin"
-                android:layout_marginEnd="@dimen/control_big_margin"
+                android:layout_marginEnd="@dimen/control_margin"
                 android:layout_marginBottom="16dp"
                 android:gravity="start"
                 android:maxLines="2"
                 android:text="@{event.eventName}"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_info"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/view_blur"
                 tools:text="Event name" />
@@ -96,7 +96,7 @@
                 tools:listitem="@layout/item_tag" />
 
         <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/btn_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -107,5 +107,14 @@
                 app:srcCompat="@drawable/ic_info_grey" />
 
 
+        <TextView
+                android:layout_marginBottom="@dimen/control_margin"
+                android:text="200P"
+                style="@style/App.Text.Pink"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                app:layout_constraintBottom_toTopOf="@id/view_blur"
+                app:layout_constraintStart_toStartOf="@id/view_blur"
+                android:layout_marginStart="@dimen/control_medium_margin"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

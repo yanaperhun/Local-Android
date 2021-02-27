@@ -38,10 +38,18 @@ open class BaseFragment : Fragment() {
         Log.e("Local Error", "=============> $mess")
     }
 
+    fun showFragment(fragment: Fragment, args: Bundle, addToBack: Boolean) {
+        fragment.arguments = args
+        (requireActivity() as BaseActivity).showFragment(fragment, addToBack, R.id.container)
+    }
+
     fun showFragment(fragment: BaseFragment, addToBackStack: Boolean) {
         (requireActivity() as BaseActivity).showFragment(fragment, addToBackStack)
     }
 
+    fun backStep() {
+        requireActivity().supportFragmentManager.popBackStack()
+    }
     fun showToast(message: String) {
         Toast
             .makeText(requireContext(), message, Toast.LENGTH_SHORT)

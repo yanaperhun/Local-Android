@@ -17,7 +17,7 @@ import com.local.app.presentation.viewmodel.feed.EventsFeedViewModel
 import com.local.app.ui.BaseFragment
 import com.local.app.ui.activities.event.EXTRAS_EVENT_ID
 import com.local.app.ui.activities.event.EventActivity
-import com.local.app.ui.fragments.event.EventFragment
+import com.local.app.ui.fragments.event.EventDetailsFragment
 import com.local.app.ui.fragments.feed.state.FeedState
 
 class EventsFeedFragment : BaseFragment() {
@@ -77,7 +77,7 @@ class EventsFeedFragment : BaseFragment() {
     }
 
     private fun openEvent(eventId: Long) {
-        showFragment(EventFragment(), true)
+        showFragment(EventDetailsFragment(), true)
     }
 
     private fun likeEvent(eventId: Long) {

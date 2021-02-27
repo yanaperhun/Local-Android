@@ -18,6 +18,14 @@
             android:onClick="onFilterClick"
             app:srcCompat="@drawable/ic_filter" />
 
+
+
+
+    <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
     <ImageView
             android:id="@+id/iv_user"
             android:layout_width="@dimen/ic_size"
@@ -28,11 +36,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_profile" />
-
-
-    <FrameLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
 </FrameLayout>
