@@ -4,7 +4,7 @@ import android.content.Context
 import com.local.app.api.RetrofitClient
 import com.local.app.repository.ProfileRepository
 import com.local.app.repository.ProfileRepositoryImpl
-import com.retail.core.prefs.PrefUtils
+import com.local.app.pref.PrefUtils
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

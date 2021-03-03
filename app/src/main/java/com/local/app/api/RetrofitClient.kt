@@ -3,7 +3,7 @@ package com.local.app.api
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.local.app.api.interceptors.HeaderInterceptor
-import com.retail.core.prefs.PrefUtils
+import com.local.app.pref.PrefUtils
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

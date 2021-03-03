@@ -1,4 +1,4 @@
-package com.retail.core.prefs
+package com.local.app.pref
 
 import android.content.Context
 import com.google.gson.Gson
@@ -11,6 +11,7 @@ class PrefUtils(val context: Context) {
         const val WELCOME_WAS_SHOWED = "welcome_was_showed"
         const val TOKEN = "tokens"
         const val PROFILE = "profile"
+        const val PASSWORD = "password"
     }
 
     fun setWelcomeWasShowed(wasShowed: Boolean, context: Context) {
@@ -57,5 +58,15 @@ class PrefUtils(val context: Context) {
                 return Gson().fromJson(it, Profile::class.java)
             } ?: return null
 
+    }
+
+    fun savePassword(password: String) {
+        val sharedPref = context.getSharedPreferences(PROFILE, Context.MODE_PRIVATE) ?: return
+        with(sharedPref.edit()) { putString(PASSWORD, password).commit() }
+    }
+
+    fun getPassword(): String {
+        val sharedPref = context.getSharedPreferences(PROFILE, Context.MODE_PRIVATE)
+        return sharedPref.getString(PASSWORD, "") ?: ""
     }
 }

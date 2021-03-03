@@ -99,6 +99,13 @@
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textCursorDrawable">@color/colorGreen</item>
     </style>
+
+    <style name="App.EditText.ProfileSettings">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:paddingStart">@dimen/control_medium_margin</item>
+        <item name="android:paddingEnd">@dimen/control_medium_margin</item>
+        <item name="android:background">@drawable/rect_grey_solid_light_stroke__grey_20dp_corner</item>
+    </style>
     <!-- ========EDIT_TEXT END========-->
 
 

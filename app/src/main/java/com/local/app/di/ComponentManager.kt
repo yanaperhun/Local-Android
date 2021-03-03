@@ -72,5 +72,4 @@ class ComponentManager(context: Context) {
     fun cleaLoginComponent() {
         loginComponent = null
     }
-
 }

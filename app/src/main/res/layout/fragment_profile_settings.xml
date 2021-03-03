@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorMainDark">
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="@dimen/back_btn_size"
+        android:layout_height="@dimen/back_btn_size"
+        android:layout_margin="@dimen/control_margin"
+        android:background="@drawable/rect_grey_solid_10dp_corner"
+        android:src="@drawable/ic_back" />
+
+    <ImageButton
+        android:id="@+id/btn_close"
+        android:layout_width="@dimen/back_btn_size"
+        android:layout_height="@dimen/back_btn_size"
+        android:layout_gravity="end"
+        android:layout_margin="@dimen/control_margin"
+        android:background="@drawable/rect_grey_solid_10dp_corner"
+        android:src="@drawable/ic_cross_white" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollProfileSettings"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="64dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_profile_settings"
+                style="@style/App.Text.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/control_margin"
+                android:text="@string/settings" />
+
+            <LinearLayout
+                android:id="@+id/ll_general_informations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/control_big_margin"
+                android:background="@color/colorDarkGray"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@id/btn_back"
+                app:layout_constraintTop_toBottomOf="@id/tv_profile_settings">
+
+                <TextView
+                    android:id="@+id/tv_general_information"
+                    style="@style/App.Text.Title.Small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/control_margin"
+                    android:layout_marginTop="@dimen/control_medium_margin"
+                    android:text="@string/general_information" />
+
+                <EditText
+                    android:id="@+id/et_user_name"
+                    style="@style/App.EditText.ProfileSettings"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/et_height_filter"
+                    android:layout_marginHorizontal="@dimen/control_margin"
+                    android:layout_marginTop="@dimen/control_margin"
+                    android:drawableEnd="@drawable/ic_profile"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPersonName"
+                    android:lines="1"
+                    android:paddingStart="@dimen/control_medium_margin"
+                    android:paddingEnd="@dimen/control_big_margin"
+                    tools:text="Innokentiy Istrebitel" />
+
+                <EditText
+                    android:id="@+id/et_user_email"
+                    style="@style/App.EditText.ProfileSettings"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/et_height_filter"
+                    android:layout_marginHorizontal="@dimen/control_margin"
+                    android:layout_marginTop="@dimen/control_medium_margin"
+                    android:drawableEnd="@drawable/ic_email_white"
+                    android:imeOptions="actionDone"
+                    android:inputType="textEmailAddress"
+                    android:lines="1"
+                    android:paddingStart="@dimen/control_medium_margin"
+                    android:paddingEnd="@dimen/control_big_margin"
+                    android:text="@string/email" />
+
+                <EditText
+                    android:id="@+id/et_password"
+                    style="@style/App.EditText.ProfileSettings"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/et_height_filter"
+                    android:layout_marginHorizontal="@dimen/control_margin"
+                    android:layout_marginTop="@dimen/control_medium_margin"
+                    android:layout_marginBottom="@dimen/control_margin"
+                    android:drawableEnd="@drawable/ic_password_white"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:lines="1"
+                    android:paddingStart="@dimen/control_medium_margin"
+                    android:paddingEnd="@dimen/control_big_margin"
+                    android:text="@string/password"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/control_margin"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@id/btn_back"
+                app:layout_constraintTop_toBottomOf="@id/ll_general_informations">
+
+                <TextView
+                    android:id="@+id/tv_contact_details"
+                    style="@style/App.Text.Title.Small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/control_margin"
+                    android:layout_marginTop="@dimen/control_medium_margin"
+                    android:text="@string/contact_details" />
+
+                <EditText
+                    android:id="@+id/et_phone_number"
+                    style="@style/App.EditText.ProfileSettings"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/et_height_filter"
+                    android:layout_marginHorizontal="@dimen/control_margin"
+                    android:layout_marginTop="@dimen/control_medium_margin"
+                    android:digits="0123456789+()- "
+                    android:drawableStart="@drawable/ic_phone_circle"
+                    android:drawablePadding="@dimen/control_medium_margin"
+                    android:imeOptions="actionDone"
+                    android:inputType="phone"
+                    android:lines="1"
+                    android:paddingStart="@dimen/control_medium_margin"
+                    android:paddingEnd="@dimen/control_big_margin"
+                    android:text="@string/phone_number"
+                    android:textColor="@color/colorTextDefault" />
+
+                <EditText
+                    android:id="@+id/et_telegram"
+                    style="@style/App.EditText.ProfileSettings"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/et_height_filter"
+                    android:layout_marginHorizontal="@dimen/control_margin"
+                    android:layout_marginTop="@dimen/control_medium_margin"
+                    android:drawableStart="@drawable/ic_telegram_circle"
+                    android:drawablePadding="@dimen/control_medium_margin"
+                    android:imeOptions="actionDone"
+                    android:lines="1"
+                    android:paddingStart="@dimen/control_medium_margin"
+                    android:paddingEnd="@dimen/control_big_margin"
+                    android:text="@string/telegram_name"
+                    android:textColor="@color/colorTextDefault" />
+
+                <EditText
+                    android:id="@+id/et_instagram"
+                    style="@style/App.EditText.ProfileSettings"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/et_height_filter"
+                    android:layout_marginHorizontal="@dimen/control_margin"
+                    android:layout_marginTop="@dimen/control_medium_margin"
+                    android:drawableStart="@drawable/ic_instagram_circle"
+                    android:drawablePadding="@dimen/control_medium_margin"
+                    android:imeOptions="actionDone"
+                    android:lines="1"
+                    android:paddingStart="@dimen/control_medium_margin"
+                    android:paddingEnd="@dimen/control_big_margin"
+                    android:text="@string/instagram_yourname"
+                    android:textColor="@color/colorTextDefault" />
+
+                <EditText
+                    android:id="@+id/et_whats_app"
+                    style="@style/App.EditText.ProfileSettings"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/et_height_filter"
+                    android:layout_marginHorizontal="@dimen/control_margin"
+                    android:layout_marginTop="@dimen/control_medium_margin"
+                    android:layout_marginBottom="@dimen/control_margin"
+                    android:drawableStart="@drawable/ic_whatsapp_circle"
+                    android:drawablePadding="@dimen/control_medium_margin"
+                    android:imeOptions="actionDone"
+                    android:lines="1"
+                    android:paddingStart="@dimen/control_medium_margin"
+                    android:paddingEnd="@dimen/control_big_margin"
+                    android:text="@string/phone_number_whats_app"
+                    android:textColor="@color/colorTextDefault" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressProfileSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+</FrameLayout>

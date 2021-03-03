@@ -30,6 +30,9 @@ interface API {
     @GET("api/user")
     fun loadProfile(): Single<Profile>
 
+    @PUT("api/user")
+    fun updateProfile(@Body body: Map<String, String>): Single<Profile>
+
     @GET("api/events/touched")
     fun loadLikedEvents(@Query("type") type: String): Single<EventListResponse>
 

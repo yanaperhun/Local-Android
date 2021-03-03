@@ -7,7 +7,7 @@ import com.local.app.di.scopes.PerLogin
 import com.local.app.domain.login.LoginDomainFacade
 import com.local.app.domain.login.interactors.AuthInteractor
 import com.local.app.domain.login.interactors.LoginInteractor
-import com.retail.core.prefs.PrefUtils
+import com.local.app.pref.PrefUtils
 import dagger.Module
 import dagger.Provides
 
