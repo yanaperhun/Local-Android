@@ -45,6 +45,7 @@
             tools:text="Через 15 минут" />
 
     <TextView
+            android:id="@+id/tvTitle"
             style="@style/App.Text.Title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

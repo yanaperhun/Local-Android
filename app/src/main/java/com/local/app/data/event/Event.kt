@@ -34,6 +34,10 @@ data class Event(var id: Long,
         return if (appleMusic?.isNotEmpty() == true) appleMusic ?: "" else soundCloud ?: ""
     }
 
+    fun getFirstPhoto(): PhotoEntity? {
+        return if (!pictures.isNullOrEmpty()) pictures.first() else null
+    }
+
     fun isConnectionTypeExist(): Boolean {
         return !instagram.isNullOrEmpty() || !telegram.isNullOrEmpty() || !phone.isNullOrEmpty() || !whatsapp.isNullOrEmpty()
     }
