@@ -4,7 +4,7 @@
         style="@style/App.Text.Tag"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
-        android:background="@drawable/rect_black_solid_8dp_corner"
+        android:background="@drawable/rect_green_stroke_8dp_corner"
         android:maxLines="1"
         android:paddingStart="12dp"
         android:id="@+id/tvTag"

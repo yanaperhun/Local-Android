@@ -27,8 +27,8 @@ class PhotoViewerAdapter(private val photoEntityList: List<PhotoEntity>) :
 
         Glide
             .with(holder.itemView.context)
-            .load(photoEntityList[position].url.lg)
-            //            .load("https://lh3.googleusercontent.com/a-/AOh14Gj9wtNNo_N9RFP2TO6vq5zk0Lyg01ctxoK8AejPZw=s96-c")
+//            .load(photoEntityList[position].url.lg)
+                        .load("https://foresteurope.org/wp-content/uploads/2017/08/tuce-P3DxOe-OJGA-unsplash.jpg")
             .into(holder.binding.ivPhoto)
     }
 
