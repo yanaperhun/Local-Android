@@ -8,14 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.URLUtil
+import android.widget.TextView
 import androidx.core.view.isVisible
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.local.app.data.User
 import com.local.app.data.event.Event
 import com.local.app.databinding.FragmentEventFullBinding
 import com.local.app.presentation.viewmodel.event.EventViewModel
 import com.local.app.ui.BaseFragment
+import com.local.app.ui.dialog.ConnectToDialog
 import com.local.app.ui.fragments.event.state.EventState
 import com.local.app.ui.photo.CommonRVEventElements
 import com.local.app.utils.Utils
@@ -51,7 +52,7 @@ class EventDetailsFragment : BaseFragment() {
 
     override fun onStart() {
         super.onStart()
-        viewModel.eventState.observe(this, Observer {
+        viewModel.eventState.observe(this, {
             when (it) {
                 is EventState.Success -> showEvent(it.event)
                 is EventState.Error -> it.throwable.printStackTrace()
@@ -94,9 +95,27 @@ class EventDetailsFragment : BaseFragment() {
         binding.btnAccept.setOnClickListener { backStep() }
         binding.btnContact.setOnClickListener { connectWithCreator(event.creator) }
 
+        bindConnectToViews(binding.btnContact, event)
+    }
+
+    private fun bindConnectToViews(btnContact: TextView, event: Event) {
+        event.printConnectionsType()
+        if (event.isConnectionTypeExist()) {
+            btnContact.setOnClickListener { showConnectButtonDialog(event) }
+        } else {
+            btnContact.isVisible = false
+        }
+
+    }
+
+    private fun showConnectButtonDialog(event: Event) {
+        ConnectToDialog
+            .create(event)
+            .show(parentFragmentManager, "connect_to_dialog")
     }
 
     private fun connectWithCreator(creator: User) {
+
     }
 
     private fun refreshData() {
