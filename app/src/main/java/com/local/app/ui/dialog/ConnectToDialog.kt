@@ -53,22 +53,26 @@ class ConnectToDialog : BottomSheetDialogFragment() {
         event.instagram?.let { contact ->
             binding.btnInstagram.setOnClickListener {
                 contactsManager.openInstagram(contact, requireActivity())
+                dismiss()
             }
         }
 
         event.phone?.let { contact ->
             binding.btnPhone.setOnClickListener {
                 contactsManager.callPhone(contact, requireActivity())
+                dismiss()
             }
         }
         event.whatsapp?.let { contact ->
             binding.btnWhatsup.setOnClickListener {
                 contactsManager.openWhatsApp(contact, requireActivity())
+                dismiss()
             }
         }
         event.telegram?.let { contact ->
             binding.btnTelegram.setOnClickListener {
                 contactsManager.openTelegram(contact, requireActivity())
+                dismiss()
             }
         }
 
