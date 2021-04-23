@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import com.local.app.BindableFragment
 import com.local.app.R
 import com.local.app.data.Profile
-import com.local.app.databinding.FragmentProfileBinding
+import com.local.app.databinding.FragmentProfileOldBinding
 import com.local.app.presentation.viewmodel.event.create.CreateEventViewModel
 import com.local.app.presentation.viewmodel.event.create.LoadProfileState
 import com.local.app.ui.activities.event.CreateEventActivity
@@ -19,12 +19,12 @@ import com.local.app.ui.fragments.feed.profile.LikedEventsFragment
 import com.local.app.ui.fragments.feed.profile.MyEventsFragment
 import com.local.app.utils.Utils
 
-class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
+class ProfileFragment : BindableFragment<FragmentProfileOldBinding>() {
 
     val viewModel: CreateEventViewModel by activityViewModels()
 
     override fun setBinding(inflater: LayoutInflater) {
-        binding = FragmentProfileBinding.inflate(inflater)
+        binding = FragmentProfileOldBinding.inflate(inflater)
     }
 
     override fun initUI(state: Bundle?) {

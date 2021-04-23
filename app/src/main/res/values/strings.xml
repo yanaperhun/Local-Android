@@ -55,5 +55,6 @@
     <string name="hint_play_list">Введите ссылку на плейлист</string>
     <string name="error_validate_step_price">Введите цену</string>
     <string name="chose_connect_method">Выберите способ связи</string>
+    <string name="create_event">Создать событие</string>
 
 </resources>
