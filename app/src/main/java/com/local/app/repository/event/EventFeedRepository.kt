@@ -40,4 +40,8 @@ class EventFeedRepository (private var client: RetrofitClient) {
         return Single.error(Throwable("Event not found"))
     }
 
+    fun isFeedEmpty(): Boolean {
+        return events.isNullOrEmpty()
+    }
+
 }

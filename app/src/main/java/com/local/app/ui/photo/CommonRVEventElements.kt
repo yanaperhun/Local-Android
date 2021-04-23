@@ -1,15 +1,18 @@
 package com.local.app.ui.photo
 
 import android.view.View
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
+import com.local.app.R
 import com.local.app.data.photo.PhotoEntity
 import com.local.app.ui.adapters.PhotoViewerAdapter
 import com.local.app.ui.adapters.tags.TagsRFAdapter
 import com.local.app.ui.custom.LinePagerIndicatorDecoration
 import com.local.app.ui.custom.RecyclerItemClickListener
+import com.local.app.utils.Utils
 
 class CommonRVEventElements {
 
@@ -24,7 +27,11 @@ class CommonRVEventElements {
             rvImages.apply {
                 postDelayed({
                                 run {
-                                    layoutManager = LinearLayoutManager(rvImages.context)
+                                    layoutManager = object : LinearLayoutManager(rvImages.context) {
+                                        override fun canScrollVertically(): Boolean {
+                                            return false
+                                        }
+                                    }
                                     adapter = PhotoViewerAdapter(pictures)
                                     rvImages.addItemDecoration(LinePagerIndicatorDecoration())
                                     addedImageClickListener(rvImages, pictures.size)
@@ -33,17 +40,29 @@ class CommonRVEventElements {
             }
         }
 
-        fun buildTagsView(rvTags: RecyclerView,
-                          tags: List<String>?,
-                          isGridMode: Boolean = false) {
+        fun buildTagsView(rvTags: RecyclerView, tags: List<String>?) {
             if (tags.isNullOrEmpty()) return
             val adapter = TagsRFAdapter(tags)
-            rvTags.layoutManager = if (isGridMode) GridLayoutManager(rvTags.context, 3) else
-                LinearLayoutManager(rvTags.context, RecyclerView.HORIZONTAL, false)
+            rvTags.layoutManager = LinearLayoutManager(rvTags.context, RecyclerView.HORIZONTAL, false)
             rvTags.adapter = adapter
         }
 
-        private fun addedImageClickListener(rv: RecyclerView, imagesCount  : Int) {
+        fun buildTagsView(chipGroup: ChipGroup, tags: List<String>?) {
+            if (tags.isNullOrEmpty()) return
+            chipGroup.removeAllViews()
+            for (i in tags.indices) {
+                val context = chipGroup.context
+                val chipView = Chip(context)
+                chipView.text = tags[i]
+                chipView.setChipStrokeColorResource(R.color.colorGreen)
+                chipView.chipStrokeWidth = Utils.dpToPx(2)
+//                chipView.setChipMinHeightResource(R.dimen.chip_touch_min_size)
+                chipGroup.addView(chipView)
+
+            }
+        }
+
+        private fun addedImageClickListener(rv: RecyclerView, imagesCount: Int) {
             val clickListener = RecyclerItemClickListener(rv.context, rv, object :
                 RecyclerItemClickListener.OnItemClickListener {
 

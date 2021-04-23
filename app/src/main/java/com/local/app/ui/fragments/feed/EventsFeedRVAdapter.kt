@@ -24,18 +24,19 @@ abstract class EventsFeedRVAdapter(private var events: List<Event>) :
         return events.size
     }
 
-    override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.bind(events[position])
-        val rvImages = holder.binding.rvImages
+    override fun onBindViewHolder(vh: VH, position: Int) {
+        vh.bind(events[position])
+        val rvImages = vh.binding.rvImages
 
-        CommonRVEventElements.buildTagsView(holder.binding.rvTags, events[position].tags)
+        CommonRVEventElements.buildTagsView(vh.binding.rvTags, events[position].tagsDefault)
         CommonRVEventElements.showImages(rvImages, events[position].pictures)
-
-        holder.binding.ivDislike.setOnClickListener {
-            onClicks(Clicks.Dislike(events[position].id))
-        }
-        holder.binding.ivLike.setOnClickListener { onClicks(Clicks.Like(events[position].id)) }
-        holder.binding.tvName.setOnClickListener { onClicks(Clicks.Like(events[position].id)) }
+        vh.binding.rvTags.setRecycledViewPool(RecyclerView.RecycledViewPool())
+        vh.binding.tvPrice.text = events[position].getFormattedPrice()
+        val adapterPos = vh.adapterPosition
+        vh.binding.ivDislike.setOnClickListener { onClicks(Clicks.Dislike(events[adapterPos].id)) }
+        vh.binding.ivLike.setOnClickListener { onClicks(Clicks.Like(events[adapterPos].id)) }
+        vh.binding.tvName.setOnClickListener { onClicks(Clicks.Event(events[adapterPos].id)) }
+        vh.binding.viewBlur.setOnClickListener { onClicks(Clicks.Event(events[adapterPos].id)) }
 
     }
 

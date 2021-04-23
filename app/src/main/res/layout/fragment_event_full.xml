@@ -23,11 +23,22 @@
                     android:id="@+id/rv_images"
                     android:layout_width="match_parent"
                     android:layout_height="416dp"
-                    android:background="@color/quantum_grey"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                    android:id="@+id/tvPrice"
+                    style="@style/App.Text.Pink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/control_margin"
+                    app:layout_constraintBottom_toBottomOf="@id/rv_images"
+                    app:layout_constraintStart_toStartOf="@id/tv_name"
+                    tools:text="200P" />
 
             <ImageButton
                     android:id="@+id/btn_accept"
@@ -56,42 +67,12 @@
             <com.google.android.material.chip.ChipGroup
                     android:id="@+id/cgTags"
                     android:layout_width="0dp"
-                    android:layout_margin="@dimen/control_margin"
                     android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/control_margin"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_name">
 
-                <com.google.android.material.chip.Chip
-                        style="@style/App.Text.Tag"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:padding="0dp"
-                        android:text="dhfgjhdsffsdfsdfsdfkjl"
-                        app:chipCornerRadius="8dp"
-                        app:chipMinTouchTargetSize="0dp"
-                        app:chipStrokeColor="@color/colorGreen"
-                        app:chipStrokeWidth="1dp" />
-
-                <com.google.android.material.chip.Chip
-                        style="@style/App.Text.Tag"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="dhfgjhdsffsdfsdfsdfkjl"
-                        app:chipCornerRadius="8dp"
-                        app:chipMinTouchTargetSize="0dp"
-                        app:chipStrokeColor="@color/colorGreen"
-                        app:chipStrokeWidth="1dp" />
-
-                <com.google.android.material.chip.Chip
-                        style="@style/App.Text.Tag"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="dhfgjhdsffsdfsdfsdfkjl"
-                        app:chipCornerRadius="8dp"
-                        app:chipMinTouchTargetSize="0dp"
-                        app:chipStrokeColor="@color/colorGreen"
-                        app:chipStrokeWidth="1dp" />
             </com.google.android.material.chip.ChipGroup>
 
             <TextView
@@ -138,13 +119,12 @@
                     style="@style/App.Text.Title.Small"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/control_medium_margin"
                     android:layout_marginBottom="4dp"
                     android:clickable="false"
                     android:text="DJ Preview"
                     app:layout_constraintBottom_toBottomOf="@+id/btn_soundcloud"
                     app:layout_constraintEnd_toStartOf="@+id/imageView"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_sound_name"
                     app:layout_constraintTop_toBottomOf="@+id/tv_sound_name" />
 
             <ImageView
@@ -175,7 +155,7 @@
                     android:layout_height="@dimen/image_preview_size"
                     android:layout_marginStart="@dimen/control_margin"
                     android:layout_marginTop="@dimen/control_margin"
-                    android:background="@drawable/rect_blue_18dp_corner"
+                    android:src="@drawable/ic_user"
 
                     app:layout_constraintStart_toStartOf="@+id/view_creator"
                     app:layout_constraintTop_toTopOf="@+id/view_creator" />
@@ -232,7 +212,8 @@
                     android:layout_height="0dp"
                     android:layout_marginStart="@dimen/control_margin"
                     android:layout_marginEnd="@dimen/control_margin"
-                    android:gravity="top"
+                    android:gravity="center_vertical"
+
                     android:text="@{event.eventLocation.defaultDistance}"
                     app:layout_constraintBottom_toBottomOf="@id/iv_creator"
                     app:layout_constraintEnd_toEndOf="@+id/view_creator"
@@ -246,9 +227,16 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="@dimen/control_margin"
                     android:background="@color/colorTransparent"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="@+id/rv_images"
                     app:layout_constraintTop_toTopOf="@+id/rv_images"
                     app:srcCompat="@drawable/ic_menu_white" />
+
+            <androidx.constraintlayout.widget.Group
+                    android:id="@+id/groupSoundList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="tv_singer_name,tv_sound_name,btn_soundcloud,imageView" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

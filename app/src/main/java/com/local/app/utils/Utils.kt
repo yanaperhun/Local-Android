@@ -1,13 +1,50 @@
 package com.local.app.utils
 
+import android.content.Context
 import android.content.res.Resources
+import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.local.app.R
 
 class Utils {
     companion object {
+
+        fun showImage(imageView: ImageView, imageUrl: String) {
+            Glide
+                .with(imageView.context)
+                .load(imageUrl)
+                .placeholder(getMainBGColorDrawable(imageView.context))
+                .into(imageView)
+        }
+
+        fun showRoundImage(imageView: ImageView, imageUrl: String) {
+            Glide
+                .with(imageView.context)
+                .load(imageUrl)
+                .placeholder(getMainBGColorDrawable(imageView.context))
+                .circleCrop()
+                .into(imageView)
+        }
+
+
+        fun getMainBGColorDrawable(context: Context): ColorDrawable {
+            return ColorDrawable(context.resources.getColor(R.color.colorMainDark))
+        }
+        fun showRounderCornersImage(imageView: ImageView, imageUrl: String, radius: Int) {
+            Glide
+                .with(imageView.context)
+                .load(imageUrl)
+                .placeholder(getMainBGColorDrawable(imageView.context))
+                .transform(RoundedCorners(radius))
+                .into(imageView)
+
+        }
+
         fun pxToDp(px: Float): Float {
             return px / Resources.getSystem().displayMetrics.density
         }

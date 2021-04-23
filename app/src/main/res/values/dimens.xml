@@ -18,4 +18,5 @@
     <dimen name="back_btn_size">40dp</dimen>
     <dimen name="stroke_width">2dp</dimen>
     <dimen name="btn_next_height">48dp</dimen>
+    <dimen name="chip_touch_min_size">2dp</dimen>
 </resources>

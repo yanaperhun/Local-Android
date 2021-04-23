@@ -7,7 +7,11 @@ import javax.inject.Inject
 
 class LoadFeedInteractor @Inject constructor(var repository: EventFeedRepository) {
 
-    fun execute(): Single<List<Event>> {
+    fun loadFeed(): Single<List<Event>> {
         return repository.loadFeed()
+    }
+
+    fun isFeedEmpty() : Boolean{
+        return repository.isFeedEmpty()
     }
 }

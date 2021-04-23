@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/tvTag"
         style="@style/App.Text.Tag"
         android:layout_width="wrap_content"
         android:layout_height="32dp"
+        android:layout_marginEnd="@dimen/control_margin"
         android:background="@drawable/rect_green_stroke_8dp_corner"
         android:maxLines="1"
         android:paddingStart="12dp"
-        android:id="@+id/tvTag"
-        android:layout_marginEnd="@dimen/control_medium_margin"
         android:paddingEnd="12dp"
         android:textSize="14sp"
         tools:text="fghdsj">

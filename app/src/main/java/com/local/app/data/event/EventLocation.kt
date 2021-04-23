@@ -7,8 +7,8 @@ data class EventLocation(var id: Long,
                          var lat: Double,
                          var long: Double,
 //                         var city: String,
-                         var distance: String = "Не определено") {
+                         var distance: String = "Точное расстояние не определено") {
 
     val defaultDistance
-        get() = if (TextUtils.isEmpty(distance)) "Не определенно" else distance
+        get() = if (TextUtils.isEmpty(distance)) "Точное расстояние не определено" else distance
 }

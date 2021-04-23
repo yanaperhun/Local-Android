@@ -43,7 +43,7 @@ class MainActivity : BaseActivity() {
         viewModel = ViewModelProviders
             .of(this)
             .get(MainActivityViewModel::class.java)
-        
+
         if (savedInstanceState == null) {
             showFragment(EventsFeedFragment(), true, R.id.container)
         }
@@ -68,7 +68,7 @@ class MainActivity : BaseActivity() {
     }
 
     fun onUserClick(view: View) {
-//        showProfileFragment()
+        //        showProfileFragment()
         if (viewModel.isProfileLoaded()) {
             showProfileFragment()
         } else {
@@ -85,7 +85,7 @@ class MainActivity : BaseActivity() {
     private fun showProfileFragment() {
 
         startActivity(Intent(this, CreateEventActivity::class.java))
-//        startActivity(Intent(this, UserActivity::class.java))
+        //        startActivity(Intent(this, UserActivity::class.java))
         //        showFragment(ProfileFragment(), true)
     }
 

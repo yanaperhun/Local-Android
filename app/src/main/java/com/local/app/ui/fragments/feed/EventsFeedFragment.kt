@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -17,19 +16,18 @@ import com.local.app.presentation.viewmodel.feed.EventsFeedViewModel
 import com.local.app.ui.BaseFragment
 import com.local.app.ui.activities.event.EXTRAS_EVENT_ID
 import com.local.app.ui.activities.event.EventActivity
-import com.local.app.ui.fragments.event.EventDetailsFragment
 import com.local.app.ui.fragments.feed.state.FeedState
 
 class EventsFeedFragment : BaseFragment() {
 
-    private lateinit var viewModelEvents: EventsFeedViewModel
+    private lateinit var viewModel: EventsFeedViewModel
     private lateinit var binding: FragmentFeedBinding
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        viewModelEvents = ViewModelProviders
+        viewModel = ViewModelProviders
             .of(this)
             .get(EventsFeedViewModel::class.java)
 
@@ -40,7 +38,7 @@ class EventsFeedFragment : BaseFragment() {
     override fun onStart() {
         super.onStart()
 
-        viewModelEvents.feedState.observe(this, Observer {
+        viewModel.feedState.observe(this, {
             when (it) {
                 is FeedState.Error -> it.throwable.printStackTrace()
 
@@ -50,7 +48,7 @@ class EventsFeedFragment : BaseFragment() {
             }
         })
 
-        viewModelEvents.loadFeed()
+        if (viewModel.isFeedEmpty()) viewModel.loadFeed()
     }
 
     private fun showProgress() {
@@ -58,8 +56,12 @@ class EventsFeedFragment : BaseFragment() {
     }
 
     private fun showFeed(it: List<Event>) {
-        binding.rvEvents.layoutManager =
-            LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        binding.rvEvents.layoutManager = object :
+            LinearLayoutManager(context, RecyclerView.HORIZONTAL, false) {
+            override fun canScrollVertically(): Boolean {
+                return false
+            }
+            }
 
         binding.rvEvents.onFlingListener = null
         val snapHelper: SnapHelper = PagerSnapHelper()
@@ -70,15 +72,12 @@ class EventsFeedFragment : BaseFragment() {
                 when (click) {
                     is Clicks.Dislike -> skipEvent(click.eventId)
                     is Clicks.Like -> likeEvent(click.eventId)
-                    is Clicks.Event -> openEvent(click.eventId)
+                    is Clicks.Event -> openEventScreen(click.eventId)
                 }
             }
         }
     }
 
-    private fun openEvent(eventId: Long) {
-        showFragment(EventDetailsFragment(), true)
-    }
 
     private fun likeEvent(eventId: Long) {
         openEventScreen(eventId)

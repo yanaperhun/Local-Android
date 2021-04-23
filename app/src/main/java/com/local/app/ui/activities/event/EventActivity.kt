@@ -15,7 +15,7 @@ class EventActivity : BaseActivity() {
                 intent.getLongExtra(
                     EXTRAS_EVENT_ID,
                     -1))
-        showFragment(fragment, true)
+        showFragment(fragment, false)
     }
 }
 

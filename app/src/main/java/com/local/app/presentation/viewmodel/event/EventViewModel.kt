@@ -2,18 +2,18 @@ package com.local.app.presentation.viewmodel.event
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
 import com.local.app.LocalApp
 import com.local.app.domain.event.GetEventInteractor
 import com.local.app.ui.fragments.event.state.EventState
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import org.ifpri.frani.utils.SingleLiveEvent
 import javax.inject.Inject
 
 class EventViewModel(application: Application) : AndroidViewModel(application) {
     private val disposable: CompositeDisposable = CompositeDisposable()
-    var eventState: MutableLiveData<EventState> = MutableLiveData()
+    var eventState: SingleLiveEvent<EventState> = SingleLiveEvent()
 
     @Inject
     lateinit var getEventsInteractor: GetEventInteractor

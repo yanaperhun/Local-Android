@@ -3,15 +3,15 @@ package com.local.app.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.local.app.data.photo.PhotoEntity
 import com.local.app.databinding.ItemPhotoViewerBinding
+import com.local.app.utils.Utils
 
 class PhotoViewerAdapter(private val photoEntityList: List<PhotoEntity>) :
     RecyclerView.Adapter<PhotoViewerAdapter.VH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        var view =
+        val view =
             ItemPhotoViewerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return VH(parent.width, view)
 
@@ -24,12 +24,8 @@ class PhotoViewerAdapter(private val photoEntityList: List<PhotoEntity>) :
     override fun onBindViewHolder(holder: VH, position: Int) {
         //        holder.itemView.layoutParams = ConstraintLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
         holder.itemView.layoutParams.width = holder.w
-
-        Glide
-            .with(holder.itemView.context)
-//            .load(photoEntityList[position].url.lg)
-                        .load("https://foresteurope.org/wp-content/uploads/2017/08/tuce-P3DxOe-OJGA-unsplash.jpg")
-            .into(holder.binding.ivPhoto)
+        Utils.showImage(holder.binding.ivPhoto,
+                        "https://foresteurope.org/wp-content/uploads/2017/08/tuce-P3DxOe-OJGA-unsplash.jpg")
     }
 
     inner class VH(var w: Int, itemView: ItemPhotoViewerBinding) :
