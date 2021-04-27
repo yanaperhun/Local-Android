@@ -78,19 +78,20 @@ class StepConnectToFragment : BaseCreateEventFragment<FragmentStepConnectToBindi
         }
 
         if (telegram.isNotEmpty()) {
-            val regex = ".*[\\W](@(?=.{5,64}(?:\\s|\$))(?![_])(?!.*[_]{2})[a-zA-Z0-9_]+(?<![_.])).*"
-            val result = telegram.matches(Regex.fromLiteral(regex))
+            val regex = ".*[\\W](@(?=.{5,64}(?:\\s|\$))(?![_])(?!.*[_]{2})[a-zA-Z0-9_]+(?<![_.])).*".toRegex()
+            result = telegram.matches(regex)
             Log.d("Local", "==> result telegram $result")
-        }
-
-        if (whatsapp.isNotEmpty()) {
-
         }
 
         if (instagram.isNotEmpty()) {
             //(?:^|[^\w])(?:@)([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)
         }
-        return true
+
+        if (whatsapp.isNotEmpty() && !FieldValidation.checkPhone(whatsapp)) {
+            result = false
+        }
+
+        return result
     }
 
     override fun getValidateMessage(): String {
