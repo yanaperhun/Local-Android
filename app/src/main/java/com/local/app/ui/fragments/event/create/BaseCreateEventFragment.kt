@@ -40,6 +40,7 @@ abstract class BaseCreateEventFragment<T : ViewBinding> : BindableFragment<T>() 
     }
 
     private fun goNext() {
+        onValidate()
         onNext()
         getNextFragment()?.let {
             showFragment(it, true)

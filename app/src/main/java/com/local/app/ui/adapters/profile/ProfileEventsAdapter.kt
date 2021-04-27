@@ -22,7 +22,7 @@ class ProfileEventsAdapter() : RecyclerView.Adapter<ProfileEventsAdapter.VH>() {
         holder.binding.tvPrice.text = events[position].getFormattedPrice()
         events[position].getFirstPhoto()?.url?.md?.let {
             Utils.showRounderCornersImage(holder.binding.ivPhoto, it, Utils
-                .dpToPx(8)
+                .dpToPx(12)
                 .toInt())
         }
 

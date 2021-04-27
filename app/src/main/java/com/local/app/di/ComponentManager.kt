@@ -15,7 +15,7 @@ import com.local.app.di.user.list.EventListModule
 
 class ComponentManager(context: Context) {
 
-    private var appComponent: AppComponent? = null
+    var appComponent: AppComponent? = null
 
     init {
         appComponent = DaggerAppComponent
@@ -28,6 +28,7 @@ class ComponentManager(context: Context) {
     var loginComponent: LoginComponent? = null
     var createEventComponent: CreateEventComponent? = null
     var eventListComponent: EventListComponent? = null
+
 
     fun plusCreateEventComponent(): CreateEventComponent? {
         if (createEventComponent == null) {

@@ -3,12 +3,16 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:minHeight="250dp">
 
     <ImageView
+            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/iv_photo"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="250dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_test"
             tools:layout_editor_absoluteX="0dp"
@@ -46,7 +50,7 @@
 
     <TextView
             android:id="@+id/tvTitle"
-            style="@style/App.Text.Title"
+            style="@style/App.Text.Default.White"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/control_medium_margin"

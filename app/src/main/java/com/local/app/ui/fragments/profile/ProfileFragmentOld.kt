@@ -1,43 +1,43 @@
 package com.local.app.ui.fragments.profile
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.local.app.BindableFragment
 import com.local.app.R
 import com.local.app.data.Profile
-import com.local.app.databinding.FragmentProfileBinding
+import com.local.app.databinding.FragmentProfileOldBinding
+import com.local.app.presentation.viewmodel.event.create.CreateEventViewModel
 import com.local.app.presentation.viewmodel.event.create.LoadProfileState
-import com.local.app.presentation.viewmodel.profile.ProfileViewModel
-import com.local.app.ui.activities.MainActivity
 import com.local.app.ui.activities.event.CreateEventActivity
 import com.local.app.ui.fragments.feed.profile.LikedEventsFragment
 import com.local.app.ui.fragments.feed.profile.MyEventsFragment
+import com.local.app.utils.Utils
 
-class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
-    val viewModel: ProfileViewModel by viewModels()
+class ProfileFragmentOld : BindableFragment<FragmentProfileOldBinding>() {
+
+    val viewModel: CreateEventViewModel by activityViewModels()
 
     override fun setBinding(inflater: LayoutInflater) {
-        binding = FragmentProfileBinding.inflate(inflater)
+        binding = FragmentProfileOldBinding.inflate(inflater)
     }
 
     override fun initUI(state: Bundle?) {
         super.initUI(state)
-        (requireActivity() as MainActivity).showProfileButton(false)
+        binding.btnCreateEvent.setOnClickListener { showCreateEventStartFragment() }
         binding.btnBack.setOnClickListener { requireActivity().finish() }
-        binding.btnCreateEvent.setOnClickListener {
-            startActivity(Intent(requireContext(), CreateEventActivity::class.java))
-        }
-        initViewPager()
+        initTabs()
         subscribeToViewModel()
     }
 
     override fun subscribeToViewModel() {
         super.subscribeToViewModel()
-        viewModel.loadProfileState.observe(this, {
+        viewModel.loadProfileState.observe(this, Observer {
             when (it) {
                 is LoadProfileState.ERROR -> {
                     showErrorAlert(it.error.message)
@@ -53,10 +53,19 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
         viewModel.loadProfile()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initUserData(profile: Profile) {
-        showRoundImage(binding.ivAvatar, profile.getProfileImage()?.url?.getDefault() ?: "")
-        binding.tvName.text = "${profile.firstName} ${profile.lastName}"
-        initTabs()
+        log(profile.toString())
+        binding.title.text = "${profile.firstName} ${profile.lastName}"
+        profile
+            .getProfileImage()
+            ?.let {
+                showImage(binding.toolbarImage, it.url.lg)
+                showRounderCornersImage(binding.ivAvatar, it.url.lg, Utils
+                    .dpToPx(10)
+                    .toInt())
+            }
+
     }
 
     private fun initTabs() {
@@ -81,7 +90,7 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
         }
     }
 
-    private fun initViewPager() {
-
+    private fun showCreateEventStartFragment() {
+        startActivity(Intent(requireContext(), CreateEventActivity::class.java))
     }
 }

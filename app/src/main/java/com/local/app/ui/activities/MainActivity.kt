@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -15,12 +16,12 @@ import com.local.app.data.login.AuthProvider
 import com.local.app.databinding.ActivityMainBinding
 import com.local.app.presentation.viewmodel.main.MainActivityViewModel
 import com.local.app.ui.BaseActivity
-import com.local.app.ui.activities.event.CreateEventActivity
 import com.local.app.ui.dialog.filter.FilterDialogFragment
 import com.local.app.ui.dialog.login.LoginDialog
 import com.local.app.ui.dialog.login.LoginDialogCallback
 import com.local.app.ui.fragments.feed.EventsFeedFragment
 import com.local.app.ui.fragments.login.LoginFragment
+import com.local.app.ui.fragments.profile.ProfileFragment
 import com.local.app.utils.Utils
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
@@ -68,7 +69,6 @@ class MainActivity : BaseActivity() {
     }
 
     fun onUserClick(view: View) {
-        //        showProfileFragment()
         if (viewModel.isProfileLoaded()) {
             showProfileFragment()
         } else {
@@ -83,10 +83,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun showProfileFragment() {
-
-        startActivity(Intent(this, CreateEventActivity::class.java))
-        //        startActivity(Intent(this, UserActivity::class.java))
-        //        showFragment(ProfileFragment(), true)
+        showFragment(ProfileFragment(), true)
     }
 
     private val loginDialogCallback = object : LoginDialogCallback {
@@ -197,6 +194,10 @@ class MainActivity : BaseActivity() {
 
     fun onFilterClick(view: View) {
         FilterDialogFragment().show(supportFragmentManager, "filters_dialog")
+    }
+
+    fun showProfileButton(isShow: Boolean) {
+        binding.ivUser.isVisible = isShow
     }
 
 }
