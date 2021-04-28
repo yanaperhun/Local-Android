@@ -6,9 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -32,6 +30,8 @@ import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
 import com.vk.api.sdk.auth.VKScope
+import com.yuyakaido.android.cardstackview.CardStackLayoutManager
+import com.yuyakaido.android.cardstackview.Direction
 import org.ifpri.frani.ui.states.SimpleLoadingState
 import timber.log.Timber
 
@@ -56,13 +56,12 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
     override fun initUI(state: Bundle?) {
         super.initUI(state)
         binding.ivUser.setOnClickListener { onUserClick() }
-        binding.rvEvents.layoutManager =
-                object : LinearLayoutManager(context, RecyclerView.HORIZONTAL, false) {
-                    override fun canScrollVertically(): Boolean {
-                        return false
-                    }
-                }
-
+        binding.rvEvents.layoutManager = CardStackLayoutManager(context).apply {
+            setMaxDegree(0f)
+            setDirections(Direction.HORIZONTAL)
+            setCanScrollVertical(false)
+            setCanScrollHorizontal(true)
+        }
         binding.rvEvents.onFlingListener = null
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.rvEvents)
@@ -115,18 +114,20 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
 
     private fun showUserAvatar() {
         viewModel
-                .getProfile()
-                ?.let { profile ->
-                    profile
-                            .getProfileImage()
-                            ?.let {
-                                Log.d("MainActivity", "profile image : $it")
-                                showRounderCornersImage(binding.ivUser, it.url.lg, Utils
-                                        .dpToPx(10)
-                                        .toInt())
-                            }
+            .getProfile()
+            ?.let { profile ->
+                profile
+                    .getProfileImage()
+                    ?.let {
+                        Log.d("MainActivity", "profile image : $it")
+                        showRounderCornersImage(
+                            binding.ivUser, it.url.lg, Utils
+                                .dpToPx(10)
+                                .toInt()
+                        )
+                    }
 
-                }
+            }
     }
 
     fun onUserClick() {
@@ -190,11 +191,12 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
 
     private fun startGoogleLogin() {
         val gso = GoogleSignInOptions
-                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(
-                        "63008644469-6ltsjkd5cs2q2mnf5gih15dobbe0bmto.apps.googleusercontent.com")
-                .requestEmail()
-                .build()
+            .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(
+                "63008644469-6ltsjkd5cs2q2mnf5gih15dobbe0bmto.apps.googleusercontent.com"
+            )
+            .requestEmail()
+            .build()
         val mGoogleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
         val signInIntent: Intent = mGoogleSignInClient?.signInIntent as Intent
 
@@ -242,7 +244,8 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
                 return
             }
             Timber.i(
-                    "Account name:${account.displayName} token:${account.idToken} Google id:${account.id}")
+                "Account name:${account.displayName} token:${account.idToken} Google id:${account.id}"
+            )
             viewModel.loadBySocialNetwork(account.idToken!!, AuthProvider.GOOGLE)
 
             // Signed in successfully, show authenticated UI.

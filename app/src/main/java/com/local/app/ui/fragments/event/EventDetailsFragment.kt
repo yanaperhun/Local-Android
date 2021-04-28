@@ -73,7 +73,6 @@ class EventDetailsFragment : BaseFragment() {
 
         if (soundLink.isEmpty()) {
             binding.groupSoundList.isVisible = false
-            return
         } else {
             if (URLUtil.isValidUrl(soundLink)) {
                 binding.btnSoundcloud.setOnClickListener {
