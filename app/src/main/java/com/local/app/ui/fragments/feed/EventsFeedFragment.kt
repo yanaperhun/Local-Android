@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -38,7 +39,37 @@ import timber.log.Timber
 class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
 
     val viewModel: EventsFeedViewModel by viewModels()
+    private var mIsLoadingData = false
+    private val onScrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//        Timber.d("layoutManager.findFirstCompletelyVisibleItemPosition() ==
+//                " + ll.findFirstCompletelyVisibleItemPosition())
+        }
 
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            Timber.d("dx $dx dy $dy")
+            if (dx > 0) {
+                recyclerView.layoutManager?.let {
+                    val ll = it as CardStackLayoutManager
+                    val visibleItemCount: Int = ll.childCount
+                    val totalItemCount: Int = ll.itemCount
+                    val pastVisibleItems: Int = ll.cardStackState.targetPosition
+                    Timber.d("visibleItemCount $visibleItemCount totalItemCount $totalItemCount pastVisibleItems $pastVisibleItems")
+                    if (!mIsLoadingData) {
+                        if (visibleItemCount + pastVisibleItems >= totalItemCount && viewModel.hasNextPage()) {
+                            mIsLoadingData = true
+                            loadNextPage()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun loadNextPage() {
+        Timber.d("loadNextPage")
+
+    }
     private val adapter = object : EventsFeedRVAdapter() {
         override fun onClicks(click: Clicks) {
             when (click) {
@@ -63,6 +94,7 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
             setCanScrollHorizontal(true)
         }
         binding.rvEvents.onFlingListener = null
+        binding.rvEvents.addOnScrollListener(onScrollListener)
         val snapHelper: SnapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(binding.rvEvents)
         binding.rvEvents.adapter = adapter

@@ -74,6 +74,9 @@ class EventsFeedViewModel(application: Application) : AndroidViewModel(applicati
         disposable.dispose()
     }
 
+    fun hasNextPage() : Boolean {
+        return true
+    }
     fun isFeedEmpty(): Boolean {
         return getEventsInteractor.isFeedEmpty()
     }
