@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.local.app.LocalApp
 import com.local.app.data.AppException
-import com.local.app.domain.profile.interactors.GetProfileInteractor
+import com.local.app.domain.profile.interactors.ProfileInteractor
 import com.local.app.presentation.viewmodel.event.create.LoadProfileState
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -15,7 +15,7 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     @Inject
-    lateinit var profileInteractor: GetProfileInteractor
+    lateinit var profileInteractor: ProfileInteractor
     var loadProfileState: MutableLiveData<LoadProfileState> = MutableLiveData()
 
     init {
@@ -39,6 +39,10 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
                                }))
         }
 
+    }
+
+    fun logout() {
+        profileInteractor.logout()
     }
 
     override fun onCleared() {

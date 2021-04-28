@@ -9,7 +9,7 @@ import com.local.app.data.event.create.EventRaw
 import com.local.app.data.photo.PhotoInDir
 import com.local.app.domain.event.create.CreateEventInteractor
 import com.local.app.domain.photo.UploadPhotoInteractor
-import com.local.app.domain.profile.interactors.GetProfileInteractor
+import com.local.app.domain.profile.interactors.ProfileInteractor
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -27,7 +27,7 @@ class CreateEventViewModel(application: Application) : AndroidViewModel(applicat
     lateinit var createEventInteractor: CreateEventInteractor
 
     @Inject
-    lateinit var profileInteractor: GetProfileInteractor
+    lateinit var profileInteractor: ProfileInteractor
 
     @Inject
     lateinit var uploadPhotoInteractor: UploadPhotoInteractor

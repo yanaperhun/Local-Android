@@ -6,7 +6,7 @@ import com.retail.core.prefs.PrefUtils
 import io.reactivex.Single
 import javax.inject.Inject
 
-class ProfileRepositoryImpl @Inject constructor(private var client: RetrofitClient,
+class ProfileRepositoryImpl @Inject  constructor(private var client: RetrofitClient,
                                                 private val prefUtils: PrefUtils) :
     ProfileRepository {
 
@@ -14,6 +14,9 @@ class ProfileRepositoryImpl @Inject constructor(private var client: RetrofitClie
         return prefUtils.getProfile() != null
     }
 
+    override fun logout() {
+        prefUtils.clearProfile()
+    }
     override fun getProfileAsync(): Single<Profile> {
         val profileLocalMem = getProfile()
         profileLocalMem?.let {

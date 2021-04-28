@@ -7,8 +7,9 @@ import com.local.app.data.event.Event
 import com.local.app.databinding.LayoutEventBinding
 import com.local.app.ui.photo.CommonRVEventElements
 
-abstract class EventsFeedRVAdapter(private var events: List<Event>) :
-    RecyclerView.Adapter<EventsFeedRVAdapter.VH>() {
+abstract class EventsFeedRVAdapter : RecyclerView.Adapter<EventsFeedRVAdapter.VH>() {
+
+    var events = ArrayList<Event>()
 
     sealed class Clicks {
         class Like(var eventId: Long) : Clicks()
@@ -41,6 +42,12 @@ abstract class EventsFeedRVAdapter(private var events: List<Event>) :
     }
 
     abstract fun onClicks(click: Clicks)
+
+    fun setEvents(list: List<Event>) {
+        events.clear()
+        events.addAll(list)
+        notifyDataSetChanged()
+    }
 
     inner class VH(var binding: LayoutEventBinding) : RecyclerView.ViewHolder(binding.root) {
 
