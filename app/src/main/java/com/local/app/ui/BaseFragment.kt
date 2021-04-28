@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -50,18 +51,19 @@ open class BaseFragment : Fragment() {
     fun backStep() {
         requireActivity().supportFragmentManager.popBackStack()
     }
+
     fun showToast(message: String) {
         Toast
-            .makeText(requireContext(), message, Toast.LENGTH_SHORT)
-            .show()
+                .makeText(requireContext(), message, Toast.LENGTH_SHORT)
+                .show()
     }
 
     open fun hideKeyboard() {
         val inputMethodManager: InputMethodManager =
-            requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         if (requireActivity().currentFocus != null) {
             inputMethodManager.hideSoftInputFromWindow(requireActivity().currentFocus!!.windowToken,
-                                                       0)
+                    0)
         }
     }
 
@@ -71,39 +73,39 @@ open class BaseFragment : Fragment() {
 
     fun showImage(imageView: ImageView, imageUrl: String) {
         Glide
-            .with(imageView.context)
-            .load(imageUrl)
-            .into(imageView)
+                .with(imageView.context)
+                .load(imageUrl)
+                .into(imageView)
     }
 
     fun showRoundImage(imageView: ImageView, imageUrl: String) {
         Glide
-            .with(imageView.context)
-            .load(imageUrl)
-            .circleCrop()
-            .into(imageView)
+                .with(imageView.context)
+                .load(imageUrl)
+                .circleCrop()
+                .into(imageView)
     }
 
     fun showRounderCornersImage(imageView: ImageView, imageUrl: String, radius: Int) {
         Glide
-            .with(imageView.context)
-            .load(imageUrl)
-            .transform(RoundedCorners(radius))
-            .into(imageView)
+                .with(imageView.context)
+                .load(imageUrl)
+                .transform(RoundedCorners(radius))
+                .into(imageView)
 
     }
 
     fun showErrorAlert(message: String?) {
         showAlert(getString(R.string.alert_title_error),
-                  message ?: "Что то пошло не так. Попробуйте еще раз")
+                message ?: "Что то пошло не так. Попробуйте еще раз")
     }
 
     fun showAlert(title: String, message: String) {
         val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
 
         builder
-            .setMessage(message)
-            .setTitle(title)
+                .setMessage(message)
+                .setTitle(title)
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
@@ -114,6 +116,11 @@ open class BaseFragment : Fragment() {
 
     fun hideProgressDialog() {
         (requireActivity() as BaseActivity).hideProgressDialog()
+    }
+
+    fun focusET(editText: EditText) {
+        editText.requestFocus()
+        editText.setSelection(editText.text.length)
     }
 
 }

@@ -31,6 +31,7 @@ class CreateEventStepPlayListFragment : BaseCreateEventFragment<FragmentCreateEv
     override fun onResume() {
         super.onResume()
         binding.etPlaylist.addTextChangedListener(playlistWatcher)
+        focusET(binding.etPlaylist)
     }
 
     override fun onPause() {

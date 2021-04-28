@@ -32,6 +32,7 @@ import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
 import com.vk.api.sdk.auth.VKScope
+import org.ifpri.frani.ui.states.SimpleLoadingState
 import timber.log.Timber
 
 class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
@@ -71,12 +72,18 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
     override fun onStart() {
         super.onStart()
         viewModel.feedState.observe(this, {
+            showProgress(it is FeedState.Loading)
             when (it) {
                 is FeedState.Error -> it.throwable.printStackTrace()
-
-                is FeedState.Loading -> showProgress()
-
                 is FeedState.Success -> showFeed(it.event)
+            }
+        })
+
+        viewModel.loginState.observe(this, {
+            showProgress(it is SimpleLoadingState.Loading)
+            when (it) {
+                is SimpleLoadingState.Error -> showErrorAlert(it.error.message)
+                is SimpleLoadingState.Success -> showUserAvatar()
             }
         })
 
@@ -84,8 +91,8 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
         showUserAvatar()
     }
 
-    private fun showProgress() {
-
+    private fun showProgress(isShow: Boolean) {
+        binding.progressBar.isVisible = isShow
     }
 
     private fun showFeed(it: List<Event>) {
@@ -143,6 +150,7 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
     private val loginDialogCallback = object : LoginDialogCallback {
 
         override fun onVkSelected() {
+
             startVKLogin()
         }
 

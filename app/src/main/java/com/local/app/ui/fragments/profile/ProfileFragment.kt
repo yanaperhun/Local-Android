@@ -27,7 +27,7 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
 
     override fun initUI(state: Bundle?) {
         super.initUI(state)
-        binding.btnBack.setOnClickListener { requireActivity().finish() }
+        binding.btnBack.setOnClickListener { backStep() }
         binding.btnCreateEvent.setOnClickListener {
             startActivity(Intent(requireContext(), CreateEventActivity::class.java))
         }

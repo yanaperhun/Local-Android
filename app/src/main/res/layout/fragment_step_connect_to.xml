@@ -115,7 +115,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/et_phone"
             app:layout_constraintEnd_toEndOf="@+id/et_phone"
             app:layout_constraintTop_toTopOf="@+id/et_phone"
-            app:srcCompat="@drawable/ic_cross_white" />
+            android:src="@drawable/ic_cross_white" />
 
     <ImageButton
             android:id="@+id/btn_clear_tg"
@@ -126,7 +126,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/et_telegram"
             app:layout_constraintEnd_toEndOf="@+id/et_telegram"
             app:layout_constraintTop_toTopOf="@+id/et_telegram"
-            app:srcCompat="@drawable/ic_cross_white" />
+            android:src="@drawable/ic_cross_white" />
 
     <ImageButton
             android:id="@+id/btn_clear_inst"
@@ -137,7 +137,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/et_instagram"
             app:layout_constraintEnd_toEndOf="@+id/et_instagram"
             app:layout_constraintTop_toTopOf="@+id/et_instagram"
-            app:srcCompat="@drawable/ic_cross_white" />
+            android:src="@drawable/ic_cross_white" />
 
     <ImageButton
             android:id="@+id/btn_clear_whatapp"
@@ -148,7 +148,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/et_whatsapp"
             app:layout_constraintEnd_toEndOf="@+id/et_whatsapp"
             app:layout_constraintTop_toTopOf="@+id/et_whatsapp"
-            app:srcCompat="@drawable/ic_cross_white" />
+            android:src="@drawable/ic_cross_white" />
 
     <TextView
             android:id="@+id/btn_next"

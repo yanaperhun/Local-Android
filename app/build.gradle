@@ -121,5 +121,8 @@ dependencies {
     //phone validation
     implementation 'com.redmadrobot:input-mask-android:6.0.0'
 
+    //SWIPE
+    implementation "com.yuyakaido.android:card-stack-view:2.3.4"
+
 
 }

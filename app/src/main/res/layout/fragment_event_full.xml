@@ -41,7 +41,7 @@
                     tools:text="200P" />
 
             <ImageButton
-                    android:id="@+id/btn_accept"
+                    android:id="@+id/btn_close"
                     android:layout_width="@dimen/accept_btn_size"
                     android:layout_height="@dimen/accept_btn_size"
                     android:layout_marginEnd="@dimen/control_big_margin"
@@ -232,7 +232,7 @@
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="@+id/rv_images"
                     app:layout_constraintTop_toTopOf="@+id/rv_images"
-                    app:srcCompat="@drawable/ic_menu_white" />
+                    android:src="@drawable/ic_menu_white" />
 
             <androidx.constraintlayout.widget.Group
                     android:id="@+id/groupSoundList"
