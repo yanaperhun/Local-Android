@@ -74,7 +74,7 @@ class CreateEventViewModel(application: Application) : AndroidViewModel(applicat
                     .createEvent()
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.single())
-                    .doOnEvent { _, _ -> eventCreationState.postValue(EventCreationState.LOADING) }
+                    .doOnSubscribe { eventCreationState.postValue(EventCreationState.LOADING) }
                     .subscribe({ eventCreationState.postValue(EventCreationState.SUCCESS) }, {
                         eventCreationState.postValue(
                             EventCreationState.ERROR(AppException(it.message)))

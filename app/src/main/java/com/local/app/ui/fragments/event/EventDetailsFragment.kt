@@ -91,7 +91,7 @@ class EventDetailsFragment : BaseFragment() {
                 .dpToPx(8)
                 .toInt())
         }
-        binding.btnClose.setOnClickListener { backStep() }
+        binding.btnCloseEvent.setOnClickListener { requireActivity().finish() }
         binding.btnContact.setOnClickListener { connectWithCreator(event.creator) }
 
         bindConnectToViews(binding.btnContact, event)

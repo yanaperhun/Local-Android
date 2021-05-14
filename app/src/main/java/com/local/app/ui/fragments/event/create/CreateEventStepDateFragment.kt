@@ -1,7 +1,5 @@
 package com.local.app.ui.fragments.event.create
 
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import com.local.app.R
@@ -57,23 +55,22 @@ class CreateEventStepDateFragment : BaseCreateEventFragment<FragmentCreateEventS
 
     private fun showDatePickerDialog() {
         val datePicker =
-            DatePickerFragment(DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+            DatePickerFragment { _, year, month, dayOfMonth ->
                 viewModel.eventBuilder().date = DateUtils.getMillis(year, month, dayOfMonth)
                 setFormattedDate()
-            })
+            }
         datePicker.show(parentFragmentManager, "datePicker")
     }
 
     private fun showTimePickerDialog() {
-
-        val datePicker = TimePickerFragment(TimePickerDialog.OnTimeSetListener { _, hour, minute ->
+        val timePicker = TimePickerFragment { _, hour, minute ->
             log("date millis ${viewModel.eventBuilder().date}")
             log("hour $hour, mins $minute")
             viewModel.eventBuilder().time =
                 viewModel.eventBuilder().date + DateUtils.getMillis(hour, minute)
             setFormattedTime()
-        })
-        datePicker.show(parentFragmentManager, "timePicker")
+        }
+        timePicker.show(parentFragmentManager, "timePicker")
     }
 
     override fun getNextFragment(): BaseFragment {
@@ -87,7 +84,8 @@ class CreateEventStepDateFragment : BaseCreateEventFragment<FragmentCreateEventS
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             super.onTextChanged(s, start, before, count)
-            binding.tvTime.isEnabled = !binding.etInputDate.text.isNullOrEmpty()
+            binding.tvTime.setOnClickListener{if (!binding.etInputDate.text.isNullOrEmpty()) showTimePickerDialog() else
+            showToast("Выберите дату проведения события.")}
         }
     }
 

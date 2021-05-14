@@ -81,4 +81,8 @@ class EventsFeedViewModel(application: Application) : AndroidViewModel(applicati
         return getEventsInteractor.isFeedEmpty()
     }
 
+    fun likeEvent(eventId: Long) {
+
+    }
+
 }

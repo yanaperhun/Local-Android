@@ -4,8 +4,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.local.app.R
 import com.local.app.data.event.Event
-import com.local.app.databinding.ItemEventPreviewBinding
+import com.local.app.databinding.ItemEventProfileBinding
+import com.local.app.utils.DateUtils
+import com.local.app.utils.Utils
 
 class EventListRVAdapter : RecyclerView.Adapter<EventListRVAdapter.VH>() {
 
@@ -16,7 +19,7 @@ class EventListRVAdapter : RecyclerView.Adapter<EventListRVAdapter.VH>() {
         if (inflater == null) {
             inflater = LayoutInflater.from(parent.context)
         }
-        return VH(ItemEventPreviewBinding.inflate(inflater!!, parent, false))
+        return VH(ItemEventProfileBinding.inflate(inflater!!, parent, false))
     }
 
     override fun getItemCount(): Int {
@@ -26,7 +29,20 @@ class EventListRVAdapter : RecyclerView.Adapter<EventListRVAdapter.VH>() {
 
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.binding.tvTitle.text = events[position].eventName
+        val event = events[position]
+        holder.binding.tvTitle.text = event.eventName
+        holder.binding.tvDate.text = DateUtils.changeFormat(
+            event.eventDate,
+            DateUtils.FORMAT_UTC_TZ,
+            DateUtils.FORMAT_dd_MMMM
+        )
+        holder.binding.tvPrice.text = event.getFormattedPrice()
+        Utils.showRounderCornersImage(
+            holder.binding.ivPhoto, event.getFirstPhoto()?.url?.lg ?: "", Utils
+                .dpToPx(8)
+                .toInt(),
+            R.drawable.ic_test
+        )
     }
 
     fun addEvents(events: List<Event>) {
@@ -35,15 +51,16 @@ class EventListRVAdapter : RecyclerView.Adapter<EventListRVAdapter.VH>() {
         notifyDataSetChanged()
     }
 
-    fun isAdapterEmpty() : Boolean{
+    fun isAdapterEmpty(): Boolean {
         return events.isEmpty()
     }
-    inner class VH(val binding: ItemEventPreviewBinding) : RecyclerView.ViewHolder(binding.root) {
+
+    inner class VH(val binding: ItemEventProfileBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
 
-    companion object{
-        fun log(mess:String) {
+    companion object {
+        fun log(mess: String) {
             Log.d("EventListRVAdapter", mess)
         }
     }

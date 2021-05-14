@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.local.app.BindableFragment
 import com.local.app.databinding.FragmentEventListBinding
 import com.local.app.presentation.viewmodel.event.list.EventListState
@@ -17,7 +17,7 @@ abstract class BaseEventListFragment : BindableFragment<FragmentEventListBinding
 
     override fun setBinding(inflater: LayoutInflater) {
         binding = FragmentEventListBinding.inflate(inflater)
-        binding.rvEvents.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvEvents.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvEvents.adapter = adapter
     }
 

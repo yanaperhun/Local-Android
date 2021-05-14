@@ -4,17 +4,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.local.app.data.event.Event
-import com.local.app.databinding.ItemProfileEventBinding
+import com.local.app.databinding.ItemEventProfileBinding
 import com.local.app.utils.Utils
 
 class ProfileEventsAdapter() : RecyclerView.Adapter<ProfileEventsAdapter.VH>() {
     private var events = ArrayList<Event>()
 
-    inner class VH(val binding: ItemProfileEventBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class VH(val binding: ItemEventProfileBinding) : RecyclerView.ViewHolder(binding.root)
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         return VH(
-            ItemProfileEventBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+            ItemEventProfileBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {

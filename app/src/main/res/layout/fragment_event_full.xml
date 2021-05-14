@@ -41,7 +41,7 @@
                     tools:text="200P" />
 
             <ImageButton
-                    android:id="@+id/btn_close"
+                    android:id="@+id/btn_close_event"
                     android:layout_width="@dimen/accept_btn_size"
                     android:layout_height="@dimen/accept_btn_size"
                     android:layout_marginEnd="@dimen/control_big_margin"

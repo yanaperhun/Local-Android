@@ -7,26 +7,36 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.annotation.DrawableRes
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.local.app.R
 
 class Utils {
     companion object {
 
-        fun showImage(imageView: ImageView, imageUrl: String) {
+        fun showImage(
+            imageView: ImageView,
+            imageUrl: String,
+            @DrawableRes placeholder: Int = R.color.colorMainDark
+        ) {
             Glide
                 .with(imageView.context)
                 .load(imageUrl)
-                .placeholder(getMainBGColorDrawable(imageView.context))
+                .placeholder(placeholder)
                 .into(imageView)
         }
 
-        fun showRoundImage(imageView: ImageView, imageUrl: String) {
+        fun showRoundImage(
+            imageView: ImageView,
+            imageUrl: String,
+            @DrawableRes placeholder: Int = R.color.colorMainDark
+        ) {
             Glide
                 .with(imageView.context)
                 .load(imageUrl)
-                .placeholder(getMainBGColorDrawable(imageView.context))
+                .placeholder(placeholder)
                 .circleCrop()
                 .into(imageView)
         }
@@ -35,12 +45,18 @@ class Utils {
         fun getMainBGColorDrawable(context: Context): ColorDrawable {
             return ColorDrawable(context.resources.getColor(R.color.colorMainDark))
         }
-        fun showRounderCornersImage(imageView: ImageView, imageUrl: String, radius: Int) {
+
+        fun showRounderCornersImage(
+            imageView: ImageView,
+            imageUrl: String,
+            radiusPx: Int,
+            @DrawableRes placeholder: Int = R.color.colorMainDark
+        ) {
             Glide
                 .with(imageView.context)
                 .load(imageUrl)
-                .placeholder(getMainBGColorDrawable(imageView.context))
-                .transform(RoundedCorners(radius))
+                .placeholder(placeholder)
+                .transform(CenterCrop(), RoundedCorners(radiusPx))
                 .into(imageView)
 
         }
@@ -55,7 +71,8 @@ class Utils {
 
         fun setSizeForItem(view: View, parent: ViewGroup) {
             val params = view.layoutParams
-            val gridSpace = dpToPx(parent.resources.getDimension(R.dimen.control_small_margin).toInt()).toInt()
+            val gridSpace =
+                dpToPx(parent.resources.getDimension(R.dimen.control_small_margin).toInt()).toInt()
 
             //            Timber.d("Call setSizeForItem : ${parent.width}")
 

@@ -15,31 +15,31 @@ import retrofit2.http.*
 
 interface API {
 
-    @GET("api/feed/guest")
+    @GET("feed/guest")
     fun load(): Single<EventListResponse>
 
-    @POST("api/auth/tokensignin")
+    @POST("auth/tokensignin")
     fun authViaSocNetwork(@Body socNetAuthRequest: SocNetAuthRequest): Single<TokenResponse>
 
-    @POST("api/auth/signin")
+    @POST("auth/signin")
     fun authViaEmail(@Body authRequest: AuthRequest): Single<TokenResponse>
 
-    @POST("api/auth/login")
+    @POST("auth/login")
     fun login(@Body loginRequest: LoginRequest): Single<TokenResponse>
 
-    @GET("api/user")
+    @GET("user")
     fun loadProfile(): Single<Profile>
 
-    @GET("api/events/touched")
+    @GET("events/touched")
     fun loadLikedEvents(@Query("type") type: String): Single<EventListResponse>
 
-    @GET("api/events/my")
+    @GET("events/my")
     fun loadMyEvents(): Single<EventListResponse>
 
-    @POST("api/image-upload")
+    @POST("image-upload")
     @Multipart
     fun loadImage(@Part fileType :  MultipartBody.Part, @Part file:  MultipartBody.Part): Single<PhotoEntity>
 
-    @POST("api/events")
+    @POST("events")
     fun createEvent(@Body build: EventRaw): Single<EventCreateResponse>
 }

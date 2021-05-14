@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
+import android.view.animation.AccelerateInterpolator
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -15,6 +17,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.local.app.BindableFragment
+import com.local.app.R
 import com.local.app.data.event.Event
 import com.local.app.data.login.AuthProvider
 import com.local.app.databinding.FragmentFeedBinding
@@ -31,50 +34,66 @@ import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
 import com.vk.api.sdk.auth.VKScope
-import com.yuyakaido.android.cardstackview.CardStackLayoutManager
-import com.yuyakaido.android.cardstackview.Direction
+import com.yuyakaido.android.cardstackview.*
 import org.ifpri.frani.ui.states.SimpleLoadingState
 import timber.log.Timber
 
 class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
+    private lateinit var cardManager: CardStackLayoutManager
+
+    private fun initCardManager(): CardStackLayoutManager {
+        val setting = SwipeAnimationSetting.Builder()
+            .setDuration(Duration.Fast.duration)
+            .setInterpolator(AccelerateInterpolator())
+            .build()
+
+        return CardStackLayoutManager(context, cardStackListener).apply {
+            setMaxDegree(30f)
+
+            setSwipeThreshold(0.2f)
+            setDirections(Direction.HORIZONTAL)
+            setCanScrollVertical(true)
+            setCanScrollHorizontal(true)
+            setSwipeAnimationSetting(setting)
+        }
+    }
+
+    private val cardStackListener: CardStackListener by lazy {
+        object : CardStackListener {
+            override fun onCardDragging(direction: Direction?, ratio: Float) {
+            }
+
+            override fun onCardSwiped(direction: Direction?) {
+            }
+
+            override fun onCardRewound() {
+            }
+
+            override fun onCardCanceled() {
+            }
+
+            override fun onCardAppeared(view: View?, position: Int) {
+                Timber.d("onCardAppeared : $position")
+            }
+
+            override fun onCardDisappeared(view: View?, position: Int) {
+                Timber.d("onCardDisappeared : $position")
+            }
+
+        }
+    }
 
     val viewModel: EventsFeedViewModel by viewModels()
     private var mIsLoadingData = false
-    private val onScrollListener = object : RecyclerView.OnScrollListener() {
-        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-//        Timber.d("layoutManager.findFirstCompletelyVisibleItemPosition() ==
-//                " + ll.findFirstCompletelyVisibleItemPosition())
-        }
-
-        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-            Timber.d("dx $dx dy $dy")
-            if (dx > 0) {
-                recyclerView.layoutManager?.let {
-                    val ll = it as CardStackLayoutManager
-                    val visibleItemCount: Int = ll.childCount
-                    val totalItemCount: Int = ll.itemCount
-                    val pastVisibleItems: Int = ll.cardStackState.targetPosition
-                    Timber.d("visibleItemCount $visibleItemCount totalItemCount $totalItemCount pastVisibleItems $pastVisibleItems")
-                    if (!mIsLoadingData) {
-                        if (visibleItemCount + pastVisibleItems >= totalItemCount && viewModel.hasNextPage()) {
-                            mIsLoadingData = true
-                            loadNextPage()
-                        }
-                    }
-                }
-            }
-        }
-    }
 
     private fun loadNextPage() {
         Timber.d("loadNextPage")
-
     }
+
     private val adapter = object : EventsFeedRVAdapter() {
         override fun onClicks(click: Clicks) {
             when (click) {
-                is Clicks.Dislike -> skipEvent(click.eventId)
-                is Clicks.Like -> likeEvent(click.eventId)
+
                 is Clicks.Event -> openEventScreen(click.eventId)
             }
         }
@@ -84,20 +103,40 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
         binding = FragmentFeedBinding.inflate(inflater)
     }
 
+
     override fun initUI(state: Bundle?) {
         super.initUI(state)
         binding.ivUser.setOnClickListener { onUserClick() }
-        binding.rvEvents.layoutManager = CardStackLayoutManager(context).apply {
-            setMaxDegree(0f)
-            setDirections(Direction.HORIZONTAL)
-            setCanScrollVertical(false)
-            setCanScrollHorizontal(true)
+
+        if (binding.rvEvents.layoutManager == null) {
+            cardManager = initCardManager()
+            binding.rvEvents.layoutManager = cardManager
+            binding.rvEvents.onFlingListener = null
+            binding.rvEvents.addOnScrollListener(onScrollListener)
+
+            val snapHelper: SnapHelper = PagerSnapHelper()
+            snapHelper.attachToRecyclerView(binding.rvEvents)
+            binding.rvEvents.adapter = adapter
+
+            binding.ivDislike.setOnClickListener {
+                val setting = SwipeAnimationSetting.Builder()
+                    .setDirection(Direction.Right)
+                    .setDuration(Duration.Normal.duration)
+                    .setInterpolator(AccelerateInterpolator())
+                    .build()
+                cardManager.setSwipeAnimationSetting(setting)
+                binding.rvEvents.swipe()
+            }
+            binding.ivLike.setOnClickListener {
+                val setting = SwipeAnimationSetting.Builder()
+                    .setDirection(Direction.Left)
+                    .setDuration(Duration.Normal.duration)
+                    .setInterpolator(AccelerateInterpolator())
+                    .build()
+                cardManager.setSwipeAnimationSetting(setting)
+                binding.rvEvents.swipe()
+            }
         }
-        binding.rvEvents.onFlingListener = null
-        binding.rvEvents.addOnScrollListener(onScrollListener)
-        val snapHelper: SnapHelper = PagerSnapHelper()
-        snapHelper.attachToRecyclerView(binding.rvEvents)
-        binding.rvEvents.adapter = adapter
     }
 
     override fun onStart() {
@@ -131,7 +170,7 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
     }
 
     private fun likeEvent(eventId: Long) {
-        openEventScreen(eventId)
+        viewModel.likeEvent(eventId)
     }
 
     private fun openEventScreen(eventId: Long) {
@@ -155,7 +194,7 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
                         showRounderCornersImage(
                             binding.ivUser, it.url.lg, Utils
                                 .dpToPx(10)
-                                .toInt()
+                                .toInt(), R.drawable.ic_user
                         )
                     }
 
@@ -248,7 +287,7 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
         val callback = object : VKAuthCallback {
             override fun onLogin(token: VKAccessToken) {
                 Timber.d(token.toString())
-                Timber.d("LOG TOKEN")
+                Timber.d("LOG TOKEN $token.")
                 System.out.println("PRINTLN!!!!!!! ${token.email} ${token.accessToken}")
                 viewModel.loadBySocialNetwork(token.accessToken, AuthProvider.VK)
             }
@@ -291,6 +330,32 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
 
     fun showProfileButton(isShow: Boolean) {
         binding.ivUser.isVisible = isShow
+    }
+
+    private val onScrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//        Timber.d("layoutManager.findFirstCompletelyVisibleItemPosition() ==
+//                " + ll.findFirstCompletelyVisibleItemPosition())
+        }
+
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            Timber.d("dx $dx dy $dy")
+            if (dx > 0) {
+                recyclerView.layoutManager?.let {
+                    val ll = it as CardStackLayoutManager
+                    val visibleItemCount: Int = ll.childCount
+                    val totalItemCount: Int = ll.itemCount
+                    val pastVisibleItems: Int = ll.cardStackState.targetPosition
+                    Timber.d("visibleItemCount $visibleItemCount totalItemCount $totalItemCount pastVisibleItems $pastVisibleItems")
+                    if (!mIsLoadingData) {
+                        if (visibleItemCount + pastVisibleItems >= totalItemCount && viewModel.hasNextPage()) {
+                            mIsLoadingData = true
+                            loadNextPage()
+                        }
+                    }
+                }
+            }
+        }
     }
 
     companion object {

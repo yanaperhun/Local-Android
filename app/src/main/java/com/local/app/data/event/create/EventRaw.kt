@@ -9,7 +9,7 @@ class EventRaw internal constructor(@SerializedName("eventName") val title: Stri
                                     val tags: List<String> = emptyList(),
                                     @SerializedName("eventDate") val date: Long = 0,
                                     val time: Long = 0L,
-                                    @SerializedName("cost") val price: String = "Бесплатно",
+                                    @SerializedName("cost") val price: String = "Free",
                                     @SerializedName(
                                         "eventLocation") val address: EventAddress? = null,
                                     var phone: String = "",
@@ -29,7 +29,7 @@ class EventRaw internal constructor(@SerializedName("eventName") val title: Stri
         var tags: List<String> = emptyList()
         var date: Long = 0
         var time: Long = 0L
-        var price: String = "Бесплатно"
+        var price: String = "Free"
         var eventAddress: EventAddress? = null
         var phone: String = ""
         var whatsapp: String = ""

@@ -43,7 +43,7 @@ data class Event(var id: Long,
     }
 
     fun getFormattedPrice(): String {
-        return if (cost.isNullOrEmpty() || cost == "0") {
+        return if (cost.isNullOrEmpty() || cost == "0"  || cost == "Бесплатно") {
             "Free"
         } else {
             cost

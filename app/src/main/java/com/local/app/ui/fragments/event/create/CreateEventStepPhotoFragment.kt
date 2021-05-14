@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewTreeObserver
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.local.app.R
 import com.local.app.databinding.FragmentCreateEventStepPhotoBinding
@@ -77,7 +76,7 @@ class CreateEventStepPhotoFragment :
         binding.rvPhotos.addItemDecoration(BottomTopItemDecoration(Utils
                                                                        .dpToPx(8)
                                                                        .toInt()))
-        viewModel.eventCreationState.observe(this, Observer {
+        viewModel.eventCreationState.observe(this, {
             if (it is EventCreationState.LOADING) {
                 showProgressDialog()
             } else {
@@ -88,6 +87,7 @@ class CreateEventStepPhotoFragment :
                     showErrorAlert(it.error.message)
                 }
                 is EventCreationState.SUCCESS -> {
+                    requireActivity().finish()
                     showToast("Событие создано")
                 }
             }
@@ -102,7 +102,7 @@ class CreateEventStepPhotoFragment :
             }
         })
 
-        viewModel.photoLoadingState.observe(this, Observer {
+        viewModel.photoLoadingState.observe(this, {
             adapter.notifyDataSetChanged()
             when (it) {
                 is EventCreationState.ERROR -> {

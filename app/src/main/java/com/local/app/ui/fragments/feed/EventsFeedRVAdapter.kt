@@ -34,9 +34,8 @@ abstract class EventsFeedRVAdapter : RecyclerView.Adapter<EventsFeedRVAdapter.VH
         vh.binding.rvTags.setRecycledViewPool(RecyclerView.RecycledViewPool())
         vh.binding.tvPrice.text = events[position].getFormattedPrice()
         val adapterPos = vh.adapterPosition
-        vh.binding.ivDislike.setOnClickListener { onClicks(Clicks.Dislike(events[adapterPos].id)) }
-        vh.binding.ivLike.setOnClickListener { onClicks(Clicks.Like(events[adapterPos].id)) }
         vh.binding.tvName.setOnClickListener { onClicks(Clicks.Event(events[adapterPos].id)) }
+        vh.binding.btnInfo.setOnClickListener { onClicks(Clicks.Event(events[adapterPos].id)) }
         vh.binding.viewBlur.setOnClickListener { onClicks(Clicks.Event(events[adapterPos].id)) }
 
     }
