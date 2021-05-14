@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <Transition
@@ -15,16 +15,7 @@
     </Transition>
 
     <ConstraintSet android:id="@+id/expanded">
-        <Constraint
-                android:id="@id/toolbar_image"
-                android:layout_height="290dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-            <CustomAttribute
-                    app:attributeName="imageAlpha"
-                    app:customIntegerValue="255" />
-        </Constraint>
+
 
         <Constraint
                 android:id="@+id/btn_create_event"
@@ -32,7 +23,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
         <Constraint
-                android:id="@id/title"
+                android:id="@id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/control_medium_margin"
