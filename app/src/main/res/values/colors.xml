@@ -16,4 +16,5 @@
     <color name="colorGreen">#6AD3A7</color>
     <color name="colorGreyLight">#686868</color>
     <color name="colorHint">@color/colorGreyLight</color>
+    <color name="colorDarkGray">#252525</color>
 </resources>

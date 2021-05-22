@@ -22,5 +22,8 @@ interface AppComponent {
     fun plusCreateEventFragment(module: CreateEventModule): CreateEventComponent
     fun plusEventListComponent(module: EventListModule): EventListComponent
 
+    fun plusProfileComponent(module: ProfileModule): ProfileComponent
+
+
     fun inject(profileViewModel: ProfileViewModel)
 }

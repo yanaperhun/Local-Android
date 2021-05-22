@@ -13,7 +13,7 @@
     <string name="create_account">Создать аккаунт</string>
     <string name="name">Имя</string>
     <string name="email">E-mail</string>
-    <string name="password">Пароль</string>
+    <string name="password">password</string>
     <string name="login">Войти</string>
     <string name="error_validate_name">Введите имя пользователя</string>
     <string name="error_validate_pass">Введен не корректный пароль</string>
@@ -54,6 +54,15 @@
     <string name="hint_address">Введите адрес</string>
     <string name="hint_play_list">Введите ссылку на плейлист</string>
     <string name="error_validate_step_price">Введите цену</string>
+
+    <string name="settings">Настройки</string>
+    <string name="general_information">Общие сведения</string>
+    <string name="contact_details">Контактные данные</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="phone_number_whats_app">Номер телефона в WhatsApp</string>
+    <string name="telegram_name">\@yourname</string>
+    <string name="instagram_yourname">https://instagram.com/yourname</string>
+
     <string name="chose_connect_method">Выберите способ связи</string>
     <string name="how_to_connect">Как с вами связаться?</string>
     <string name="hint_whatapp">+7 (977) 000-00-00</string>
@@ -61,8 +70,9 @@
     <string name="hint_instagram">\@username</string>
     <string name="hint_phone">+7 (977) 000-00-00</string>
     <string name="error_validate_connect_to">Проверьте правильность введенных данных</string>
-    <string name="settings">Настройки</string>
+
     <string name="logout">Выйти</string>
     <string name="enter_with">Войдите с помощью</string>
+
 
 </resources>
