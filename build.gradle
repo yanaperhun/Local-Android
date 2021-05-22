@@ -58,5 +58,5 @@ ext {
     daggerVersion = '2.28'
     butterknifeVersion = '8.8.1'
     okhttpVersion = '3.10.0'
-    logginInterceptor = '3.8.0'
+    logginInterceptor = '4.4.0'
 }

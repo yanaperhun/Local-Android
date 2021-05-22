@@ -22,6 +22,7 @@ import com.local.app.data.event.Event
 import com.local.app.data.login.AuthProvider
 import com.local.app.databinding.FragmentFeedBinding
 import com.local.app.presentation.viewmodel.feed.EventsFeedViewModel
+import com.local.app.ui.activities.MainActivity
 import com.local.app.ui.activities.event.EXTRAS_EVENT_ID
 import com.local.app.ui.activities.event.EventActivity
 import com.local.app.ui.dialog.login.LoginDialog
@@ -31,8 +32,6 @@ import com.local.app.ui.fragments.login.LoginFragment
 import com.local.app.ui.fragments.profile.ProfileFragment
 import com.local.app.utils.Utils
 import com.vk.api.sdk.VK
-import com.vk.api.sdk.auth.VKAccessToken
-import com.vk.api.sdk.auth.VKAuthCallback
 import com.vk.api.sdk.auth.VKScope
 import com.yuyakaido.android.cardstackview.*
 import org.ifpri.frani.ui.states.SimpleLoadingState
@@ -141,6 +140,7 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
 
     override fun onStart() {
         super.onStart()
+        Timber.d("===> onStart")
         viewModel.feedState.observe(this, {
             showProgress(it is FeedState.Loading)
             when (it) {
@@ -153,12 +153,21 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
             showProgress(it is SimpleLoadingState.Loading)
             when (it) {
                 is SimpleLoadingState.Error -> showErrorAlert(it.error.message)
-                is SimpleLoadingState.Success -> showUserAvatar()
+                is SimpleLoadingState.Success -> updateUI()
             }
         })
 
         if (viewModel.isFeedEmpty()) viewModel.loadFeed()
-        showUserAvatar()
+        updateUI()
+        val parentActivty = requireActivity() as MainActivity
+        parentActivty.onLoginListener = callback
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Timber.d("===> onStop")
+        val parentActivty = requireActivity() as MainActivity
+        parentActivty.onLoginListener = null
     }
 
     private fun showProgress(isShow: Boolean) {
@@ -183,6 +192,9 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
 
     }
 
+    private fun updateUI() {
+        showUserAvatar()
+    }
     private fun showUserAvatar() {
         viewModel
             .getProfile()
@@ -284,22 +296,7 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
         }
 
         //if VK
-        val callback = object : VKAuthCallback {
-            override fun onLogin(token: VKAccessToken) {
-                Timber.d(token.toString())
-                Timber.d("LOG TOKEN $token.")
-                System.out.println("PRINTLN!!!!!!! ${token.email} ${token.accessToken}")
-                viewModel.loadBySocialNetwork(token.accessToken, AuthProvider.VK)
-            }
-
-            override fun onLoginFailed(errorCode: Int) {
-                // User didn't pass authorization
-                showToast("Vk login failed error $errorCode")
-            }
-        }
-        if (data == null || !VK.onActivityResult(requestCode, resultCode, data, callback)) {
-            super.onActivityResult(requestCode, resultCode, data)
-        }
+        //BK login processing in activity
 
         //if instagram
 
@@ -317,7 +314,7 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
             Timber.i(
                 "Account name:${account.displayName} token:${account.idToken} Google id:${account.id}"
             )
-            viewModel.loadBySocialNetwork(account.idToken!!, AuthProvider.GOOGLE)
+            viewModel.loginBySocialNetwork(account.idToken!!, AuthProvider.GOOGLE)
 
             // Signed in successfully, show authenticated UI.
 
@@ -330,6 +327,12 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
 
     fun showProfileButton(isShow: Boolean) {
         binding.ivUser.isVisible = isShow
+    }
+
+    val callback = object : MainActivity.OnLoginEnded {
+        override fun onLogin() {
+            updateUI()
+        }
     }
 
     private val onScrollListener = object : RecyclerView.OnScrollListener() {

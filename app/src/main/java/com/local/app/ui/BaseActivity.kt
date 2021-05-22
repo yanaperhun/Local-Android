@@ -88,9 +88,9 @@ open class BaseActivity : FragmentActivity() {
         })
     }
 
-    fun showToast(message: String) {
+    fun showToast(message: String? = "") {
         Toast
-            .makeText(this, message, Toast.LENGTH_SHORT)
+            .makeText(this, message?:"", Toast.LENGTH_SHORT)
             .show()
     }
 }

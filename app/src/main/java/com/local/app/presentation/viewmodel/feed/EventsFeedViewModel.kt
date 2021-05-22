@@ -1,6 +1,7 @@
 package com.local.app.presentation.viewmodel.feed
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import com.local.app.LocalApp
 import com.local.app.data.AppException
@@ -15,6 +16,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import org.ifpri.frani.ui.states.SimpleLoadingState
 import org.ifpri.frani.utils.SingleLiveEvent
+import timber.log.Timber
 import javax.inject.Inject
 
 class EventsFeedViewModel(application: Application) : AndroidViewModel(application) {
@@ -37,12 +39,14 @@ class EventsFeedViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun loadFeed() {
-        disposable.add(getEventsInteractor
+        disposable.add(
+            getEventsInteractor
                 .loadFeed()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ feedState.value = FeedState.Success(it) },
-                        { feedState.value = FeedState.Error(it) }))
+                    { feedState.value = FeedState.Error(it) })
+        )
     }
 
     fun getProfileAsync(): Single<Profile> {
@@ -57,16 +61,24 @@ class EventsFeedViewModel(application: Application) : AndroidViewModel(applicati
         return profileDomainFacade.isProfileLoaded()
     }
 
-    fun loadBySocialNetwork(token: String, provider: AuthProvider) {
+    fun loginBySocialNetwork(token: String, provider: AuthProvider) {
+        Timber.d("loginBySocialNetwork")
+        Log.d("Local=>", "loginBySocialNetwork")
         disposable.add(profileDomainFacade
-                .loginBySocNetworks(token, provider)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ loginState.postValue(SimpleLoadingState.Success(it)) }, {
-                    it.printStackTrace()
-                    loginState.value = SimpleLoadingState.Error(AppException(it.message
-                            ?: "Ошибка при попытке авторизации token: $token, AuthProvider : ${provider.title}"))
-                }))
+            .loginBySocNetworks(token, provider)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { Timber.d("loginBySocialNetwork") }
+            .subscribe({ loginState.postValue(SimpleLoadingState.Success(it)) }, {
+                it.printStackTrace()
+                loginState.value = SimpleLoadingState.Error(
+                    AppException(
+                        it.message
+                            ?: "Ошибка при попытке авторизации token: $token, AuthProvider : ${provider.title}"
+                    )
+                )
+            })
+        )
     }
 
     override fun onCleared() {
@@ -74,9 +86,10 @@ class EventsFeedViewModel(application: Application) : AndroidViewModel(applicati
         disposable.dispose()
     }
 
-    fun hasNextPage() : Boolean {
+    fun hasNextPage(): Boolean {
         return true
     }
+
     fun isFeedEmpty(): Boolean {
         return getEventsInteractor.isFeedEmpty()
     }

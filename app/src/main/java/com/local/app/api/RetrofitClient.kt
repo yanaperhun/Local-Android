@@ -37,8 +37,8 @@ class RetrofitClient(val prefUtils: PrefUtils) {
 
         val client = OkHttpClient
             .Builder()
-            .addInterceptor(HeaderInterceptor(prefUtils.getToken()))
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(HeaderInterceptor(prefUtils.getToken()))
             .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT, TimeUnit.SECONDS)
             .writeTimeout(TIMEOUT, TimeUnit.SECONDS)

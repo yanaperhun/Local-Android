@@ -11,7 +11,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
+        versionName "0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -83,11 +83,11 @@ dependencies {
     kapt 'androidx.room:room-compiler:' + rootProject.archRoomVersion
 
     //AUTH
-    implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
     implementation 'com.vk:androidsdk:2.1.1'
 
     //NETWORK
-    implementation 'com.squareup.okhttp3:okhttp:4.2.2'
+    implementation 'com.squareup.okhttp3:okhttp:4.4.0'
 
     //dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
