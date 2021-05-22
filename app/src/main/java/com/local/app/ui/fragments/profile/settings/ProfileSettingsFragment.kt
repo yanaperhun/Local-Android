@@ -4,32 +4,17 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import com.local.app.BindableFragment
 import com.local.app.R
 import com.local.app.data.Profile
 import com.local.app.databinding.FragmentProfileSettingsBinding
-import com.local.app.ui.BaseFragment
 
-class ProfileSettingsFragment : BaseFragment() {
+class ProfileSettingsFragment : BindableFragment<FragmentProfileSettingsBinding>() {
 
-    private lateinit var viewModel: ProfileSettingsViewModel
-    lateinit var binding: FragmentProfileSettingsBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentProfileSettingsBinding.inflate(inflater)
-        viewModel = ViewModelProviders
-            .of(this)
-            .get(ProfileSettingsViewModel::class.java)
-
-        initUI(savedInstanceState)
-        subscribeToViewModel()
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
+    val viewModel: ProfileSettingsViewModel by viewModels()
 
     override fun subscribeToViewModel() {
         viewModel.personalDataInfo.observe(viewLifecycleOwner, Observer(::showProfileInfo))
@@ -37,10 +22,13 @@ class ProfileSettingsFragment : BaseFragment() {
     }
 
     override fun initUI(state: Bundle?) {
+        super.initUI(state)
         binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
         binding.btnClose.setOnClickListener { requireActivity().finish() }
 
         initOnEditorActionListener()
+        subscribeToViewModel()
+        viewModel.loadProfileInfo()
     }
 
     private fun initOnEditorActionListener() {
@@ -118,6 +106,8 @@ class ProfileSettingsFragment : BaseFragment() {
 
 
     private fun showProfileInfo(profile: Profile) {
+        binding.progressProfileSettings.visibility = View.GONE
+        binding.nestedScrollProfileSettings.visibility = View.VISIBLE
         binding.etUserName.setText(profile.getUserName())
         binding.etUserEmail.setText(profile.email ?: getString(R.string.email))
         binding.etPhoneNumber.setText(profile.phone ?: getString(R.string.phone_number))
@@ -140,5 +130,9 @@ class ProfileSettingsFragment : BaseFragment() {
                 binding.nestedScrollProfileSettings.visibility = View.INVISIBLE
             }
         }
+    }
+
+    override fun setBinding(inflater: LayoutInflater) {
+        binding = FragmentProfileSettingsBinding.inflate(inflater)
     }
 }

@@ -17,6 +17,7 @@ import com.local.app.presentation.viewmodel.profile.ProfileViewModel
 import com.local.app.ui.activities.event.CreateEventActivity
 import com.local.app.ui.fragments.feed.profile.LikedEventsFragment
 import com.local.app.ui.fragments.feed.profile.MyEventsFragment
+import com.local.app.ui.fragments.profile.settings.ProfileSettingsFragment
 
 class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
     val viewModel: ProfileViewModel by viewModels()
@@ -57,7 +58,7 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
     }
 
     private fun showSettingsFragment() {
-
+        showFragment(ProfileSettingsFragment(), true)
     }
 
     private fun logout() {

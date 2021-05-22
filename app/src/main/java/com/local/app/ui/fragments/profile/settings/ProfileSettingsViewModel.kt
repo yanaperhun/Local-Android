@@ -4,9 +4,10 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.local.app.LocalApp
 import com.local.app.data.AppException
 import com.local.app.data.Profile
-import com.local.app.domain.profile.interactors.GetProfileInteractor
+import com.local.app.domain.profile.interactors.ProfileInteractor
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -15,7 +16,7 @@ import javax.inject.Inject
 class ProfileSettingsViewModel(application: Application) : AndroidViewModel(application) {
 
     @Inject
-    lateinit var profileInteractor: GetProfileInteractor
+    lateinit var profileInteractor: ProfileInteractor
 
     val state = MutableLiveData<ProfileSettingsState>()
 
@@ -25,10 +26,10 @@ class ProfileSettingsViewModel(application: Application) : AndroidViewModel(appl
     private val compositeDisposable = CompositeDisposable()
 
     init {
-        loadProfileInfo()
+        getApplication<LocalApp>().daggerManager.appComponent?.inject(this)
     }
 
-    private fun loadProfileInfo() {
+    public fun loadProfileInfo() {
         if (profileInteractor.isProfileLoaded()) {
             _personalDataInfo.postValue(profileInteractor.getProfile())
         } else {
@@ -116,13 +117,13 @@ class ProfileSettingsViewModel(application: Application) : AndroidViewModel(appl
         )
     }
 
-    fun updateUserPassword(password: String){
+    fun updateUserPassword(password: String) {
         compositeDisposable.add(
             profileInteractor.updateUserPassword(password)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.single())
                 .subscribe(
-                    {  },
+                    { },
                     { state.value = ProfileSettingsState.ERROR(AppException(it.message)) })
         )
     }

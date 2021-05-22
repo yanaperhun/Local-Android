@@ -9,6 +9,7 @@ import com.local.app.di.login.LoginModule
 import com.local.app.di.user.list.EventListComponent
 import com.local.app.di.user.list.EventListModule
 import com.local.app.presentation.viewmodel.profile.ProfileViewModel
+import com.local.app.ui.fragments.profile.settings.ProfileSettingsViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -22,8 +23,6 @@ interface AppComponent {
     fun plusCreateEventFragment(module: CreateEventModule): CreateEventComponent
     fun plusEventListComponent(module: EventListModule): EventListComponent
 
-    fun plusProfileComponent(module: ProfileModule): ProfileComponent
-
-
     fun inject(profileViewModel: ProfileViewModel)
+    fun inject(profileViewModel: ProfileSettingsViewModel)
 }
