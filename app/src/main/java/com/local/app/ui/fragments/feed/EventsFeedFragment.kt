@@ -39,49 +39,6 @@ import timber.log.Timber
 
 class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
     private lateinit var cardManager: CardStackLayoutManager
-
-    private fun initCardManager(): CardStackLayoutManager {
-        val setting = SwipeAnimationSetting.Builder()
-            .setDuration(Duration.Fast.duration)
-            .setInterpolator(AccelerateInterpolator())
-            .build()
-
-        return CardStackLayoutManager(context, cardStackListener).apply {
-            setMaxDegree(30f)
-
-            setSwipeThreshold(0.2f)
-            setDirections(Direction.HORIZONTAL)
-            setCanScrollVertical(true)
-            setCanScrollHorizontal(true)
-            setSwipeAnimationSetting(setting)
-        }
-    }
-
-    private val cardStackListener: CardStackListener by lazy {
-        object : CardStackListener {
-            override fun onCardDragging(direction: Direction?, ratio: Float) {
-            }
-
-            override fun onCardSwiped(direction: Direction?) {
-            }
-
-            override fun onCardRewound() {
-            }
-
-            override fun onCardCanceled() {
-            }
-
-            override fun onCardAppeared(view: View?, position: Int) {
-                Timber.d("onCardAppeared : $position")
-            }
-
-            override fun onCardDisappeared(view: View?, position: Int) {
-                Timber.d("onCardDisappeared : $position")
-            }
-
-        }
-    }
-
     val viewModel: EventsFeedViewModel by viewModels()
     private var mIsLoadingData = false
 
@@ -92,7 +49,6 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
     private val adapter = object : EventsFeedRVAdapter() {
         override fun onClicks(click: Clicks) {
             when (click) {
-
                 is Clicks.Event -> openEventScreen(click.eventId)
             }
         }
@@ -102,40 +58,10 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
         binding = FragmentFeedBinding.inflate(inflater)
     }
 
-
     override fun initUI(state: Bundle?) {
         super.initUI(state)
         binding.ivUser.setOnClickListener { onUserClick() }
-
-        if (binding.rvEvents.layoutManager == null) {
-            cardManager = initCardManager()
-            binding.rvEvents.layoutManager = cardManager
-            binding.rvEvents.onFlingListener = null
-            binding.rvEvents.addOnScrollListener(onScrollListener)
-
-            val snapHelper: SnapHelper = PagerSnapHelper()
-            snapHelper.attachToRecyclerView(binding.rvEvents)
-            binding.rvEvents.adapter = adapter
-
-            binding.ivDislike.setOnClickListener {
-                val setting = SwipeAnimationSetting.Builder()
-                    .setDirection(Direction.Right)
-                    .setDuration(Duration.Normal.duration)
-                    .setInterpolator(AccelerateInterpolator())
-                    .build()
-                cardManager.setSwipeAnimationSetting(setting)
-                binding.rvEvents.swipe()
-            }
-            binding.ivLike.setOnClickListener {
-                val setting = SwipeAnimationSetting.Builder()
-                    .setDirection(Direction.Left)
-                    .setDuration(Duration.Normal.duration)
-                    .setInterpolator(AccelerateInterpolator())
-                    .build()
-                cardManager.setSwipeAnimationSetting(setting)
-                binding.rvEvents.swipe()
-            }
-        }
+        initCardRV()
     }
 
     override fun onStart() {
@@ -182,19 +108,20 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
         viewModel.likeEvent(eventId)
     }
 
+    private fun dislikeEvent(eventId: Long) {
+        viewModel.dislikeEvent(eventId)
+    }
+
     private fun openEventScreen(eventId: Long) {
         val i = Intent(context, EventActivity::class.java)
         i.putExtra(EXTRAS_EVENT_ID, eventId)
         startActivity(i)
     }
 
-    private fun skipEvent(eventId: Long) {
-
-    }
-
     private fun updateUI() {
         showUserAvatar()
     }
+
     private fun showUserAvatar() {
         viewModel
             .getProfile()
@@ -229,31 +156,6 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
 
     private fun showProfileFragment() {
         showFragment(ProfileFragment(), true)
-    }
-
-    private val loginDialogCallback = object : LoginDialogCallback {
-
-        override fun onVkSelected() {
-
-            startVKLogin()
-        }
-
-        override fun onInstagramSelected() {
-
-        }
-
-        override fun onGoogleSelected() {
-            startGoogleLogin()
-        }
-
-        override fun onEmailSelected() {
-            openLoginScreen()
-        }
-
-        override fun onAuthSelected() {
-            openAuthScreen()
-        }
-
     }
 
     private fun openAuthScreen() {
@@ -294,18 +196,13 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             handleSignInResult(task)
         }
-
         //if VK
         //BK login processing in activity
-
-        //if instagram
-
     }
 
     private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
         try {
             val account = completedTask.getResult(ApiException::class.java)
-
             if (account == null || account.idToken.isNullOrEmpty()) {
                 Timber.e("Google login error : account ir token is empty")
                 showToast("Google login error : account ir token is empty")
@@ -316,11 +213,8 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
             )
             viewModel.loginBySocialNetwork(account.idToken!!, AuthProvider.GOOGLE)
 
-            // Signed in successfully, show authenticated UI.
 
         } catch (e: ApiException) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
             e.printStackTrace()
         }
     }
@@ -332,6 +226,118 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
     val callback = object : MainActivity.OnLoginEnded {
         override fun onLogin() {
             updateUI()
+        }
+    }
+
+    fun initCardRV() {
+        if (binding.rvEvents.layoutManager == null) {
+            cardManager = initCardManager()
+            binding.rvEvents.layoutManager = cardManager
+            binding.rvEvents.onFlingListener = null
+            binding.rvEvents.addOnScrollListener(onScrollListener)
+
+            val snapHelper: SnapHelper = PagerSnapHelper()
+            snapHelper.attachToRecyclerView(binding.rvEvents)
+            binding.rvEvents.adapter = adapter
+
+            binding.ivDislike.setOnClickListener {
+                val setting = SwipeAnimationSetting.Builder()
+                    .setDirection(Direction.Right)
+                    .setDuration(Duration.Normal.duration)
+                    .setInterpolator(AccelerateInterpolator())
+                    .build()
+                cardManager.setSwipeAnimationSetting(setting)
+                binding.rvEvents.swipe()
+                onDislike()
+            }
+            binding.ivLike.setOnClickListener {
+                val setting = SwipeAnimationSetting.Builder()
+                    .setDirection(Direction.Left)
+                    .setDuration(Duration.Normal.duration)
+                    .setInterpolator(AccelerateInterpolator())
+                    .build()
+                cardManager.setSwipeAnimationSetting(setting)
+                binding.rvEvents.swipe()
+                onLiked()
+            }
+        }
+    }
+
+    private fun onLiked() {
+        val currentpos = cardManager.cardStackState.targetPosition
+        Timber.d("current pos ${cardManager.cardStackState.targetPosition} ${cardManager.cardStackState.topPosition}")
+        likeEvent(adapter.events[currentpos].id)
+    }
+
+    private fun onDislike() {
+        val currentpos = cardManager.cardStackState.targetPosition
+        Timber.d("current pos ${cardManager.cardStackState.targetPosition} ${cardManager.cardStackState.topPosition}")
+        dislikeEvent(adapter.events[currentpos].id)
+    }
+
+    private val loginDialogCallback = object : LoginDialogCallback {
+
+        override fun onVkSelected() {
+
+            startVKLogin()
+        }
+
+        override fun onInstagramSelected() {
+
+        }
+
+        override fun onGoogleSelected() {
+            startGoogleLogin()
+        }
+
+        override fun onEmailSelected() {
+            openLoginScreen()
+        }
+
+        override fun onAuthSelected() {
+            openAuthScreen()
+        }
+    }
+
+    private fun initCardManager(): CardStackLayoutManager {
+        val setting = SwipeAnimationSetting.Builder()
+            .setDuration(Duration.Fast.duration)
+            .setInterpolator(AccelerateInterpolator())
+            .build()
+
+        return CardStackLayoutManager(context, cardStackListener).apply {
+            setMaxDegree(30f)
+
+            setSwipeThreshold(0.2f)
+            setDirections(Direction.HORIZONTAL)
+            setCanScrollVertical(true)
+            setCanScrollHorizontal(true)
+            setSwipeAnimationSetting(setting)
+        }
+    }
+
+    private val cardStackListener: CardStackListener by lazy {
+        object : CardStackListener {
+            override fun onCardDragging(direction: Direction?, ratio: Float) {
+            }
+
+            override fun onCardSwiped(direction: Direction?) {
+            }
+
+            override fun onCardRewound() {
+            }
+
+            override fun onCardCanceled() {
+            }
+
+            override fun onCardAppeared(view: View?, position: Int) {
+                Timber.d("==> onCardAppeared : $position")
+            }
+
+            override fun onCardDisappeared(view: View?, position: Int) {
+                Timber.d("===> onCardDisappeared : $position")
+            }
+
         }
     }
 

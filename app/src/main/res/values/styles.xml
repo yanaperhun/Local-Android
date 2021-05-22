@@ -101,7 +101,7 @@
 
     <style name="App.EditText.Filter">
         <item name="android:paddingStart">@dimen/control_big_margin</item>
-        <item name="android:background">@drawable/rect_green_stroke_20dp_corner</item>
+        <item name="android:background">@drawable/rect_green_stroke_dark_solid_20dp_corner</item>
         <item name="android:textColor">@color/colorGreen</item>
     </style>
 
@@ -136,7 +136,7 @@
     </style>
 
     <style name="App.Button.Colored.Transparent">
-        <item name="android:background">@drawable/rect_green_stroke_20dp_corner</item>
+        <item name="android:background">@drawable/rect_green_stroke_dark_solid_20dp_corner</item>
     </style>
 
     <style name="App.ToggleButton" />

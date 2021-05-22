@@ -44,7 +44,7 @@
                 android:layout_marginStart="@dimen/control_margin"
                 android:layout_marginTop="@dimen/control_medium_margin"
                 android:layout_marginEnd="@dimen/control_margin"
-                android:background="@drawable/rect_green_stroke_20dp_corner"
+                android:background="@drawable/rect_green_stroke_dark_solid_20dp_corner"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

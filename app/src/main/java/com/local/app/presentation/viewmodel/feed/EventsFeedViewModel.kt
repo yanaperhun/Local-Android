@@ -98,4 +98,8 @@ class EventsFeedViewModel(application: Application) : AndroidViewModel(applicati
 
     }
 
+    fun dislikeEvent(eventId: Long) {
+
+    }
+
 }

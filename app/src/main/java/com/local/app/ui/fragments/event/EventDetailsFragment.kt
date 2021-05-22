@@ -66,7 +66,7 @@ class EventDetailsFragment : BaseFragment() {
         binding.event = event
         binding.executePendingBindings()
         binding.tvPrice.text = event.getFormattedPrice()
-        CommonRVEventElements.buildTagsView(binding.cgTags, event.tagsDefault)
+        CommonRVEventElements.buildTagsView(binding.cgTags, event.tags)
         CommonRVEventElements.showImages(binding.rvImages, event.pictures)
 
         val soundLink = event.getAnyPlaylist()

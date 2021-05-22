@@ -10,10 +10,12 @@ import com.local.app.databinding.ItemEventProfileBinding
 import com.local.app.utils.DateUtils
 import com.local.app.utils.Utils
 
-class EventListRVAdapter : RecyclerView.Adapter<EventListRVAdapter.VH>() {
+abstract class EventListRVAdapter : RecyclerView.Adapter<EventListRVAdapter.VH>() {
 
     private var inflater: LayoutInflater? = null
     private val events = ArrayList<Event>()
+
+    abstract fun onEventClick(event: Event)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         if (inflater == null) {
@@ -43,6 +45,8 @@ class EventListRVAdapter : RecyclerView.Adapter<EventListRVAdapter.VH>() {
                 .toInt(),
             R.drawable.ic_test
         )
+
+        holder.itemView.setOnClickListener { onEventClick(events[holder.adapterPosition]) }
     }
 
     fun addEvents(events: List<Event>) {

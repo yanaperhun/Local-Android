@@ -6,7 +6,7 @@
         android:layout_width="wrap_content"
         android:layout_height="32dp"
         android:layout_marginEnd="@dimen/control_margin"
-        android:background="@drawable/rect_green_stroke_8dp_corner"
+        android:background="@drawable/rect_green_stroke_16dp_corner"
         android:maxLines="1"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"

@@ -29,7 +29,7 @@ abstract class EventsFeedRVAdapter : RecyclerView.Adapter<EventsFeedRVAdapter.VH
         vh.bind(events[position])
         val rvImages = vh.binding.rvImages
 
-        CommonRVEventElements.buildTagsView(vh.binding.rvTags, events[position].tagsDefault)
+        CommonRVEventElements.buildTagsView(vh.binding.rvTags, events[position].tags)
         CommonRVEventElements.showImages(rvImages, events[position].pictures)
         vh.binding.rvTags.setRecycledViewPool(RecyclerView.RecycledViewPool())
         vh.binding.tvPrice.text = events[position].getFormattedPrice()

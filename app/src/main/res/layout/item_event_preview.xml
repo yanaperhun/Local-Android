@@ -14,7 +14,7 @@
         android:layout_height="@dimen/image_preview_size"
         android:layout_marginStart="@dimen/control_medium_margin"
         android:layout_marginTop="@dimen/control_medium_margin"
-        android:background="@drawable/rect_green_stroke_20dp_corner"
+        android:background="@drawable/rect_green_stroke_dark_solid_20dp_corner"
         android:src="@drawable/ic_night_green"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
