@@ -1,68 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:maxHeight="120dp"
-        android:background="@color/colorMainDark">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:background="@color/colorMainDark"
+    android:maxHeight="120dp">
 
 
     <ImageButton
-            android:id="@+id/iv_photo"
-            android:layout_width="@dimen/image_preview_size"
-            android:layout_height="@dimen/image_preview_size"
-            android:layout_marginStart="@dimen/control_medium_margin"
-            android:layout_marginTop="@dimen/control_medium_margin"
-            android:background="@drawable/rect_green_stroke_20dp_corner"
-            android:src="@drawable/ic_night_green"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/iv_photo"
+        android:layout_width="@dimen/image_preview_size"
+        android:layout_height="@dimen/image_preview_size"
+        android:layout_marginStart="@dimen/control_medium_margin"
+        android:layout_marginTop="@dimen/control_medium_margin"
+        android:background="@drawable/rect_green_stroke_dark_solid_20dp_corner"
+        android:src="@drawable/ic_night_green"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-            android:id="@+id/tv_title"
-            style="@style/App.Text.Title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/control_margin"
-            android:layout_marginEnd="@dimen/control_margin"
-            android:text="Synthetic Heart"
-            app:layout_constraintEnd_toStartOf="@+id/iv_tag"
-            app:layout_constraintStart_toEndOf="@+id/iv_photo"
-            app:layout_constraintTop_toTopOf="@+id/iv_photo" />
+        android:id="@+id/tv_title"
+        style="@style/App.Text.Title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/control_margin"
+        android:layout_marginEnd="@dimen/control_margin"
+        android:text="Synthetic Heart"
+        app:layout_constraintEnd_toStartOf="@+id/iv_tag"
+        app:layout_constraintStart_toEndOf="@+id/iv_photo"
+        app:layout_constraintTop_toTopOf="@+id/iv_photo" />
 
     <TextView
-            android:id="@+id/tv_place"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:text="XO-XO"
-            android:textAppearance="@style/App.Text.Title.Small"
-            app:layout_constraintEnd_toEndOf="@+id/tv_title"
-            app:layout_constraintStart_toStartOf="@+id/tv_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+        android:id="@+id/tv_place"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="XO-XO"
+        android:textAppearance="@style/App.Text.Title.Small"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
     <TextView
-            android:id="@+id/tv_price"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:text="500₽"
-            android:textAppearance="@style/App.Text.Title.Small"
-            app:layout_constraintEnd_toEndOf="@+id/tv_title"
-            app:layout_constraintStart_toStartOf="@+id/tv_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_place" />
+        android:id="@+id/tv_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="@dimen/control_margin"
+        android:text="500₽"
+        android:textAppearance="@style/App.Text.Title.Small"
+        app:layout_constraintEnd_toEndOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_place" />
 
     <ImageView
-            android:id="@+id/iv_tag"
-            android:layout_width="@dimen/ic_tag_size"
-            android:layout_height="@dimen/ic_tag_size"
-            android:layout_marginEnd="@dimen/control_margin"
-            android:background="@drawable/rect_grey_solid_10dp_corner"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_mike"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_price"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_title" />
+        android:id="@+id/iv_tag"
+        android:layout_width="@dimen/ic_tag_size"
+        android:layout_height="@dimen/ic_tag_size"
+        android:layout_marginEnd="@dimen/control_margin"
+        android:background="@drawable/rect_grey_solid_10dp_corner"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_mike"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

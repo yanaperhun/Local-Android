@@ -1,151 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorMainDark"
-        app:layoutDescription="@xml/collapsing_toolbar"
-        tools:context=".ui.activities.user.UserActivity"
-        tools:showPaths="true">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/new_collapsing_behaviour"
+    tools:showPaths="true">
 
     <ImageView
-            android:id="@+id/toolbar_image"
-            android:layout_width="0dp"
-            android:layout_height="290dp"
-            android:adjustViewBounds="true"
-            android:background="@color/colorPrimary"
-            android:contentDescription="@string/app_name"
-            android:fitsSystemWindows="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_test"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/btn_back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="@string/app_name"
+        android:padding="@dimen/control_medium_margin"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/colorWhite" />
 
     <ImageView
-            android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:contentDescription="@string/app_name"
-            android:paddingStart="16dp"
-            android:paddingTop="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="16dp"
-            android:src="@drawable/ic_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/colorWhite" />
-
-    <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/control_medium_margin"
-            android:layout_marginBottom="@dimen/control_medium_margin"
-            android:text="@string/app_name"
-            android:textColor="@color/colorWhite"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
-            app:layout_constraintStart_toStartOf="parent"
-            app:tint="?android:attr/textColorPrimaryInverse" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btn_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/control_medium_margin"
-            android:background="@color/colorGreen"
-            android:backgroundTint="@color/colorGreen"
-            app:borderWidth="0dp"
-            app:layout_constraintBottom_toBottomOf="@id/toolbar_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_image"
-            app:srcCompat="@drawable/ic_camera" />
-
-    <TextView
-            android:id="@+id/tv_info1"
-            style="@style/App.Text.Default.White"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/control_medium_margin"
-            android:text="Account"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_image" />
-
-    <TextView
-            android:id="@+id/tv_info2"
-            style="@style/App.Text.Default.White"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/control_medium_margin"
-            android:layout_marginTop="4dp"
-            android:text="+7 999 632 21 48"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_info1" />
+        android:id="@+id/btn_menu"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="@string/app_name"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="16dp"
+        android:src="@drawable/ic_menu_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/colorWhite" />
 
     <ImageView
-            android:id="@+id/iv_avatar"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            app:layout_constraintBottom_toBottomOf="@id/btn_back"
-            app:layout_constraintStart_toEndOf="@id/btn_back"
-            app:layout_constraintTop_toTopOf="@id/btn_back" />
+        android:id="@+id/iv_avatar"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="34dp"
+        android:background="@drawable/circle_green_solid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tvName"
+        style="@style/App.Text.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/control_medium_margin"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
+        tools:text="Yana Perhun" />
+
+
+    <ImageButton
+        android:id="@+id/btnPhone"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="34dp"
+        android:background="@drawable/ic_phone"
+        app:layout_constraintEnd_toStartOf="@+id/btnWhatsup"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+    <ImageButton
+        android:id="@+id/btnWhatsup"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="34dp"
+        android:background="@drawable/ic_whatsup"
+        app:layout_constraintEnd_toStartOf="@+id/btnTelegram"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnPhone"
+        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+    <ImageButton
+        android:id="@+id/btnTelegram"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="34dp"
+        android:background="@drawable/ic_telegram"
+        app:layout_constraintEnd_toStartOf="@+id/btnInstagram"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnWhatsup"
+        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+    <ImageButton
+        android:id="@+id/btnInstagram"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="34dp"
+        android:background="@drawable/ic_instagram"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnTelegram"
+        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/control_medium_margin"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="btnPhone,btnTelegram,btnInstagram,btnWhatsup" />
+
+    <View
+        android:id="@+id/place_holder"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/control_medium_margin"
+        app:layout_constraintTop_toBottomOf="@id/barrier" />
+
+    <!--    <View-->
+
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:background="#252525"-->
+    <!--        android:elevation="-10dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@id/place_holder"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pager"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/control_medium_margin"
-            android:minHeight="100dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintTop_toBottomOf="@id/tv_info2">
+        android:id="@+id/view_pager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/control_medium_margin"
+        android:background="#252525"
+        android:minHeight="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier">
 
         <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabs"
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/control_big_margin"
+            app:tabIndicatorColor="@color/colorPink"
+            app:tabIndicatorFullWidth="false"
+            app:tabTextAppearance="@style/App.Text.Default.White"
+            app:tabTextColor="@color/colorWhite">
+
+            <com.google.android.material.tabs.TabItem
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/control_big_margin"
-                app:tabIndicatorFullWidth="false"
-
-                app:tabTextAppearance="@style/App.Text.Default.White"
-                app:tabTextColor="@color/colorWhite">
+                android:text="@string/liked" />
 
             <com.google.android.material.tabs.TabItem
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/liked" />
-
-            <com.google.android.material.tabs.TabItem
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/created" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/created" />
 
         </com.google.android.material.tabs.TabLayout>
 
     </androidx.viewpager.widget.ViewPager>
 
-    <Button
-
-            android:id="@+id/btn_create_event"
-            style="@style/App.Button.Colored.Green"
-            android:layout_width="0dp"
-            android:layout_height="45dp"
-            android:layout_margin="@dimen/control_medium_margin"
-            android:layout_marginStart="@dimen/control_big_margin"
-            android:layout_marginEnd="@dimen/control_big_margin"
-            android:layout_marginBottom="@dimen/control_medium_margin"
-            android:text="@string/create_event"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+    <TextView
+        android:id="@+id/btnCreateEvent"
+        style="@style/App.Button.Colored.Blue"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_margin="@dimen/control_margin"
+        android:background="@drawable/rect_pink_solid_12dp_corner"
+        android:elevation="20dp"
+        android:text="@string/create_event"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

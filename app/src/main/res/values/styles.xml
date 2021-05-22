@@ -1,11 +1,16 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:datePickerDialogTheme">@style/DatePickerTheme</item>
+        <item name="android:timePickerDialogTheme">@style/DatePickerTheme</item>
     </style>
 
     <style name="App" />
@@ -46,9 +51,18 @@
 
     <style name="App.Text.Tag">
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/colorTextDefault</item>
-        <item name="background">@color/colorLabelBg</item>
+        <item name="android:textColor">@color/colorGreen</item>
+        <item name="android:background">@drawable/rect_green_stroke_8dp_corner</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="App.Text.Pink">
+        <item name="android:paddingStart">@dimen/control_small_margin</item>
+        <item name="android:paddingEnd">@dimen/control_small_margin</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/rect_pink_solid_8dp_corner</item>
         <item name="android:gravity">center</item>
     </style>
 
@@ -75,8 +89,8 @@
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:paddingStart">@dimen/control_medium_margin</item>
         <item name="android:paddingEnd">@dimen/control_medium_margin</item>
-        <item name="android:background">@drawable/rect_grey_solid_light_stroke__grey_20dp_corner</item>
-        <item name="android:drawableTint">@color/colorWhite</item>
+        <item name="android:background">@drawable/rect_grey_solid_light_stroke__grey_12dp_corner</item>
+
     </style>
 
     <style name="App.EditText.CreateEvent.Big">
@@ -87,7 +101,7 @@
 
     <style name="App.EditText.Filter">
         <item name="android:paddingStart">@dimen/control_big_margin</item>
-        <item name="android:background">@drawable/rect_green_stroke_20dp_corner</item>
+        <item name="android:background">@drawable/rect_green_stroke_dark_solid_20dp_corner</item>
         <item name="android:textColor">@color/colorGreen</item>
     </style>
 
@@ -129,7 +143,7 @@
     </style>
 
     <style name="App.Button.Colored.Transparent">
-        <item name="android:background">@drawable/rect_green_stroke_20dp_corner</item>
+        <item name="android:background">@drawable/rect_green_stroke_dark_solid_20dp_corner</item>
     </style>
 
     <style name="App.ToggleButton" />
@@ -153,4 +167,16 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
+
+    <style name="DatePickerTheme" parent="Theme.MaterialComponents.Dialog.Alert">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/DatePickerTheme.ButtonBarNegativeButtonStyle</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <style name="DatePickerTheme.ButtonBarNegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
 </resources>

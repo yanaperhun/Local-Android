@@ -3,7 +3,7 @@ package com.local.app.ui.activities.event
 import android.os.Bundle
 import com.local.app.R
 import com.local.app.ui.BaseActivity
-import com.local.app.ui.fragments.event.EventFragment
+import com.local.app.ui.fragments.event.EventDetailsFragment
 
 class EventActivity : BaseActivity() {
 
@@ -11,11 +11,11 @@ class EventActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event)
         val fragment =
-            EventFragment.create(
+            EventDetailsFragment.create(
                 intent.getLongExtra(
                     EXTRAS_EVENT_ID,
                     -1))
-        showFragment(fragment, true)
+        showFragment(fragment, false)
     }
 }
 

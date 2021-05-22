@@ -1,5 +1,6 @@
 package com.local.app.di.event.create
 
+import android.content.ContentResolver
 import com.local.app.api.RetrofitClient
 import com.local.app.di.scopes.PerCreateEvent
 import com.local.app.repository.event.create.CreateEventRepository
@@ -20,8 +21,8 @@ class CreateEventModule {
 
     @Provides
     @PerCreateEvent
-    fun provideUploadPhotoRep(retrofitClient: RetrofitClient): UploadPhotoRepository {
-        return UploadPhotoRepositoryImpl(retrofitClient)
+    fun provideUploadPhotoRep(retrofitClient: RetrofitClient, contentResolver: ContentResolver): UploadPhotoRepository {
+        return UploadPhotoRepositoryImpl(retrofitClient, contentResolver)
     }
 
 }

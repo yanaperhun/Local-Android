@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import com.local.app.R
 import com.local.app.databinding.FragmentCreateEventStepPlaylistBinding
+import com.local.app.presentation.viewmodel.profile.StepConnectToFragment
 import com.local.app.ui.BaseFragment
 import com.local.app.ui.adapters.event.create.SoundLinksAdapter
 import com.local.app.utils.SimpleTextWatcher
@@ -24,12 +25,13 @@ class CreateEventStepPlayListFragment : BaseCreateEventFragment<FragmentCreateEv
     }
 
     override fun getNextFragment(): BaseFragment {
-        return CreateEventStepPhotoFragment()
+        return StepConnectToFragment()
     }
 
     override fun onResume() {
         super.onResume()
         binding.etPlaylist.addTextChangedListener(playlistWatcher)
+        focusET(binding.etPlaylist)
     }
 
     override fun onPause() {

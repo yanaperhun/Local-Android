@@ -9,20 +9,19 @@ import com.local.app.domain.login.interactors.AuthInteractor
 import com.local.app.domain.login.interactors.LoginInteractor
 import com.local.app.pref.PrefUtils
 import dagger.Module
-import dagger.Provides
 
 @Module
 class LoginModule {
 
-    @Provides
-    @PerLogin
-    fun provideLoginRep(retrofitClient: RetrofitClient, prefUtils: PrefUtils): LoginRepository {
-        return LoginRepositoryImpl(retrofitClient, prefUtils)
-    }
-
-    @Provides
-    @PerLogin
-    fun provideLoginFacade(loginInteractor: LoginInteractor, authInteractor: AuthInteractor): LoginDomainFacade {
-        return LoginDomainFacade(loginInteractor, authInteractor)
-    }
+//    @Provides
+//    @PerLogin
+//    fun provideLoginRep(retrofitClient: RetrofitClient, prefUtils: PrefUtils): LoginRepository {
+//        return LoginRepositoryImpl(retrofitClient, prefUtils)
+//    }
+//
+//    @Provides
+//    @PerLogin
+//    fun provideLoginFacade(loginInteractor: LoginInteractor, authInteractor: AuthInteractor): LoginDomainFacade {
+//        return LoginDomainFacade(loginInteractor, authInteractor)
+//    }
 }

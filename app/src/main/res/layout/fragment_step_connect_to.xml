@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="@dimen/back_btn_size"
+            android:layout_height="@dimen/back_btn_size"
+            android:layout_margin="@dimen/control_margin"
+            android:background="@drawable/rect_grey_solid_10dp_corner"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+            android:id="@+id/btn_close"
+            android:layout_width="@dimen/back_btn_size"
+            android:layout_height="@dimen/back_btn_size"
+            android:layout_margin="@dimen/control_margin"
+            android:background="@drawable/rect_grey_solid_10dp_corner"
+            android:src="@drawable/ic_cross_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+            android:id="@+id/tv_title"
+            style="@style/App.Text.Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/control_margin"
+            android:layout_marginTop="@dimen/control_big_margin"
+            android:text="@string/how_to_connect"
+            app:layout_constraintStart_toStartOf="@id/btn_back"
+            app:layout_constraintTop_toBottomOf="@id/btn_back" />
+
+    <EditText
+            android:inputType="phone"
+            android:imeOptions="actionDone"
+            android:id="@+id/et_phone"
+            style="@style/App.EditText.CreateEvent"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="@dimen/control_medium_margin"
+            android:layout_marginTop="@dimen/control_medium_margin"
+            android:layout_marginEnd="@dimen/control_medium_margin"
+            android:drawableStart="@drawable/ic_phone"
+            android:drawablePadding="@dimen/control_margin"
+            android:gravity="center_vertical"
+            android:hint="@string/hint_phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+    <EditText
+            android:id="@+id/et_telegram"
+            style="@style/App.EditText.CreateEvent"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="@dimen/control_medium_margin"
+            android:layout_marginTop="@dimen/control_medium_margin"
+            android:layout_marginEnd="@dimen/control_medium_margin"
+            android:drawableStart="@drawable/ic_telegram"
+            android:drawablePadding="@dimen/control_margin"
+            android:gravity="center_vertical"
+            android:hint="@string/hint_telegram"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_phone" />
+
+    <EditText
+            android:id="@+id/et_instagram"
+            style="@style/App.EditText.CreateEvent"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="@dimen/control_medium_margin"
+            android:layout_marginTop="@dimen/control_medium_margin"
+            android:layout_marginEnd="@dimen/control_medium_margin"
+            android:drawableStart="@drawable/ic_instagram"
+
+            android:drawablePadding="@dimen/control_margin"
+            android:gravity="center_vertical"
+            android:hint="@string/hint_instagram"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_telegram" />
+
+    <EditText
+            android:inputType="phone"
+            android:id="@+id/et_whatsapp"
+            style="@style/App.EditText.CreateEvent"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="@dimen/control_medium_margin"
+            android:layout_marginTop="@dimen/control_medium_margin"
+            android:layout_marginEnd="@dimen/control_medium_margin"
+            android:drawableStart="@drawable/ic_whatsup"
+
+            android:drawablePadding="@dimen/control_margin"
+            android:gravity="center_vertical"
+            android:hint="@string/hint_whatapp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_instagram" />
+
+    <ImageButton
+            android:id="@+id/btn_clear_phone"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="@dimen/control_small_margin"
+            android:background="@color/colorTransparent"
+            app:layout_constraintBottom_toBottomOf="@+id/et_phone"
+            app:layout_constraintEnd_toEndOf="@+id/et_phone"
+            app:layout_constraintTop_toTopOf="@+id/et_phone"
+            android:src="@drawable/ic_cross_white" />
+
+    <ImageButton
+            android:id="@+id/btn_clear_tg"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="@dimen/control_small_margin"
+            android:background="@color/colorTransparent"
+            app:layout_constraintBottom_toBottomOf="@+id/et_telegram"
+            app:layout_constraintEnd_toEndOf="@+id/et_telegram"
+            app:layout_constraintTop_toTopOf="@+id/et_telegram"
+            android:src="@drawable/ic_cross_white" />
+
+    <ImageButton
+            android:id="@+id/btn_clear_inst"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="@dimen/control_small_margin"
+            android:background="@color/colorTransparent"
+            app:layout_constraintBottom_toBottomOf="@+id/et_instagram"
+            app:layout_constraintEnd_toEndOf="@+id/et_instagram"
+            app:layout_constraintTop_toTopOf="@+id/et_instagram"
+            android:src="@drawable/ic_cross_white" />
+
+    <ImageButton
+            android:id="@+id/btn_clear_whatapp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="@dimen/control_small_margin"
+            android:background="@color/colorTransparent"
+            app:layout_constraintBottom_toBottomOf="@+id/et_whatsapp"
+            app:layout_constraintEnd_toEndOf="@+id/et_whatsapp"
+            app:layout_constraintTop_toTopOf="@+id/et_whatsapp"
+            android:src="@drawable/ic_cross_white" />
+
+    <TextView
+            android:id="@+id/btn_next"
+            style="@style/App.Button.Colored.Green"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/btn_next_height"
+            android:layout_marginStart="@dimen/control_margin"
+            android:layout_marginEnd="@dimen/control_margin"
+            android:layout_marginBottom="@dimen/control_big_margin"
+            android:text="@string/next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

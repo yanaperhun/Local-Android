@@ -27,8 +27,10 @@ class LocationUtils {
         fun getPlaceFormattedByLatLng(latLng: LatLng, context: Context): String {
             val geocoder = Geocoder(context, Locale.getDefault())
             val addresses = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1)
-            Log.d("LocationUtils", "${addresses.first()}")
-            val address = addresses.first()
+
+            if (addresses.isNullOrEmpty()) return ""
+            val address = addresses.first() ?: return ""
+            Log.d("LocationUtils", "$address")
             if (address.thoroughfare != null) {
                 return "${address.thoroughfare ?: ""}, ${address.featureName}"
             } else {

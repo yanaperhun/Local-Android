@@ -22,6 +22,7 @@ class CreateEventStepDescFragment : BaseCreateEventFragment<FragmentCreateEventS
         super.onResume()
         binding.etInputDescription.setText(viewModel.eventBuilder().description)
         binding.etInputDescription.addTextChangedListener(textListener)
+        focusET(binding.etInputDescription)
     }
 
     override fun onPause() {

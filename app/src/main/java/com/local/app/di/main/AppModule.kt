@@ -1,7 +1,13 @@
 package com.local.app.di.main
 
+import android.content.ContentResolver
 import android.content.Context
 import com.local.app.api.RetrofitClient
+import com.local.app.data.login.LoginRepository
+import com.local.app.data.login.LoginRepositoryImpl
+import com.local.app.domain.login.LoginDomainFacade
+import com.local.app.domain.login.interactors.AuthInteractor
+import com.local.app.domain.login.interactors.LoginInteractor
 import com.local.app.repository.ProfileRepository
 import com.local.app.repository.ProfileRepositoryImpl
 import com.local.app.pref.PrefUtils
@@ -34,5 +40,23 @@ class AppModule(val context: Context) {
     @Singleton
     fun providePrefs(context: Context): PrefUtils {
         return PrefUtils(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideContentResolver(context: Context): ContentResolver {
+        return context.contentResolver
+    }
+
+    @Provides
+    @Singleton
+    fun provideLoginRep(retrofitClient: RetrofitClient, prefUtils: PrefUtils): LoginRepository {
+        return LoginRepositoryImpl(retrofitClient, prefUtils)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLoginFacade(loginInteractor: LoginInteractor, authInteractor: AuthInteractor): LoginDomainFacade {
+        return LoginDomainFacade(loginInteractor, authInteractor)
     }
 }

@@ -10,10 +10,16 @@ import javax.inject.Inject
 class ProfileRepositoryImpl @Inject constructor(
     private var client: RetrofitClient,
     private val prefUtils: PrefUtils
-) : ProfileRepository {
+) :
+    ProfileRepository {
+
 
     override fun isProfileLoaded(): Boolean {
         return prefUtils.getProfile() != null
+    }
+
+    override fun logout() {
+        prefUtils.clearProfile()
     }
 
     override fun getProfileAsync(): Single<Profile> {
@@ -70,4 +76,5 @@ class ProfileRepositoryImpl @Inject constructor(
     override fun updateUserPhone(phone: String): Single<Profile> {
         return client.api.updateProfile(mapOf(Pair("phone", phone)))
     }
+
 }

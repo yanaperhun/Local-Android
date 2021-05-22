@@ -24,6 +24,7 @@ class CreateEventStepTitleFragment : BaseCreateEventFragment<FragmentCreateEvent
         binding.etInputTitle.addTextChangedListener(textListener)
         log("onResume2 ${viewModel.eventBuilder().title}")
         binding.etInputTitle.setText(viewModel.eventBuilder().title)
+        focusET(binding.etInputTitle)
     }
 
     override fun onPause() {

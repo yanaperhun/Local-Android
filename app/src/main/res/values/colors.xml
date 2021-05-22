@@ -3,6 +3,7 @@
     <color name="colorPrimary">@color/colorMainDark</color>
     <color name="colorPrimaryDark">@color/colorMainDark</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorPink">#FF4688</color>
 
     <color name="colorWhite">#fff</color>
     <color name="colorTransparent">#00000000</color>

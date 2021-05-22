@@ -14,7 +14,8 @@ import java.util.concurrent.TimeUnit
 class RetrofitClient(val prefUtils: PrefUtils) {
 
     private val TIMEOUT = 60L
-    private val URL = "http://95.214.9.249/"
+    private val URL = "http://api.local-app.ru/"
+    private val URL_LOCAL = "http://192.168.1.114:3000"
 
     lateinit var api: API
 
@@ -36,8 +37,8 @@ class RetrofitClient(val prefUtils: PrefUtils) {
 
         val client = OkHttpClient
             .Builder()
-            .addInterceptor(HeaderInterceptor(prefUtils.getToken()))
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(HeaderInterceptor(prefUtils.getToken()))
             .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(TIMEOUT, TimeUnit.SECONDS)
             .writeTimeout(TIMEOUT, TimeUnit.SECONDS)

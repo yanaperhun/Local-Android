@@ -52,11 +52,11 @@ class CreateEventStepPlaceFragment : BaseCreateEventFragment<FragmentCreateEvent
     }
 
     private val onPlacePredictClick = AdapterView.OnItemClickListener { parent, _, position, _ ->
-        log("On place predict click")
-        val place = parent.getItemAtPosition(position) as PlaceData
 
+        val place = parent.getItemAtPosition(position) as PlaceData
+        log("On place predict click $place")
         if (place.placeId == null) {
-            setPlace(place.fullText, EMPTY_LATLNG)
+            setPlace(place.fullText, EMPTY_LATLNG, false)
             return@OnItemClickListener
         }
         enableCameraPosListener(false)
@@ -65,13 +65,13 @@ class CreateEventStepPlaceFragment : BaseCreateEventFragment<FragmentCreateEvent
         mPlacesClient
             .fetchPlace(request)
             .addOnSuccessListener { response: FetchPlaceResponse ->
-                val place = response.place
-                log("Place found: ${place.name}")
-                if (place.address.isNullOrEmpty()) {
+                val fetchedPlace = response.place
+                log("Place found: $fetchedPlace")
+                if (fetchedPlace.name.isNullOrEmpty()) {
                     return@addOnSuccessListener
                 }
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(place.latLng))
-                setPlace(place.address!!, place.latLng ?: EMPTY_LATLNG)
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(fetchedPlace.latLng))
+                setPlace(fetchedPlace.name!!, fetchedPlace.latLng ?: EMPTY_LATLNG, false)
             }
             .addOnFailureListener { exception: Exception ->
                 if (exception is ApiException) {
@@ -81,6 +81,7 @@ class CreateEventStepPlaceFragment : BaseCreateEventFragment<FragmentCreateEvent
                 }
             }
             .addOnCompleteListener {
+                log("fetchPlace on complete")
                 Handler().postDelayed({ enableCameraPosListener(true) }, 1000L)
             }
     }
@@ -88,19 +89,26 @@ class CreateEventStepPlaceFragment : BaseCreateEventFragment<FragmentCreateEvent
     private val cameraMovingListener = GoogleMap.OnCameraIdleListener {
         log("Call OnCameraIdleListener")
         val targetLatLng = googleMap.cameraPosition.target
+        log("targetLatLng : $targetLatLng")
         log(LocationUtils.getPlaceFormattedByLatLng(targetLatLng, requireContext()))
         binding.etInputPrice.isEnabled = false
 
         val formattedPlace = LocationUtils.getPlaceFormattedByLatLng(targetLatLng, requireContext())
-        setPlace(formattedPlace, targetLatLng)
+        setPlace(formattedPlace, targetLatLng, true)
         binding.etInputPrice.isEnabled = true
     }
 
-    private fun setPlace(address: String, latLng: LatLng) {
+    private fun setPlace(address: String, latLng: LatLng, isShowAutoComplete: Boolean) {
+        log("set place : $address")
+        if (!isShowAutoComplete) {
+            log("disable autocomplete")
+            binding.etInputPrice.setAdapter(null)
+        }
         binding.etInputPrice.setText(address)
         binding.etInputPrice.setSelection(binding.etInputPrice.length())
         hideKeyboard()
         viewModel.eventBuilder().eventAddress = EventAddress.build(address, latLng)
+        binding.etInputPrice.setAdapter(mPlaceArrayAdapter)
     }
 
     override fun onStart() {
@@ -125,13 +133,24 @@ class CreateEventStepPlaceFragment : BaseCreateEventFragment<FragmentCreateEvent
     override fun onMapReady(map: GoogleMap) {
         log("on map ready")
         googleMap = map
-        googleMap.moveCamera(CameraUpdateFactory.zoomTo(15f))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(LocationUtils.defaultLocation()))
+        if (!viewModel.isAddressSet()) {
+            googleMap.moveCamera(CameraUpdateFactory.zoomTo(15f))
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(LocationUtils.defaultLocation()))
 
+        } else {
+            showEventAddress()
+        }
         googleMap.uiSettings.isZoomControlsEnabled = true
         binding.mapView.visibility = View.VISIBLE
 
         googleMap.setOnCameraIdleListener(cameraMovingListener)
+    }
+
+    private fun showEventAddress() {
+        googleMap.moveCamera(CameraUpdateFactory.zoomTo(15f))
+        val latLng =
+            viewModel.eventBuilder().eventAddress?.let { return@let LatLng(it.lat, it.lng) }
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
     }
 
     private fun enableCameraPosListener(isEnable: Boolean) {

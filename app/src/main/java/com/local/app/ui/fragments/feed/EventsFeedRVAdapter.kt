@@ -7,12 +7,14 @@ import com.local.app.data.event.Event
 import com.local.app.databinding.LayoutEventBinding
 import com.local.app.ui.photo.CommonRVEventElements
 
-abstract class EventsFeedRVAdapter(private var events: List<Event>) :
-    RecyclerView.Adapter<EventsFeedRVAdapter.VH>() {
+abstract class EventsFeedRVAdapter : RecyclerView.Adapter<EventsFeedRVAdapter.VH>() {
+
+    var events = ArrayList<Event>()
 
     sealed class Clicks {
         class Like(var eventId: Long) : Clicks()
         class Dislike(var eventId: Long) : Clicks()
+        class Event(var eventId: Long) : Clicks()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
@@ -23,21 +25,28 @@ abstract class EventsFeedRVAdapter(private var events: List<Event>) :
         return events.size
     }
 
-    override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.bind(events[position])
-        val rvImages = holder.binding.rvImages
+    override fun onBindViewHolder(vh: VH, position: Int) {
+        vh.bind(events[position])
+        val rvImages = vh.binding.rvImages
 
-        CommonRVEventElements.buildTagsView(holder.binding.llTags, events[position].tagsDefault)
+        CommonRVEventElements.buildTagsView(vh.binding.rvTags, events[position].tags)
         CommonRVEventElements.showImages(rvImages, events[position].pictures)
-
-        holder.binding.ivDislike.setOnClickListener {
-            onClicks(Clicks.Dislike(events[position].id))
-        }
-        holder.binding.ivLike.setOnClickListener { onClicks(Clicks.Like(events[position].id)) }
+        vh.binding.rvTags.setRecycledViewPool(RecyclerView.RecycledViewPool())
+        vh.binding.tvPrice.text = events[position].getFormattedPrice()
+        val adapterPos = vh.adapterPosition
+        vh.binding.tvName.setOnClickListener { onClicks(Clicks.Event(events[adapterPos].id)) }
+        vh.binding.btnInfo.setOnClickListener { onClicks(Clicks.Event(events[adapterPos].id)) }
+        vh.binding.viewBlur.setOnClickListener { onClicks(Clicks.Event(events[adapterPos].id)) }
 
     }
 
     abstract fun onClicks(click: Clicks)
+
+    fun setEvents(list: List<Event>) {
+        events.clear()
+        events.addAll(list)
+        notifyDataSetChanged()
+    }
 
     inner class VH(var binding: LayoutEventBinding) : RecyclerView.ViewHolder(binding.root) {
 

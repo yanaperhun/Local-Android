@@ -27,11 +27,26 @@ class LoginDialog : BottomSheetDialogFragment() {
     }
 
     private fun initUI() {
-        binding.btnInstagram.setOnClickListener { loginDialogCallback.onInstagramSelected() }
-        binding.btnGoogle.setOnClickListener { loginDialogCallback.onGoogleSelected() }
-        binding.btnVk.setOnClickListener { loginDialogCallback.onVkSelected() }
-        binding.btnLoginByEmail.setOnClickListener { loginDialogCallback.onEmailSelected() }
-        binding.btnSignIn.setOnClickListener { loginDialogCallback.onAuthSelected() }
+        binding.btnInstagram.setOnClickListener {
+            dismiss()
+            loginDialogCallback.onInstagramSelected()
+        }
+        binding.btnGoogle.setOnClickListener {
+            dismiss()
+            loginDialogCallback.onGoogleSelected()
+        }
+        binding.btnVk.setOnClickListener {
+            dismiss()
+            loginDialogCallback.onVkSelected()
+        }
+        binding.btnLoginByEmail.setOnClickListener {
+            dismiss()
+            loginDialogCallback.onEmailSelected()
+        }
+        binding.btnSignIn.setOnClickListener {
+            dismiss()
+            loginDialogCallback.onAuthSelected()
+        }
     }
 
 }

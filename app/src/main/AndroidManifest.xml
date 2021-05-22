@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+
             android:name=".LocalApp"
             android:allowBackup="true"
             android:allowClearUserData="true"
@@ -24,7 +25,7 @@
         </activity>
         <activity
                 android:name=".ui.activities.event.CreateEventActivity"
-                android:windowSoftInputMode="adjustPan" />
+                android:windowSoftInputMode="adjustResize" />
         <activity android:name="com.local.app.ui.activities.event.EventActivity" />
         <activity android:name="com.local.app.ui.activities.user.UserActivity" />
 

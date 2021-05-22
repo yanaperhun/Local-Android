@@ -41,6 +41,11 @@ class PrefUtils(val context: Context) {
 
     }
 
+    fun clearProfile() {
+        val sharedPref = context.getSharedPreferences(LOCAL_PREFS, Context.MODE_PRIVATE)
+        sharedPref.edit().remove(PROFILE).commit()
+    }
+
     fun saveProfile(profile: Profile) {
         val sharedPref = context.getSharedPreferences(LOCAL_PREFS, Context.MODE_PRIVATE)
         val profileString = Gson().toJson(profile, Profile::class.java)

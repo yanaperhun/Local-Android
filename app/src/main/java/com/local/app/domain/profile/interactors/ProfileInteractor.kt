@@ -6,7 +6,7 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import javax.inject.Inject
 
-class GetProfileInteractor @Inject constructor(private val profileRepository: ProfileRepository) {
+class ProfileInteractor @Inject constructor(private val profileRepository: ProfileRepository) {
 
     fun getProfileAsync(): Single<Profile> {
         return profileRepository.getProfileAsync()
@@ -46,5 +46,9 @@ class GetProfileInteractor @Inject constructor(private val profileRepository: Pr
 
     fun updateUserPhone(phone: String): Single<Profile> {
         return profileRepository.updateUserPhone(phone)
+
+    }
+    fun logout() {
+        profileRepository.logout()
     }
 }

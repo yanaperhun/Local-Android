@@ -6,6 +6,7 @@ import com.local.app.R
 import com.local.app.databinding.FragmentCreateEventStepTagsBinding
 import com.local.app.ui.BaseFragment
 import com.local.app.utils.SimpleTextWatcher
+import timber.log.Timber
 
 class CreateEventStepTagsFragment : BaseCreateEventFragment<FragmentCreateEventStepTagsBinding>() {
 
@@ -22,9 +23,11 @@ class CreateEventStepTagsFragment : BaseCreateEventFragment<FragmentCreateEventS
         super.onResume()
         binding.etInputTags.setText(viewModel.eventBuilder().description)
         var tagsConcat = ""
-        viewModel.eventBuilder().tags.forEach { tagsConcat += "$it, " }
+        if (viewModel.eventBuilder().tags.isNotEmpty()) {
+            viewModel.eventBuilder().tags.forEach { tagsConcat += "$it, " }
+        }
         binding.etInputTags.setText(tagsConcat)
-
+        focusET(binding.etInputTags)
     }
 
     override fun onPause() {
@@ -46,8 +49,9 @@ class CreateEventStepTagsFragment : BaseCreateEventFragment<FragmentCreateEventS
 
     override fun onNext() {
         viewModel.eventBuilder().tags = binding.etInputTags.text
-            .split(",")
-            .map { it.trim() }
+                .split(",")
+                .map { it.trim() }
+        Timber.d("tags : ${viewModel.eventBuilder().tags}")
     }
 
     private val textListener = object : SimpleTextWatcher() {

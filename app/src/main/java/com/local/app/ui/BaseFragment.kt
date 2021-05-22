@@ -1,11 +1,14 @@
 package com.local.app.ui
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -15,6 +18,7 @@ import com.local.app.LocalApp
 import com.local.app.R
 import com.local.app.data.AppException
 import com.local.app.di.ComponentManager
+
 
 open class BaseFragment : Fragment() {
     fun getDagger(): ComponentManager {
@@ -38,8 +42,17 @@ open class BaseFragment : Fragment() {
         Log.e("Local Error", "=============> $mess")
     }
 
+    fun showFragment(fragment: Fragment, args: Bundle, addToBack: Boolean) {
+        fragment.arguments = args
+        (requireActivity() as BaseActivity).showFragment(fragment, addToBack, R.id.container)
+    }
+
     fun showFragment(fragment: BaseFragment, addToBackStack: Boolean) {
         (requireActivity() as BaseActivity).showFragment(fragment, addToBackStack)
+    }
+
+    fun backStep() {
+        requireActivity().supportFragmentManager.popBackStack()
     }
 
     fun showToast(message: String) {
@@ -52,8 +65,10 @@ open class BaseFragment : Fragment() {
         val inputMethodManager: InputMethodManager =
             requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         if (requireActivity().currentFocus != null) {
-            inputMethodManager.hideSoftInputFromWindow(requireActivity().currentFocus!!.windowToken,
-                                                       0)
+            inputMethodManager.hideSoftInputFromWindow(
+                requireActivity().currentFocus!!.windowToken,
+                0
+            )
         }
     }
 
@@ -61,33 +76,43 @@ open class BaseFragment : Fragment() {
         showAlert(getString(R.string.alert_title_info), message)
     }
 
-    fun showImage(imageView: ImageView, imageUrl: String) {
+    fun showImage(imageView: ImageView, imageUrl: String, @DrawableRes placeholder: Int = 0) {
         Glide
             .with(imageView.context)
             .load(imageUrl)
+            .placeholder(placeholder)
             .into(imageView)
     }
 
-    fun showRoundImage(imageView: ImageView, imageUrl: String) {
+    fun showRoundImage(imageView: ImageView, imageUrl: String, @DrawableRes placeholder: Int = 0) {
         Glide
             .with(imageView.context)
             .load(imageUrl)
+            .placeholder(placeholder)
             .circleCrop()
             .into(imageView)
     }
 
-    fun showRounderCornersImage(imageView: ImageView, imageUrl: String, radius: Int) {
+    fun showRounderCornersImage(
+        imageView: ImageView,
+        imageUrl: String,
+        radius: Int,
+        @DrawableRes placeholder: Int = 0
+    ) {
         Glide
             .with(imageView.context)
             .load(imageUrl)
+            .placeholder(placeholder)
             .transform(RoundedCorners(radius))
             .into(imageView)
 
     }
 
     fun showErrorAlert(message: String?) {
-        showAlert(getString(R.string.alert_title_error),
-                  message ?: "Что то пошло не так. Попробуйте еще раз")
+        showAlert(
+            getString(R.string.alert_title_error),
+            message ?: "Что то пошло не так. Попробуйте еще раз"
+        )
     }
 
     fun showAlert(title: String, message: String) {
@@ -106,6 +131,14 @@ open class BaseFragment : Fragment() {
 
     fun hideProgressDialog() {
         (requireActivity() as BaseActivity).hideProgressDialog()
+    }
+
+    fun focusET(editText: EditText) {
+        editText.requestFocus()
+        editText.setSelection(editText.text.length)
+        val imm =
+            requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
+        imm!!.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT)
     }
 
 }

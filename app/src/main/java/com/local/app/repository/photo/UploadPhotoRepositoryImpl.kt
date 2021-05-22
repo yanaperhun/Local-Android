@@ -1,31 +1,33 @@
 package com.local.app.repository.photo
 
+import android.content.ContentResolver
 import com.local.app.api.RetrofitClient
 import com.local.app.api.requests.UploadFileBody
 import com.local.app.data.photo.PhotoInDir
 import io.reactivex.Single
-import java.io.File
 
-class UploadPhotoRepositoryImpl(val retrofitClient: RetrofitClient) : UploadPhotoRepository {
+class UploadPhotoRepositoryImpl(val retrofitClient: RetrofitClient,
+                                val contentResolver: ContentResolver) : UploadPhotoRepository {
 
     override var photos = ArrayList<PhotoInDir>()
 
     override fun uploadImageFile(fileDir: String): Single<PhotoInDir> {
         photos.add(PhotoInDir(fileDir))
-        val file = File(fileDir)
+        //        val file = File(fileDir)
+        val body = UploadFileBody(fileDir, contentResolver)
         return retrofitClient.api
-            .loadImage(UploadFileBody(file))
+            .loadImage(body.fileType, body.image)
             .doOnError {
                 photos.forEach {
-                    if (it.dir == fileDir) {
+                    if (it.uri == fileDir) {
                         it.isError = true
                     }
                 }
             }
-            .map { photo ->
+            .map { photoEntity ->
                 photos.forEach {
-                    if (it.dir == fileDir) {
-                        it.hash = photo.hash
+                    if (it.uri == fileDir) {
+                        it.hash = photoEntity.hash
                         return@map it
                     }
                 }

@@ -1,27 +1,25 @@
 package com.local.app.ui.fragments.profile
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
+import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
+import androidx.fragment.app.viewModels
 import com.local.app.BindableFragment
 import com.local.app.R
 import com.local.app.data.Profile
 import com.local.app.databinding.FragmentProfileBinding
-import com.local.app.presentation.viewmodel.event.create.CreateEventViewModel
 import com.local.app.presentation.viewmodel.event.create.LoadProfileState
+import com.local.app.presentation.viewmodel.profile.ProfileViewModel
 import com.local.app.ui.activities.event.CreateEventActivity
 import com.local.app.ui.fragments.feed.profile.LikedEventsFragment
 import com.local.app.ui.fragments.feed.profile.MyEventsFragment
-import com.local.app.utils.Utils
 
 class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
-
-    val viewModel: CreateEventViewModel by activityViewModels()
+    val viewModel: ProfileViewModel by viewModels()
 
     override fun setBinding(inflater: LayoutInflater) {
         binding = FragmentProfileBinding.inflate(inflater)
@@ -29,15 +27,47 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
 
     override fun initUI(state: Bundle?) {
         super.initUI(state)
-        binding.btnCreateEvent.setOnClickListener { showCreateEventStartFragment() }
-        binding.btnBack.setOnClickListener { requireActivity().finish() }
-        initTabs()
+        binding.btnBack.setOnClickListener { backStep() }
+        binding.btnCreateEvent.setOnClickListener {
+            startActivity(Intent(requireContext(), CreateEventActivity::class.java))
+        }
+
+        binding.btnMenu.setOnClickListener { showMenu(it) }
+        initViewPager()
         subscribeToViewModel()
+    }
+
+    private fun showMenu(view: View) {
+        val popupMenu = PopupMenu(requireContext(), view)
+        popupMenu.inflate(R.menu.menu_profile)
+        popupMenu.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.btn_settings -> {
+                    showSettingsFragment()
+                    true
+                }
+                R.id.btn_logout -> {
+                    logout()
+                    true
+                }
+                else -> false
+            }
+        }
+        popupMenu.show()
+    }
+
+    private fun showSettingsFragment() {
+
+    }
+
+    private fun logout() {
+        viewModel.logout()
+        backStep()
     }
 
     override fun subscribeToViewModel() {
         super.subscribeToViewModel()
-        viewModel.loadProfileState.observe(this, Observer {
+        viewModel.loadProfileState.observe(this, {
             when (it) {
                 is LoadProfileState.ERROR -> {
                     showErrorAlert(it.error.message)
@@ -53,19 +83,10 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
         viewModel.loadProfile()
     }
 
-    @SuppressLint("SetTextI18n")
     private fun initUserData(profile: Profile) {
-        log(profile.toString())
-        binding.title.text = "${profile.firstName} ${profile.lastName}"
-        profile
-            .getProfileImage()
-            ?.let {
-                showImage(binding.toolbarImage, it.url.lg)
-                showRounderCornersImage(binding.ivAvatar, it.url.lg, Utils
-                    .dpToPx(10)
-                    .toInt())
-            }
-
+        showRoundImage(binding.ivAvatar, profile.getProfileImage()?.url?.getDefault() ?: "")
+        binding.tvName.text = "${profile.firstName} ${profile.lastName}"
+        initTabs()
     }
 
     private fun initTabs() {
@@ -90,7 +111,7 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
         }
     }
 
-    private fun showCreateEventStartFragment() {
-        startActivity(Intent(requireContext(), CreateEventActivity::class.java))
+    private fun initViewPager() {
+
     }
 }

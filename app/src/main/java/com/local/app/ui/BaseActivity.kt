@@ -4,14 +4,25 @@ import android.app.ProgressDialog
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.local.app.R
 
-open class BaseActivity : AppCompatActivity() {
+
+open class BaseActivity : FragmentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            val w: Window = window
+//            w.setFlags(
+//                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+//                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+//            )
+//        }
+    }
 
     private var pbDialog: ProgressDialog? = null
 
@@ -77,9 +88,9 @@ open class BaseActivity : AppCompatActivity() {
         })
     }
 
-    fun showToast(message: String) {
+    fun showToast(message: String? = "") {
         Toast
-            .makeText(this, message, Toast.LENGTH_SHORT)
+            .makeText(this, message?:"", Toast.LENGTH_SHORT)
             .show()
     }
 }

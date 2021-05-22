@@ -5,7 +5,7 @@ import androidx.activity.viewModels
 import com.local.app.R
 import com.local.app.presentation.viewmodel.event.list.EventListViewModel
 import com.local.app.ui.BaseActivity
-import com.local.app.ui.fragments.profile.ProfileFragment
+import com.local.app.ui.fragments.profile.ProfileFragmentOld
 
 class UserActivity : BaseActivity() {
 
@@ -14,7 +14,7 @@ class UserActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
-        showFragment(ProfileFragment(), true)
+        showFragment(ProfileFragmentOld(), true)
     }
 
     override fun onBackPressed() {

@@ -11,7 +11,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
+        versionName "0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -66,6 +66,8 @@ dependencies {
     //UI
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.google.android.material:material:1.2.1'
+    implementation 'jp.wasabeef:blurry:4.0.0'
+    implementation 'com.github.mmin18:realtimeblurview:1.2.1'
 
     //MAP
     implementation 'com.google.android.libraries.places:places:2.4.0'
@@ -81,11 +83,11 @@ dependencies {
     kapt 'androidx.room:room-compiler:' + rootProject.archRoomVersion
 
     //AUTH
-    implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
     implementation 'com.vk:androidsdk:2.1.1'
 
     //NETWORK
-    implementation 'com.squareup.okhttp3:okhttp:4.2.2'
+    implementation 'com.squareup.okhttp3:okhttp:4.4.0'
 
     //dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
@@ -115,5 +117,12 @@ dependencies {
 
     //IMAGE PICKER
     implementation 'gun0912.ted:tedimagepicker:1.1.3'
+
+    //phone validation
+    implementation 'com.redmadrobot:input-mask-android:6.0.0'
+
+    //SWIPE
+    implementation "com.yuyakaido.android:card-stack-view:2.3.4"
+
 
 }

@@ -14,6 +14,5 @@ class TimePickerFragment(private val listener: TimePickerDialog.OnTimeSetListene
         //        val month = c.get(Calendar.MONTH)
         //        val day = c.get(Calendar.DAY_OF_MONTH)
         return TimePickerDialog(requireActivity(), listener, 18, 0, true)
-
     }
 }

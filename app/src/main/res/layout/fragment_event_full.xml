@@ -8,7 +8,6 @@
         <variable
                 name="event"
                 type="com.local.app.data.event.Event" />
-
     </data>
 
     <ScrollView
@@ -18,8 +17,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorMainDark"
-                android:padding="@dimen/control_margin">
+                android:background="@color/colorMainDark">
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_images"
@@ -27,12 +25,23 @@
                     android:layout_height="416dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                   />
+                    app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                    android:id="@+id/tvPrice"
+                    style="@style/App.Text.Pink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="@dimen/control_margin"
+                    app:layout_constraintBottom_toBottomOf="@id/rv_images"
+                    app:layout_constraintStart_toStartOf="@id/tv_name"
+                    tools:text="200P" />
 
             <ImageButton
-                    android:id="@+id/btn_accept"
+                    android:id="@+id/btn_close_event"
                     android:layout_width="@dimen/accept_btn_size"
                     android:layout_height="@dimen/accept_btn_size"
                     android:layout_marginEnd="@dimen/control_big_margin"
@@ -47,29 +56,31 @@
                     style="@style/App.Text.Title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/control_big_margin"
+                    android:layout_marginStart="@dimen/control_margin"
+                    android:layout_marginEnd="@dimen/control_margin"
                     android:text="@{event.eventName}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rv_images" />
+                    app:layout_constraintTop_toBottomOf="@+id/rv_images"
+                    tools:text="Название" />
 
 
-            <LinearLayout
-                    android:id="@+id/ll_tags"
+            <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cgTags"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/ic_tag_size"
-                    android:layout_marginTop="16dp"
-                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/control_margin"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_name">
 
-            </LinearLayout>
+            </com.google.android.material.chip.ChipGroup>
 
             <TextView
                     android:id="@+id/tv_description"
                     style="@style/App.Text.Default"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/control_margin"
                     android:layout_marginTop="16dp"
@@ -78,7 +89,8 @@
                     android:text="@{event.description}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ll_tags" />
+                    app:layout_constraintTop_toBottomOf="@+id/cgTags"
+                    tools:text="Специально для вас небезызвестные ребята из группы Comma исполнят легендарные хиты парней из Калифорнии! Не знаешь английского? Не беда, ты и так точно знаешь как подпевать под эти трек!" />
 
             <View
                     android:id="@+id/btn_soundcloud"
@@ -86,8 +98,8 @@
                     android:layout_height="64dp"
                     android:layout_marginTop="@dimen/control_medium_margin"
                     android:background="@drawable/rect_grey_solid_20dp_corner"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_name"
+                    app:layout_constraintStart_toStartOf="@+id/tv_name"
                     app:layout_constraintTop_toBottomOf="@+id/tv_description" />
 
             <TextView
@@ -96,6 +108,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/control_medium_margin"
+                    android:layout_marginTop="4dp"
                     android:clickable="false"
                     android:text="Sound Preview"
                     app:layout_constraintBottom_toTopOf="@+id/tv_singer_name"
@@ -108,23 +121,25 @@
                     style="@style/App.Text.Title.Small"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/control_medium_margin"
+                    android:layout_marginBottom="4dp"
                     android:clickable="false"
                     android:text="DJ Preview"
                     app:layout_constraintBottom_toBottomOf="@+id/btn_soundcloud"
                     app:layout_constraintEnd_toStartOf="@+id/imageView"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_sound_name"
                     app:layout_constraintTop_toBottomOf="@+id/tv_sound_name" />
 
             <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="88dp"
+                    android:layout_height="48dp"
                     android:layout_marginEnd="@dimen/control_margin"
+                    android:background="@drawable/rect_black_solid_13dp_corner"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_music"
                     app:layout_constraintBottom_toBottomOf="@+id/btn_soundcloud"
                     app:layout_constraintEnd_toEndOf="@+id/btn_soundcloud"
-                    app:layout_constraintTop_toTopOf="@+id/btn_soundcloud"
-                    app:srcCompat="@drawable/ic_soundcloud" />
+                    app:layout_constraintTop_toTopOf="@+id/btn_soundcloud" />
 
             <View
                     android:id="@+id/view_creator"
@@ -142,8 +157,8 @@
                     android:layout_height="@dimen/image_preview_size"
                     android:layout_marginStart="@dimen/control_margin"
                     android:layout_marginTop="@dimen/control_margin"
-                    android:background="@drawable/rect_blue_18dp_corner"
-                    android:src="@drawable/ic_profile"
+                    android:src="@drawable/ic_user"
+
                     app:layout_constraintStart_toStartOf="@+id/view_creator"
                     app:layout_constraintTop_toTopOf="@+id/view_creator" />
 
@@ -173,7 +188,8 @@
                     app:layout_constraintBottom_toTopOf="@+id/tv_address"
                     app:layout_constraintEnd_toEndOf="@id/view_creator"
                     app:layout_constraintStart_toEndOf="@+id/iv_creator"
-                    app:layout_constraintTop_toTopOf="@+id/iv_creator" />
+                    app:layout_constraintTop_toTopOf="@+id/iv_creator"
+                    tools:text="Организатор" />
 
             <TextView
                     android:id="@+id/tv_address"
@@ -188,7 +204,8 @@
                     app:layout_constraintEnd_toEndOf="@id/view_creator"
                     app:layout_constraintStart_toEndOf="@+id/iv_creator"
                     app:layout_constraintTop_toBottomOf="@+id/tv_creator_name"
-                    app:layout_constraintVertical_chainStyle="spread_inside" />
+                    app:layout_constraintVertical_chainStyle="spread_inside"
+                    tools:text="Адресс" />
 
             <TextView
                     android:id="@+id/tv_distance"
@@ -197,12 +214,14 @@
                     android:layout_height="0dp"
                     android:layout_marginStart="@dimen/control_margin"
                     android:layout_marginEnd="@dimen/control_margin"
-                    android:gravity="top"
+                    android:gravity="center_vertical"
+
                     android:text="@{event.eventLocation.defaultDistance}"
                     app:layout_constraintBottom_toBottomOf="@id/iv_creator"
                     app:layout_constraintEnd_toEndOf="@+id/view_creator"
                     app:layout_constraintStart_toEndOf="@+id/iv_creator"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_address" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_address"
+                    tools:text="Расстояние" />
 
             <ImageButton
                     android:id="@+id/btn_menu"
@@ -210,9 +229,16 @@
                     android:layout_height="40dp"
                     android:layout_marginTop="@dimen/control_margin"
                     android:background="@color/colorTransparent"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="@+id/rv_images"
                     app:layout_constraintTop_toTopOf="@+id/rv_images"
-                    app:srcCompat="@drawable/ic_menu" />
+                    android:src="@drawable/ic_menu_white" />
+
+            <androidx.constraintlayout.widget.Group
+                    android:id="@+id/groupSoundList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="tv_singer_name,tv_sound_name,btn_soundcloud,imageView" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
