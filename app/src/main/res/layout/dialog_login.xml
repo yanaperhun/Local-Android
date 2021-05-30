@@ -20,74 +20,76 @@
         android:background="@drawable/rect_grey_bg_bottom_dialog"
         android:paddingBottom="@dimen/control_big_margin">
 
-        <Button
-            android:id="@+id/btn_login_by_email"
-            style="@style/App.Button.Colored.Green"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/control_big_margin"
-            android:layout_marginTop="@dimen/control_big_margin"
-            android:layout_marginEnd="@dimen/control_big_margin"
-            android:text="@string/login_via_email"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_vk" />
+<!--       -->
 
-        <Button
-            android:id="@+id/btn_sign_in"
-            style="@style/App.Text.Title.Small.White"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="@dimen/control_big_margin"
-            android:background="@color/colorTransparent"
-            android:text="@string/sing_in"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="@+id/btn_login_by_email"
-            app:layout_constraintStart_toStartOf="@+id/btn_login_by_email"
-            app:layout_constraintTop_toBottomOf="@+id/btn_login_by_email" />
+<!--        <Button-->
+<!--            android:id="@+id/btn_sign_in"-->
+<!--            style="@style/App.Text.Title.Small.White"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginBottom="@dimen/control_big_margin"-->
+<!--            android:background="@color/colorTransparent"-->
+<!--            android:text="@string/sing_in"-->
+<!--            android:visibility="gone"-->
+<!--        -->
+<!--           />-->
+
+        <!--        <ImageButton-->
+        <!--            android:id="@+id/btn_instagram"-->
+        <!--            android:layout_width="50dp"-->
+        <!--            android:layout_height="50dp"-->
+        <!--            android:layout_marginEnd="45dp"-->
+        <!--            android:adjustViewBounds="true"-->
+        <!--            android:background="@drawable/ic_instagram"-->
+        <!--            android:scaleType="center"-->
+        <!--            android:visibility="gone"-->
+
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintHorizontal_bias="0.5"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/btn_google"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/btn_vk" />-->
 
         <ImageButton
-            android:id="@+id/btn_instagram"
+            android:id="@+id/btn_login_email"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginEnd="45dp"
+            android:layout_marginStart="20dp"
             android:adjustViewBounds="true"
-            android:background="@drawable/ic_instagram"
-            android:scaleType="center"
-            android:visibility="gone"
 
-            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/circle_green_solid"
+            android:scaleType="center"
+            android:src="@drawable/ic_email_white"
+            android:tint="@color/colorWhite"
+            android:visibility="visible"
+
+            app:layout_constraintEnd_toStartOf="@+id/btn_vk"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btn_google"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/btn_vk" />
 
         <ImageButton
             android:id="@+id/btn_vk"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="45dp"
+
             android:layout_marginTop="@dimen/control_big_margin"
-            android:layout_marginEnd="50dp"
             android:background="@color/colorTransparent"
             android:src="@drawable/ic_vk"
+
             app:layout_constraintEnd_toStartOf="@+id/btn_google"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_login_email"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
         <ImageButton
             android:id="@+id/btn_google"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="50dp"
-
-            android:layout_marginEnd="45dp"
             android:background="@color/colorTransparent"
             android:src="@drawable/ic_google"
-            app:layout_constraintEnd_toStartOf="@+id/btn_instagram"
+
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btn_vk"
             app:layout_constraintTop_toTopOf="@+id/btn_vk" />

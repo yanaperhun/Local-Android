@@ -3,6 +3,7 @@ package com.local.app.ui.fragments.login
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import com.local.app.LocalApp
 import com.local.app.data.AppException
 import com.local.app.domain.login.LoginDomainFacade
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,6 +18,12 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     val state = MutableLiveData<LoginState>()
     private val compositeDisposable = CompositeDisposable()
+
+    init {
+        getApplication<LocalApp>().daggerManager.plusFeedComponent()
+//        getApplication<LocalApp>().daggerManager.plusLoginComponent()
+        getApplication<LocalApp>().daggerManager.appComponent?.inject(this)
+    }
 
     fun login(email: String, pass: String) {
         compositeDisposable.add(loginDomainFacade

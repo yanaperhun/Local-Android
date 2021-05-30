@@ -1,104 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorMainDark">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorMainDark">
 
     <ImageButton
-            android:id="@+id/btn_back"
-            android:layout_width="@dimen/back_btn_size"
-            android:layout_height="@dimen/back_btn_size"
-            android:layout_marginStart="@dimen/control_margin"
-            android:layout_marginTop="@dimen/control_margin"
-            android:background="@drawable/rect_grey_solid_10dp_corner"
-            android:src="@drawable/ic_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
+        android:id="@+id/btn_back"
+        android:layout_width="@dimen/back_btn_size"
+        android:layout_height="@dimen/back_btn_size"
+        android:layout_marginStart="@dimen/control_margin"
+        android:layout_marginTop="@dimen/control_margin"
+        android:background="@drawable/rect_grey_solid_10dp_corner"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-            android:id="@+id/et_name"
-            style="@style/App.EditText.Login"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/et_height_filter"
-            android:layout_marginStart="@dimen/control_big_margin"
-            android:layout_marginTop="96dp"
-            android:layout_marginEnd="@dimen/control_big_margin"
-            android:background="@drawable/selector_et_bg"
-            android:drawableEnd="@drawable/ic_user"
-            android:ems="10"
-            android:hint="@string/name"
-            android:inputType="textEmailAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/et_name"
+        style="@style/App.EditText.Login"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/et_height_filter"
+        android:layout_marginStart="@dimen/control_big_margin"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="@dimen/control_big_margin"
+        android:background="@drawable/selector_et_bg"
+        android:drawableEnd="@drawable/ic_user"
+        android:ems="10"
+        android:hint="@string/name"
+        android:inputType="textEmailAddress"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-            android:id="@+id/et_email"
-            style="@style/App.EditText.Login"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/et_height_filter"
-            android:layout_marginTop="@dimen/control_medium_margin"
-            android:drawableEnd="@drawable/ic_email_white"
-            android:ems="10"
-            android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            app:layout_constraintEnd_toEndOf="@+id/et_name"
-            app:layout_constraintStart_toStartOf="@+id/et_name"
-            app:layout_constraintTop_toBottomOf="@+id/et_name" />
+        android:layout_marginStart="@dimen/control_margin"
+        android:layout_marginEnd="@dimen/control_margin"
+        android:id="@+id/et_email"
+        style="@style/App.EditText.Login"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/et_height_filter"
+        android:layout_marginTop="@dimen/control_medium_margin"
+        android:drawableEnd="@drawable/ic_email_white"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_back" />
 
     <EditText
-            android:id="@+id/et_password"
-            style="@style/App.EditText.Login"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/et_height_filter"
-            android:layout_marginTop="@dimen/control_medium_margin"
-            android:drawableEnd="@drawable/ic_password_white"
-            android:ems="10"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="@+id/et_name"
-            app:layout_constraintStart_toStartOf="@+id/et_name"
-            app:layout_constraintTop_toBottomOf="@+id/et_email" />
+        android:id="@+id/et_password"
+        style="@style/App.EditText.Login"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/et_height_filter"
+        android:layout_marginTop="@dimen/control_medium_margin"
+        android:drawableEnd="@drawable/ic_password_white"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/et_email"
+        app:layout_constraintStart_toStartOf="@+id/et_email"
+        app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
     <Button
-            android:id="@+id/btn_create_account"
-            style="@style/App.Button.Colored.Green"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
-            android:text="@string/create_account"
-            app:layout_constraintEnd_toEndOf="@+id/et_name"
-            app:layout_constraintStart_toStartOf="@+id/et_name"
-            app:layout_constraintTop_toBottomOf="@+id/et_password" />
+        android:id="@+id/btn_create_account"
+        style="@style/App.Button.Colored.Green"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:text="@string/create_account"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/et_name"
+        app:layout_constraintStart_toStartOf="@+id/et_email"
+        app:layout_constraintTop_toBottomOf="@+id/et_password" />
 
-    <Button
-            android:id="@+id/btn_login"
-            style="@style/App.Button.Colored.Green"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
-            android:text="@string/login"
-            app:layout_constraintEnd_toEndOf="@+id/et_name"
-            app:layout_constraintStart_toStartOf="@+id/et_name"
-            app:layout_constraintTop_toBottomOf="@+id/et_password" />
+    <TextView
+        android:id="@+id/btn_login"
+        style="@style/App.Button.Colored.Green"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/btn_next_height"
+        android:layout_marginStart="@dimen/control_margin"
+        android:layout_marginEnd="@dimen/control_margin"
+        android:layout_marginTop="120dp"
+        android:text="@string/login"
+        app:layout_constraintEnd_toEndOf="@+id/et_email"
+        app:layout_constraintStart_toStartOf="@+id/et_email"
+        app:layout_constraintTop_toBottomOf="@+id/et_password" />
 
-    <androidx.constraintlayout.widget.Group
-            android:id="@+id/group_auth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:constraint_referenced_ids="et_name,btn_create_account" />
+<!--    <androidx.constraintlayout.widget.Group-->
+<!--        android:id="@+id/group_auth"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:constraint_referenced_ids="et_name,btn_create_account" />-->
 
     <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/btn_create_account"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_password" />
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/btn_create_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_password" />
 </androidx.constraintlayout.widget.ConstraintLayout>

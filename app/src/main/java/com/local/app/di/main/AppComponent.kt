@@ -9,6 +9,7 @@ import com.local.app.di.login.LoginModule
 import com.local.app.di.user.list.EventListComponent
 import com.local.app.di.user.list.EventListModule
 import com.local.app.presentation.viewmodel.profile.ProfileViewModel
+import com.local.app.ui.fragments.login.LoginViewModel
 import com.local.app.ui.fragments.profile.settings.ProfileSettingsViewModel
 import dagger.Component
 import javax.inject.Singleton
@@ -25,4 +26,5 @@ interface AppComponent {
 
     fun inject(profileViewModel: ProfileViewModel)
     fun inject(profileViewModel: ProfileSettingsViewModel)
+    fun inject(loginViewModel: LoginViewModel)
 }

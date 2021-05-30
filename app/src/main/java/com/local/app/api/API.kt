@@ -18,13 +18,13 @@ interface API {
     @GET("feed/guest")
     fun load(): Single<EventListResponse>
 
-    @POST("auth/tokensignin")
+    @POST("auth/byToken")
     fun authViaSocNetwork(@Body socNetAuthRequest: SocNetAuthRequest): Single<TokenResponse>
 
     @POST("auth/signin")
     fun authViaEmail(@Body authRequest: AuthRequest): Single<TokenResponse>
 
-    @POST("auth/login")
+    @POST("auth/byEmail")
     fun login(@Body loginRequest: LoginRequest): Single<TokenResponse>
 
     @GET("user")

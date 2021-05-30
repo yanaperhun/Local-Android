@@ -3,9 +3,9 @@ package com.local.app.data
 import com.local.app.data.photo.PhotoEntity
 
 data class Profile(
-    val firstName: String,
-    val lastName: String,
-    val email: String,
+    val firstName: String?,
+    val lastName: String?,
+    val email: String?,
     val phone: String,
     val age: Int,
     val pictures: List<PhotoEntity>?,
@@ -21,11 +21,11 @@ data class Profile(
     }
 
     fun getUserName(): String {
-        if (firstName == null && lastName == null) {
-            return ""
-        } else if (lastName == null) {
+        if (firstName.isNullOrEmpty() && lastName.isNullOrEmpty()) {
+            return if (email.isNullOrEmpty()) "" else email
+        } else if (lastName.isNullOrEmpty()) {
             return "$firstName"
-        } else if (firstName == null) {
+        } else if (firstName.isNullOrEmpty()) {
             return "${lastName}"
         } else {
             return "${firstName} ${lastName}"

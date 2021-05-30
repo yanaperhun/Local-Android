@@ -15,6 +15,7 @@ class RetrofitClient(val prefUtils: PrefUtils) {
 
     private val TIMEOUT = 60L
     private val URL = "http://api.local-app.ru/"
+    private val URL_DEV = "http://local-app.ru:3000/"
     private val URL_LOCAL = "http://192.168.1.114:3000"
 
     lateinit var api: API

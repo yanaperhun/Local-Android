@@ -23,7 +23,7 @@ class ProfileSettingsFragment : BindableFragment<FragmentProfileSettingsBinding>
 
     override fun initUI(state: Bundle?) {
         super.initUI(state)
-        binding.btnBack.setOnClickListener { requireActivity().onBackPressed() }
+        binding.btnBack.setOnClickListener { backStep() }
         binding.btnClose.setOnClickListener { requireActivity().finish() }
 
         initOnEditorActionListener()

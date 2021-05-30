@@ -30,8 +30,9 @@ class LoginRepositoryImpl(private val retrofitClient: RetrofitClient,
     }
 
     override fun login(email: String, pass: String): Single<TokenResponse> {
+        val deviceName  = "1234"
         return retrofitClient.api
-            .login(LoginRequest(email, pass))
+            .login(LoginRequest(email, pass, deviceName))
             .doOnSuccess {
                 prefUtils.saveTokens(it.token)
                 retrofitClient.reInitClient()

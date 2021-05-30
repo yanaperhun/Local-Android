@@ -27,9 +27,9 @@ class LoginDialog : BottomSheetDialogFragment() {
     }
 
     private fun initUI() {
-        binding.btnInstagram.setOnClickListener {
+        binding.btnLoginEmail.setOnClickListener {
             dismiss()
-            loginDialogCallback.onInstagramSelected()
+            loginDialogCallback.onEmailSelected()
         }
         binding.btnGoogle.setOnClickListener {
             dismiss()
@@ -39,14 +39,14 @@ class LoginDialog : BottomSheetDialogFragment() {
             dismiss()
             loginDialogCallback.onVkSelected()
         }
-        binding.btnLoginByEmail.setOnClickListener {
-            dismiss()
-            loginDialogCallback.onEmailSelected()
-        }
-        binding.btnSignIn.setOnClickListener {
-            dismiss()
-            loginDialogCallback.onAuthSelected()
-        }
+//        binding.btnLoginByEmail.setOnClickListener {
+//            dismiss()
+//            loginDialogCallback.onEmailSelected()
+//        }
+//        binding.btnSignIn.setOnClickListener {
+//            dismiss()
+//            loginDialogCallback.onAuthSelected()
+//        }
     }
 
 }

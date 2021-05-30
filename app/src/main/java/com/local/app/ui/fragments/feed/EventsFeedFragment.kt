@@ -146,6 +146,8 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
         } else {
             showLoginDialog()
         }
+
+//        startActivity(Intent(requireContext(), CreateEventActivity::class.java))
     }
 
     private fun showLoginDialog() {
@@ -164,14 +166,15 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
         showFragment(LoginFragment(), args, true)
     }
 
-    private fun openLoginScreen() {
+    private fun emailLogin() {
+        Timber.d("emailLogin")
         showFragment(LoginFragment(), true)
     }
 
     private fun startVKLogin() {
         Timber.d("start vk login")
 
-        VK.login(requireActivity(), arrayListOf(VKScope.EMAIL, VKScope.FRIENDS))
+        VK.login(requireActivity(), arrayListOf(VKScope.EMAIL, VKScope.FRIENDS, VKScope.OFFLINE))
     }
 
     private fun startGoogleLogin() {
@@ -291,7 +294,7 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
         }
 
         override fun onEmailSelected() {
-            openLoginScreen()
+            emailLogin()
         }
 
         override fun onAuthSelected() {

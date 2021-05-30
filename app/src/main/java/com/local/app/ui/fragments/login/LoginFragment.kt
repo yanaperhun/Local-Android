@@ -11,7 +11,6 @@ import com.local.app.data.AppException
 import com.local.app.databinding.FragmentLoginBinding
 import com.local.app.ui.BaseFragment
 import com.local.app.utils.FieldValidation
-import kotlin.jvm.Throws
 
 class LoginFragment : BaseFragment() {
 
@@ -54,17 +53,17 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun goToMainScreen() {
-
+        backStep()
     }
 
     override fun initUI(state: Bundle?) {
         val isLoginFlow = arguments?.getBoolean(IS_LOGIN, true) ?: true
 
-        if (isLoginFlow) {
-            binding.groupAuth.visibility = View.GONE
-        } else {
-            binding.btnLogin.visibility = View.GONE
-        }
+//        if (isLoginFlow) {
+//            binding.groupAuth.visibility = View.GONE
+//        } else {
+//            binding.btnLogin.visibility = View.GONE
+//        }
 
         binding.btnLogin.setOnClickListener { login() }
         binding.btnCreateAccount.setOnClickListener { createAccount() }
