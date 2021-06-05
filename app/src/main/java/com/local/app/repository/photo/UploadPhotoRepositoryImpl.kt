@@ -11,10 +11,10 @@ class UploadPhotoRepositoryImpl(val retrofitClient: RetrofitClient,
 
     override var photos = ArrayList<PhotoInDir>()
 
-    override fun uploadImageFile(fileDir: String): Single<PhotoInDir> {
+    override fun uploadImageFile(fileDir: String, photoType : String): Single<PhotoInDir> {
         photos.add(PhotoInDir(fileDir))
         //        val file = File(fileDir)
-        val body = UploadFileBody(fileDir, contentResolver)
+        val body = UploadFileBody(fileDir, photoType)
         return retrofitClient.api
             .loadImage(body.fileType, body.image)
             .doOnError {

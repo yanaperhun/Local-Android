@@ -6,5 +6,5 @@ import io.reactivex.Single
 interface UploadPhotoRepository {
     val photos : ArrayList<PhotoInDir>
 
-    fun uploadImageFile(fileDir: String): Single<PhotoInDir>
+    fun uploadImageFile(fileDir: String, userType : String): Single<PhotoInDir>
 }

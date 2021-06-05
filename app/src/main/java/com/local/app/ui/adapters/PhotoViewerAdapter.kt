@@ -25,7 +25,7 @@ class PhotoViewerAdapter(private val photoEntityList: List<PhotoEntity>) :
         //        holder.itemView.layoutParams = ConstraintLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
         holder.itemView.layoutParams.width = holder.w
         Utils.showImage(holder.binding.ivPhoto,
-                        "https://foresteurope.org/wp-content/uploads/2017/08/tuce-P3DxOe-OJGA-unsplash.jpg")
+                        photoEntityList[position].url.lg)
     }
 
     inner class VH(var w: Int, itemView: ItemPhotoViewerBinding) :

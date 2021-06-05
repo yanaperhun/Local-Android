@@ -57,7 +57,7 @@ class CreateEventViewModel(application: Application) : AndroidViewModel(applicat
     fun uploadPhoto(fileDir: String) {
         with(compositeDisposable) {
             add(uploadPhotoInteractor
-                    .uploadPhoto(fileDir)
+                    .uploadPhoto(fileDir, "event_pic")
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.single())
                     .doOnEvent { _, _ -> photoLoadingState.postValue(EventCreationState.LOADING) }

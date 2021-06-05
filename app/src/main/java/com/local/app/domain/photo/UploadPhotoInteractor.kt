@@ -1,6 +1,5 @@
 package com.local.app.domain.photo
 
-import android.net.Uri
 import com.local.app.data.photo.PhotoInDir
 import com.local.app.repository.event.create.CreateEventRepository
 import com.local.app.repository.photo.UploadPhotoRepository
@@ -10,10 +9,10 @@ import javax.inject.Inject
 class UploadPhotoInteractor @Inject constructor(private val repository: UploadPhotoRepository,
                                                 private val createEventRepository: CreateEventRepository) {
 
-    fun uploadPhoto(fileDir: String): Single<PhotoInDir> {
+    fun uploadPhoto(fileDir: String, photoType : String): Single<PhotoInDir> {
 
         return repository
-            .uploadImageFile(fileDir)
+            .uploadImageFile(fileDir, photoType)
             .doOnSuccess { createEventRepository.addPhoto(it) }
     }
 
