@@ -34,6 +34,7 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
             startActivity(Intent(requireContext(), CreateEventActivity::class.java))
         }
 
+        binding.swipe.setOnRefreshListener {  viewModel.loadProfile() }
         binding.btnMenu.setOnClickListener { showMenu(it) }
         initViewPager()
         subscribeToViewModel()

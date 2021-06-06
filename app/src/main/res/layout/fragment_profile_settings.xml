@@ -83,6 +83,7 @@
                     tools:text="Innokentiy Istrebitel" />
 
                 <EditText
+                    android:enabled="false"
                     android:id="@+id/et_user_email"
                     style="@style/App.EditText.ProfileSettings"
                     android:layout_width="match_parent"

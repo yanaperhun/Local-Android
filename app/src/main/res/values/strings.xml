@@ -39,6 +39,8 @@
     <string name="liked">Понравившиеся</string>
     <string name="created">Созданные</string>
     <string name="empty_list">Пустой список</string>
+    <string name="no_events">Вы еще не поставили\nлайк ни одному событию</string>
+    <string name="no_events_try_to_create">Нет событий.\nПопробуйте создать свое</string>
     <string name="create">Создать</string>
     <string name="error_validate_step_1">Введите название</string>
     <string name="error_validate_step_2">Введите описание</string>
