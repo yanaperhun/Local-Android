@@ -42,7 +42,8 @@
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/control_medium_margin"
+            android:layout_margin="@dimen/control_big_margin"
+            android:layout_marginTop="@dimen/control_big_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_avatar" />
@@ -64,7 +65,7 @@
             android:layout_height="40dp"
             android:layout_marginStart="34dp"
             android:layout_marginTop="34dp"
-            android:background="@drawable/ic_whatsup"
+
             app:layout_constraintEnd_toStartOf="@+id/btnTelegram"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/btnPhone"
@@ -138,11 +139,8 @@
             android:id="@+id/btnWhatsup"
             android:layout_width="0dp"
             android:layout_height="0dp"
-
             android:layout_marginTop="0dp"
-            android:background="@drawable/ic_whatsup"
             app:layout_constraintEnd_toStartOf="@+id/btnTelegram"
-
             app:layout_constraintStart_toEndOf="@+id/btnPhone"
             app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
@@ -150,11 +148,8 @@
             android:id="@+id/btnTelegram"
             android:layout_width="0dp"
             android:layout_height="0dp"
-
             android:layout_marginTop="0dp"
-
             app:layout_constraintEnd_toStartOf="@+id/btnInstagram"
-
             app:layout_constraintStart_toEndOf="@+id/btnWhatsup"
             app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
@@ -162,10 +157,7 @@
             android:id="@+id/btnInstagram"
             android:layout_width="0dp"
             android:layout_height="0dp"
-
             android:layout_marginTop="0dp"
-
-
             app:layout_constraintStart_toEndOf="@+id/btnTelegram"
             app:layout_constraintTop_toBottomOf="@+id/tvName" />
     </ConstraintSet>

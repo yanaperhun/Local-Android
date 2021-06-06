@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.viewModels
@@ -89,6 +90,54 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
             showRoundImage(binding.ivAvatar, it)
         }
         binding.tvName.text = profile.getNick()
+
+        var picture = if (profile.instagram.isNullOrEmpty())
+            R.drawable.ic_instagram_bw
+        else
+            R.drawable.ic_instagram
+        binding.btnInstagram.setBackground(
+            ResourcesCompat.getDrawable(
+                resources,
+                picture,
+                null
+            )
+        )
+
+        picture = if (profile.phone.isNullOrEmpty())
+            R.drawable.ic_phone_bw
+        else
+            R.drawable.ic_phone
+        binding.btnPhone.setBackground(
+            ResourcesCompat.getDrawable(
+                resources,
+                picture,
+                null
+            )
+        )
+
+        picture = if (profile.telegram.isNullOrEmpty())
+            R.drawable.ic_telegram_bw
+        else
+            R.drawable.ic_telegram
+        binding.btnTelegram.setBackground(
+            ResourcesCompat.getDrawable(
+                resources,
+                picture,
+                null
+            )
+        )
+
+        picture = if (profile.whatsApp.isNullOrEmpty())
+            R.drawable.ic_whatsup_bw
+        else
+            R.drawable.ic_whatsup
+        binding.btnWhatsup.setBackground(
+            ResourcesCompat.getDrawable(
+                resources,
+                picture,
+                null
+            )
+        )
         initTabs()
     }
 
