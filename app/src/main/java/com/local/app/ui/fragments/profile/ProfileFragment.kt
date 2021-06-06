@@ -73,12 +73,14 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
         viewModel.loadProfileState.observe(this, {
             when (it) {
                 is LoadProfileState.ERROR -> {
+                    binding.swipe.isRefreshing = false
                     showErrorAlert(it.error.message)
                 }
                 is LoadProfileState.LOADING -> {
 
                 }
                 is LoadProfileState.SUCCESS -> {
+                    binding.swipe.isRefreshing = false
                     initUserData(it.profile)
                 }
             }
