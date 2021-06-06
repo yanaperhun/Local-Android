@@ -29,8 +29,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingTop="64dp"
-        android:visibility="gone"
+
+        android:layout_marginTop="55dp"
+        android:visibility="visible"
         tools:visibility="visible">
 
         <LinearLayout
@@ -51,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/control_big_margin"
-                android:background="@color/colorDarkGray"
+
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="@id/btn_back"
                 app:layout_constraintTop_toBottomOf="@id/tv_profile_settings">
@@ -73,6 +74,7 @@
                     android:layout_marginHorizontal="@dimen/control_margin"
                     android:layout_marginTop="@dimen/control_margin"
                     android:drawableEnd="@drawable/ic_profile"
+                    android:hint="@string/name"
                     android:imeOptions="actionDone"
                     android:inputType="textPersonName"
                     android:lines="1"
@@ -88,12 +90,12 @@
                     android:layout_marginHorizontal="@dimen/control_margin"
                     android:layout_marginTop="@dimen/control_medium_margin"
                     android:drawableEnd="@drawable/ic_email_white"
+                    android:hint="@string/email"
                     android:imeOptions="actionDone"
                     android:inputType="textEmailAddress"
                     android:lines="1"
                     android:paddingStart="@dimen/control_medium_margin"
-                    android:paddingEnd="@dimen/control_big_margin"
-                    android:text="@string/email" />
+                    android:paddingEnd="@dimen/control_big_margin" />
 
                 <EditText
                     android:id="@+id/et_password"
@@ -110,7 +112,7 @@
                     android:paddingStart="@dimen/control_medium_margin"
                     android:paddingEnd="@dimen/control_big_margin"
                     android:text="@string/password"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout
@@ -140,13 +142,12 @@
                     android:digits="0123456789+()- "
                     android:drawableStart="@drawable/ic_phone_circle"
                     android:drawablePadding="@dimen/control_medium_margin"
+                    android:hint="@string/phone_number"
                     android:imeOptions="actionDone"
                     android:inputType="phone"
                     android:lines="1"
                     android:paddingStart="@dimen/control_medium_margin"
-                    android:paddingEnd="@dimen/control_big_margin"
-                    android:text="@string/phone_number"
-                    android:textColor="@color/colorTextDefault" />
+                    android:paddingEnd="@dimen/control_big_margin" />
 
                 <EditText
                     android:id="@+id/et_telegram"
@@ -157,12 +158,12 @@
                     android:layout_marginTop="@dimen/control_medium_margin"
                     android:drawableStart="@drawable/ic_telegram_circle"
                     android:drawablePadding="@dimen/control_medium_margin"
+                    android:hint="@string/telegram_name"
                     android:imeOptions="actionDone"
+                    android:inputType="textEmailSubject"
                     android:lines="1"
                     android:paddingStart="@dimen/control_medium_margin"
-                    android:paddingEnd="@dimen/control_big_margin"
-                    android:text="@string/telegram_name"
-                    android:textColor="@color/colorTextDefault" />
+                    android:paddingEnd="@dimen/control_big_margin" />
 
                 <EditText
                     android:id="@+id/et_instagram"
@@ -173,12 +174,12 @@
                     android:layout_marginTop="@dimen/control_medium_margin"
                     android:drawableStart="@drawable/ic_instagram_circle"
                     android:drawablePadding="@dimen/control_medium_margin"
+                    android:hint="@string/instagram_yourname"
                     android:imeOptions="actionDone"
+                    android:inputType="textEmailSubject"
                     android:lines="1"
                     android:paddingStart="@dimen/control_medium_margin"
-                    android:paddingEnd="@dimen/control_big_margin"
-                    android:text="@string/instagram_yourname"
-                    android:textColor="@color/colorTextDefault" />
+                    android:paddingEnd="@dimen/control_big_margin" />
 
                 <EditText
                     android:id="@+id/et_whats_app"
@@ -190,12 +191,12 @@
                     android:layout_marginBottom="@dimen/control_margin"
                     android:drawableStart="@drawable/ic_whatsapp_circle"
                     android:drawablePadding="@dimen/control_medium_margin"
+                    android:hint="@string/phone_number_whats_app"
                     android:imeOptions="actionDone"
+                    android:inputType="phone"
                     android:lines="1"
                     android:paddingStart="@dimen/control_medium_margin"
-                    android:paddingEnd="@dimen/control_big_margin"
-                    android:text="@string/phone_number_whats_app"
-                    android:textColor="@color/colorTextDefault" />
+                    android:paddingEnd="@dimen/control_big_margin" />
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

@@ -85,8 +85,10 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
     }
 
     private fun initUserData(profile: Profile) {
-        showRoundImage(binding.ivAvatar, profile.getProfileImage()?.url?.getDefault() ?: "")
-        binding.tvName.text = profile.getUserName()
+        profile.getProfileImage()?.url?.getDefault()?.let {
+            showRoundImage(binding.ivAvatar, it)
+        }
+        binding.tvName.text = profile.getNick()
         initTabs()
     }
 

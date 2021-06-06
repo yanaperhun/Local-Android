@@ -36,7 +36,7 @@ class ProfileSettingsViewModel(application: Application) : AndroidViewModel(appl
             with(compositeDisposable) {
                 add(
                     profileInteractor
-                        .getProfileAsync()
+                        .loadProfileAndSaveInPref()
                         .doOnSubscribe { state.value = ProfileSettingsState.LOADING }
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.single())

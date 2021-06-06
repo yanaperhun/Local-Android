@@ -11,6 +11,7 @@ import com.local.app.BindableFragment
 import com.local.app.R
 import com.local.app.data.Profile
 import com.local.app.databinding.FragmentProfileSettingsBinding
+import timber.log.Timber
 
 class ProfileSettingsFragment : BindableFragment<FragmentProfileSettingsBinding>() {
 
@@ -23,7 +24,10 @@ class ProfileSettingsFragment : BindableFragment<FragmentProfileSettingsBinding>
 
     override fun initUI(state: Bundle?) {
         super.initUI(state)
-        binding.btnBack.setOnClickListener { backStep() }
+        binding.btnBack.setOnClickListener {
+            Timber.d("click back button")
+            backStep()
+        }
         binding.btnClose.setOnClickListener { requireActivity().finish() }
 
         initOnEditorActionListener()
@@ -36,7 +40,7 @@ class ProfileSettingsFragment : BindableFragment<FragmentProfileSettingsBinding>
             if (actionId == EditorInfo.IME_ACTION_DONE || keyEvent.action == KeyEvent.ACTION_DOWN) {
                 viewModel.updateUserName(binding.etUserName.text.toString(), "")
                 binding.etUserName.clearFocus()
-                hideKeyboard()
+                focusET(binding.etUserEmail)
                 true
             } else {
                 false
@@ -46,7 +50,7 @@ class ProfileSettingsFragment : BindableFragment<FragmentProfileSettingsBinding>
             if (actionId == EditorInfo.IME_ACTION_DONE || keyEvent.action == KeyEvent.ACTION_DOWN) {
                 viewModel.updateUserEmail(binding.etUserEmail.text.toString())
                 binding.etUserEmail.clearFocus()
-                hideKeyboard()
+                focusET(binding.etPhoneNumber)
                 true
             } else {
                 false
@@ -56,7 +60,7 @@ class ProfileSettingsFragment : BindableFragment<FragmentProfileSettingsBinding>
             if (actionId == EditorInfo.IME_ACTION_DONE || keyEvent.action == KeyEvent.ACTION_DOWN) {
                 viewModel.updateUserPhone(binding.etPhoneNumber.text.toString())
                 binding.etPhoneNumber.clearFocus()
-                hideKeyboard()
+                focusET(binding.etTelegram)
                 true
             } else {
                 false
@@ -65,7 +69,6 @@ class ProfileSettingsFragment : BindableFragment<FragmentProfileSettingsBinding>
         binding.etWhatsApp.setOnEditorActionListener { _, actionId, keyEvent ->
             if (actionId == EditorInfo.IME_ACTION_DONE || keyEvent.action == KeyEvent.ACTION_DOWN) {
                 viewModel.updateUserWhatsApp(binding.etWhatsApp.text.toString())
-                binding.etWhatsApp.clearFocus()
                 hideKeyboard()
                 true
             } else {
@@ -76,7 +79,7 @@ class ProfileSettingsFragment : BindableFragment<FragmentProfileSettingsBinding>
             if (actionId == EditorInfo.IME_ACTION_DONE || keyEvent.action == KeyEvent.ACTION_DOWN) {
                 viewModel.updateUserTelegram(binding.etTelegram.text.toString())
                 binding.etTelegram.clearFocus()
-                hideKeyboard()
+                focusET(binding.etInstagram)
                 true
             } else {
                 false
@@ -85,8 +88,7 @@ class ProfileSettingsFragment : BindableFragment<FragmentProfileSettingsBinding>
         binding.etInstagram.setOnEditorActionListener { _, actionId, keyEvent ->
             if (actionId == EditorInfo.IME_ACTION_DONE || keyEvent.action == KeyEvent.ACTION_DOWN) {
                 viewModel.updateUserInstagram(binding.etInstagram.text.toString())
-                binding.etInstagram.clearFocus()
-                hideKeyboard()
+                focusET(binding.etWhatsApp)
                 true
             } else {
                 false
@@ -106,14 +108,15 @@ class ProfileSettingsFragment : BindableFragment<FragmentProfileSettingsBinding>
 
 
     private fun showProfileInfo(profile: Profile) {
+        Timber.d("showProfileInfo $profile")
         binding.progressProfileSettings.visibility = View.GONE
         binding.nestedScrollProfileSettings.visibility = View.VISIBLE
-        binding.etUserName.setText(profile.getUserName())
-        binding.etUserEmail.setText(profile.email ?: getString(R.string.email))
-        binding.etPhoneNumber.setText(profile.phone ?: getString(R.string.phone_number))
-        binding.etWhatsApp.setText(profile.whatsApp ?: getString(R.string.phone_number_whats_app))
-        binding.etTelegram.setText(profile.telegram ?: getString(R.string.telegram_name))
-        binding.etInstagram.setText(profile.instagram ?: getString(R.string.instagram_yourname))
+        binding.etUserName.setText(profile.firstName ?: "")
+        binding.etUserEmail.setText(profile.email)
+        binding.etPhoneNumber.setText(profile.phone)
+        binding.etWhatsApp.setText(profile.whatsApp)
+        binding.etTelegram.setText(profile.telegram)
+        binding.etInstagram.setText(profile.instagram)
     }
 
     private fun updateProfileSettingsState(state: ProfileSettingsState) {

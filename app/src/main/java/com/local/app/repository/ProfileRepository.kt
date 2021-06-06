@@ -7,7 +7,7 @@ import io.reactivex.Single
 interface ProfileRepository {
 
     fun isProfileLoaded() : Boolean
-    fun getProfileAsync(): Single<Profile>
+    fun loadProfileAndSaveInPref(): Single<Profile>
     fun getProfile() : Profile?
     fun logout()
 

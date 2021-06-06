@@ -88,7 +88,7 @@ class CreateEventStepPhotoFragment :
                 }
                 is EventCreationState.SUCCESS -> {
                     requireActivity().finish()
-                    showToast("Событие создано")
+                    showToast("Фотография загружена")
                 }
             }
         })
@@ -103,17 +103,18 @@ class CreateEventStepPhotoFragment :
         })
 
         viewModel.photoLoadingState.observe(this, {
+
             adapter.notifyDataSetChanged()
             when (it) {
                 is EventCreationState.ERROR -> {
                     showErrorAlert(it.error.message)
                 }
                 is EventCreationState.SUCCESS -> {
-                    showToast("Событие создано")
+                    showToast("Фотография загружена")
                 }
 
                 is EventCreationState.LOADING -> {
-                    showToast("Событие создано")
+
                 }
             }
         })

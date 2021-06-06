@@ -25,7 +25,7 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
     fun loadProfile() {
         with(compositeDisposable) {
             add(profileInteractor
-                    .getProfileAsync()
+                    .loadProfileAndSaveInPref()
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(io.reactivex.schedulers.Schedulers.single())
                     .doOnEvent { _, _ ->

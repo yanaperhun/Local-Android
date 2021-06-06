@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:minHeight="250dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_test"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

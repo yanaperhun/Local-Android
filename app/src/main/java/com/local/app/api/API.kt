@@ -9,6 +9,7 @@ import com.local.app.api.response.TokenResponse
 import com.local.app.data.Profile
 import com.local.app.data.event.create.EventRaw
 import com.local.app.data.photo.PhotoEntity
+import io.reactivex.Completable
 import io.reactivex.Single
 import okhttp3.MultipartBody
 import retrofit2.http.*
@@ -30,8 +31,8 @@ interface API {
     @GET("user")
     fun loadProfile(): Single<Profile>
 
-    @PUT("api/user")
-    fun updateProfile(@Body body: Map<String, String>): Single<Profile>
+    @PUT("user")
+    fun updateProfile(@Body body: Map<String, String>): Completable
 
     @GET("events/touched")
     fun loadLikedEvents(@Query("type") type: String): Single<EventListResponse>

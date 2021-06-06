@@ -57,14 +57,7 @@ class LoginFragment : BaseFragment() {
     }
 
     override fun initUI(state: Bundle?) {
-        val isLoginFlow = arguments?.getBoolean(IS_LOGIN, true) ?: true
-
-//        if (isLoginFlow) {
-//            binding.groupAuth.visibility = View.GONE
-//        } else {
-//            binding.btnLogin.visibility = View.GONE
-//        }
-
+//        val isLoginFlow = arguments?.getBoolean(IS_LOGIN, true) ?: true
         binding.btnLogin.setOnClickListener { login() }
         binding.btnCreateAccount.setOnClickListener { createAccount() }
 

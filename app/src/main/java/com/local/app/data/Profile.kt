@@ -3,26 +3,26 @@ package com.local.app.data
 import com.local.app.data.photo.PhotoEntity
 
 data class Profile(
-    val firstName: String?,
-    val lastName: String?,
-    val email: String?,
-    val phone: String,
-    val age: Int,
-    val pictures: List<PhotoEntity>?,
-    val whatsApp: String?,
-    val telegram: String?,
-    val instagram: String?
+    var firstName: String?,
+    var lastName: String?,
+    var email: String?,
+    var phone: String,
+    var age: Int,
+    var pictures: List<PhotoEntity>?,
+    var whatsApp: String?,
+    var telegram: String?,
+    var instagram: String?
 ) {
 
 
     fun getProfileImage(): PhotoEntity? {
-        pictures?.let { if (it.isNotEmpty()) return pictures.first() }
+        pictures?.let { if (it.isNotEmpty()) return it.first() }
         return null
     }
 
-    fun getUserName(): String {
+    fun getNick(): String {
         if (firstName.isNullOrEmpty() && lastName.isNullOrEmpty()) {
-            return if (email.isNullOrEmpty()) "" else email
+            return email ?: ""
         } else if (lastName.isNullOrEmpty()) {
             return "$firstName"
         } else if (firstName.isNullOrEmpty()) {

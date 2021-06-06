@@ -8,8 +8,8 @@ import javax.inject.Inject
 
 class ProfileInteractor @Inject constructor(private val profileRepository: ProfileRepository) {
 
-    fun getProfileAsync(): Single<Profile> {
-        return profileRepository.getProfileAsync()
+    fun loadProfileAndSaveInPref(): Single<Profile> {
+        return profileRepository.loadProfileAndSaveInPref()
     }
 
     fun getProfile(): Profile? {

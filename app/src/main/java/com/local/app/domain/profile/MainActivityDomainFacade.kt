@@ -11,7 +11,7 @@ class MainActivityDomainFacade @Inject constructor(private val profileInteractor
                                                    private val socNetAuthInteractor: SocNetAuthInteractor) {
 
     fun getProfileAsync(): Single<Profile> {
-        return profileInteractor.getProfileAsync()
+        return profileInteractor.loadProfileAndSaveInPref()
     }
 
     fun getProfile(): Profile? {

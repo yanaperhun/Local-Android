@@ -19,10 +19,12 @@
 
         <Constraint
             android:id="@+id/btnCreateEvent"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="48dp"
 
-            android:layout_margin="@dimen/control_margin"
+            android:layout_marginStart="@dimen/control_margin"
+            android:layout_marginEnd="@dimen/control_margin"
+            android:layout_marginBottom="@dimen/control_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

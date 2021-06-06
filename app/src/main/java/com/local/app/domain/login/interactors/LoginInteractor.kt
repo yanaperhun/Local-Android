@@ -13,6 +13,6 @@ class LoginInteractor @Inject constructor(
     fun login(email: String, pass: String): Completable {
         return loginRepository
             .login(email, pass)
-            .flatMap { profileRepository.getProfileAsync() }.ignoreElement()
+            .flatMap { profileRepository.loadProfileAndSaveInPref() }.ignoreElement()
     }
 }

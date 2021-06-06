@@ -40,7 +40,7 @@ class CreateEventViewModel(application: Application) : AndroidViewModel(applicat
     fun loadProfile() {
         with(compositeDisposable) {
             add(profileInteractor
-                    .getProfileAsync()
+                    .loadProfileAndSaveInPref()
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.single())
                     .doOnEvent { _, _ -> loadProfileState.postValue(LoadProfileState.LOADING) }

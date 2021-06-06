@@ -43,7 +43,7 @@ abstract class EventListRVAdapter : RecyclerView.Adapter<EventListRVAdapter.VH>(
             holder.binding.ivPhoto, event.getFirstPhoto()?.url?.lg ?: "", Utils
                 .dpToPx(8)
                 .toInt(),
-            R.drawable.ic_test
+            R.drawable.ic_empty_picture
         )
 
         holder.itemView.setOnClickListener { onEventClick(events[holder.adapterPosition]) }

@@ -14,7 +14,7 @@ class SocNetAuthInteractor @Inject constructor(private val profileRepository: Pr
     fun login(token: String, authProvider: AuthProvider): Single<Profile> {
         return loginRepository
             .loginBySocNetworks(SocNetAuthRequest(token, authProvider.title))
-            .flatMap { profileRepository.getProfileAsync() }
+            .flatMap { profileRepository.loadProfileAndSaveInPref() }
 
     }
 
