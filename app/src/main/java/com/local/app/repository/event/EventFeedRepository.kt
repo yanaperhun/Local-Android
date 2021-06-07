@@ -37,7 +37,7 @@ class EventFeedRepository (private var client: RetrofitClient) {
                 return Single.just(e)
             }
         }
-        return Single.error(Throwable("Event not found"))
+        return client.api.getEvent(id)
     }
 
     fun isFeedEmpty(): Boolean {

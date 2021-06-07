@@ -16,7 +16,6 @@ class CreateEventStepTagsFragment : BaseCreateEventFragment<FragmentCreateEventS
 
     override fun initUI(state: Bundle?) {
         super.initUI(state)
-
     }
 
     override fun onResume() {

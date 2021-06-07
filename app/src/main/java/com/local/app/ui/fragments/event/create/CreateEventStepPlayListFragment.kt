@@ -57,7 +57,7 @@ class CreateEventStepPlayListFragment : BaseCreateEventFragment<FragmentCreateEv
             if (s.isNullOrEmpty()) return
             viewModel
                 .eventBuilder()
-                .setSinglePlayList(binding.etPlaylist.text.toString())
+                .playlist = s.toString()
         }
     }
 

@@ -16,11 +16,9 @@ class EventRaw internal constructor(@SerializedName("eventName") val title: Stri
                                     var whatsapp: String?,
                                     var instagram: String?,
                                     val telegram: String?,
-                                    val soundCloud: String = "",
-                                    val appleMusic: String = "",
                                     val ageLimit: Int = 0,
                                     val pictures: List<String> = emptyList(),
-                                    val playlist: List<String> = emptyList()) {
+                                    val playlist: String) {
 
     class Builder : BaseObservable() {
 
@@ -35,28 +33,23 @@ class EventRaw internal constructor(@SerializedName("eventName") val title: Stri
         var whatsapp: String = ""
         var instagram: String = ""
         var telegram: String = ""
-        private var soundCloud: String = ""
-        private var appleMusic: String = ""
+
         private var ageLimit: Int = 0
         var pictures: MutableList<PhotoInDir> = ArrayList()
-        private var playlist: MutableList<String> = ArrayList()
+        var playlist: String = ""
 
         fun title(title: String) {
             this.title = title
         }
 
         fun getSinglePlayList(): String {
-            return if (playlist.isNotEmpty()) playlist.first() else ""
+            return  playlist
         }
 
-        fun setSinglePlayList(playlistValue: String) {
-            playlist.clear()
-            playlist.add(playlistValue)
-        }
 
         fun build(): EventRaw {
             return EventRaw(title, description, tags, date, time, price, eventAddress, phone,
-                            whatsapp, instagram, telegram, soundCloud, appleMusic, ageLimit,
+                            whatsapp, instagram, telegram, ageLimit,
                             pictures.map { it.hash }, playlist)
         }
 

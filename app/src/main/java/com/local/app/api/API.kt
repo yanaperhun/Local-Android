@@ -7,6 +7,7 @@ import com.local.app.api.response.EventCreateResponse
 import com.local.app.api.response.EventListResponse
 import com.local.app.api.response.TokenResponse
 import com.local.app.data.Profile
+import com.local.app.data.event.Event
 import com.local.app.data.event.create.EventRaw
 import com.local.app.data.photo.PhotoEntity
 import io.reactivex.Completable
@@ -40,9 +41,15 @@ interface API {
     @GET("events/my")
     fun loadMyEvents(): Single<EventListResponse>
 
+    @GET("events/{id}")
+    fun getEvent(@Path("id") id: Long): Single<Event>
+
     @POST("image-upload")
     @Multipart
-    fun loadImage(@Part fileType :  MultipartBody.Part, @Part file:  MultipartBody.Part): Single<PhotoEntity>
+    fun loadImage(
+        @Part fileType: MultipartBody.Part,
+        @Part file: MultipartBody.Part
+    ): Single<PhotoEntity>
 
     @POST("events")
     fun createEvent(@Body build: EventRaw): Single<EventCreateResponse>

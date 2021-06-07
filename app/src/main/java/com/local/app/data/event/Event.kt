@@ -8,30 +8,31 @@ import com.local.app.data.photo.PhotoEntity
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Event(var id: Long,
-                 var eventName: String,
-                 var eventDate: String,
-                 var description: String,
-                 var creator: User,
-                 var cost: String,
-                 var eventLocation: EventLocation,
-                 var phone: String?,
-                 var whatsapp: String?,
-                 var instagram: String?,
-                 val telegram: String?,
-                 var soundCloud: String? = "",
-                 var appleMusic: String? = "",
-                 var ageLimit: String,
-                 var pictures: List<PhotoEntity>,
-                 var tags: List<String>? = emptyList(),
-                 var status: EventStatus,
-                 var type: EventType) : Parcelable {
+data class Event(
+    var id: Long,
+    var eventName: String,
+    var eventDate: String,
+    var description: String,
+    var creator: User,
+    var cost: String,
+    var eventLocation: EventLocation,
+    var phone: String?,
+    var whatsapp: String?,
+    var instagram: String?,
+    val telegram: String?,
+    var ageLimit: String,
+    var pictures: List<PhotoEntity>,
+    var tags: List<String>? = emptyList(),
+    var status: EventStatus,
+    var type: EventType,
+    var playlist: String
+) : Parcelable {
 
     val tagsDefault: List<String>
         get() = listOf("18+", "Tag1", "Long Tag", "Tag3", "18+")
 
     fun getAnyPlaylist(): String {
-        return if (appleMusic?.isNotEmpty() == true) appleMusic ?: "" else soundCloud ?: ""
+        return playlist
     }
 
     fun getFirstPhoto(): PhotoEntity? {
@@ -43,7 +44,7 @@ data class Event(var id: Long,
     }
 
     fun getFormattedPrice(): String {
-        return if (cost.isNullOrEmpty() || cost == "0"  || cost == "Бесплатно") {
+        return if (cost.isNullOrEmpty() || cost == "0" || cost == "Бесплатно") {
             "Free"
         } else {
             cost
@@ -51,6 +52,9 @@ data class Event(var id: Long,
     }
 
     fun printConnectionsType() {
-        Log.d("Local", "===>>>EventsType : instagram $instagram, telegram $telegram, phone $phone, whatsapp $whatsapp")
+        Log.d(
+            "Local",
+            "===>>>EventsType : instagram $instagram, telegram $telegram, phone $phone, whatsapp $whatsapp"
+        )
     }
 }
