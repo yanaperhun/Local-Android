@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.PopupMenu
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
@@ -19,6 +20,7 @@ import com.local.app.ui.activities.event.CreateEventActivity
 import com.local.app.ui.fragments.feed.profile.LikedEventsFragment
 import com.local.app.ui.fragments.feed.profile.MyEventsFragment
 import com.local.app.ui.fragments.profile.settings.ProfileSettingsFragment
+import timber.log.Timber
 
 class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
     val viewModel: ProfileViewModel by viewModels()
@@ -29,6 +31,26 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
 
     override fun initUI(state: Bundle?) {
         super.initUI(state)
+        binding.motionLayout.addTransitionListener(object : MotionLayout.TransitionListener{
+            override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {
+            }
+
+            override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, p3: Float) {
+
+            }
+
+            override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
+                binding.swipe.isEnabled = p1 == R.id.expanded
+                if (p1 == R.id.expanded) {
+                    Timber.d("===> expanded")
+
+                }
+            }
+
+            override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {
+            }
+
+        })
         binding.btnBack.setOnClickListener { backStep() }
         binding.btnCreateEvent.setOnClickListener {
             startActivity(Intent(requireContext(), CreateEventActivity::class.java))

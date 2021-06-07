@@ -13,7 +13,10 @@ class EventListRepositoryImpl(val retrofitClient: RetrofitClient) : EventListRep
         return if (myEvents.isNullOrEmpty()) {
             retrofitClient.api
                 .loadMyEvents()
-                .doOnSuccess { myEvents.addAll(it.data) }
+                .doOnSuccess {
+                    myEvents.clear()
+                    myEvents.addAll(it.data)
+                }
                 .map { myEvents }
         } else {
             Single.just(myEvents)
@@ -24,7 +27,10 @@ class EventListRepositoryImpl(val retrofitClient: RetrofitClient) : EventListRep
         return if (likedEvents.isNullOrEmpty()) {
             retrofitClient.api
                 .loadLikedEvents("like")
-                .doOnSuccess { likedEvents.addAll(it.data) }
+                .doOnSuccess {
+                    likedEvents.clear()
+                    likedEvents.addAll(it.data)
+                }
                 .map { likedEvents }
         } else {
             Single.just(likedEvents)

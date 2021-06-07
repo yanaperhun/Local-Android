@@ -49,7 +49,8 @@ abstract class EventListRVAdapter : RecyclerView.Adapter<EventListRVAdapter.VH>(
         holder.itemView.setOnClickListener { onEventClick(events[holder.adapterPosition]) }
     }
 
-    fun addEvents(events: List<Event>) {
+    fun setEvents(events: List<Event>) {
+        this.events.clear()
         this.events.addAll(events)
 
         notifyDataSetChanged()

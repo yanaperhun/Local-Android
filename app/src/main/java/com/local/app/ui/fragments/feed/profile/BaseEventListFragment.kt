@@ -45,7 +45,7 @@ abstract class BaseEventListFragment : BindableFragment<FragmentEventListBinding
 
             is EventListState.Success -> {
                 log(it.events.toString())
-                adapter.addEvents(it.events)
+                adapter.setEvents(it.events)
                 binding.tvEmpty.visibility =
                     if (adapter.isAdapterEmpty()) View.VISIBLE else View.GONE
             }
