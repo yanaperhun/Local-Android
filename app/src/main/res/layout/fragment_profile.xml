@@ -44,11 +44,24 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_marginTop="34dp"
-            android:background="@drawable/circle_green_solid"
+            android:background="@drawable/circle_green_solid_with_grey_stroke"
             android:src="@drawable/ic_user"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+
+            android:id="@+id/btn_add_photo"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/circle_dark_primary_solid"
+            android:src="@drawable/ic_camera_12dp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_avatar"
+            app:layout_constraintStart_toStartOf="@id/iv_avatar" />
 
 
         <TextView
@@ -176,7 +189,6 @@
         </androidx.viewpager.widget.ViewPager>
 
         <TextView
-            android:gravity="center"
             android:id="@+id/btnCreateEvent"
             style="@style/App.Button.Colored.Blue"
             android:layout_width="0dp"
@@ -184,6 +196,7 @@
             android:layout_margin="@dimen/control_margin"
             android:background="@drawable/rect_pink_solid_12dp_corner"
             android:elevation="20dp"
+            android:gravity="center"
             android:text="@string/create_event"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -18,6 +18,16 @@
 
 
         <Constraint
+            android:id="@+id/btn_add_photo"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginBottom="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_avatar"
+            app:layout_constraintStart_toStartOf="@id/iv_avatar"/>
+        <Constraint
             android:id="@+id/btnCreateEvent"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -98,6 +108,16 @@
 
     <ConstraintSet android:id="@+id/collapsed">
 
+        <Constraint
+            android:id="@+id/btn_add_photo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginBottom="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_avatar"
+            app:layout_constraintStart_toStartOf="@id/iv_avatar"/>
         <Constraint
             android:id="@+id/btnCreateEvent"
             android:layout_width="0dp"
