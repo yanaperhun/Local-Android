@@ -74,6 +74,7 @@
     <string name="logout">Выйти</string>
     <string name="enter_with">Войдите с помощью</string>
     <string name="name">Имя</string>
+    <string name="events_is_approving">Событие\nна проверке</string>
 
 
 </resources>

@@ -8,9 +8,9 @@ import javax.inject.Inject
 class LoadEventListInteractor @Inject constructor(private val eventListRepository: EventListRepository) {
 
     fun getLikedEvents() : Single<List<Event>> {
-        return eventListRepository.getLikedEvents()
+        return eventListRepository.loadLikedEvents()
     }
     fun getMyEvents() : Single<List<Event>> {
-        return eventListRepository.getMyEvents()
+        return eventListRepository.loadMyEvents()
     }
 }

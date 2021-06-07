@@ -9,31 +9,27 @@ class EventListRepositoryImpl(val retrofitClient: RetrofitClient) : EventListRep
     private val myEvents = ArrayList<Event>()
     private val likedEvents = ArrayList<Event>()
 
-    override fun getMyEvents(): Single<List<Event>> {
-        return if (myEvents.isNullOrEmpty()) {
-            retrofitClient.api
-                .loadMyEvents()
-                .doOnSuccess {
-                    myEvents.clear()
-                    myEvents.addAll(it.data)
-                }
-                .map { myEvents }
-        } else {
-            Single.just(myEvents)
-        }
+    override fun loadMyEvents(): Single<List<Event>> {
+
+        return retrofitClient.api
+            .loadMyEvents()
+            .doOnSuccess {
+                myEvents.clear()
+                myEvents.addAll(it.data)
+            }
+            .map { myEvents }
+
     }
 
-    override fun getLikedEvents(): Single<List<Event>> {
-        return if (likedEvents.isNullOrEmpty()) {
-            retrofitClient.api
-                .loadLikedEvents("like")
-                .doOnSuccess {
-                    likedEvents.clear()
-                    likedEvents.addAll(it.data)
-                }
-                .map { likedEvents }
-        } else {
-            Single.just(likedEvents)
-        }
+    override fun loadLikedEvents(): Single<List<Event>> {
+
+        return retrofitClient.api
+            .loadLikedEvents("like")
+            .doOnSuccess {
+                likedEvents.clear()
+                likedEvents.addAll(it.data)
+            }
+            .map { likedEvents }
+
     }
 }

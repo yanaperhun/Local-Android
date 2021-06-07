@@ -3,9 +3,11 @@ package com.local.app.ui.fragments.feed.profile
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.local.app.R
 import com.local.app.data.event.Event
+import com.local.app.data.event.EventStatus
 import com.local.app.databinding.ItemEventProfileBinding
 import com.local.app.utils.DateUtils
 import com.local.app.utils.Utils
@@ -45,7 +47,7 @@ abstract class EventListRVAdapter : RecyclerView.Adapter<EventListRVAdapter.VH>(
                 .toInt(),
             R.drawable.ic_empty_picture
         )
-
+        holder.binding.groupCheckingStatus.isVisible = event.status == EventStatus.ON_APPROVE
         holder.itemView.setOnClickListener { onEventClick(events[holder.adapterPosition]) }
     }
 

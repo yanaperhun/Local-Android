@@ -5,6 +5,6 @@ import io.reactivex.Single
 
 interface EventListRepository {
 
-    fun getLikedEvents() : Single<List<Event>>
-    fun getMyEvents() : Single<List<Event>>
+    fun loadLikedEvents() : Single<List<Event>>
+    fun loadMyEvents() : Single<List<Event>>
 }
