@@ -44,6 +44,7 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
 
     private fun loadNextPage() {
         Timber.d("loadNextPage")
+        viewModel.loadFeed()
     }
 
     private val adapter = object : EventsFeedRVAdapter() {
@@ -87,6 +88,7 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
         updateUI()
         val parentActivty = requireActivity() as MainActivity
         parentActivty.onLoginListener = callback
+        binding.btnRefresh.setOnClickListener { loadNextPage() }
     }
 
     override fun onStop() {
@@ -250,8 +252,8 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
                     .setInterpolator(AccelerateInterpolator())
                     .build()
                 cardManager.setSwipeAnimationSetting(setting)
-                binding.rvEvents.swipe()
                 onDislike()
+                binding.rvEvents.swipe()
             }
             binding.ivLike.setOnClickListener {
                 val setting = SwipeAnimationSetting.Builder()
@@ -260,20 +262,20 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
                     .setInterpolator(AccelerateInterpolator())
                     .build()
                 cardManager.setSwipeAnimationSetting(setting)
-                binding.rvEvents.swipe()
                 onLiked()
+                binding.rvEvents.swipe()
             }
         }
     }
 
     private fun onLiked() {
-        val currentpos = cardManager.cardStackState.targetPosition
+        val currentpos = cardManager.cardStackState.topPosition
         Timber.d("current pos ${cardManager.cardStackState.targetPosition} ${cardManager.cardStackState.topPosition}")
         likeEvent(adapter.events[currentpos].id)
     }
 
     private fun onDislike() {
-        val currentpos = cardManager.cardStackState.targetPosition
+        val currentpos = cardManager.cardStackState.topPosition
         Timber.d("current pos ${cardManager.cardStackState.targetPosition} ${cardManager.cardStackState.topPosition}")
         dislikeEvent(adapter.events[currentpos].id)
     }
@@ -335,10 +337,16 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
 
             override fun onCardAppeared(view: View?, position: Int) {
                 Timber.d("==> onCardAppeared : $position")
+                if (position == adapter.events.size - 1) {
+                    loadNextPage()
+                }
             }
 
             override fun onCardDisappeared(view: View?, position: Int) {
                 Timber.d("===> onCardDisappeared : $position")
+                if (position == adapter.events.size - 1) {
+                    binding.btnRefresh.isVisible = viewModel.feedState.value != FeedState.Loading
+                }
             }
 
         }
@@ -351,22 +359,22 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
         }
 
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-            Timber.d("dx $dx dy $dy")
-            if (dx > 0) {
-                recyclerView.layoutManager?.let {
-                    val ll = it as CardStackLayoutManager
-                    val visibleItemCount: Int = ll.childCount
-                    val totalItemCount: Int = ll.itemCount
-                    val pastVisibleItems: Int = ll.cardStackState.targetPosition
-                    Timber.d("visibleItemCount $visibleItemCount totalItemCount $totalItemCount pastVisibleItems $pastVisibleItems")
-                    if (!mIsLoadingData) {
-                        if (visibleItemCount + pastVisibleItems >= totalItemCount && viewModel.hasNextPage()) {
-                            mIsLoadingData = true
-                            loadNextPage()
-                        }
-                    }
-                }
-            }
+//            Timber.d("dx $dx dy $dy")
+//            if (dx > 0) {
+//                recyclerView.layoutManager?.let {
+//                    val ll = it as CardStackLayoutManager
+//                    val visibleItemCount: Int = ll.childCount
+//                    val totalItemCount: Int = ll.itemCount
+//                    val pastVisibleItems: Int = ll.cardStackState.targetPosition
+////                    Timber.d("visibleItemCount $visibleItemCount totalItemCount $totalItemCount pastVisibleItems $pastVisibleItems")
+//                    if (!mIsLoadingData) {
+//                        if (visibleItemCount + pastVisibleItems >= totalItemCount && viewModel.hasNextPage()) {
+//                            mIsLoadingData = true
+//                            loadNextPage()
+//                        }
+//                    }
+//                }
+//            }
         }
     }
 

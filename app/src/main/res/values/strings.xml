@@ -75,6 +75,7 @@
     <string name="enter_with">Войдите с помощью</string>
     <string name="name">Имя</string>
     <string name="events_is_approving">Событие\nна проверке</string>
+    <string name="list_is_empty">Кажется, список окончился.\nПопробуйте загрузить еще раз</string>
 
 
 </resources>

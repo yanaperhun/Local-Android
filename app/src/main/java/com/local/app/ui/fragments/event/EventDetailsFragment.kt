@@ -11,6 +11,7 @@ import android.webkit.URLUtil
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProviders
+import com.local.app.R
 import com.local.app.data.User
 import com.local.app.data.event.Event
 import com.local.app.databinding.FragmentEventFullBinding
@@ -94,15 +95,15 @@ class EventDetailsFragment : BaseFragment() {
         binding.btnCloseEvent.setOnClickListener { requireActivity().finish() }
         binding.btnContact.setOnClickListener { connectWithCreator(event.creator) }
 
-        bindConnectToViews(binding.btnContact, event)
+        bindContactsToViews(binding.btnContact, event)
     }
 
-    private fun bindConnectToViews(btnContact: TextView, event: Event) {
+    private fun bindContactsToViews(btnContact: TextView, event: Event) {
         event.printConnectionsType()
         if (event.isConnectionTypeExist()) {
             btnContact.setOnClickListener { showConnectButtonDialog(event) }
         } else {
-            btnContact.isVisible = false
+            btnContact.background = resources.getDrawable(R.drawable.rect_grey_light_stroke_18dp_corner)
         }
 
     }

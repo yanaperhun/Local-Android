@@ -3,7 +3,6 @@ package com.local.app.ui.custom;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
@@ -72,7 +71,7 @@ public class LinePagerIndicatorDecoration extends RecyclerView.ItemDecoration {
         // center vertically in the allotted space
         float indicatorPosY = mIndicatorTopMargin;
 
-        Log.d(TAG, "indicatorPosY = " + indicatorPosY);
+//        Log.d(TAG, "indicatorPosY = " + indicatorPosY);
         drawInactiveIndicators(c, indicatorStartX, indicatorPosY, itemCount);
 
 
