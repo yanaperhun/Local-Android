@@ -20,4 +20,5 @@ interface ProfileRepository {
     fun updateUserInstagram(instagram: String): Single<Profile>
     fun updateUserTelegram(telegram: String): Single<Profile>
     fun updateUserPhone(phone: String): Single<Profile>
+    fun updateUserPhoto(photoHash: String): Single<Profile>
 }

@@ -1,4 +1,4 @@
-package org.ifpri.frani.ui.states
+package com.local.app.utils
 
 import com.local.app.data.AppException
 

@@ -10,12 +10,12 @@ import com.local.app.data.login.AuthProvider
 import com.local.app.domain.feed.LoadFeedInteractor
 import com.local.app.domain.profile.MainActivityDomainFacade
 import com.local.app.ui.fragments.feed.state.FeedState
+import com.local.app.utils.SimpleLoadingState
+import com.local.app.utils.SingleLiveEvent
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import org.ifpri.frani.ui.states.SimpleLoadingState
-import org.ifpri.frani.utils.SingleLiveEvent
 import timber.log.Timber
 import javax.inject.Inject
 

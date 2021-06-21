@@ -132,4 +132,14 @@ class ProfileRepositoryImpl @Inject constructor(
             .toSingle { profile }
     }
 
+    override fun updateUserPhoto(photoHash: String): Single<Profile> {
+        return client.api.updatePhoto(photoHash)
+            .doOnSuccess {
+                profile?.let { value ->
+                    value.pictures = it.pictures
+                    saveProfile(value)
+                }
+            }
+    }
+
 }

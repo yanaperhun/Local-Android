@@ -30,11 +30,11 @@ import com.local.app.ui.dialog.login.LoginDialogCallback
 import com.local.app.ui.fragments.feed.state.FeedState
 import com.local.app.ui.fragments.login.LoginFragment
 import com.local.app.ui.fragments.profile.ProfileFragment
+import com.local.app.utils.SimpleLoadingState
 import com.local.app.utils.Utils
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKScope
 import com.yuyakaido.android.cardstackview.*
-import org.ifpri.frani.ui.states.SimpleLoadingState
 import timber.log.Timber
 
 class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {

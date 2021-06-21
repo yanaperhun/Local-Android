@@ -46,7 +46,10 @@ class ProfileInteractor @Inject constructor(private val profileRepository: Profi
 
     fun updateUserPhone(phone: String): Single<Profile> {
         return profileRepository.updateUserPhone(phone)
+    }
 
+    fun updateUserPhoto(photoHash: String): Single<Profile> {
+        return profileRepository.updateUserPhoto(photoHash)
     }
     fun logout() {
         profileRepository.logout()

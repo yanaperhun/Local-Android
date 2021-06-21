@@ -1,6 +1,9 @@
 package com.local.app.ui.fragments.profile
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +23,12 @@ import com.local.app.ui.activities.event.CreateEventActivity
 import com.local.app.ui.fragments.feed.profile.LikedEventsFragment
 import com.local.app.ui.fragments.feed.profile.MyEventsFragment
 import com.local.app.ui.fragments.profile.settings.ProfileSettingsFragment
+import gun0912.tedimagepicker.builder.TedImagePicker
 import timber.log.Timber
+import java.io.File
+import java.io.FileOutputStream
+import java.text.SimpleDateFormat
+import java.util.*
 
 class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
     val viewModel: ProfileViewModel by viewModels()
@@ -58,9 +66,48 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
 
         binding.swipe.setOnRefreshListener {  viewModel.loadProfile() }
         binding.btnMenu.setOnClickListener { showMenu(it) }
+        binding.btnAddPhoto.setOnClickListener {
+
+        }
         initViewPager()
         subscribeToViewModel()
     }
+
+    private fun chooseImage() {
+        TedImagePicker
+            .with(requireContext())
+            .start { result ->
+
+                val bitmap = BitmapFactory.decodeStream(
+                    requireContext().contentResolver.openInputStream(result))
+                if (bitmap != null) {
+                    val fileName = createFile(requireContext(), ".jpg").absolutePath
+                    compress(fileName, bitmap)
+                    viewModel.uploadPhoto(fileName)
+                    showRoundImage(binding.ivAvatar, fileName)
+
+                }
+
+            }
+    }
+
+    private fun createFile(context: Context, extension: String): File {
+        val sdf = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_SSS", Locale.US)
+        return File(context.filesDir, "IMG_${sdf.format(Date())}.$extension")
+    }
+
+    private fun compress(outputFile: String, inputFile: Bitmap) {
+        try {
+            val out = FileOutputStream(outputFile)
+            //            val bmp = BitmapFactory.decodeFile(inputFile)
+            val result = inputFile.compress(Bitmap.CompressFormat.JPEG, 50, out) //100-best quality
+            log("result : $result")
+            out.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
 
     private fun showMenu(view: View) {
         val popupMenu = PopupMenu(requireContext(), view)
