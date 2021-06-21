@@ -12,6 +12,7 @@ import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.local.app.BuildConfig
 import com.local.app.LocalApp
@@ -103,7 +104,7 @@ open class BaseFragment : Fragment() {
             .with(imageView.context)
             .load(imageUrl)
             .placeholder(placeholder)
-            .transform(RoundedCorners(radius))
+            .transform(CenterCrop(), RoundedCorners(radius))
             .into(imageView)
 
     }

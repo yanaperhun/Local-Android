@@ -18,7 +18,7 @@ class ProfileRepositoryImpl @Inject constructor(
 
     init {
 
-        profile = getProfile()
+        profile = prefUtils.getProfile()
         Timber.d("Init with profile $profile")
     }
 

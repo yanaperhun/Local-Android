@@ -3,14 +3,12 @@ package com.local.app.ui.fragments.profile
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.PopupMenu
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.content.res.ResourcesCompat
-import androidx.exifinterface.media.ExifInterface
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.viewModels
@@ -26,8 +24,10 @@ import com.local.app.ui.fragments.feed.profile.MyEventsFragment
 import com.local.app.ui.fragments.profile.settings.ProfileSettingsFragment
 import gun0912.tedimagepicker.builder.TedImagePicker
 import timber.log.Timber
+import java.io.BufferedOutputStream
 import java.io.File
 import java.io.FileOutputStream
+import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -78,44 +78,35 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
             .start { result ->
 
                 val inputStream = requireContext().contentResolver.openInputStream(result)
-                val fileFromInputStream = createFile(requireContext(), ".jpg").absolutePath
-                val bitmap = BitmapFactory.decodeStream(inputStream)
-                try {
-                    FileOutputStream(fileFromInputStream).use { output ->
-                        val buffer = ByteArray(4 * 1024) // or other buffer size
-                        var read: Int = 0
-                        while (inputStream?.read(buffer).also {if (it != null) read = it } != -1) {
-                            output.write(buffer, 0, read)
-                        }
-                        output.flush()
-                    }
-                } finally {
-                    inputStream?.close()
+
+                val path = createFile(requireContext(), ".jpg")
+                val stream: OutputStream = BufferedOutputStream(FileOutputStream(path))
+                val bufferSize = 1024
+                val buffer = ByteArray(bufferSize)
+                var len = 0
+                while (inputStream?.read(buffer).also { len = it?:0 } != -1) {
+                    Timber.d("==> read len $len")
+                    stream.write(buffer, 0, len)
                 }
+                stream.close()
+                showRoundImage(binding.ivAvatar, path.absolutePath)
+                viewModel.uploadPhoto(path.absolutePath)
+                //val bitmap = BitmapFactory.decodeStream(inputStream)
+//                val oldExif = ExifInterface(fileFromInputStream)
+//                val oldExifOrientation = oldExif.getAttribute(ExifInterface.TAG_ORIENTATION) ?:""
+//                Timber.d("exifOrientation $oldExifOrientation")
+//                val newFilePath = createFile(requireContext(), ".jpg").absolutePath
 
-                val oldExif = if (inputStream != null) ExifInterface(inputStream) else null
-
-                val oldExifOrientation =
-                    oldExif?.getAttribute(
-                        ExifInterface.TAG_ORIENTATION
-                    ) ?:""
-
-                Timber.d("exifOrientation $oldExifOrientation")
-                val newFilePath = createFile(requireContext(), ".jpg").absolutePath
-
-
-                if (bitmap != null) {
-                    compress(newFilePath, bitmap)
-
-                    val newExif = ExifInterface(newFilePath)
-                    newExif.setAttribute(
-                        ExifInterface.TAG_ORIENTATION,
-                        oldExifOrientation)
-                    newExif.saveAttributes()
-                    viewModel.uploadPhoto(newFilePath)
-                    showRoundImage(binding.ivAvatar, newFilePath)
-                }
-
+//                if (bitmap != null) {
+//                    compress(newFilePath, bitmap)
+//                    val newExif = ExifInterface(newFilePath)
+//                    newExif.setAttribute(
+//                        ExifInterface.TAG_ORIENTATION,
+//                        oldExifOrientation)
+//                    newExif.saveAttributes()
+//                    viewModel.uploadPhoto(newFilePath)
+//                    showRoundImage(binding.ivAvatar, newFilePath)
+//                }
             }
     }
 
