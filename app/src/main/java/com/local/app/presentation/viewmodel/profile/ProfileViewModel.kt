@@ -18,6 +18,7 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
 
     @Inject
     lateinit var profileInteractor: ProfileInteractor
+    @Inject
     lateinit var uploadPhotoInteractor: UploadPhotoInteractor
     var loadProfileState: SingleLiveEvent<LoadProfileState> = SingleLiveEvent()
 

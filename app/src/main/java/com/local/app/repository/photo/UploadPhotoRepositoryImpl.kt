@@ -1,13 +1,11 @@
 package com.local.app.repository.photo
 
-import android.content.ContentResolver
 import com.local.app.api.RetrofitClient
 import com.local.app.api.requests.UploadFileBody
 import com.local.app.data.photo.PhotoInDir
 import io.reactivex.Single
 
-class UploadPhotoRepositoryImpl(val retrofitClient: RetrofitClient,
-                                val contentResolver: ContentResolver) : UploadPhotoRepository {
+class UploadPhotoRepositoryImpl(val retrofitClient: RetrofitClient) : UploadPhotoRepository {
 
     override var photos = ArrayList<PhotoInDir>()
 

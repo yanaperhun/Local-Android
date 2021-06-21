@@ -40,13 +40,14 @@ class CreateEventViewModel(application: Application) : AndroidViewModel(applicat
     fun loadProfile() {
         with(compositeDisposable) {
             add(profileInteractor
-                    .loadProfileAndSaveInPref()
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeOn(Schedulers.single())
-                    .doOnEvent { _, _ -> loadProfileState.postValue(LoadProfileState.LOADING) }
-                    .subscribe({ loadProfileState.postValue(LoadProfileState.SUCCESS(it)) }, {
-                        loadProfileState.postValue(LoadProfileState.ERROR(AppException(it.message)))
-                    }))
+                .loadProfileAndSaveInPref()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.single())
+                .doOnEvent { _, _ -> loadProfileState.postValue(LoadProfileState.LOADING) }
+                .subscribe({ loadProfileState.postValue(LoadProfileState.SUCCESS(it)) }, {
+                    loadProfileState.postValue(LoadProfileState.ERROR(AppException(it.message)))
+                })
+            )
         }
     }
 
@@ -57,28 +58,33 @@ class CreateEventViewModel(application: Application) : AndroidViewModel(applicat
     fun uploadPhoto(fileDir: String) {
         with(compositeDisposable) {
             add(uploadPhotoInteractor
-                    .uploadPhoto(fileDir, "event_pic")
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeOn(Schedulers.single())
-                    .doOnEvent { _, _ -> photoLoadingState.postValue(EventCreationState.LOADING) }
-                    .subscribe({ photoLoadingState.postValue(EventCreationState.SUCCESS) }, {
-                        photoLoadingState.postValue(
-                            EventCreationState.ERROR(AppException(it.message)))
-                    }))
+                .uploadPhoto(fileDir, "event_pic")
+                .flatMapCompletable { createEventInteractor.addPhoto(it) }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.single())
+                .doOnComplete { photoLoadingState.postValue(EventCreationState.LOADING) }
+                .subscribe({ photoLoadingState.postValue(EventCreationState.SUCCESS) }, {
+                    photoLoadingState.postValue(
+                        EventCreationState.ERROR(AppException(it.message))
+                    )
+                })
+            )
         }
     }
 
     fun createEvent() {
         with(compositeDisposable) {
             add(createEventInteractor
-                    .createEvent()
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeOn(Schedulers.single())
-                    .doOnSubscribe { eventCreationState.postValue(EventCreationState.LOADING) }
-                    .subscribe({ eventCreationState.postValue(EventCreationState.SUCCESS) }, {
-                        eventCreationState.postValue(
-                            EventCreationState.ERROR(AppException(it.message)))
-                    }))
+                .createEvent()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.single())
+                .doOnSubscribe { eventCreationState.postValue(EventCreationState.LOADING) }
+                .subscribe({ eventCreationState.postValue(EventCreationState.SUCCESS) }, {
+                    eventCreationState.postValue(
+                        EventCreationState.ERROR(AppException(it.message))
+                    )
+                })
+            )
         }
     }
 
@@ -86,7 +92,7 @@ class CreateEventViewModel(application: Application) : AndroidViewModel(applicat
         return createEventInteractor.eventBuilder()
     }
 
-    fun isAddressSet() : Boolean {
+    fun isAddressSet(): Boolean {
         return eventBuilder().eventAddress != null
     }
 

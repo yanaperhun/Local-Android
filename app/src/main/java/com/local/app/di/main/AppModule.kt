@@ -8,9 +8,11 @@ import com.local.app.data.login.LoginRepositoryImpl
 import com.local.app.domain.login.LoginDomainFacade
 import com.local.app.domain.login.interactors.AuthInteractor
 import com.local.app.domain.login.interactors.LoginInteractor
+import com.local.app.pref.PrefUtils
 import com.local.app.repository.ProfileRepository
 import com.local.app.repository.ProfileRepositoryImpl
-import com.local.app.pref.PrefUtils
+import com.local.app.repository.photo.UploadPhotoRepository
+import com.local.app.repository.photo.UploadPhotoRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -53,6 +55,13 @@ class AppModule(val context: Context) {
     fun provideLoginRep(retrofitClient: RetrofitClient, prefUtils: PrefUtils): LoginRepository {
         return LoginRepositoryImpl(retrofitClient, prefUtils)
     }
+
+    @Provides
+    @Singleton
+    fun provideUploadPhotoRep(retrofitClient: RetrofitClient): UploadPhotoRepository {
+        return UploadPhotoRepositoryImpl(retrofitClient)
+    }
+
 
     @Provides
     @Singleton

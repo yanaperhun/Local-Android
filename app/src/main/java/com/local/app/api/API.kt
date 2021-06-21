@@ -35,7 +35,7 @@ interface API {
     @PUT("user")
     fun updateProfile(@Body body: Map<String, String>): Completable
 
-    @PUT("user/{pictureHash}")
+    @POST("user/setProfilePicture/{pictureHash}")
     fun updatePhoto(@Path("pictureHash") pictureHash: String): Single<Profile>
 
     @GET("events/touched")

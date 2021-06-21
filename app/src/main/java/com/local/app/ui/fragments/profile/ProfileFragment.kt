@@ -10,6 +10,7 @@ import android.view.View
 import androidx.appcompat.widget.PopupMenu
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.content.res.ResourcesCompat
+import androidx.exifinterface.media.ExifInterface
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.viewModels
@@ -39,7 +40,7 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
 
     override fun initUI(state: Bundle?) {
         super.initUI(state)
-        binding.motionLayout.addTransitionListener(object : MotionLayout.TransitionListener{
+        binding.motionLayout.addTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {
             }
 
@@ -64,11 +65,9 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
             startActivity(Intent(requireContext(), CreateEventActivity::class.java))
         }
 
-        binding.swipe.setOnRefreshListener {  viewModel.loadProfile() }
+        binding.swipe.setOnRefreshListener { viewModel.loadProfile() }
         binding.btnMenu.setOnClickListener { showMenu(it) }
-        binding.btnAddPhoto.setOnClickListener {
-
-        }
+        binding.btnAddPhoto.setOnClickListener { chooseImage() }
         initViewPager()
         subscribeToViewModel()
     }
@@ -78,14 +77,43 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
             .with(requireContext())
             .start { result ->
 
-                val bitmap = BitmapFactory.decodeStream(
-                    requireContext().contentResolver.openInputStream(result))
-                if (bitmap != null) {
-                    val fileName = createFile(requireContext(), ".jpg").absolutePath
-                    compress(fileName, bitmap)
-                    viewModel.uploadPhoto(fileName)
-                    showRoundImage(binding.ivAvatar, fileName)
+                val inputStream = requireContext().contentResolver.openInputStream(result)
+                val fileFromInputStream = createFile(requireContext(), ".jpg").absolutePath
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                try {
+                    FileOutputStream(fileFromInputStream).use { output ->
+                        val buffer = ByteArray(4 * 1024) // or other buffer size
+                        var read: Int = 0
+                        while (inputStream?.read(buffer).also {if (it != null) read = it } != -1) {
+                            output.write(buffer, 0, read)
+                        }
+                        output.flush()
+                    }
+                } finally {
+                    inputStream?.close()
+                }
 
+                val oldExif = if (inputStream != null) ExifInterface(inputStream) else null
+
+                val oldExifOrientation =
+                    oldExif?.getAttribute(
+                        ExifInterface.TAG_ORIENTATION
+                    ) ?:""
+
+                Timber.d("exifOrientation $oldExifOrientation")
+                val newFilePath = createFile(requireContext(), ".jpg").absolutePath
+
+
+                if (bitmap != null) {
+                    compress(newFilePath, bitmap)
+
+                    val newExif = ExifInterface(newFilePath)
+                    newExif.setAttribute(
+                        ExifInterface.TAG_ORIENTATION,
+                        oldExifOrientation)
+                    newExif.saveAttributes()
+                    viewModel.uploadPhoto(newFilePath)
+                    showRoundImage(binding.ivAvatar, newFilePath)
                 }
 
             }
@@ -93,16 +121,18 @@ class ProfileFragment : BindableFragment<FragmentProfileBinding>() {
 
     private fun createFile(context: Context, extension: String): File {
         val sdf = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss_SSS", Locale.US)
-        return File(context.filesDir, "IMG_${sdf.format(Date())}.$extension")
+        return File(context.filesDir, "IMG_${sdf.format(Date())}$extension")
+            .apply { createNewFile() }
     }
 
     private fun compress(outputFile: String, inputFile: Bitmap) {
         try {
+
             val out = FileOutputStream(outputFile)
-            //            val bmp = BitmapFactory.decodeFile(inputFile)
             val result = inputFile.compress(Bitmap.CompressFormat.JPEG, 50, out) //100-best quality
             log("result : $result")
             out.close()
+
         } catch (e: Exception) {
             e.printStackTrace()
         }

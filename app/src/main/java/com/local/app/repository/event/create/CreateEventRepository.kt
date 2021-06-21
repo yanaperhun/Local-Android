@@ -8,6 +8,5 @@ import io.reactivex.Single
 interface CreateEventRepository {
     fun getEventBuilder(): EventRaw.Builder
     fun createEvent(): Single<EventCreateResponse>
-//    fun uploadPhoto(file: File): Single<Photo>
     fun addPhoto(photoInDir: PhotoInDir)
 }
