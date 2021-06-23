@@ -22,6 +22,7 @@ import com.local.app.ui.activities.event.CreateEventActivity
 import com.local.app.ui.fragments.feed.profile.LikedEventsFragment
 import com.local.app.ui.fragments.feed.profile.MyEventsFragment
 import com.local.app.ui.fragments.profile.settings.ProfileSettingsFragment
+import com.local.app.utils.ViewUtils.Companion.showRoundImage
 import gun0912.tedimagepicker.builder.TedImagePicker
 import timber.log.Timber
 import java.io.BufferedOutputStream

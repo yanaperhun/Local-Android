@@ -18,6 +18,8 @@ import com.local.app.ui.activities.event.CreateEventActivity
 import com.local.app.ui.fragments.feed.profile.LikedEventsFragment
 import com.local.app.ui.fragments.feed.profile.MyEventsFragment
 import com.local.app.utils.ViewUtils
+import com.local.app.utils.ViewUtils.Companion.showImage
+import com.local.app.utils.ViewUtils.Companion.showRounderCornersImage
 
 class ProfileFragmentOld : BindableFragment<FragmentProfileOldBinding>() {
 

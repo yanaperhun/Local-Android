@@ -32,6 +32,7 @@ import com.local.app.ui.fragments.login.LoginFragment
 import com.local.app.ui.fragments.profile.ProfileFragment
 import com.local.app.utils.SimpleLoadingState
 import com.local.app.utils.ViewUtils
+import com.local.app.utils.ViewUtils.Companion.showRounderCornersImage
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKScope
 import com.yuyakaido.android.cardstackview.*

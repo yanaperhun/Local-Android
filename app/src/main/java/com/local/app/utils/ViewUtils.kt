@@ -16,11 +16,12 @@ import com.local.app.R
 class ViewUtils {
     companion object {
 
-        fun showImage(
-            imageView: ImageView,
-            imageUrl: String,
-            @DrawableRes placeholder: Int = R.color.colorMainDark
-        ) {
+
+        fun getMainBGColorDrawable(context: Context): ColorDrawable {
+            return ColorDrawable(context.resources.getColor(R.color.colorMainDark))
+        }
+
+        fun showImage(imageView: ImageView, imageUrl: String, @DrawableRes placeholder: Int = 0) {
             Glide
                 .with(imageView.context)
                 .load(imageUrl)
@@ -31,32 +32,28 @@ class ViewUtils {
         fun showRoundImage(
             imageView: ImageView,
             imageUrl: String,
-            @DrawableRes placeholder: Int = R.color.colorMainDark
+            @DrawableRes placeholder: Int = 0
         ) {
             Glide
                 .with(imageView.context)
                 .load(imageUrl)
                 .placeholder(placeholder)
+                .centerCrop()
                 .circleCrop()
                 .into(imageView)
-        }
-
-
-        fun getMainBGColorDrawable(context: Context): ColorDrawable {
-            return ColorDrawable(context.resources.getColor(R.color.colorMainDark))
         }
 
         fun showRounderCornersImage(
             imageView: ImageView,
             imageUrl: String,
-            radiusPx: Int,
-            @DrawableRes placeholder: Int = R.color.colorMainDark
+            radius: Int,
+            @DrawableRes placeholder: Int = 0
         ) {
             Glide
                 .with(imageView.context)
                 .load(imageUrl)
                 .placeholder(placeholder)
-                .transform(CenterCrop(), RoundedCorners(radiusPx))
+                .transform(CenterCrop(), RoundedCorners(radius))
                 .into(imageView)
 
         }
