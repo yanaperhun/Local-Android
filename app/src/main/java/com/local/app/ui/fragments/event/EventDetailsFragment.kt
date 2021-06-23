@@ -19,8 +19,8 @@ import com.local.app.presentation.viewmodel.event.EventViewModel
 import com.local.app.ui.BaseFragment
 import com.local.app.ui.dialog.ConnectToDialog
 import com.local.app.ui.fragments.event.state.EventState
-import com.local.app.ui.photo.CommonRVEventElements
-import com.local.app.utils.Utils
+import com.local.app.ui.photo.CustomViewsUtils
+import com.local.app.utils.ViewUtils
 import java.net.URL
 
 class EventDetailsFragment : BaseFragment() {
@@ -67,8 +67,8 @@ class EventDetailsFragment : BaseFragment() {
         binding.event = event
         binding.executePendingBindings()
         binding.tvPrice.text = event.getFormattedPrice()
-        CommonRVEventElements.buildTagsView(binding.cgTags, event.tags)
-        CommonRVEventElements.showImages(binding.rvImages, event.pictures)
+        CustomViewsUtils.buildTagsView(binding.cgTags, event.tags)
+        CustomViewsUtils.showImages(binding.rvImages, event.pictures)
 
         val soundLink = event.getAnyPlaylist()
 
@@ -88,7 +88,7 @@ class EventDetailsFragment : BaseFragment() {
 
 
         event.creator.getAnyUserPicture()?.url?.md?.let {
-            Utils.showRounderCornersImage(binding.ivCreator, it, Utils
+            ViewUtils.showRounderCornersImage(binding.ivCreator, it, ViewUtils
                 .dpToPx(8)
                 .toInt())
         }

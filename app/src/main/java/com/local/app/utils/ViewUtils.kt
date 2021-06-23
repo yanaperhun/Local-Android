@@ -13,7 +13,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.local.app.R
 
-class Utils {
+class ViewUtils {
     companion object {
 
         fun showImage(

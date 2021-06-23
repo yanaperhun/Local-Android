@@ -11,7 +11,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.local.app.GlideApp
 import com.local.app.databinding.ItemAddPhotoBinding
 import com.local.app.databinding.ItemPhotoBinding
-import com.local.app.utils.Utils
+import com.local.app.utils.ViewUtils
 
 abstract class PhotoPickerAdapter : RecyclerView.Adapter<PhotoPickerAdapter.VH>() {
 
@@ -29,11 +29,11 @@ abstract class PhotoPickerAdapter : RecyclerView.Adapter<PhotoPickerAdapter.VH>(
         //        return VHAddPhoto(viewBinding)
         return if (viewType == TYPE_ADD_BUTTON) {
             viewBinding = ItemAddPhotoBinding.inflate(layoutInflater, parent, false)
-            Utils.setSizeForItem(viewBinding.root, parent)
+            ViewUtils.setSizeForItem(viewBinding.root, parent)
             VHAddPhoto(viewBinding)
         } else {
             viewBinding = ItemPhotoBinding.inflate(layoutInflater, parent, false)
-            Utils.setSizeForItem(viewBinding.root, parent)
+            ViewUtils.setSizeForItem(viewBinding.root, parent)
             VHPhoto(viewBinding)
         }
     }
@@ -60,7 +60,7 @@ abstract class PhotoPickerAdapter : RecyclerView.Adapter<PhotoPickerAdapter.VH>(
             }
             is VHPhoto -> {
 
-                showRounderCornersImage(holder.itemPhotoBinding.ivPhoto, photos[position], Utils.dpToPx(8).toInt())
+                showRounderCornersImage(holder.itemPhotoBinding.ivPhoto, photos[position], ViewUtils.dpToPx(8).toInt())
             }
         }
     }

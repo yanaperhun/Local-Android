@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.local.app.R
 import com.local.app.databinding.ItemTagBinding
-import com.local.app.utils.Utils
+import com.local.app.utils.ViewUtils
 
 class TagsRFAdapter(val items: List<String>) : RecyclerView.Adapter<TagsRFAdapter.VH>() {
 
@@ -31,16 +31,16 @@ class TagsRFAdapter(val items: List<String>) : RecyclerView.Adapter<TagsRFAdapte
     private fun createTagView(context: Context): TextView {
         val tvTag = TextView(context)
 
-        val layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, Utils
+        val layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewUtils
             .dpToPx(40)
             .toInt())
-        layoutParams.setMargins(0, 0, Utils
+        layoutParams.setMargins(0, 0, ViewUtils
             .dpToPx(6)
             .toInt(), 0)
         layoutParams.gravity = Gravity.CENTER_VERTICAL
-        tvTag.setPadding(Utils
+        tvTag.setPadding(ViewUtils
                              .dpToPx(8)
-                             .toInt(), 0, Utils
+                             .toInt(), 0, ViewUtils
                              .dpToPx(8)
                              .toInt(), 0)
 

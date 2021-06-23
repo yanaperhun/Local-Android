@@ -12,7 +12,7 @@ import com.local.app.databinding.FragmentCreateEventStepPhotoBinding
 import com.local.app.presentation.viewmodel.event.create.EventCreationState
 import com.local.app.ui.adapters.PhotoPickerAdapter
 import com.local.app.utils.BottomTopItemDecoration
-import com.local.app.utils.Utils
+import com.local.app.utils.ViewUtils
 import gun0912.tedimagepicker.builder.TedImagePicker
 import java.io.File
 import java.io.FileOutputStream
@@ -73,7 +73,7 @@ class CreateEventStepPhotoFragment :
         super.initUI(state)
         binding.btnCreate.setOnClickListener { viewModel.createEvent() }
         binding.rvPhotos.layoutManager = GridLayoutManager(requireContext(), 3)
-        binding.rvPhotos.addItemDecoration(BottomTopItemDecoration(Utils
+        binding.rvPhotos.addItemDecoration(BottomTopItemDecoration(ViewUtils
                                                                        .dpToPx(8)
                                                                        .toInt()))
         viewModel.eventCreationState.observe(this, {

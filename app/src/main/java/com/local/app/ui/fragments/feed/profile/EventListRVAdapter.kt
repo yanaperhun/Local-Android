@@ -10,7 +10,7 @@ import com.local.app.data.event.Event
 import com.local.app.data.event.EventStatus
 import com.local.app.databinding.ItemEventProfileBinding
 import com.local.app.utils.DateUtils
-import com.local.app.utils.Utils
+import com.local.app.utils.ViewUtils
 
 abstract class EventListRVAdapter : RecyclerView.Adapter<EventListRVAdapter.VH>() {
 
@@ -41,8 +41,8 @@ abstract class EventListRVAdapter : RecyclerView.Adapter<EventListRVAdapter.VH>(
             DateUtils.FORMAT_dd_MMMM
         )
         holder.binding.tvPrice.text = event.getFormattedPrice()
-        Utils.showRounderCornersImage(
-            holder.binding.ivPhoto, event.getFirstPhoto()?.url?.lg ?: "", Utils
+        ViewUtils.showRounderCornersImage(
+            holder.binding.ivPhoto, event.getFirstPhoto()?.url?.lg ?: "", ViewUtils
                 .dpToPx(8)
                 .toInt(),
             R.drawable.ic_empty_picture

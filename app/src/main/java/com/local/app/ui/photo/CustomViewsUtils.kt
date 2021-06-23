@@ -12,9 +12,9 @@ import com.local.app.ui.adapters.PhotoViewerAdapter
 import com.local.app.ui.adapters.tags.TagsRFAdapter
 import com.local.app.ui.custom.LinePagerIndicatorDecoration
 import com.local.app.ui.custom.RecyclerItemClickListener
-import com.local.app.utils.Utils
+import com.local.app.utils.ViewUtils
 
-class CommonRVEventElements {
+class CustomViewsUtils {
 
     companion object {
 
@@ -55,7 +55,7 @@ class CommonRVEventElements {
                 val chipView = Chip(context)
                 chipView.text = tags[i]
                 chipView.setChipStrokeColorResource(R.color.colorGreen)
-                chipView.chipStrokeWidth = Utils.dpToPx(2)
+                chipView.chipStrokeWidth = ViewUtils.dpToPx(2)
 //                chipView.setChipMinHeightResource(R.dimen.chip_touch_min_size)
                 chipGroup.addView(chipView)
 

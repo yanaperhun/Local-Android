@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.local.app.data.photo.PhotoEntity
 import com.local.app.databinding.ItemPhotoViewerBinding
-import com.local.app.utils.Utils
+import com.local.app.utils.ViewUtils
 
 class PhotoViewerAdapter(private val photoEntityList: List<PhotoEntity>) :
     RecyclerView.Adapter<PhotoViewerAdapter.VH>() {
@@ -24,7 +24,7 @@ class PhotoViewerAdapter(private val photoEntityList: List<PhotoEntity>) :
     override fun onBindViewHolder(holder: VH, position: Int) {
         //        holder.itemView.layoutParams = ConstraintLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
         holder.itemView.layoutParams.width = holder.w
-        Utils.showImage(holder.binding.ivPhoto,
+        ViewUtils.showImage(holder.binding.ivPhoto,
                         photoEntityList[position].url.lg)
     }
 

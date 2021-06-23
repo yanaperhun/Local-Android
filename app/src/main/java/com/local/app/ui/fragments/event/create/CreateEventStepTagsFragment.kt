@@ -1,14 +1,19 @@
 package com.local.app.ui.fragments.event.create
 
 import android.os.Bundle
+import android.text.InputFilter
 import android.view.LayoutInflater
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.local.app.R
 import com.local.app.databinding.FragmentCreateEventStepTagsBinding
 import com.local.app.ui.BaseFragment
 import com.local.app.utils.SimpleTextWatcher
-import timber.log.Timber
+import com.local.app.utils.ViewUtils
+
 
 class CreateEventStepTagsFragment : BaseCreateEventFragment<FragmentCreateEventStepTagsBinding>() {
+    private val tags = ArrayList<String>()
 
     override fun setBinding(inflater: LayoutInflater) {
         binding = FragmentCreateEventStepTagsBinding.inflate(inflater)
@@ -21,12 +26,47 @@ class CreateEventStepTagsFragment : BaseCreateEventFragment<FragmentCreateEventS
     override fun onResume() {
         super.onResume()
         binding.etInputTags.setText(viewModel.eventBuilder().description)
-        var tagsConcat = ""
-        if (viewModel.eventBuilder().tags.isNotEmpty()) {
-            viewModel.eventBuilder().tags.forEach { tagsConcat += "$it, " }
-        }
-        binding.etInputTags.setText(tagsConcat)
         focusET(binding.etInputTags)
+        val filter = InputFilter { source, start, end, dest, dstart, dend ->
+            for (i in start until end) {
+                if (Character.isWhitespace(source[i])) {
+                    return@InputFilter ""
+                }
+            }
+            binding.btnAddTag.isEnabled = source.isNotEmpty()
+            null
+        }
+        binding.etInputTags.filters = arrayOf(filter)
+        buildTagsView(binding.chipsGroup, tags)
+        binding.btnAddTag.setOnClickListener {
+            tags.add(binding.etInputTags.text.toString())
+            buildTagsView(binding.chipsGroup, tags)
+            binding.etInputTags.text.clear()
+        }
+    }
+
+    fun buildTagsView(chipGroup: ChipGroup, _tags: List<String>?) {
+        if (_tags.isNullOrEmpty()) return
+        chipGroup.removeAllViews()
+        for (i in _tags.indices) {
+            val context = chipGroup.context
+            val chipView = Chip(context)
+            chipView.text = _tags[i]
+            chipView.setChipStrokeColorResource(R.color.colorGreen)
+            chipView.chipStrokeWidth = ViewUtils.dpToPx(2)
+            chipView.closeIcon = resources.getDrawable(R.drawable.ic_cross_grey_16dp)
+
+            chipView.closeIconEndPadding = ViewUtils.dpToPx(4)
+            chipView.closeIconStartPadding = ViewUtils.dpToPx(4)
+            chipView.setCloseIconVisible(true)
+            chipView.setOnCloseIconClickListener {
+                chipGroup.removeView(it)
+                tags.remove((it as Chip).text)
+            }
+//                chipView.setChipMinHeightResource(R.dimen.chip_touch_min_size)
+            chipGroup.addView(chipView)
+
+        }
     }
 
     override fun onPause() {
@@ -47,10 +87,7 @@ class CreateEventStepTagsFragment : BaseCreateEventFragment<FragmentCreateEventS
     }
 
     override fun onNext() {
-        viewModel.eventBuilder().tags = binding.etInputTags.text
-                .split(",")
-                .map { it.trim() }
-        Timber.d("tags : ${viewModel.eventBuilder().tags}")
+        viewModel.eventBuilder().tags = tags
     }
 
     private val textListener = object : SimpleTextWatcher() {

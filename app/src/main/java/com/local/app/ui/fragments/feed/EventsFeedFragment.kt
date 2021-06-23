@@ -31,7 +31,7 @@ import com.local.app.ui.fragments.feed.state.FeedState
 import com.local.app.ui.fragments.login.LoginFragment
 import com.local.app.ui.fragments.profile.ProfileFragment
 import com.local.app.utils.SimpleLoadingState
-import com.local.app.utils.Utils
+import com.local.app.utils.ViewUtils
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKScope
 import com.yuyakaido.android.cardstackview.*
@@ -133,7 +133,7 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
                     ?.let {
                         Log.d("MainActivity", "profile image : $it")
                         showRounderCornersImage(
-                            binding.ivUser, it.url.lg, Utils
+                            binding.ivUser, it.url.lg, ViewUtils
                                 .dpToPx(10)
                                 .toInt(), R.drawable.ic_user
                         )

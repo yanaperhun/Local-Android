@@ -17,7 +17,7 @@ import com.local.app.presentation.viewmodel.event.create.LoadProfileState
 import com.local.app.ui.activities.event.CreateEventActivity
 import com.local.app.ui.fragments.feed.profile.LikedEventsFragment
 import com.local.app.ui.fragments.feed.profile.MyEventsFragment
-import com.local.app.utils.Utils
+import com.local.app.utils.ViewUtils
 
 class ProfileFragmentOld : BindableFragment<FragmentProfileOldBinding>() {
 
@@ -61,7 +61,7 @@ class ProfileFragmentOld : BindableFragment<FragmentProfileOldBinding>() {
             .getProfileImage()
             ?.let {
                 showImage(binding.toolbarImage, it.url.lg)
-                showRounderCornersImage(binding.ivAvatar, it.url.lg, Utils
+                showRounderCornersImage(binding.ivAvatar, it.url.lg, ViewUtils
                     .dpToPx(10)
                     .toInt())
             }
