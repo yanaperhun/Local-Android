@@ -38,7 +38,7 @@ class ViewUtils {
                 .with(imageView.context)
                 .load(imageUrl)
                 .placeholder(placeholder)
-                .centerCrop()
+                .centerInside()
                 .circleCrop()
                 .into(imageView)
         }
