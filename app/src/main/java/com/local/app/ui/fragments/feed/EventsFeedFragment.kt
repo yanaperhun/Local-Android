@@ -2,7 +2,6 @@ package com.local.app.ui.fragments.feed
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AccelerateInterpolator
@@ -125,22 +124,27 @@ class EventsFeedFragment : BindableFragment<FragmentFeedBinding>() {
         showUserAvatar()
     }
 
-    private fun showUserAvatar() {
-        viewModel
-            .getProfile()
-            ?.let { profile ->
-                profile
-                    .getProfileImage()
-                    ?.let {
-                        Log.d("MainActivity", "profile image : $it")
-                        showRounderCornersImage(
-                            binding.ivUser, it.url.lg, ViewUtils
-                                .dpToPx(10)
-                                .toInt(), R.drawable.ic_user
-                        )
-                    }
+    override fun onResume() {
+        super.onResume()
+        showUserAvatar()
+    }
 
-            }
+    private fun showUserAvatar() {
+        Timber.d("Show user avatar")
+        val image = viewModel.getProfile()?.getProfileImage()
+
+        if(image != null) {
+            Timber.d("show image")
+            showRounderCornersImage(
+                binding.ivUser, image.url.lg, ViewUtils
+                    .dpToPx(10)
+                    .toInt(), R.drawable.ic_user
+            )
+        } else{
+            Timber.d("show ic_profile")
+            binding.ivUser.setImageDrawable(resources.getDrawable(R.drawable.ic_profile))
+        }
+
     }
 
     fun onUserClick() {

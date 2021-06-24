@@ -96,7 +96,7 @@ class CreateEventStepPhotoFragment :
                 }
                 is EventCreationState.SUCCESS -> {
                     requireActivity().finish()
-                    showToast("Фотография загружена")
+                    showToast("Событие создано")
                 }
             }
         })

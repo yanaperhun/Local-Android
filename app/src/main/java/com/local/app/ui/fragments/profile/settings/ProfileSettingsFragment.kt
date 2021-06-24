@@ -35,6 +35,9 @@ class ProfileSettingsFragment : BindableFragment<FragmentProfileSettingsBinding>
         subscribeToViewModel()
         viewModel.loadProfileInfo()
 
+    }
+
+    private fun addMasks() {
         val listener =
             MaskedTextChangedListener(
                 "+7 ([000]) [000]-[00]-[00]", true, binding.etPhoneNumber, null,
@@ -124,16 +127,21 @@ class ProfileSettingsFragment : BindableFragment<FragmentProfileSettingsBinding>
 
     private fun showProfileInfo(profile: Profile) {
         Timber.d("showProfileInfo $profile")
+        addMasks()
         binding.progressProfileSettings.visibility = View.GONE
         binding.nestedScrollProfileSettings.visibility = View.VISIBLE
         binding.etUserName.setText(profile.firstName ?: "")
         binding.etUserEmail.setText(profile.email)
-        binding.etPhoneNumber.setText(if (profile.phone.isEmpty()) "" else profile.phone)
-        binding.etWhatsApp.setText(
-            if (profile.whatsApp?.isEmpty() ?: true) "" else profile.whatsApp
-        )
+        if (profile.whatsApp?.isNotEmpty() == true) {
+            binding.etWhatsApp.setText(profile.whatsApp)
+        }
+        if (profile.phone?.isNotEmpty() == true) {
+            binding.etPhoneNumber.setText(profile.phone)
+        }
         binding.etTelegram.setText(profile.telegram)
         binding.etInstagram.setText(profile.instagram)
+
+
     }
 
     private fun updateProfileSettingsState(state: ProfileSettingsState) {

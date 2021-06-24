@@ -15,7 +15,7 @@ public class DateUtils {
 
     public static final String FORMAT_DD_MM_YYYY = "dd.MM.yyyy";
     public static final String FORMAT_DD_MM_YYYY_HH_mm_ss = "dd.MM.yyyy HH:mm:ss";
-    public static final String FORMAT_UTC_TZ = "dd-MM-yyyy'T'HH:mm:ss.SSS";
+    public static final String FORMAT_UTC_TZ = "yyyy-MM-dd'T'HH:mm:ss.SSS";
     public static final long ONE_DAY_MILLIS = 1000 * 60 * 60 * 24;
     public static final long ONE_HOUR_MILLIS = 1000 * 60 * 60;
     public static final long ONE_MIN_MILLIS = 1000 * 60;

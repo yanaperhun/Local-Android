@@ -6,7 +6,7 @@ data class Profile(
     var firstName: String?,
     var lastName: String?,
     var email: String?,
-    var phone: String,
+    var phone: String? = "",
     var age: Int,
     var pictures: List<PhotoEntity>?,
     var whatsApp: String?,

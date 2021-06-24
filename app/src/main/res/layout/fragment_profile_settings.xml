@@ -79,7 +79,7 @@
                     android:inputType="textPersonName"
                     android:lines="1"
                     android:paddingStart="@dimen/control_medium_margin"
-                    android:paddingEnd="@dimen/control_big_margin"
+                    android:paddingEnd="@dimen/control_medium_margin"
                     tools:text="Innokentiy Istrebitel" />
 
                 <EditText
@@ -143,7 +143,7 @@
                     android:digits="0123456789+()- "
                     android:drawableStart="@drawable/ic_phone"
                     android:drawablePadding="@dimen/control_medium_margin"
-                    android:hint="@string/phone_number"
+                    android:hint="@string/hint_phone"
                     android:imeOptions="actionDone"
                     android:inputType="phone"
                     android:lines="1"
@@ -192,7 +192,7 @@
                     android:layout_marginBottom="@dimen/control_margin"
                     android:drawableStart="@drawable/ic_whatsup"
                     android:drawablePadding="@dimen/control_medium_margin"
-                    android:hint="@string/phone_number_whats_app"
+                    android:hint="@string/hint_phone"
                     android:imeOptions="actionDone"
                     android:inputType="phone"
                     android:lines="1"

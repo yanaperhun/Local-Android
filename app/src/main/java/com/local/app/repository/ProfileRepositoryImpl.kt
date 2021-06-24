@@ -28,6 +28,7 @@ class ProfileRepositoryImpl @Inject constructor(
 
     override fun logout() {
         prefUtils.clearProfile()
+        profile = null
     }
 
     override fun loadProfileAndSaveInPref(): Single<Profile> {

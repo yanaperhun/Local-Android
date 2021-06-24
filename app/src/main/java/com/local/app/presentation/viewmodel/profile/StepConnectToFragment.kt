@@ -27,7 +27,7 @@ class StepConnectToFragment : BaseCreateEventFragment<FragmentStepConnectToBindi
         initWhatsappMask()
 
         val profile = viewModel.getProfile()!!
-        if (binding.etPhone.text.isEmpty() && profile.phone.isNotEmpty()) {
+        if (binding.etPhone.text.isEmpty() && profile.phone?.isNotEmpty() == true) {
             binding.etPhone.setText(profile.phone)
         }
 
@@ -47,10 +47,10 @@ class StepConnectToFragment : BaseCreateEventFragment<FragmentStepConnectToBindi
     }
 
     private fun initClearButtons() {
-        binding.btnClearPhone.setOnClickListener { binding.etPhone.setText("") }
-        binding.btnClearInst.setOnClickListener { binding.etInstagram.setText("") }
-        binding.btnClearWhatapp.setOnClickListener { binding.etWhatsapp.setText("") }
-        binding.btnClearTg.setOnClickListener { binding.etTelegram.setText("") }
+        binding.btnClearPhone.setOnClickListener { binding.etPhone.text.clear() }
+        binding.btnClearInst.setOnClickListener { binding.etInstagram.text.clear() }
+        binding.btnClearWhatapp.setOnClickListener { binding.etWhatsapp.text.clear()}
+        binding.btnClearTg.setOnClickListener { binding.etTelegram.text.clear() }
     }
 
     private fun initPhoneMask() {
@@ -114,9 +114,9 @@ class StepConnectToFragment : BaseCreateEventFragment<FragmentStepConnectToBindi
         }
 
         if (telegram.isNotEmpty()) {
-            val regex =
-                ".*[\\W](@(?=.{5,64}(?:\\s|\$))(?![_])(?!.*[_]{2})[a-zA-Z0-9_]+(?<![_.])).*".toRegex()
-            result = telegram.matches(regex)
+//            val regex =
+//                ".*[\\W](@(?=.{5,64}(?:\\s|\$))(?![_])(?!.*[_]{2})[a-zA-Z0-9_]+(?<![_.])).*".toRegex()
+//            result = telegram.matches(regex)
 
             Log.d("Local", "==> result telegram $result")
         }
