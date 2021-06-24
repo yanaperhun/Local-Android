@@ -39,7 +39,7 @@
                 app:layout_constraintStart_toStartOf="@id/btn_back"
                 app:layout_constraintTop_toBottomOf="@id/btn_back" />
 
-        <EditText
+        <com.local.app.utils.EditTextE
                 android:id="@+id/et_input_description"
                 style="@style/App.EditText.CreateEvent.Big"
                 android:layout_width="0dp"
