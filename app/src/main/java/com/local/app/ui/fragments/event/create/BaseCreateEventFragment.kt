@@ -20,7 +20,11 @@ abstract class BaseCreateEventFragment<T : ViewBinding> : BindableFragment<T>() 
         return null
     }
 
-    abstract fun onNext()
+    open fun onNext() {
+        getNextFragment()?.let {
+            showFragment(it, true)
+        }
+    }
     abstract fun onValidate(): Boolean
     abstract fun getValidateMessage(): String
 
@@ -40,10 +44,8 @@ abstract class BaseCreateEventFragment<T : ViewBinding> : BindableFragment<T>() 
     }
 
     private fun goNext() {
-        onValidate()
-        onNext()
-        getNextFragment()?.let {
-            showFragment(it, true)
+        if (onValidate()) {
+            onNext()
         }
     }
 

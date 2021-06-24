@@ -37,7 +37,9 @@ class CreateEventStepTitleFragment : BaseCreateEventFragment<FragmentCreateEvent
     }
 
     override fun onValidate(): Boolean {
-        return !binding.etInputTitle.text.isNullOrEmpty()
+        val isValidate =  !binding.etInputTitle.text.isNullOrEmpty()
+        binding.etInputTitle.showError(!isValidate, getValidateMessage())
+        return isValidate
     }
 
     override fun getValidateMessage(): String {
@@ -45,6 +47,7 @@ class CreateEventStepTitleFragment : BaseCreateEventFragment<FragmentCreateEvent
     }
 
     override fun onNext() {
+        super.onNext()
     }
 
     private val textListener = object : SimpleTextWatcher() {
