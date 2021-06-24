@@ -11,6 +11,7 @@ import com.local.app.BindableFragment
 import com.local.app.R
 import com.local.app.data.Profile
 import com.local.app.databinding.FragmentProfileSettingsBinding
+import com.redmadrobot.inputmask.MaskedTextChangedListener
 import timber.log.Timber
 
 class ProfileSettingsFragment : BindableFragment<FragmentProfileSettingsBinding>() {
@@ -33,6 +34,20 @@ class ProfileSettingsFragment : BindableFragment<FragmentProfileSettingsBinding>
         initOnEditorActionListener()
         subscribeToViewModel()
         viewModel.loadProfileInfo()
+
+        val listener =
+            MaskedTextChangedListener(
+                "+7 ([000]) [000]-[00]-[00]", true, binding.etPhoneNumber, null,
+                null
+            )
+        binding.etPhoneNumber.addTextChangedListener(listener)
+
+        val listener2 =
+            MaskedTextChangedListener(
+                "+7 ([000]) [000]-[00]-[00]", true, binding.etWhatsApp, null,
+                null
+            )
+        binding.etWhatsApp.addTextChangedListener(listener2)
     }
 
     private fun initOnEditorActionListener() {
@@ -113,8 +128,10 @@ class ProfileSettingsFragment : BindableFragment<FragmentProfileSettingsBinding>
         binding.nestedScrollProfileSettings.visibility = View.VISIBLE
         binding.etUserName.setText(profile.firstName ?: "")
         binding.etUserEmail.setText(profile.email)
-        binding.etPhoneNumber.setText(profile.phone)
-        binding.etWhatsApp.setText(profile.whatsApp)
+        binding.etPhoneNumber.setText(if (profile.phone.isEmpty()) "" else profile.phone)
+        binding.etWhatsApp.setText(
+            if (profile.whatsApp?.isEmpty() ?: true) "" else profile.whatsApp
+        )
         binding.etTelegram.setText(profile.telegram)
         binding.etInstagram.setText(profile.instagram)
     }

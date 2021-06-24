@@ -25,12 +25,40 @@ class StepConnectToFragment : BaseCreateEventFragment<FragmentStepConnectToBindi
         super.initUI(state)
         initPhoneMask()
         initWhatsappMask()
+
+        val profile = viewModel.getProfile()!!
+        if (binding.etPhone.text.isEmpty() && profile.phone.isNotEmpty()) {
+            binding.etPhone.setText(profile.phone)
+        }
+
+        if (binding.etTelegram.text.isEmpty() && profile.telegram?.isNotEmpty() == true) {
+            binding.etTelegram.setText(profile.telegram)
+        }
+
+        if (binding.etInstagram.text.isEmpty() && profile.instagram?.isNotEmpty() == true) {
+            binding.etInstagram.setText(profile.instagram)
+        }
+
+        if (binding.etWhatsapp.text.isEmpty() && profile.whatsApp?.isNotEmpty() == true) {
+            binding.etWhatsapp.setText(profile.whatsApp)
+        }
+
+        initClearButtons()
+    }
+
+    private fun initClearButtons() {
+        binding.btnClearPhone.setOnClickListener { binding.etPhone.setText("") }
+        binding.btnClearInst.setOnClickListener { binding.etInstagram.setText("") }
+        binding.btnClearWhatapp.setOnClickListener { binding.etWhatsapp.setText("") }
+        binding.btnClearTg.setOnClickListener { binding.etTelegram.setText("") }
     }
 
     private fun initPhoneMask() {
         val listener =
-            MaskedTextChangedListener("+7 ([000]) [000]-[00]-[00]", true, binding.etPhone, null,
-                                      null)
+            MaskedTextChangedListener(
+                "+7 ([000]) [000]-[00]-[00]", true, binding.etPhone, null,
+                null
+            )
         binding.etPhone.addTextChangedListener(listener)
         binding.etPhone.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -39,12 +67,15 @@ class StepConnectToFragment : BaseCreateEventFragment<FragmentStepConnectToBindi
             }
             false
         }
+
     }
 
     private fun initWhatsappMask() {
         val listener =
-            MaskedTextChangedListener("+7 ([000]) [000]-[00]-[00]", true, binding.etWhatsapp, null,
-                                      null)
+            MaskedTextChangedListener(
+                "+7 ([000]) [000]-[00]-[00]", true, binding.etWhatsapp, null,
+                null
+            )
         binding.etWhatsapp.addTextChangedListener(listener)
         binding.etWhatsapp.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -56,11 +87,12 @@ class StepConnectToFragment : BaseCreateEventFragment<FragmentStepConnectToBindi
     }
 
     override fun onNext() {
-        onValidate()
+
         viewModel.eventBuilder().phone = binding.etPhone.text.toString()
         viewModel.eventBuilder().telegram = binding.etTelegram.text.toString()
         viewModel.eventBuilder().whatsapp = binding.etWhatsapp.text.toString()
         viewModel.eventBuilder().instagram = binding.etInstagram.text.toString()
+        super.onNext()
     }
 
     override fun onValidate(): Boolean {
@@ -70,16 +102,22 @@ class StepConnectToFragment : BaseCreateEventFragment<FragmentStepConnectToBindi
         val whatsapp = binding.etWhatsapp.text.toString()
         val instagram = binding.etInstagram.text.toString()
 
-        if (phone.isEmpty() && telegram.isEmpty() && whatsapp.isEmpty() && instagram.isEmpty()) return false
+        if (phone.isEmpty() && telegram.isEmpty() && whatsapp.isEmpty() && instagram.isEmpty()) {
+            binding.etPhone.showError(true, getString(R.string.error_validation_contacts_are_empty))
+            return false
+        }
 
         if (phone.isNotEmpty() && !FieldValidation.checkPhone(phone)) {
             Log.d("Local", "===>> phone is not valid")
-            result =  false
+            binding.etPhone.showError(true, getString(R.string.error_validation_phone))
+            result = false
         }
 
         if (telegram.isNotEmpty()) {
-            val regex = ".*[\\W](@(?=.{5,64}(?:\\s|\$))(?![_])(?!.*[_]{2})[a-zA-Z0-9_]+(?<![_.])).*".toRegex()
+            val regex =
+                ".*[\\W](@(?=.{5,64}(?:\\s|\$))(?![_])(?!.*[_]{2})[a-zA-Z0-9_]+(?<![_.])).*".toRegex()
             result = telegram.matches(regex)
+
             Log.d("Local", "==> result telegram $result")
         }
 
@@ -88,9 +126,10 @@ class StepConnectToFragment : BaseCreateEventFragment<FragmentStepConnectToBindi
         }
 
         if (whatsapp.isNotEmpty() && !FieldValidation.checkPhone(whatsapp)) {
-            result = false
+            binding.etPhone.showError(true, getString(R.string.error_validation_whatup))
+            return false
         }
-
+        if (!result) showToast(getValidateMessage())
         return result
     }
 

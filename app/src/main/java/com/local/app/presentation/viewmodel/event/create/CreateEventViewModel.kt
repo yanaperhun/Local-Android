@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.local.app.LocalApp
 import com.local.app.data.AppException
+import com.local.app.data.Profile
 import com.local.app.data.event.create.EventRaw
 import com.local.app.data.photo.PhotoInDir
 import com.local.app.domain.event.create.CreateEventInteractor
@@ -37,6 +38,9 @@ class CreateEventViewModel(application: Application) : AndroidViewModel(applicat
         getApplication<LocalApp>().daggerManager.createEventComponent?.inject(this)
     }
 
+    fun getProfile() : Profile? {
+        return profileInteractor.getProfile()
+    }
     fun loadProfile() {
         with(compositeDisposable) {
             add(profileInteractor
@@ -94,6 +98,10 @@ class CreateEventViewModel(application: Application) : AndroidViewModel(applicat
 
     fun isAddressSet(): Boolean {
         return eventBuilder().eventAddress != null
+    }
+
+    fun isPhotoUploaded() : Boolean {
+        return eventBuilder().pictures.firstOrNull() { it.hash != "" } != null
     }
 
     override fun onCleared() {

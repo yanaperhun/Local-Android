@@ -35,7 +35,8 @@ class CreateEventStepPhotoFragment :
             .start { result ->
 
                 val bitmap = BitmapFactory.decodeStream(
-                    requireContext().contentResolver.openInputStream(result))
+                    requireContext().contentResolver.openInputStream(result)
+                )
                 if (bitmap != null) {
                     val fileName = createFile(requireContext(), ".jpg").absolutePath
                     compress(fileName, bitmap)
@@ -71,11 +72,18 @@ class CreateEventStepPhotoFragment :
 
     override fun initUI(state: Bundle?) {
         super.initUI(state)
-        binding.btnCreate.setOnClickListener { viewModel.createEvent() }
+        binding.btnCreate.setOnClickListener {
+            if (viewModel.isPhotoUploaded()) viewModel.createEvent() else
+                showToast(getValidateMessage())
+        }
         binding.rvPhotos.layoutManager = GridLayoutManager(requireContext(), 3)
-        binding.rvPhotos.addItemDecoration(BottomTopItemDecoration(ViewUtils
-                                                                       .dpToPx(8)
-                                                                       .toInt()))
+        binding.rvPhotos.addItemDecoration(
+            BottomTopItemDecoration(
+                ViewUtils
+                    .dpToPx(8)
+                    .toInt()
+            )
+        )
         viewModel.eventCreationState.observe(this, {
             if (it is EventCreationState.LOADING) {
                 showProgressDialog()
@@ -94,7 +102,7 @@ class CreateEventStepPhotoFragment :
         })
 
         binding.rvPhotos.viewTreeObserver.addOnGlobalLayoutListener(object :
-                                                                        ViewTreeObserver.OnGlobalLayoutListener {
+            ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
                 //todo calculate size only once
                 binding.rvPhotos.adapter = adapter
@@ -123,6 +131,7 @@ class CreateEventStepPhotoFragment :
     }
 
     override fun onNext() {
+        super.onNext()
     }
 
     override fun onValidate(): Boolean {

@@ -25,7 +25,7 @@ class CreateEventStepTagsFragment : BaseCreateEventFragment<FragmentCreateEventS
 
     override fun onResume() {
         super.onResume()
-        binding.etInputTags.setText(viewModel.eventBuilder().description)
+
         focusET(binding.etInputTags)
         val filter = InputFilter { source, start, end, dest, dstart, dend ->
             for (i in start until end) {
@@ -79,15 +79,18 @@ class CreateEventStepTagsFragment : BaseCreateEventFragment<FragmentCreateEventS
     }
 
     override fun onValidate(): Boolean {
-        return !binding.etInputTags.text.isNullOrEmpty()
+        if (tags.isNotEmpty()) return true
+        binding.etInputTags.showError(true, getValidateMessage())
+        return false
     }
 
     override fun getValidateMessage(): String {
-        return getString(R.string.error_validate_step_2)
+        return getString(R.string.error_validate_step_tags)
     }
 
     override fun onNext() {
         viewModel.eventBuilder().tags = tags
+        super.onNext()
     }
 
     private val textListener = object : SimpleTextWatcher() {

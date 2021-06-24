@@ -40,7 +40,7 @@ class CreateEventStepPlayListFragment : BaseCreateEventFragment<FragmentCreateEv
     }
 
     override fun onNext() {
-        //viewModel.eventBuilder().
+        super.onNext()
     }
 
     override fun onValidate(): Boolean {

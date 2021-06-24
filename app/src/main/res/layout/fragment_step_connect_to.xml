@@ -36,7 +36,7 @@
             app:layout_constraintStart_toStartOf="@id/btn_back"
             app:layout_constraintTop_toBottomOf="@id/btn_back" />
 
-    <EditText
+    <com.local.app.utils.EditTextE
             android:inputType="phone"
             android:imeOptions="actionDone"
             android:id="@+id/et_phone"
@@ -54,7 +54,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
-    <EditText
+    <com.local.app.utils.EditTextE
             android:id="@+id/et_telegram"
             style="@style/App.EditText.CreateEvent"
             android:layout_width="0dp"
@@ -70,7 +70,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_phone" />
 
-    <EditText
+    <com.local.app.utils.EditTextE
             android:id="@+id/et_instagram"
             style="@style/App.EditText.CreateEvent"
             android:layout_width="0dp"
@@ -88,7 +88,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/et_telegram" />
 
-    <EditText
+    <com.local.app.utils.EditTextE
             android:inputType="phone"
             android:id="@+id/et_whatsapp"
             style="@style/App.EditText.CreateEvent"

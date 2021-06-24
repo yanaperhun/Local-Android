@@ -167,7 +167,9 @@ class CreateEventStepPlaceFragment : BaseCreateEventFragment<FragmentCreateEvent
     }
 
     override fun onValidate(): Boolean {
-        return !binding.etInputPrice.text.isNullOrEmpty() && viewModel.eventBuilder().eventAddress != null
+        val isValidate = !binding.etInputPrice.text.isNullOrEmpty()
+        if (!isValidate) binding.etInputPrice.showError(true, getValidateMessage())
+        return isValidate
     }
 
     override fun getValidateMessage(): String {
@@ -180,6 +182,7 @@ class CreateEventStepPlaceFragment : BaseCreateEventFragment<FragmentCreateEvent
         if (etText != viewModel.eventBuilder().eventAddress?.address) {
             viewModel.eventBuilder().eventAddress = EventAddress.build(etText, EMPTY_LATLNG)
         }
+        super.onNext()
     }
 
 }

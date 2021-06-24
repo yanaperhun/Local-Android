@@ -40,7 +40,7 @@ abstract class BaseCreateEventFragment<T : ViewBinding> : BindableFragment<T>() 
 
         binding.root
             .findViewById<ImageButton>(R.id.btn_back)
-            ?.setOnClickListener { requireActivity().onBackPressed() }
+            ?.setOnClickListener { backStep() }
     }
 
     private fun goNext() {

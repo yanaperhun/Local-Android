@@ -44,6 +44,7 @@
     <string name="create">Создать</string>
     <string name="error_validate_step_1">Введите название</string>
     <string name="error_validate_step_2">Введите описание</string>
+    <string name="error_validate_step_tags">Введите любой тэг</string>
     <string name="error_validate_step_3">Введите дату проведения и продолжительность события</string>
     <string name="error_validate_step_4">Введите адрес</string>
     <string name="error_validate_step_5">Нет саундтрека</string>
@@ -76,6 +77,9 @@
     <string name="name">Имя</string>
     <string name="events_is_approving">Событие\nна проверке</string>
     <string name="list_is_empty">Кажется, список окончился.\nПопробуйте загрузить еще раз</string>
+    <string name="error_validation_phone">Не корректный номер телефона</string>
+    <string name="error_validation_contacts_are_empty">Введите хоть один способ связи</string>
+    <string name="error_validation_whatup">Не корректный номер Whatsapp</string>
 
 
 </resources>

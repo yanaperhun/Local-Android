@@ -36,7 +36,7 @@
             app:layout_constraintStart_toStartOf="@id/btn_back"
             app:layout_constraintTop_toBottomOf="@id/btn_back" />
 
-    <AutoCompleteTextView
+    <com.local.app.utils.AutoCompleteEditTextE
             android:id="@+id/et_input_price"
             style="@style/App.EditText.CreateEvent"
             android:layout_width="0dp"

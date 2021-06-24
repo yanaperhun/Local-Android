@@ -43,14 +43,19 @@ class CreateEventStepDateFragment : BaseCreateEventFragment<FragmentCreateEventS
     }
 
     private fun setFormattedDate() {
-        binding.etInputDate.text = DateUtils.formatLongToString(viewModel.eventBuilder().date,
-                                                                DateUtils.FORMAT_dd_MMMM_yyyy)
+        binding.etInputDate.setText(
+            DateUtils.formatLongToString(
+                viewModel.eventBuilder().date,
+                DateUtils.FORMAT_dd_MMMM_yyyy
+            )
+        )
     }
 
     private fun setFormattedTime() {
         log("time : ${viewModel.eventBuilder().time}")
-        binding.tvTime.text =
+        binding.tvTime.setText(
             DateUtils.formatLongToString(viewModel.eventBuilder().time, DateUtils.FORMAT_HH_mm)
+        )
     }
 
     private fun showDatePickerDialog() {
@@ -77,20 +82,33 @@ class CreateEventStepDateFragment : BaseCreateEventFragment<FragmentCreateEventS
         return CreateEventStepPlaceFragment()
     }
 
-    override fun onNext() {
-    }
-
     private val dateWatcher = object : SimpleTextWatcher() {
 
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             super.onTextChanged(s, start, before, count)
-            binding.tvTime.setOnClickListener{if (!binding.etInputDate.text.isNullOrEmpty()) showTimePickerDialog() else
-            showToast("Выберите дату проведения события.")}
+            binding.tvTime.setOnClickListener {
+                if (!binding.etInputDate.text.isNullOrEmpty()) showTimePickerDialog() else {
+
+                    binding.etInputDate.showError(true,"Выберите дату проведения события." )
+                }
+
+            }
         }
     }
 
     override fun onValidate(): Boolean {
-        return !binding.etInputDate.text.isNullOrEmpty() && !binding.tvTime.text.isNullOrEmpty()
+        val dateIsValidated = !binding.etInputDate.text.isNullOrEmpty()
+        val timeIsValidated = !binding.tvTime.text.isNullOrEmpty()
+
+        if (!dateIsValidated) {
+            binding.etInputDate.showError(true, getValidateMessage())
+            return false
+        }
+        if (!timeIsValidated) {
+            binding.tvTime.showError(true, getValidateMessage())
+            return false
+        }
+        return true
     }
 
     override fun getValidateMessage(): String {
